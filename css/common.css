@@ -45,10 +45,11 @@ table {
 /* wsg */
 .guide-side .tn-lnb-menu{ overflow-y: auto; max-height: 100%; }
 .guide-side .tn-lnb-menu .menu-item{padding: 20px}
-.guide-side .tn-lnb-menu .menu-item > a{ font-weight: bold;font-size: 20px;line-height: 32px}
+.guide-side .tn-lnb-menu .menu-item > a{ font-weight: bold;font-size: 20px;line-height: 32px;}
 .guide-side .tn-lnb-menu .menu-item .sub-menu li{line-height: 25px}
 .guide-side .tn-lnb-menu .menu-item > a.on,
 .guide-side .tn-lnb-menu .menu-item .sub-menu .on{color:#ed4b30}
+.guide-side .tn-lnb-menu .menu-item .sub-menu a{cursor: pointer;}
 
 .guide-side{
     position: fixed;
@@ -68,3 +69,4 @@ table {
     padding-left: 320px;
 }
 .guide-container .guide-smaple{padding: 20px;}
+.guide-container .guide-smaple .guide-h1{margin: 0 64px 24px 0; border-bottom: 2px solid #645F66; color: #645F66; font-size: 40px; line-height:50px }

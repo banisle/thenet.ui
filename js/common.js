@@ -11,7 +11,9 @@ $(function () {
             dataType: 'html',
             success: function (data) {
                 $("#load-ct").html(data);
+                SyntaxHighlighter.highlight()
             }
         });
+
     })
 })

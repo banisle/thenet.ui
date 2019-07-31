@@ -9,6 +9,28 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/common.js"></script>
     <script src="js/TNUI.js"></script>
+    <!-- 1. core style sheet : 필수 -->
+    <link rel="stylesheet" href="lib/shCoreDefault.min.css">
+    <!-- 2. theme style sheet : 택1 -->
+    <link rel="stylesheet" href="lib/shThemeRDark.min.css">
+    <!-- 3. core javascript : 필수 -->
+    <script type="text/javascript" src="lib/shCore.min.js"></script>
+    <!-- 4. highlight 지원 언어 javascript : 지원할 언어만큼 선택 -->
+    <script type="text/javascript" src="lib/shBrushCss.min.js"></script>
+    <script type="text/javascript" src="lib/shBrushJScript.min.js"></script>
+    <script type="text/javascript" src="lib/shBrushXml.min.js"></script>
+    
+    <!-- SyntaxHighlighter 초기화 -->
+    <script type="text/javascript">
+        /* 5. set config : option */
+        // option 지정
+    
+        /* 6. set defaults : option */
+        // option 지정
+        
+        /* 7. 초기화 : 필수 */
+        SyntaxHighlighter.all();
+    </script>
 </head>
 <body>
     <!-- (sta) side menu -->
@@ -62,6 +84,8 @@
         </div>
     </div>
     <!-- (end) sample container -->
+
+    
 
 </body>
 </html>
