@@ -7,7 +7,7 @@ $(function () {
 
         $.ajax({
             type: 'get',
-            url: '/pages/'+ s2ItemId +'.html',
+            url: 'pages/'+ s2ItemId +'.html',
             dataType: 'html',
             success: function (data) {
                 $("#load-ct").html(data);
