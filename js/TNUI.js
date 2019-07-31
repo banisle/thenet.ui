@@ -42,7 +42,11 @@ TNUI.module = (function(){
                 
                 TNUI.module.createH1(s2ItemTXT);
             });
-        }
+        },
+
+        selectUi : function(){
+
+        },
         
     }
     // (end) TNUI returm module
