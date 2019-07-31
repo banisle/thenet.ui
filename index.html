@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>thenet.ui</title>
-    <link rel="stylesheet" href="css/common.css">
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/common.js"></script>
-    <script src="js/TNUI.js"></script>
+    
+    <!-- lib : fontawesome icon -->
+    <link rel="stylesheet" href="lib/all.css">
+
+    <!-- lib : syntaxhighlighter -->
     <!-- 1. core style sheet : 필수 -->
     <link rel="stylesheet" href="lib/shCoreDefault.min.css">
     <!-- 2. theme style sheet : 택1 -->
@@ -19,18 +20,13 @@
     <script type="text/javascript" src="lib/shBrushCss.min.js"></script>
     <script type="text/javascript" src="lib/shBrushJScript.min.js"></script>
     <script type="text/javascript" src="lib/shBrushXml.min.js"></script>
+
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/TNUI.js"></script>
     
-    <!-- SyntaxHighlighter 초기화 -->
-    <script type="text/javascript">
-        /* 5. set config : option */
-        // option 지정
-    
-        /* 6. set defaults : option */
-        // option 지정
-        
-        /* 7. 초기화 : 필수 */
-        SyntaxHighlighter.all();
-    </script>
+
 </head>
 <body>
     <!-- (sta) side menu -->
@@ -78,7 +74,7 @@
         <div class="guide-smaple">
             <h1 class="guide-h1"></h1>
             <!-- (sta) ajax load -->
-            <div id="load-ct"></div>
+            <div id="load-ct">the net ui lib</div>
             <!-- (end) ajax load -->
 
         </div>

@@ -1,3 +1,5 @@
+/* reset */
+* { margin: 0; padding: 0; -webkit-text-size-adjust: none; word-break: keep-all }
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -41,6 +43,20 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+button {
+    padding: 0;
+    background: 0;
+    border: 0;
+    cursor: pointer;
+    letter-spacing: -1px;
+}
+
+/* lib : syntaxhighlighter */
+.syntaxhighlighter {
+	overflow-y: hidden !important;
+	padding: 20px 0;
+	margin-bottom: 30px !important;
+  }
 
 /* wsg */
 .guide-side .tn-lnb-menu{ overflow-y: auto; max-height: 100%; }
@@ -65,8 +81,71 @@ table {
     letter-spacing: 0;
 }
 
-.guide-container{
-    padding-left: 320px;
-}
+.guide-container{ padding-left: 320px; }
 .guide-container .guide-smaple{padding: 20px;}
-.guide-container .guide-smaple .guide-h1{margin: 0 64px 24px 0; border-bottom: 2px solid #645F66; color: #645F66; font-size: 40px; line-height:50px }
+.guide-container .guide-smaple .guide-h1{margin: 0 0 24px 0; border-bottom: 2px solid #645F66; color: #645F66; font-size: 40px; line-height:50px }
+.guide-container .guide-smaple h3{padding: 24px 0 8px; color: #545151; font-size: 24px; line-height: 32px; letter-spacing: 0;}
+.guide-container .guide-smaple .sub-txt{margin: 0 0 20px; padding: 10px; color: #545151; border: 1px solid #e3e3e3; border-radius: 5px; background: #eee;}
+
+
+/* snippet */
+.w100{width:100%}
+
+/* buttons */
+.btn_wrap{overflow: hidden;}
+.btn_wrap.row-2 > span{ float: left; width: 50%; padding-right: 2.5px; box-sizing: border-box;}
+.btn_wrap.row-2 > span:last-child{ float: left; width: 50%; padding:0 0 0 2.5px; box-sizing: border-box;}
+.btn_wrap.dp-flex {
+    display: flex;
+    justify-content: space-between;
+}
+.btn_wrap.dp-flex >button:nth-child(2){margin:0 5px}
+.btn_org {
+	display: inline-block;
+	min-width: 182px;
+	height: 52px;
+	padding: 0;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 0;
+	box-sizing: border-box;
+	color: #fff;
+	background-color: #aa301c;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: middle;
+    letter-spacing: 0;
+}
+.btn_org > span{ display: inline-block;line-height: 50px; padding: 0 20px 0;}
+
+.btn_no{background: #5b5b5b}
+.btn_ok:active,
+.btn_ok:hover{background: #771403}
+.btn_no:active,
+.btn_no:hover{background: #2b2b2b}
+
+.btn_ok:disabled,
+.btn_ok:disabled:active,
+.btn_ok:disabled:hover{background: #aa301c4a}
+.btn_no:disabled,
+.btn_no:disabled:active,
+.btn_no:disabled:hover{background: #5b5b5b5c}
+
+.btn_icn{display: inline-block; height: 32px; padding: 0; border-radius: 2px; text-align: center; vertical-align: middle; font-size: 14px; line-height: 30px; letter-spacing: 0; box-sizing: border-box; background-color: #f3f5f8; border: 1px solid #9b9fa8; color: #575b63;}
+.btn_icn > span{padding: 0 12px 0;}
+.btn_icn > span > i.fa,
+.btn_icn > span > i.fas{padding: 0 5px 0 0;}
+
+.btn_icn:active,
+.btn_icn:hover {
+	background-color:#e9ebef;
+	border-color:#2b2e38;
+	color:#2b2e38;
+}
+.btn_icn:disabled,
+.btn_icn:disabled:active,
+.btn_icn:disabled:hover {
+	background-color:#fff;
+	border-color:#e9ebef;
+	color:#e9ebef;
+}

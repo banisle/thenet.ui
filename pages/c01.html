@@ -1,5 +1,16 @@
-<div>button detail</div>
+<!-- button detail -->
 
+<!-- 고정 버튼 -->
+<h3>고정 버튼</h3>
+<p class="sub-txt">width:182px; </p>
+<div class="btn_wrap">
+    <button type="button" class="btn_org btn_ok"><span>확인</span></button>
+    <button type="button" class="btn_org btn_ok" disabled><span>확인 disabled</span></button>
+    <button type="button" class="btn_org btn_no"><span>취소</span></button>
+    <button type="button" class="btn_org btn_no" disabled><span>취소 disabled</span></button>
+</div>
+
+<!-- (sta) pre sample -->
 <pre class="brush:js; /* javascript 지정 */
         auto-links:false;		/* URL 링크 여부 지정 */
         class-name:'';			/* css class를 지정해서 style을 바꾼다 */
@@ -12,23 +23,72 @@
         tab-size:2;				/* 탭 사이즈 변경 */
         toolbar:false;			/* 툴바 표시 지정 */
         pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */
-        quick-code:false;"		/* double click으로 code 전체를 선택 */
-    title="더하기 함수" 		/* 제목 */
+        quick-code:true;"		/* double click으로 code 전체를 선택 */
 >
-&lt;html&gt;	<!-- "<" → "&amp;lt;",  ">" → "&amp;gt;"로 바꿔서 입력하세요 -->
-&lt;head&gt;
-	&lt;script type="text/javascript"&gt;
-		/**
-		 * plus function (루미오 : https://loomio.kr)
-		 */
-		function plus(a, b) {
-			var result = 0;
-			result = a + b;	// plus
-			return result;
-		}
-	&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+
+&lt;div class=&quot;btn_wrap&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_org btn_ok&quot;&gt;&lt;span&gt;확인&lt;/span&gt;&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_org btn_ok&quot; disabled&gt;&lt;span&gt;확인 disabled&lt;/span&gt;&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_org btn_no&quot;&gt;&lt;span&gt;취소&lt;/span&gt;&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_org btn_no&quot; disabled&gt;&lt;span&gt;취소 disabled&lt;/span&gt;&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+<!-- (end) pre sample -->
+
+<!-- 가변 버튼 -->
+<h3>가변 버튼</h3>
+<p class="sub-txt">1개 </p>
+<div class="btn_wrap">
+    <button type="button" class="btn_org btn_ok w100"><span>확인</span></button>
+</div>
+<!-- (sta) pre sample -->
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;div class=&quot;btn_wrap&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_org btn_ok w100&quot;&gt;&lt;span&gt;확인&lt;/span&gt;&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+<!-- (end) pre sample -->
+
+<p class="sub-txt">균등 row-2 클래스 추가</p>
+<div class="btn_wrap row-2">
+    <span><button type="button" class="btn_org btn_ok w100"><span>확인</span></button></span>
+    <span><button type="button" class="btn_org btn_no w100"><span>취소</span></button></span>
+</div>
+<!-- (sta) pre sample -->
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;div class=&quot;btn_wrap row-2&quot;&gt;
+    &lt;span&gt;&lt;button type=&quot;button&quot; class=&quot;btn_org btn_ok w100&quot;&gt;&lt;span&gt;확인&lt;/span&gt;&lt;/button&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;button type=&quot;button&quot; class=&quot;btn_org btn_no w100&quot;&gt;&lt;span&gt;취소&lt;/span&gt;&lt;/button&gt;&lt;/span&gt;
+&lt;/div&gt;
+</pre>
+
+<p class="sub-txt">3개 이상 균등 pc:고정, mo:display:flex, dp-flex 클래스 추가</p>
+
+<div class="btn_wrap dp-flex">
+    <button type="button" class="btn_org btn_ok w100"><span>확인</span></button>
+    <button type="button" class="btn_org btn_ok w100" disabled><span>확인 disabled</span></button>
+    <button type="button" class="btn_org btn_no w100"><span>취소</span></button>
+</div>
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;div class=&quot;btn_wrap dp-flex&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_org btn_ok w100&quot;&gt;&lt;span&gt;확인&lt;/span&gt;&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_org btn_ok w100&quot; disabled&gt;&lt;span&gt;확인 disabled&lt;/span&gt;&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_org btn_no w100&quot;&gt;&lt;span&gt;취소&lt;/span&gt;&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+<p class="sub-txt">아이콘이 있는 버튼</p>
+<div class="btn_wrap">
+    <button type="button" class="btn_icn "><span><i class="fas fa-angle-down"></i>아래쪽 화살표</span></button>
+    <button type="button" class="btn_icn "><span><i class="fas fa-angle-left"></i>왼쪽 화살표</span></button>
+    <button type="button" class="btn_icn " disabled><span><i class="fas fa-angle-right"></i>오른쪽 화살표 disabled</span></button>
+    <button type="button" class="btn_icn " disabled><span><i class="fas fa-angle-up"></i>위쪽 화살표 disabled</span></button>
+</div>
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;div class=&quot;btn_wrap&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_icn &quot;&gt;&lt;span&gt;&lt;i class=&quot;fas fa-angle-down&quot;&gt;&lt;/i&gt;아래쪽 화살표&lt;/span&gt;&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_icn &quot;&gt;&lt;span&gt;&lt;i class=&quot;fas fa-angle-left&quot;&gt;&lt;/i&gt;왼쪽 화살표&lt;/span&gt;&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_icn &quot;&gt;&lt;span&gt;&lt;i class=&quot;fas fa-angle-right&quot;&gt;&lt;/i&gt;오른쪽 화살표&lt;/span&gt;&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn_icn &quot;&gt;&lt;span&gt;&lt;i class=&quot;fas fa-angle-up&quot;&gt;&lt;/i&gt;위쪽 화살표&lt;/span&gt;&lt;/button&gt;
+&lt;/div&gt;
 </pre>
