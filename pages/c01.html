@@ -2,12 +2,14 @@
 
 <!-- 고정 버튼 -->
 <h3>고정 버튼</h3>
-<p class="sub-txt">width:182px; </p>
+<p class="sub-txt">width:182px; *ie9에서 disabled 버튼 이슈,따로 disabled 클래스를 추가하는 방법으로 적용 </p>
 <div class="btn_wrap">
     <button type="button" class="btn_org btn_ok"><span>확인</span></button>
     <button type="button" class="btn_org btn_ok" disabled><span>확인 disabled</span></button>
     <button type="button" class="btn_org btn_no"><span>취소</span></button>
     <button type="button" class="btn_org btn_no" disabled><span>취소 disabled</span></button>
+    <button type="button" class="btn_org btn_ok disabled" ><span>ie9용 확인</span></button>
+    <button type="button" class="btn_org btn_no disabled" ><span>ie9용 취소</span></button>
 </div>
 
 <!-- (sta) pre sample -->

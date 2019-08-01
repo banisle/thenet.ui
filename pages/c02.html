@@ -1,27 +1,44 @@
 <!-- selection controls detail -->
 <h3>체크박스</h3>
 
-<div class="chk_grp">
-    <span><input type="checkbox" id="chk-on1"><label for="chk-on1">normal</label></span>
-    <span><input type="checkbox" id="chk-on2" checked><label for="chk-on2">checked</label></span>
-    <span><input type="checkbox" id="chk-on3" disabled><label for="chk-on3">disabled</label></span>
-    <span><input type="checkbox" id="chk-on4" checked disabled><label for="chk-on4">checked disabled</label></span>
-    <span><input type="checkbox" id="chk-on5" class="inp-chk-error"><label for="chk-on5">error</label></span>
+<div class="form_grp">
+    <span><input type="checkbox" id="chk-on1"><label for="chk-on1"><span class="label-txt">기본</span></label></span>
+    <span><input type="checkbox" id="chk-on2" checked><label for="chk-on2"><span class="label-txt">체크됨</span></label></span>
+    <span><input type="checkbox" id="chk-on3" disabled><label for="chk-on3"><span class="label-txt">disabled</span></label></span>
+    <span><input type="checkbox" id="chk-on4" checked disabled><label for="chk-on4"><span class="label-txt">checked disabled</span></label></span>
+    <span><input type="checkbox" id="chk-on5" class="inp-error"><label for="chk-on5"><span class="label-txt">error</span></label></span>
 </div>
 
 <!-- (sta) pre sample -->
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
-&lt;div class=&quot;chk_grp&quot;&gt;
-    &lt;span&gt;&lt;input type=&quot;checkbox&quot; id=&quot;chk-on1&quot;&gt;&lt;label for=&quot;chk-on1&quot;&gt;normal&lt;/label&gt;&lt;/span&gt;
-    &lt;span&gt;&lt;input type=&quot;checkbox&quot; id=&quot;chk-on2&quot; checked&gt;&lt;label for=&quot;chk-on2&quot;&gt;checked&lt;/label&gt;&lt;/span&gt;
-    &lt;span&gt;&lt;input type=&quot;checkbox&quot; id=&quot;chk-on3&quot; disabled&gt;&lt;label for=&quot;chk-on3&quot;&gt;disabled&lt;/label&gt;&lt;/span&gt;
-    &lt;span&gt;&lt;input type=&quot;checkbox&quot; id=&quot;chk-on4&quot; checked disabled&gt;&lt;label for=&quot;chk-on4&quot;&gt;checked disabled&lt;/label&gt;&lt;/span&gt;
-    &lt;span&gt;&lt;input type=&quot;checkbox&quot; id=&quot;chk-on5&quot; class=&quot;inp-chk-error&quot;&gt;&lt;label for=&quot;chk-on5&quot;&gt;error&lt;/label&gt;&lt;/span&gt;
+&lt;div class=&quot;form_grp&quot;&gt;
+    &lt;span&gt;&lt;input type=&quot;checkbox&quot; id=&quot;chk-on1&quot;&gt;&lt;label for=&quot;chk-on1&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;기본&lt;/span&gt;&lt;/label&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;input type=&quot;checkbox&quot; id=&quot;chk-on2&quot; checked&gt;&lt;label for=&quot;chk-on2&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;체크됨&lt;/span&gt;&lt;/label&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;input type=&quot;checkbox&quot; id=&quot;chk-on3&quot; disabled&gt;&lt;label for=&quot;chk-on3&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;disabled&lt;/span&gt;&lt;/label&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;input type=&quot;checkbox&quot; id=&quot;chk-on4&quot; checked disabled&gt;&lt;label for=&quot;chk-on4&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;checked disabled&lt;/span&gt;&lt;/label&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;input type=&quot;checkbox&quot; id=&quot;chk-on5&quot; class=&quot;inp-error&quot;&gt;&lt;label for=&quot;chk-on5&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;error&lt;/span&gt;&lt;/label&gt;&lt;/span&gt;
 &lt;/div&gt;
 </pre>
 <!-- (end) pre sample -->
 
 <h3>라디오버튼</h3>
+<div class="form_grp">
+    <span><input type="radio" id="rad-on1" name="rad-grp"><label for="rad-on1"><span class="label-txt">normal</span></label></span>
+    <span><input type="radio" id="rad-on2" name="rad-grp" checked><label for="rad-on2"><span class="label-txt">checked</span></label></span>
+    <span><input type="radio" id="rad-on3" name="rad-grp" disabled><label for="rad-on3"><span class="label-txt">disabled</span></label></span>
+    <span><input type="radio" id="rad-on4" name="rad-grp2" checked disabled><label for="rad-on4"><span class="label-txt">checked disabled</span></label></span>
+    <span><input type="radio" id="rad-on5" name="rad-grp2" class="inp-error"><label for="rad-on5"><span class="label-txt">error</span></label></span>
+</div>
+
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;div class=&quot;form_grp&quot;&gt;
+    &lt;span&gt;&lt;input type=&quot;radio&quot; id=&quot;rad-on1&quot; name=&quot;rad-grp&quot;&gt;&lt;label for=&quot;rad-on1&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;normal&lt;/span&gt;&lt;/label&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;input type=&quot;radio&quot; id=&quot;rad-on2&quot; name=&quot;rad-grp&quot; checked&gt;&lt;label for=&quot;rad-on2&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;checked&lt;/span&gt;&lt;/label&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;input type=&quot;radio&quot; id=&quot;rad-on3&quot; name=&quot;rad-grp&quot; disabled&gt;&lt;label for=&quot;rad-on3&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;disabled&lt;/span&gt;&lt;/label&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;input type=&quot;radio&quot; id=&quot;rad-on4&quot; name=&quot;rad-grp2&quot; checked disabled&gt;&lt;label for=&quot;rad-on4&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;checked disabled&lt;/span&gt;&lt;/label&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;input type=&quot;radio&quot; id=&quot;rad-on5&quot; name=&quot;rad-grp2&quot; class=&quot;inp-error&quot;&gt;&lt;label for=&quot;rad-on5&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;error&lt;/span&gt;&lt;/label&gt;&lt;/span&gt;
+&lt;/div&gt;
+</pre>
 
 <h3>select</h3>
 <p class="sub-txt">TNUI.selectUi() 호출</p>
@@ -34,3 +51,16 @@
 </select>
 
 <h3>tab</h3>
+<p class="sub-txt">TNUI.tabUi() 호출</p>
+
+<ul class="ui-tab">
+    <li><span><a href="#">first</a></span>
+        <div><p> first detail </p></div>
+    </li>
+    <li><span><a href="#">second</a></span>
+        <div><p> first detail </p></div>
+    </li>
+    <li><span><a href="#">third</a></span>
+        <div><p> first detail </p></div>
+    </li>
+</ul>

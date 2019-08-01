@@ -14,6 +14,7 @@ var guSide = $('.guide-side'),
 TNUI.init = (function(){
     TNUI.module.createH1();
     TNUI.module.toggleOn();
+    TNUI.module.moGuideMenu();
     
     console.log('init');
 });
@@ -29,6 +30,16 @@ TNUI.module = (function(){
     return{
         createH1 : function(s2ItemTXT){
             ctH1.text(s2ItemTXT);
+        },
+
+        moGuideMenu : function(){
+            var t = $('.mo-guide-btn'),
+                sg = $('.guide-side');
+            
+            t.on('click', function(){
+                t.toggleClass('active');
+                sg.toggleClass('open');
+            });
         },
 
         toggleOn : function(){
