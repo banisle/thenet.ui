@@ -34,13 +34,30 @@ TNUI.module = (function(){
 
         moGuideMenu : function(){
             var t = $('.mo-guide-btn'),
-                sg = $('.guide-side');
-            
-            t.on('click', function(){
-                $('html').toggleClass('fixed');
-                t.toggleClass('active');
-                sg.toggleClass('open');
+                sg = $('.guide-side'),
+                dimCt = $('.guide-container'),
+                dimBtn = $('.mo-guide-dim');
+                openSt = 'false';
+
+            var dimLyOpen = function(){
+                $('html').addClass('fixed');
+                t.addClass('active');
+                sg.addClass('open');
+                dimBtn.addClass('active');
+                openSt = 'true';
+            }
+
+            var dimLyClose = function(){
+                $('html').removeClass('fixed');
+                t.removeClass('active');
+                sg.removeClass('open');
+                dimBtn.removeClass('active');
+                openSt = 'false';
+            }
+            t.add(dimBtn).on('click', function(e){
+                (openSt == 'false')? dimLyOpen():dimLyClose();
             });
+
         },
 
         toggleOn : function(){
@@ -54,6 +71,10 @@ TNUI.module = (function(){
                 
                 TNUI.module.createH1(s2ItemTXT);
             });
+        },
+
+        tabUi : function(){
+            
         },
 
         selectUi : function(){

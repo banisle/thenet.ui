@@ -1,8 +1,8 @@
 $(function () {
     var s2Item = $('.guide-side .sub-menu > li > a');
 
-    s2Item.click(function() {
-        
+    s2Item.click(function(e) {
+        e.preventDefault();
         var s2ItemId = $(this).attr('data-menu');
 
         $.ajax({
