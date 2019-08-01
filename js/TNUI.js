@@ -37,6 +37,7 @@ TNUI.module = (function(){
                 sg = $('.guide-side');
             
             t.on('click', function(){
+                $('html').toggleClass('fixed');
                 t.toggleClass('active');
                 sg.toggleClass('open');
             });

@@ -59,6 +59,7 @@ button {
   }
 
 /* wsg */
+html.fixed{overflow-y: hidden;}
 .guide-side{transition: all ease .5s}
 .guide-side.open{left:0}
 .guide-side .tn-lnb-menu{ overflow-y: auto; max-height: 100%; }
@@ -100,6 +101,7 @@ button {
 	.mo-guide-side > button,
 	.mo-guide-side > button span { display : inline-block; transition : all .4s; box-sizing : border-box; }
 	.mo-guide-side > button { position : relative; width : 20px; height : 20px; }
+	.mo-guide-side > button.active:before{content:'';display:block;width: 100vw;height: 100vh;top: 0;right: 0;position: absolute;}
 	.mo-guide-side > button span { position : absolute; left : 0; width : 100%; height : 2px; background-color : rgb(53, 53, 53); border-radius : 4px; }
 	.mo-guide-side > button span:nth-of-type(1) { top : 0; }
 	.mo-guide-side > button span:nth-of-type(2) { top : 9px; }
