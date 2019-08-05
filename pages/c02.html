@@ -2,11 +2,11 @@
 <h3>체크박스</h3>
 
 <div class="form_grp">
-    <span><input type="checkbox" id="chk-on1"><label for="chk-on1"><span class="label-txt">기본</span></label></span>
-    <span><input type="checkbox" id="chk-on2" checked><label for="chk-on2"><span class="label-txt">체크됨</span></label></span>
-    <span><input type="checkbox" id="chk-on3" disabled><label for="chk-on3"><span class="label-txt">disabled</span></label></span>
-    <span><input type="checkbox" id="chk-on4" checked disabled><label for="chk-on4"><span class="label-txt">checked disabled</span></label></span>
-    <span><input type="checkbox" id="chk-on5" class="inp-error"><label for="chk-on5"><span class="label-txt">error</span></label></span>
+    <span><input type="checkbox" id="chk-on1" class="form_chk"><label for="chk-on1"><span class="label-txt">기본</span></label></span>
+    <span><input type="checkbox" id="chk-on2" class="form_chk"checked><label for="chk-on2"><span class="label-txt">체크됨</span></label></span>
+    <span><input type="checkbox" id="chk-on3" class="form_chk"disabled><label for="chk-on3"><span class="label-txt">disabled</span></label></span>
+    <span><input type="checkbox" id="chk-on4" class="form_chk"checked disabled><label for="chk-on4"><span class="label-txt">checked disabled</span></label></span>
+    <span><input type="checkbox" id="chk-on5" class="form_chk"class="inp-error"><label for="chk-on5"><span class="label-txt">error</span></label></span>
 </div>
 
 <!-- (sta) pre sample -->
@@ -23,11 +23,11 @@
 
 <h3>라디오버튼</h3>
 <div class="form_grp">
-    <span><input type="radio" id="rad-on1" name="rad-grp"><label for="rad-on1"><span class="label-txt">normal</span></label></span>
-    <span><input type="radio" id="rad-on2" name="rad-grp" checked><label for="rad-on2"><span class="label-txt">checked</span></label></span>
-    <span><input type="radio" id="rad-on3" name="rad-grp" disabled><label for="rad-on3"><span class="label-txt">disabled</span></label></span>
-    <span><input type="radio" id="rad-on4" name="rad-grp2" checked disabled><label for="rad-on4"><span class="label-txt">checked disabled</span></label></span>
-    <span><input type="radio" id="rad-on5" name="rad-grp2" class="inp-error"><label for="rad-on5"><span class="label-txt">error</span></label></span>
+    <span><input type="radio" id="rad-on1" name="rad-grp" class="form_radio"><label for="rad-on1"><span class="label-txt">normal</span></label></span>
+    <span><input type="radio" id="rad-on2" name="rad-grp" class="form_radio" checked><label for="rad-on2"><span class="label-txt">checked</span></label></span>
+    <span><input type="radio" id="rad-on3" name="rad-grp" class="form_radio" disabled><label for="rad-on3"><span class="label-txt">disabled</span></label></span>
+    <span><input type="radio" id="rad-on4" name="rad-grp2" class="form_radio" checked disabled><label for="rad-on4"><span class="label-txt">checked disabled</span></label></span>
+    <span><input type="radio" id="rad-on5" name="rad-grp2" class="form_radio" class="inp-error"><label for="rad-on5"><span class="label-txt">error</span></label></span>
 </div>
 
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
@@ -41,7 +41,7 @@
 </pre>
 
 <h3>select</h3>
-<p class="sub-txt">TNUI.selectUi() 호출</p>
+<p class="sub-txt">TNUI.module.selectUi() 호출</p>
 
 <select title="test"  >
     <option value="test1">test1</option>
@@ -51,16 +51,61 @@
 </select>
 
 <h3>tab</h3>
-<p class="sub-txt">TNUI.tabUi() 호출<br/>border after로 처리 선 겹침 문제 해결</p>
+<p class="sub-txt">TNUI.module.tabUi() 호출<br/>border after로 처리 선 겹침 문제 해결</p>
+<div class="ui-tabWrap">
+    <ul class="ui-tab" role="tablist">
+        <li><span><a href="#" id="ui-tab-btn1" class="ui-tab-btn on" role="tab" aria-controls="ui-tab-list1"><span>first</span></a></span></li>
+        <li><span><a href="#" id="ui-tab-btn2" class="ui-tab-btn" role="tab" aria-controls="ui-tab-list2"><span>second</span></a></span></li>
+        <li><span><a href="#" id="ui-tab-btn3" class="ui-tab-btn" role="tab" aria-controls="ui-tab-list3"><span>third</span></a></span></li>
+    </ul>
+    <div id="ui-tab-list1" class="ui-tab-list" role="tabpanel" aria-labelledby="ui-tab-btn1">detail1</div>
+    <div id="ui-tab-list2" class="ui-tab-list" role="tabpanel" aria-labelledby="ui-tab-btn2">detail2</div>
+    <div id="ui-tab-list3" class="ui-tab-list" role="tabpanel" aria-labelledby="ui-tab-btn3">detail3</div>
+</div>
 
-<ul class="ui-tab">
-    <li><span><a href="#">first</a></span>
-        <div><p> first detail </p></div>
-    </li>
-    <li class="on"><span><a href="#">second</a></span>
-        <div><p> first detail </p></div>
-    </li>
-    <li><span><a href="#">third</a></span>
-        <div><p> first detail </p></div>
-    </li>
-</ul>
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;div class=&quot;ui-tabWrap&quot;&gt;
+    &lt;ul class=&quot;ui-tab&quot; role=&quot;tablist&quot;&gt;
+        &lt;li&gt;&lt;span&gt;&lt;a href=&quot;#&quot; id=&quot;ui-tab-btn1&quot; class=&quot;ui-tab-btn on&quot; role=&quot;tab&quot; aria-controls=&quot;ui-tab-list1&quot;&gt;&lt;span&gt;first&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;&lt;a href=&quot;#&quot; id=&quot;ui-tab-btn2&quot; class=&quot;ui-tab-btn&quot; role=&quot;tab&quot; aria-controls=&quot;ui-tab-list2&quot;&gt;&lt;span&gt;second&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;&lt;a href=&quot;#&quot; id=&quot;ui-tab-btn3&quot; class=&quot;ui-tab-btn&quot; role=&quot;tab&quot; aria-controls=&quot;ui-tab-list3&quot;&gt;&lt;span&gt;third&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div id=&quot;ui-tab-list1&quot; class=&quot;ui-tab-list&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;ui-tab-btn1&quot;&gt;detail1&lt;/div&gt;
+    &lt;div id=&quot;ui-tab-list2&quot; class=&quot;ui-tab-list&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;ui-tab-btn2&quot;&gt;detail2&lt;/div&gt;
+    &lt;div id=&quot;ui-tab-list3&quot; class=&quot;ui-tab-list&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;ui-tab-btn3&quot;&gt;detail3&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<div class="ui-tabWrap">
+    <ul class="ui-tab">
+        <li><span><input type="radio" name="rGrp1" id="r1" ><label for="r1" class="ui-tab-btn">라디오1</label></span></li>
+        <li><span><input type="radio" name="rGrp1" id="r2" checked><label for="r2" class="ui-tab-btn">라디오2</label></span></li>
+        <li><span><input type="radio" name="rGrp1" id="r3" ><label for="r3" class="ui-tab-btn">라디오3</label></span></li>
+    </ul>
+</div>
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;div class=&quot;ui-tabWrap&quot;&gt;
+    &lt;ul class=&quot;ui-tab&quot;&gt;
+        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;radio&quot; name=&quot;rGrp1&quot; id=&quot;r1&quot; &gt;&lt;label for=&quot;r1&quot; class=&quot;ui-tab-btn&quot;&gt;라디오1&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;radio&quot; name=&quot;rGrp1&quot; id=&quot;r2&quot; checked&gt;&lt;label for=&quot;r2&quot; class=&quot;ui-tab-btn&quot;&gt;라디오2&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;radio&quot; name=&quot;rGrp1&quot; id=&quot;r3&quot; &gt;&lt;label for=&quot;r3&quot; class=&quot;ui-tab-btn&quot;&gt;라디오3&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+
+<div class="ui-tabWrap">
+    <ul class="ui-tab">
+        <li><span><input type="checkbox" name="cGrp1" id="c1" ><label for="c1" class="ui-tab-btn">체크박스1</label></span></li>
+        <li><span><input type="checkbox" name="cGrp1" id="c2" checked><label for="c2" class="ui-tab-btn">체크박스2</label></span></li>
+        <li><span><input type="checkbox" name="cGrp1" id="c3" ><label for="c3" class="ui-tab-btn">체크박스3</label></span></li>
+    </ul>
+</div>
+
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;div class=&quot;ui-tabWrap&quot;&gt;
+    &lt;ul class=&quot;ui-tab&quot;&gt;
+        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;checkbox&quot; name=&quot;cGrp1&quot; id=&quot;c1&quot; &gt;&lt;label for=&quot;c1&quot; class=&quot;ui-tab-btn&quot;&gt;체크박스1&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;checkbox&quot; name=&quot;cGrp1&quot; id=&quot;c2&quot; checked&gt;&lt;label for=&quot;c2&quot; class=&quot;ui-tab-btn&quot;&gt;체크박스2&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;checkbox&quot; name=&quot;cGrp1&quot; id=&quot;c3&quot; &gt;&lt;label for=&quot;c3&quot; class=&quot;ui-tab-btn&quot;&gt;체크박스3&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>

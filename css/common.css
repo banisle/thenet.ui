@@ -56,6 +56,9 @@ a:hover,
 a:active,
 a:visited{text-decoration: none;color:initial}
 
+input[type="checkbox"],
+input[type="radio"]{display: none;}
+
 /* lib : syntaxhighlighter */
 .syntaxhighlighter {
 	overflow-y: hidden !important;
@@ -169,23 +172,21 @@ html.fixed{overflow-y: hidden;}
 }
 
 /* selection controls */
-input[type=checkbox],
-input[type=radio]{display: none;}
-input[type=checkbox] + label{ font-family: 'Font Awesome 5 Free';font-weight: normal; font-size: 28px}
-input[type=checkbox] + label:before{content: "\f0c8"; color:#717171; padding-right: 5px}
-input[type=checkbox] + label:hover:before,
-input[type=radio] + label:hover:before{color:#333}
-input[type=checkbox]:checked + label:before{content: "\f14a"; color:#006cd1}
-input[type=checkbox]:disabled + label,
-input[type=radio]:disabled + label{opacity: .3;}
-input[type=checkbox]:disabled + label:before:hover,
-input[type=radio]:disabled + label:before:hover{color:#717171}
+input.form_chk + label{ font-family: 'Font Awesome 5 Free';font-weight: normal; font-size: 28px}
+input.form_chk + label:before{content: "\f0c8"; color:#717171; padding-right: 5px}
+input.form_chk + label:hover:before,
+input.form_radio + label:hover:before{color:#333}
+input.form_chk:checked + label:before{content: "\f14a"; color:#006cd1}
+input.form_chk:disabled + label,
+input.form_radio:disabled + label{opacity: .3;}
+input.form_chk:disabled + label:before:hover,
+input.form_radio:disabled + label:before:hover{color:#717171}
 
-input[type=radio] + label{ font-family: 'Font Awesome 5 Free';font-weight:normal; font-size: 28px}
-input[type=radio] + label:before{content: "\f111"; color:#717171; padding-right: 5px}
-input[type=radio]:checked + label:before{content: "\f058";color:#006cd1}
-input[type=checkbox].inp-error + label:before,
-input[type=radio].inp-error + label:before{color:#ed4b30}
+input.form_radio + label{ font-family: 'Font Awesome 5 Free';font-weight:normal; font-size: 28px}
+input.form_radio + label:before{content: "\f111"; color:#717171; padding-right: 5px}
+input.form_radio:checked + label:before{content: "\f058";color:#006cd1}
+input.form_chk.inp-error + label:before,
+input.form_radio.inp-error + label:before{color:#ed4b30}
 
 .form_grp > span{display: inline-block;	padding: 0 10px 0 0}
 .form_grp > span:last-child{padding-right: 0;}
@@ -196,21 +197,42 @@ ul.ui-tab{
 	width: 100%;
     display: table;
     border-collapse: collapse;
-    border: 1px solid #333;
+	border: 1px solid #333;
+	box-sizing: border-box;
 }
 
 ul.ui-tab li{
 	position: relative;
     width: 33.3333%;
-    padding: 2px;
     display: table-cell;
-    border: 1px solid #333;
+	border: 1px solid #333;
 }
 ul.ui-tab li span{
-    width:100%;    
-    line-height: 28px;
+	display: block;
+	width:100%;    
+	line-height: 28px;
+	color:#2b2b2b;
 }
-ul.ui-tab li.on:after{
+.ui-tab-btn {
+	display: block;
+    width: 100%;
+	padding: 2px;
+	box-sizing:border-box;
+}
+.ui-tabWrap input + label.ui-tab-btn:before,
+.ui-tab-btn:before{
+	display:block;
+	content:'';
+	background:#eee;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: -1;
+}
+.ui-tabWrap input:checked + label.ui-tab-btn:after,
+.ui-tab-btn.on:after{
     content:'';
     display:block;
     position:absolute;
@@ -220,8 +242,8 @@ ul.ui-tab li.on:after{
     bottom:-2px;
     border: 3px solid rgba(255, 0, 0, 1);
 }
-
-ul.ui-tab li > div {display:none}
+.ui-tab-list{display:none;width: 100%; padding: 10px; border: 1px solid #333; border-top: 0; box-sizing: border-box}
+.ui-tab-list.on{display:block; }
 
 /* media query */
 @media screen and (max-width: 768px) {
@@ -246,6 +268,6 @@ ul.ui-tab li > div {display:none}
 
 	.btn_org{min-width: 0}
 	
-	input[type=checkbox] + label{display: flex; align-items: center}
+	input.form_chk + label{display: flex; align-items: center}
 	input + label > .label-txt{position: initial;}
 }

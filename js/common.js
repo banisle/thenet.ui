@@ -11,9 +11,11 @@ $(function () {
             dataType: 'html',
             success: function (data) {
                 $("#load-ct").html(data);
-                SyntaxHighlighter.highlight()
+                SyntaxHighlighter.highlight();
+                TNUI.module.init();
             }
         });
-
+        
     })
+   TNUI.wsg.init();
 })
