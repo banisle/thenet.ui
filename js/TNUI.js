@@ -3,9 +3,29 @@ var context = window,
     tmpInput = document.createElement("input"),
     isTouch = ("ontouchstart" in context),
     isMobile = ("orientation" in context) || isTouch || window.IS_MOBILE === true,
-    supportPlaceholder = ("placeholder" in tmpInput);
+    supportPlaceholder = ("placeholder" in tmpInput),
+    detectIe = get_version_of_IE();
+
     isTouch && $root.addClass("touch");
     isMobile && $root.addClass("mobile");
+
+    function get_version_of_IE() { //ie aegent 체크
+        var word;
+        var agent = navigator.userAgent.toLowerCase();
+        // IE old version ( IE 10 or Lower ) 
+        if (navigator.appName == "Microsoft Internet Explorer") word = "msie ";
+        // IE 11 
+        else if (agent.search("trident") > -1) word = "trident/.*rv:";
+        // Microsoft Edge  
+        else if (agent.search("edge/") > -1) word = "edge/";
+        // 그외, IE가 아니라면 ( If it's not IE or Edge )  
+        else return -1;
+        var reg = new RegExp(word + "([0-9]{1,})(\\.{0,}[0-9]{0,1})");
+        if (reg.exec(agent) != null) return parseFloat(RegExp.$1 + RegExp.$2);
+        return -1;
+    }
+    
+
     if (typeof Function.prototype.bind === "undefined") {
     Function.prototype.bind = function() {
         var fn = this,
@@ -35,7 +55,7 @@ TNUI.wsg = (function(){
             var mobtn = $('.mo-guide-btn'),
                 sg = $('.guide-side'),
                 dimCt = $('.guide-container'),
-                dimBtn = $('.mo-guide-dim');
+                dimBtn = $('.mo-guide-dim'),
                 openSt = 'false';
 
             var dimLyOpen = function(){
@@ -77,12 +97,23 @@ TNUI.wsg = (function(){
                 t.createH1(s2ItemTXT);
             });
         },
+        modalEvt :function(){
+            var t = this,
+                btnTog = $('#btn-transtoggle'),
+                modalT = $('#mot-tog');
+            
+                btnTog.on('click', function(e){
+                    modalT.toggleClass('trans-ms');
+                    modalT.hasClass('trans-ms') ? $(this).find('span').text('모션 제거') : $(this).find('span').text('모션 생성');
+                });
+        },
         init : function(){
             var t = this;
 
             t.createH1();
             t.toggleOn();
             t.moGuideMenu();
+            t.modalEvt();
             
             console.log('init');
         }
@@ -201,6 +232,23 @@ TNUI.module = (function(){
                 }
             });
 
+            //탭 상세로 이동 (tab키)
+            uiTab.on("keydown", ".on", function (event) {
+                event = event || window.event;
+                var keycode = event.keyCode || event.which;
+
+                // tab 키 눌렀을 때 (shift + tab은 제외)
+                if (!event.shiftKey && keycode === 9) {
+                    event.preventDefault ? event.preventDefault() : event.returnValue = false;
+                    $("#" + $(this).attr("aria-controls"))
+                        .attr("tabindex", "0")
+                        .addClass("on")
+                        .focus()
+                        .siblings(uiTabList)
+                        .attr("tabindex", "-1")
+                        .removeClass("on");
+                }
+            });
             
 
             console.log('tabUi');
@@ -211,11 +259,74 @@ TNUI.module = (function(){
             console.log('selectUi');
         },
 
+        modalUi : function(){
+            var t = this;
+                mvBtn = $('a[data-modal]'),
+                btnClose = $('.mvClose'),
+                optTrans = 'false',
+                openSt = 'false';
+
+                var dimLyOpen = function(mvId){
+                    if( openSt == 'true'){
+                        return;
+                    }
+
+                    $('html').addClass('fixed');
+                    $('[data-target='+ mvId +']').fadeIn(0);
+                    if( optTrans == 'true'){
+                        $('[data-target='+ mvId +']').addClass('on');
+                    }
+                    
+                    //ie9 flag
+                    if( detectIe == '9' ){
+                        $('[data-target='+ mvId +'] .inner').css({
+                            'top' : '50%',
+                            'marginTop' : -(  $('[data-target='+ mvId +']').find('.inner').height() / 2)
+                        });
+                    }
+                    openSt = 'true';
+
+                }
+    
+                var dimLyClose = function(){
+                    $('html').removeClass('fixed');
+                    if( optTrans == 'true'){
+                        //css transition ease값 = delay
+                        $('[data-target='+ mvId +']').removeClass('on').delay(500).fadeOut(0);
+                    } else{
+                        $('[data-target='+ mvId +']').hide(0);
+                    }
+                    openSt = 'false';
+                }
+
+                mvBtn.on('click', function(e){
+                    e.preventDefault();
+
+                    mvId = $(this).attr('data-modal');
+                    $('[data-target='+ mvId +']').hasClass('trans-ms')? optTrans = 'true': optTrans = 'false';
+
+                    dimLyOpen(mvId);
+                });
+
+                btnClose.on('click', function(e){
+                    e.preventDefault();
+                    dimLyClose();
+                });
+
+            console.log('modalUi');
+        },
+
+        scrollUi :function() {
+            console.log('scrollUi');
+        },
+
         init : function(){
             var t = this;
 
             t.tabUi();
             t.selectUi();
+            t.modalUi();
+            t.scrollUi();
         }
 
 

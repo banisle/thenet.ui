@@ -13,9 +13,11 @@ $(function () {
                 $("#load-ct").html(data);
                 SyntaxHighlighter.highlight();
                 TNUI.module.init();
+                if(isMobile) $('.mo-guide-btn').trigger('click');
+                
             }
         });
         
     })
-   TNUI.wsg.init();
+    TNUI.wsg.init();
 })
