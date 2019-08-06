@@ -25,6 +25,16 @@ var context = window,
         if (reg.exec(agent) != null) return parseFloat(RegExp.$1 + RegExp.$2);
         return -1;
     }
+
+    if (!(window.console && console.log)) {
+        console = {
+            log: function () {},
+            debug: function () {},
+            info: function () {},
+            warn: function () {},
+            error: function () {}
+        };
+    }
     
 
     if (typeof Function.prototype.bind === "undefined") {
@@ -274,6 +284,8 @@ TNUI.module = (function(){
 
                     $('html').addClass('fixed');
                     $('[data-target='+ mvId +']').fadeIn(0);
+                    if(!isMobile) t.scrollUi();
+
                     if( optTrans == 'true'){
                         $('[data-target='+ mvId +']').addClass('on');
                     }
@@ -318,7 +330,36 @@ TNUI.module = (function(){
         },
 
         scrollUi :function() {
-            console.log('scrollUi');
+            var t = this,
+                scrollWrap = $('.ui-scrollview'),
+                scrollArea = scrollWrap.find('.ui-scrollarea'),
+                scrollCt = scrollArea.find('.ui-content'),
+                barCursor = $('.bar');
+                
+                //scroll width & height 구하기
+                var calWidth = function(){
+                    var i = 0;
+
+                    scrollWrap.each(function(i){
+                        var wrapW = scrollWrap.eq(i).parent().width(),
+                            wrapH = scrollCt.eq(i).parent().height(),
+                            wrapOrgH = scrollWrap.eq(i).height(),
+                            barSize =  (wrapOrgH / wrapH) * 100;
+    
+                        scrollWrap.eq(i).width(wrapW);
+                        scrollCt.eq(i).width(wrapW).height(wrapOrgH);
+                        
+                        barCursor.eq(i).height( barSize + '%');
+
+                    });
+                    scrollArea.on('scroll', function(){
+                        console.log(  $(this).scrollTop()  );
+                    });
+                    
+                    
+                }();
+
+                console.log('scrollUi');
         },
 
         init : function(){

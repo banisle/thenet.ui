@@ -286,7 +286,7 @@ ul.ui-tab li span{
     padding:0 14px 14px;
 	border-bottom:1px solid #eee;
 }
-.laypop_content .scrollWrap{overflow-y: scroll; height: 100%;}
+.laypop_content .scrollWrap{ height: 100%;}
 
 .laypop_content .scrollview{line-height: 1.6}
 .laypop_footer{padding: 14px;}
@@ -300,8 +300,13 @@ ul.ui-tab li span{
 .mo_submenu_wrap li:last-child:after{display:none;}
 
 
-
-
+/* scroll */
+.ui-scrollview{ overflow: hidden; position: relative; height:300px }
+.ui-scrollarea{ overflow-x: hidden; overflow-y: scroll; position: absolute; left: 0; }
+.ui-content{ padding-right:15px } /* 스크롤바 크기 만큼 + padding-right */
+.ui-content::-webkit-scrollbar { display: none; }
+.ui-scrollbar{ position: absolute; top: 0; right: 0; background: #eee; height: 100%; width: 10px; border-radius: 5px;}	
+.ui-scrollbar .bar{ display: block; position: absolute; background: #555; width: 10px; border-radius: 5px;}
 
 
 /* media query */
