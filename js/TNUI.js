@@ -1,3 +1,4 @@
+'use strict';
 var context = window,
     $root = $(document.documentElement).addClass("js"),
     tmpInput = document.createElement("input"),
@@ -54,7 +55,6 @@ TNUI.wsg = (function(){
         moGuideMenu : function(){
             var mobtn = $('.mo-guide-btn'),
                 sg = $('.guide-side'),
-                dimCt = $('.guide-container'),
                 dimBtn = $('.mo-guide-dim'),
                 openSt = 'false';
 
@@ -75,6 +75,7 @@ TNUI.wsg = (function(){
             }
             mobtn.add(dimBtn).on('click', function(e){
                 (openSt == 'false')? dimLyOpen():dimLyClose();
+                console.log(1);
             });
 
         },
@@ -105,7 +106,6 @@ TNUI.wsg = (function(){
                 btnTog.on('click', function(e){
                     modalT.toggleClass('trans-ms');
                     modalT.hasClass('trans-ms') ? $(this).find('span').text('모션 제거') : $(this).find('span').text('모션 생성');
-                    console.log(1);
                 });
         },
         init : function(){
@@ -261,11 +261,12 @@ TNUI.module = (function(){
         },
 
         modalUi : function(){
-            var t = this;
+            var t = this,
                 mvBtn = $('a[data-modal]'),
                 btnClose = $('.mvClose'),
                 optTrans = 'false',
-                openSt = 'false';
+                openSt = 'false',
+                mvId;
 
                 var dimLyOpen = function(mvId){
                     if( openSt == 'true'){

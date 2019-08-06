@@ -1,3 +1,4 @@
+'use strict';
 $(function () {
     var s2Item = $('.guide-side .sub-menu > li > a');
 
@@ -12,12 +13,12 @@ $(function () {
             success: function (data) {
                 $("#load-ct").html(data);
                 SyntaxHighlighter.highlight();
-                TNUI.module.init();
                 TNUI.wsg.init();
+                TNUI.module.init();
                 if(isMobile) $('.mo-guide-btn').trigger('click');
                 
             }
         });
-        
     })
+    TNUI.wsg.init();
 })
