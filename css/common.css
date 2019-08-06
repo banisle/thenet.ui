@@ -307,8 +307,8 @@ ul.ui-tab li span{
 /* media query */
 @media screen and (max-width: 768px) {
 	.guide-side{left:-320px; }
-	.guide-container{padding-left: 0;}
-	.mo-guide-side{display: block; text-align: right; background: #eee; border-bottom: 1px solid #e3e3e3; padding: 10px 20px;}
+	.guide-container{padding: 43px 0 0 0;}
+	.mo-guide-side{ display: block; text-align: right; background: #eee; width: 100%; border-bottom: 1px solid #e3e3e3; position: fixed; box-sizing: border-box; padding: 10px 20px; z-index: 2;}
 	.mo-guide-side > button{position: relative; z-index: 2;}
 	.mo-guide-side > button,
 	.mo-guide-side > button span { display : inline-block; transition : all .4s; box-sizing : border-box; }
@@ -318,7 +318,6 @@ ul.ui-tab li span{
 	.mo-guide-side > button span:nth-of-type(2) {top: 9px;}
 	.mo-guide-side > button span:nth-of-type(3) {bottom: 0;}
 	.mo-guide-side > button.active { -webkit-transform : rotate(180deg); transform : rotate(180deg); }
-	.mo-guide-side > button.active span{background: #fff;}
 	.mo-guide-side > button.active span:nth-of-type(1){ -webkit-transform : translateY(10px) rotate(-45deg); transform : translateY(10px) rotate(-45deg); }
 	.mo-guide-side > button.active span:nth-of-type(2){-webkit-transform : translateY(0) rotate(45deg);transform : translateY(0) rotate(45deg);top: initial;}
 	.mo-guide-side > button.active span:nth-of-type(3){ opacity : 0; }
