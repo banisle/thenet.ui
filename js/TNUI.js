@@ -75,7 +75,6 @@ TNUI.wsg = (function(){
             }
             mobtn.add(dimBtn).on('click', function(e){
                 (openSt == 'false')? dimLyOpen():dimLyClose();
-                console.log(1);
             });
 
         },
