@@ -105,6 +105,7 @@ TNUI.wsg = (function(){
                 btnTog.on('click', function(e){
                     modalT.toggleClass('trans-ms');
                     modalT.hasClass('trans-ms') ? $(this).find('span').text('모션 제거') : $(this).find('span').text('모션 생성');
+                    console.log(1);
                 });
         },
         init : function(){
