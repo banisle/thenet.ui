@@ -15,10 +15,9 @@ $(function () {
                 SyntaxHighlighter.highlight();
                 TNUI.wsg.init();
                 TNUI.module.init();
-                if(isMobile) $('.mo-guide-btn').trigger('click');
-                
             }
         });
+        if(isMobile) $('.mo-guide-btn').trigger('click');
     })
     TNUI.wsg.init();
 })
