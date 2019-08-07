@@ -323,7 +323,7 @@ ul.ui-tab li span{
 .ui-content{ padding-right:15px; -webkit-user-select: none!important; -moz-user-select: none!important; -ms-user-select: none!important; user-select: none!important;} 
 .ui-content::-webkit-scrollbar { display: none; }
 .ui-scrollbar{ overflow: hidden; position: absolute; top: 0; right: 0; background: #eee; height: 100%; width: 10px; border-radius: 5px;}	
-.ui-scrollbar .bar{ display: block; position: absolute; background: #555; width: 10px; border-radius: 5px; z-index: 1; cursor: pointer;}
+.ui-scrollbar .bar{ display: block; position: absolute; top:0; left:0; background: #555; width: 100%; border-radius: 5px; z-index: 1; cursor: pointer;}
 .ui-scrollbar .bar:hover{background:#222}
 .scrollview{line-height: 1.6}
 

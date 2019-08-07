@@ -377,6 +377,40 @@ TNUI.module = (function(){
                     });
 
                     //스크롤바 drag 이벤트
+                    // barCursor.on('mousemove', function(e){
+                    //     var t = $(this),
+                    //         curY,disY,iY,
+                    //         barPer = parseInt( t.css('top').slice(0,2) ),
+                    //         dragIng = 'false';
+
+                    //     t.on('mousedown', function(e){
+
+                    //         curY = e.pageY;
+                    //         iY = t.offset().top;
+                    //         disY = 0;
+                    //         dragIng = 'true';
+
+                    //         console.log('mousedown', 'curY' + curY, 'disY' + disY );
+
+                    //     }).on('mousemove', function(e){
+                    //         if(dragIng == 'true'){ 
+                    //             disY = e.pageY - curY;
+                                
+                    //             t.offset({ 'top': iY + disY });
+                    //             t.closest('.ui-scrollview').find('.ui-scrollarea').scrollTop(barPer);
+                    //             console.log(barPer);
+
+                    //         }
+                    //     }).on('mouseup', function(e){
+                    //         disY = e.pageY - curY;
+
+                    //         t.offset({ 'top': iY + disY });
+
+                    //         dragIng = 'false';
+                            
+                    //         console.log('mouseup', 'disY' + disY, 'iY' + iY);
+                    //     });
+                    // });
 
                     
                     
