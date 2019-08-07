@@ -76,8 +76,18 @@ html.fixed{overflow-y: hidden;}
 .guide-side .tn-lnb-menu .menu-item .sub-menu li{line-height: 25px}
 .guide-side .tn-lnb-menu .menu-item > a.on,
 .guide-side .tn-lnb-menu .menu-item .sub-menu .on{color:#ed4b30}
-.guide-side .tn-lnb-menu .menu-item .sub-menu a{cursor: pointer;}
-
+.guide-side .tn-lnb-menu .menu-item .sub-menu a{position: relative; cursor: pointer;}
+.guide-side .tn-lnb-menu .menu-item .sub-menu a:hover:after{
+	display:block;
+	content:attr(data-menu);
+	position:absolute;
+	top:-7px;
+	right:-52px;
+	padding:5px 8px;
+	background:#eee;
+	border:1px solid #e3e3e3;
+	border-radius:3px;
+}
 .guide-side{
     position: fixed;
     z-index: 2;
