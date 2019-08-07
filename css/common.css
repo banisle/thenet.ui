@@ -198,6 +198,8 @@ input.form_radio + label:hover:before{color:#333}
 input.form_chk:checked + label:before{content: "\f14a"; color:#006cd1}
 input.form_chk:disabled + label,
 input.form_radio:disabled + label{opacity: .3;}
+input.form_chk:disabled + label:hover:before,
+input.form_radio:disabled + label:hover:before{color: #717171;}
 input.form_chk:disabled + label:before:hover,
 input.form_radio:disabled + label:before:hover{color:#717171}
 
@@ -206,6 +208,10 @@ input.form_radio + label:before{content: "\f111"; color:#717171; padding-right: 
 input.form_radio:checked + label:before{content: "\f058";color:#006cd1}
 input.form_chk.inp-error + label:before,
 input.form_radio.inp-error + label:before{color:#ed4b30}
+input.form_chk.inp-error:disabled + label,
+input.form_radio.inp-error:disabled + label{opacity: 1;}
+input.form_chk.inp-error:disabled + label:before,
+input.form_radio.inp-error:disabled + label:before{color:#ed4b30}
 
 .form_grp > span{display: inline-block;	padding: 0 10px 0 0}
 .form_grp > span:last-child{padding-right: 0;}
