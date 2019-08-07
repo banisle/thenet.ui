@@ -370,7 +370,7 @@ TNUI.module = (function(){
                             barPer = (wrapOrgH - barSize) / 100;
 
                             barCursor.eq(i).css({
-                                'top': (barPer * scTopPer) + 'px'
+                                'top': parseInt(barPer * scTopPer) + 'px'
                             });
 
                         
