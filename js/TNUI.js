@@ -342,19 +342,42 @@ TNUI.module = (function(){
 
                     scrollWrap.each(function(i){
                         var wrapW = scrollWrap.eq(i).parent().width(),
-                            wrapH = scrollCt.eq(i).parent().height(),
+                            wrapH = scrollCt.eq(i).prop('scrollHeight'),
                             wrapOrgH = scrollWrap.eq(i).height(),
-                            barSize =  (wrapOrgH / wrapH) * 100;
+                            barSize =  parseInt( (wrapOrgH / wrapH) * 100 );
     
                         scrollWrap.eq(i).width(wrapW);
                         scrollCt.eq(i).width(wrapW).height(wrapOrgH);
                         
                         barCursor.eq(i).height( barSize + '%');
+                        // console.log(
+                        //     'wrapOrgH' + wrapOrgH,
+                        //     'wrapH' + wrapH,
+                        //     'barSize' + barSize
+                        //     );
 
                     });
+
+                    // scrollbar 위치 구하기
                     scrollArea.on('scroll', function(){
-                        console.log(  $(this).scrollTop()  );
+                        var t = $(this),
+                            wrapH = t.find('.ui-content').prop('scrollHeight'),
+                            wrapOrgH = t.parent().height(),
+                            barCursor = t.parent().find('.bar'),
+                            barSize =  barCursor.height(),
+                            scTop = $(this).scrollTop(),
+                            scTopPer = parseInt(scTop / ((wrapH - wrapOrgH) / 100) ),
+                            barPer = (wrapOrgH - barSize) / 100;
+
+                            barCursor.eq(i).css({
+                                'top': (barPer * scTopPer) + 'px'
+                            });
+
+                        
                     });
+
+                    //스크롤바 drag 이벤트
+
                     
                     
                 }();
