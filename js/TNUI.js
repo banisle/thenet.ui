@@ -25,6 +25,16 @@ var context = window,
         if (reg.exec(agent) != null) return parseFloat(RegExp.$1 + RegExp.$2);
         return -1;
     }
+
+    if (!(window.console && console.log)) {
+        console = {
+            log: function () {},
+            debug: function () {},
+            info: function () {},
+            warn: function () {},
+            error: function () {}
+        };
+    }
     
 
     if (typeof Function.prototype.bind === "undefined") {
@@ -274,6 +284,8 @@ TNUI.module = (function(){
 
                     $('html').addClass('fixed');
                     $('[data-target='+ mvId +']').fadeIn(0);
+                    if(!isMobile) t.scrollUi();
+
                     if( optTrans == 'true'){
                         $('[data-target='+ mvId +']').addClass('on');
                     }
@@ -318,7 +330,59 @@ TNUI.module = (function(){
         },
 
         scrollUi :function() {
-            console.log('scrollUi');
+            var t = this,
+                scrollWrap = $('.ui-scrollview'),
+                scrollArea = scrollWrap.find('.ui-scrollarea'),
+                scrollCt = scrollArea.find('.ui-content'),
+                barCursor = $('.bar');
+                
+                //scroll width & height 구하기
+                var calWidth = function(){
+                    var i = 0;
+
+                    scrollWrap.each(function(i){
+                        var wrapW = scrollWrap.eq(i).parent().width(),
+                            wrapH = scrollCt.eq(i).prop('scrollHeight'),
+                            wrapOrgH = scrollWrap.eq(i).height(),
+                            barSize =  parseInt( (wrapOrgH / wrapH) * 100 );
+    
+                        scrollWrap.eq(i).width(wrapW);
+                        scrollCt.eq(i).width(wrapW).height(wrapOrgH);
+                        
+                        barCursor.eq(i).height( barSize + '%');
+                        // console.log(
+                        //     'wrapOrgH' + wrapOrgH,
+                        //     'wrapH' + wrapH,
+                        //     'barSize' + barSize
+                        //     );
+
+                    });
+
+                    // scrollbar 위치 구하기
+                    scrollArea.on('scroll', function(){
+                        var t = $(this),
+                            wrapH = t.find('.ui-content').prop('scrollHeight'),
+                            wrapOrgH = t.parent().height(),
+                            barCursor = t.parent().find('.bar'),
+                            barSize =  barCursor.height(),
+                            scTop = $(this).scrollTop(),
+                            scTopPer = parseInt(scTop / ((wrapH - wrapOrgH) / 100) ),
+                            barPer = (wrapOrgH - barSize) / 100;
+
+                            barCursor.eq(i).css({
+                                'top': parseInt(barPer * scTopPer) + 'px'
+                            });
+
+                        
+                    });
+
+                    //스크롤바 drag 이벤트
+
+                    
+                    
+                }();
+
+                console.log('scrollUi');
         },
 
         init : function(){
