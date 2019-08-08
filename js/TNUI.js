@@ -278,12 +278,10 @@ TNUI.module = (function(){
             $(tooltip).on('mouseenter mouseleave', function(e){
                 var $this = $(this),
                     $dataOt = $this.data('option'),
-                    $datatip = $this.data('tooltip'),
-                    $idValue = $this.val(),
+                    $href = $this.attr('href'),
                     $targetOff = $this.offset(),
                     $targetW = $this.outerWidth(),
                     $targetH = $this.outerHeight();
-                    console.log($idValue);
 
                 var config = {
                     top: {
@@ -305,20 +303,20 @@ TNUI.module = (function(){
                 };
                 switch ($dataOt) {
                     case 'top':
-                        $($idValue).css(config.top).addClass('top');
+                        $($href).css(config.top).addClass('top');
                         break;
                     case 'bottom':
-                        $($idValue).css(config.bottom).addClass('bottom');
+                        $($href).css(config.bottom).addClass('bottom');
                         break;
                     case 'left':
-                        $($idValue).css(config.left).addClass('left');
+                        $($href).css(config.left).addClass('left');
                         break;
                     case 'right':
-                        $($idValue).css(config.right).addClass('right');
+                        $($href).css(config.right).addClass('right');
                         break;
                 };
                
-                (e.type == 'mouseenter') ? $($idValue).show() : $($idValue).hide();
+                (e.type == 'mouseenter') ? $($href).show() : $($href).hide();
                 return false;
 
             })
@@ -438,19 +436,6 @@ TNUI.module = (function(){
                 }();
 
                 console.log('scrollUi');
-        },
-
-        accoUi : function(){
-            var t = this,
-            uiAccoWrap = $('.ui-accordian'),
-            uiAccobtn = uiAccoWrap.find('.btn_acco'),
-            uiAccoCt = uiAccoWrap.find('.acco-wrap');
-            $.each(uiAccoWrap, function(i){
-                
-            });
-            
-
-
         },
 
         init : function(){
