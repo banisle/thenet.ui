@@ -1,1 +1,25 @@
-<div>accordion detail</div>
+<!-- accordion detail -->
+
+<h3>accordion</h3>
+<p class="sub-txt">접근성: aria-expanded 속성 제어(js)</p>
+
+<div class="ui-accordian">
+    <h3 class="acco-btn">
+        <button type="button" id="ui-acco01" class="btn_acco" aria-expanded="false" aria-controls="acco01" aria-disabled="false"><span>아코디언01</span></button>
+    </h3>
+    <div class="acco-wrap" id="acco01" aria-labelledby="ui-acco01" role="region">
+        <div class="acco-ct">아코디언01 내용</div>
+    </div>
+    <h3 class="acco-btn">
+        <button type="button" id="ui-acco02" class="btn_acco" aria-expanded="false" aria-controls="acco02" aria-disabled="false"><span>아코디언02</span></button>
+    </h3>
+    <div class="acco-wrap" id="acco02" aria-labelledby="ui-acco02" role="region">
+        <div class="acco-ct">아코디언02 내용</div>
+    </div>
+    <h3 class="acco-btn">
+        <button type="button" id="ui-acco03" class="btn_acco" aria-expanded="false" aria-controls="acco03" aria-disabled="false"><span>아코디언03</span></button>
+    </h3>
+    <div class="acco-wrap" id="acco03" aria-labelledby="ui-acco03" role="region">
+        <div class="acco-ct">아코디언03 내용</div>
+    </div>
+</div>
