@@ -241,6 +241,7 @@ TNUI.module = (function(){
                         break;
                 }
             });
+            
 
             //탭 상세로 이동 (tab키)
             uiTab.on("keydown", ".on", function (event) {
@@ -267,6 +268,58 @@ TNUI.module = (function(){
         selectUi : function(){
 
             console.log('selectUi');
+        },
+
+        tooltipUi : function(){
+            var tooltip = '[class^="tooltip"]';
+            $(tooltip).click(function(e){
+                return false;
+            });
+            $(tooltip).on('mouseenter mouseleave', function(e){
+                var $this = $(this),
+                    $dataOt = $this.data('option'),
+                    $href = $this.attr('href'),
+                    $targetOff = $this.offset(),
+                    $targetW = $this.outerWidth(),
+                    $targetH = $this.outerHeight();
+
+                var config = {
+                    top: {
+                        top: $targetOff.top - $targetH * 2,
+                        left: $targetOff.left,
+                    },
+                    left: {
+                        top: $targetOff.top,
+                        left: $targetOff.left - $targetW - 46,
+                    },
+                    right: {
+                        top: $targetOff.top,
+                        left: $targetOff.left + $targetW + 10,
+                    },
+                    bottom: {
+                        top: $targetOff.top + $targetH + 7,
+                        left: $targetOff.left,
+                    }
+                };
+                switch ($dataOt) {
+                    case 'top':
+                        $($href).css(config.top).addClass('top');
+                        break;
+                    case 'bottom':
+                        $($href).css(config.bottom).addClass('bottom');
+                        break;
+                    case 'left':
+                        $($href).css(config.left).addClass('left');
+                        break;
+                    case 'right':
+                        $($href).css(config.right).addClass('right');
+                        break;
+                };
+               
+                (e.type == 'mouseenter') ? $($href).show() : $($href).hide();
+                return false;
+
+            })
         },
 
         modalUi : function(){
@@ -377,40 +430,6 @@ TNUI.module = (function(){
                     });
 
                     //스크롤바 drag 이벤트
-                    // barCursor.on('mousemove', function(e){
-                    //     var t = $(this),
-                    //         curY,disY,iY,
-                    //         barPer = parseInt( t.css('top').slice(0,2) ),
-                    //         dragIng = 'false';
-
-                    //     t.on('mousedown', function(e){
-
-                    //         curY = e.pageY;
-                    //         iY = t.offset().top;
-                    //         disY = 0;
-                    //         dragIng = 'true';
-
-                    //         console.log('mousedown', 'curY' + curY, 'disY' + disY );
-
-                    //     }).on('mousemove', function(e){
-                    //         if(dragIng == 'true'){ 
-                    //             disY = e.pageY - curY;
-                                
-                    //             t.offset({ 'top': iY + disY });
-                    //             t.closest('.ui-scrollview').find('.ui-scrollarea').scrollTop(barPer);
-                    //             console.log(barPer);
-
-                    //         }
-                    //     }).on('mouseup', function(e){
-                    //         disY = e.pageY - curY;
-
-                    //         t.offset({ 'top': iY + disY });
-
-                    //         dragIng = 'false';
-                            
-                    //         console.log('mouseup', 'disY' + disY, 'iY' + iY);
-                    //     });
-                    // });
 
                     
                     
@@ -437,6 +456,7 @@ TNUI.module = (function(){
 
             t.tabUi();
             t.selectUi();
+            t.tooltipUi();
             t.modalUi();
             t.scrollUi();
         }
