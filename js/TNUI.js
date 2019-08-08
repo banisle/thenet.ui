@@ -272,13 +272,15 @@ TNUI.module = (function(){
 
         tooltipUi : function(){
             var tooltip = '[class^="tooltip"]';
-            $(tooltip).click(function(e){
-                return false;
-            });
-            $(tooltip).on('mouseenter mouseleave', function(e){
+            // 링크 막기
+            // $(tooltip).click(function(e){
+            //     return false;
+            // });
+            $(tooltip).on('mouseenter mouseleave keydown', function(e){
+                
                 var $this = $(this),
                     $dataOt = $this.data('option'),
-                    $href = $this.attr('href'),
+                    $tip = $this.attr('data-tooltip'),
                     $targetOff = $this.offset(),
                     $targetW = $this.outerWidth(),
                     $targetH = $this.outerHeight();
@@ -303,23 +305,22 @@ TNUI.module = (function(){
                 };
                 switch ($dataOt) {
                     case 'top':
-                        $($href).css(config.top).addClass('top');
+                        $($tip).css(config.top).addClass('top');
                         break;
                     case 'bottom':
-                        $($href).css(config.bottom).addClass('bottom');
+                        $($tip).css(config.bottom).addClass('bottom');
                         break;
                     case 'left':
-                        $($href).css(config.left).addClass('left');
+                        $($tip).css(config.left).addClass('left');
                         break;
                     case 'right':
-                        $($href).css(config.right).addClass('right');
+                        $($tip).css(config.right).addClass('right');
                         break;
                 };
-               
-                (e.type == 'mouseenter') ? $($href).show() : $($href).hide();
+                (e.type == 'mouseenter') ? $($tip).show() : $($tip).hide();
                 return false;
-
-            })
+            });
+            
         },
 
         modalUi : function(){
