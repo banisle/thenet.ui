@@ -307,7 +307,6 @@ ul.ui-tab li span{
 .laypop_content .scrollview{line-height: 1.6}
 .laypop_footer{padding: 14px;}
 
-
 /* gnb */
 .mo_submenu_wrap { white-space: nowrap; width: 100%; overflow: hidden; padding: 5px 12px; border: 1px solid #eee; box-sizing: border-box;}
 .mo_submenu_wrap ul{overflow: auto;width: 100%; -webkit-overflow-scrolling : touch;}

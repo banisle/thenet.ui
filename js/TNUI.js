@@ -241,6 +241,7 @@ TNUI.module = (function(){
                         break;
                 }
             });
+            
 
             //탭 상세로 이동 (tab키)
             uiTab.on("keydown", ".on", function (event) {
