@@ -440,6 +440,19 @@ TNUI.module = (function(){
                 console.log('scrollUi');
         },
 
+        accoUi : function(){
+            var t = this,
+            uiAccoWrap = $('.ui-accordian'),
+            uiAccobtn = uiAccoWrap.find('.btn_acco'),
+            uiAccoCt = uiAccoWrap.find('.acco-wrap');
+            $.each(uiAccoWrap, function(i){
+                
+            });
+            
+
+
+        },
+
         init : function(){
             var t = this;
 
