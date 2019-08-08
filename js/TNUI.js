@@ -278,10 +278,12 @@ TNUI.module = (function(){
             $(tooltip).on('mouseenter mouseleave', function(e){
                 var $this = $(this),
                     $dataOt = $this.data('option'),
-                    $href = $this.attr('href'),
+                    $datatip = $this.data('tooltip'),
+                    $idValue = $this.val(),
                     $targetOff = $this.offset(),
                     $targetW = $this.outerWidth(),
                     $targetH = $this.outerHeight();
+                    console.log($idValue);
 
                 var config = {
                     top: {
@@ -303,20 +305,20 @@ TNUI.module = (function(){
                 };
                 switch ($dataOt) {
                     case 'top':
-                        $($href).css(config.top).addClass('top');
+                        $($idValue).css(config.top).addClass('top');
                         break;
                     case 'bottom':
-                        $($href).css(config.bottom).addClass('bottom');
+                        $($idValue).css(config.bottom).addClass('bottom');
                         break;
                     case 'left':
-                        $($href).css(config.left).addClass('left');
+                        $($idValue).css(config.left).addClass('left');
                         break;
                     case 'right':
-                        $($href).css(config.right).addClass('right');
+                        $($idValue).css(config.right).addClass('right');
                         break;
                 };
                
-                (e.type == 'mouseenter') ? $($href).show() : $($href).hide();
+                (e.type == 'mouseenter') ? $($idValue).show() : $($idValue).hide();
                 return false;
 
             })
