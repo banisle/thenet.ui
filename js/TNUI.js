@@ -276,47 +276,47 @@ TNUI.module = (function(){
             $(tooltip).on('mouseenter focus', function(e){
                 var $this = $(this),
                     $dataOt = $this.data('option'),
-                    $datatip = $this.data('tooltip'),
+                    $dataTip = $this.data('tooltip'),
                     $targetOff = $this.offset(),
-                    $targetW = $this.outerWidth(),
-                    $targetH = $this.outerHeight();
+                    $targetW = $($dataTip).outerWidth(),
+                    $targetH = $($dataTip).outerHeight();
 
                 var config = {
                     top: {
-                        top: $targetOff.top - $targetH * 2,
+                        top: $targetOff.top - $targetH - 9,
                         left: $targetOff.left,
                     },
                     left: {
-                        top: $targetOff.top,
-                        left: $targetOff.left - $targetW - 46,
+                        top: $targetOff.top - $targetH / 4,
+                        left: $targetOff.left - $targetW - 11,
                     },
                     right: {
-                        top: $targetOff.top,
-                        left: $targetOff.left + $targetW + 10,
+                        top: $targetOff.top - $targetH / 4,
+                        left: $targetOff.left + $targetW - 16,
                     },
                     bottom: {
-                        top: $targetOff.top + $targetH + 7,
+                        top: $targetOff.top + $targetH - 16,
                         left: $targetOff.left,
                     }
                 };
                 switch ($dataOt) {
                     case 'top':
-                        $($datatip).css(config.top).addClass('top');
+                        $($dataTip).css(config.top).addClass('top');
                         break;
                     case 'bottom':
-                        $($datatip).css(config.bottom).addClass('bottom');
+                        $($dataTip).css(config.bottom).addClass('bottom');
                         break;
                     case 'left':
-                        $($datatip).css(config.left).addClass('left');
+                        $($dataTip).css(config.left).addClass('left');
                         break;
                     case 'right':
-                        $($datatip).css(config.right).addClass('right');
+                        $($dataTip).css(config.right).addClass('right');
                         break;
                 };
                
-                $($datatip).addClass('active');
+                $($dataTip).addClass('active');
                 return false;
-                
+
             }).on('blur mouseleave', function(e){
                 $(tooltip).removeClass('active');
             });
