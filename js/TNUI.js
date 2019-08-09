@@ -443,13 +443,108 @@ TNUI.module = (function(){
         accoUi : function(){
             var t = this,
             uiAccoWrap = $('.ui-accordian'),
-            uiAccobtn = uiAccoWrap.find('.btn_acco'),
-            uiAccoCt = uiAccoWrap.find('.acco-wrap');
-            $.each(uiAccoWrap, function(i){
+            uiAccobtn = uiAccoWrap.find('.ui-btn-acco'),
+            uiAccoCt = uiAccoWrap.find('.ui-acco-ct'),
+            ArrBtn = Array.prototype.slice.call(uiAccobtn),
+            opendSt = $('[data-open]');
+
+            //click evt
+            uiAccobtn.on('click',function(e){
+                var t = $(this),
+                allowMultiple = t.closest(uiAccoWrap).attr('data-allow-multiple') == 'true',
+                isExpanded = t.attr('aria-expanded') == 'true',
+                tarId = t.attr('aria-controls'),
+                tarCt = t.closest(uiAccoWrap).find('#' + tarId);
                 
+                if(!isExpanded){
+                    //다중 열기 불가능
+                    if (!allowMultiple) {
+                        t.closest(uiAccoWrap).find(uiAccoCt).attr('hidden', '');
+                        t.closest(uiAccoWrap).find(uiAccobtn).attr('aria-expanded','false').removeAttr('aria-disabled');
+                        t.closest(uiAccoWrap).find('li').removeClass('active');
+                        t.attr('aria-disabled', 'true');
+                    };
+                    t.attr('aria-expanded','true');
+                    t.closest(uiAccoWrap).find(tarCt).removeAttr('hidden');
+                    t.closest('li').addClass('active');
+
+                } else {
+
+                    //다중 열기 불가능
+                    if (!allowMultiple) {
+                        t.attr('aria-expanded','false');
+                        t.closest(uiAccoWrap).find(uiAccoCt).attr('hidden', '');
+                        t.closest(uiAccoWrap).find(uiAccobtn).attr('aria-expanded','false');
+                        t.closest(uiAccoWrap).find(tarCt).removeAttr('hidden');
+                        t.removeAttr('aria-disabled');
+                        t.closest('li').addClass('active');
+                        return;
+                    };
+
+                    t.attr('aria-expanded','false')
+                    t.closest(uiAccoWrap).find(tarCt).attr('hidden','');
+                    t.closest('li').removeClass('active');
+                }
+
+                e.preventDefault();
+
+            }).on('focus',function(){
+                $(this).closest(uiAccoWrap).addClass('focus');
+            }).on('blur',function(){
+                $(this).closest(uiAccoWrap).removeClass('focus');
+            });
+
+            // 키 바인딩
+            uiAccoWrap.on('keydown', function (e) {
+                var target = e.target;
+                var key = e.which.toString();
+
+
+                // 33 = Page Up, 34 = Page Down
+                var ctrlModifier = (e.ctrlKey && key.match(/33|34/));
+
+                // Is this coming from an accordion header?
+                if ( uiAccobtn ) {
+                    // Up/ Down arrow and Control + Page Up/ Page Down keyboard operations
+                    // 38 = Up, 40 = Down
+                    if (key.match(/38|40/) || ctrlModifier) {
+                        var index = ArrBtn.indexOf(target);
+                        var direction = (key.match(/34|40/)) ? 1 : -1;
+                        var length = ArrBtn.length;
+                        var newIndex = (index + length + direction) % length;
+
+                        ArrBtn[newIndex].focus();
+
+                        e.preventDefault();
+                    } else if (key.match(/35|36/)) {
+                        // 35 = End, 36 = Home keyboard operations
+                        switch (key) {
+                            // Go to first accordion
+                            case '36':
+                                ArrBtn[0].focus();
+                                break;
+                                // Go to last accordion
+                            case '35':
+                                ArrBtn[ArrBtn.length - 1].focus();
+                                break;
+                        }
+                        e.preventDefault();
+
+                    }
+
+                }
             });
             
+            
 
+            //init
+            uiAccoCt.attr('hidden','');
+            opendSt.trigger('click');
+            uiAccoWrap.each(function(){
+                var t = $(this);
+                t.find('.ui-btn-acco').last().addClass('last');
+            })
+            console.log('accoUi');
 
         },
 
@@ -461,6 +556,7 @@ TNUI.module = (function(){
             t.tooltipUi();
             t.modalUi();
             t.scrollUi();
+            t.accoUi();
         }
 
 
