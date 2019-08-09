@@ -316,7 +316,7 @@ TNUI.module = (function(){
                
                 $($datatip).addClass('active');
                 return false;
-
+                
             }).on('blur mouseleave', function(e){
                 $(tooltip).removeClass('active');
             });

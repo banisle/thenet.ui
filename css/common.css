@@ -324,6 +324,7 @@ ul.ui-tab li span{
 .top.tooltipContent::after {bottom: -7px; left: 42px; border-color: #ffc8a2 transparent; border-width: 7px 7px 0;}
 .bottom.tooltipContent::after {top: -7px; left: 42px; border-color: #ffc8a2 transparent; border-width: 0 7px 7px;}
 
+
 /* scroll */
 .ui-scrollview{ overflow: hidden; position: relative; height:300px }
 .ui-scrollarea{ overflow-x: hidden; overflow-y: scroll; position: absolute; left: 0; }
