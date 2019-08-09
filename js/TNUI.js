@@ -446,7 +446,7 @@ TNUI.module = (function(){
             uiAccobtn = uiAccoWrap.find('.ui-btn-acco'),
             uiAccoCt = uiAccoWrap.find('.ui-acco-ct'),
             ArrBtn = Array.prototype.slice.call(uiAccobtn),
-            opendSt = $('[data-open]');
+            opendSt = $('[data-open]'),tarCtH;
 
             //click evt
             uiAccobtn.on('click',function(e){
@@ -454,35 +454,42 @@ TNUI.module = (function(){
                 allowMultiple = t.closest(uiAccoWrap).attr('data-allow-multiple') == 'true',
                 isExpanded = t.attr('aria-expanded') == 'true',
                 tarId = t.attr('aria-controls'),
-                tarCt = t.closest(uiAccoWrap).find('#' + tarId);
-                
+                tarCt = t.closest(uiAccoWrap).find('#' + tarId),
+                motSpd = parseInt(t.closest(uiAccoWrap).attr('data-trans-speed')),
+                tarCtH = t.closest(uiAccoWrap).find(tarCt).height(),
+                tarCtAH = t.closest(uiAccoWrap).find(tarCt).css('height','auto').height();
+
+                if(tarCt.is(':animated')){ return}
+
                 if(!isExpanded){
                     //다중 열기 불가능
                     if (!allowMultiple) {
-                        t.closest(uiAccoWrap).find(uiAccoCt).attr('hidden', '');
+                        t.closest(uiAccoWrap).find(uiAccoCt).animate({'height' : 0},0);
                         t.closest(uiAccoWrap).find(uiAccobtn).attr('aria-expanded','false').removeAttr('aria-disabled');
                         t.closest(uiAccoWrap).find('li').removeClass('active');
                         t.attr('aria-disabled', 'true');
                     };
                     t.attr('aria-expanded','true');
-                    t.closest(uiAccoWrap).find(tarCt).removeAttr('hidden');
+                    t.closest(uiAccoWrap).find(tarCt).stop().height(tarCtH).animate({ 'height' : tarCtAH + 'px'},motSpd);
+                    
                     t.closest('li').addClass('active');
 
                 } else {
 
                     //다중 열기 불가능
                     if (!allowMultiple) {
+                        if(isExpanded){ return };
                         t.attr('aria-expanded','false');
-                        t.closest(uiAccoWrap).find(uiAccoCt).attr('hidden', '');
+                        t.closest(uiAccoWrap).find(uiAccoCt).animate({ 'height' : 0},motSpd);
                         t.closest(uiAccoWrap).find(uiAccobtn).attr('aria-expanded','false');
-                        t.closest(uiAccoWrap).find(tarCt).removeAttr('hidden');
+                        t.closest(uiAccoWrap).find(tarCt).stop().animate({ 'height' : tarCtAH + 'px'},motSpd);
                         t.removeAttr('aria-disabled');
                         t.closest('li').addClass('active');
                         return;
                     };
 
                     t.attr('aria-expanded','false')
-                    t.closest(uiAccoWrap).find(tarCt).attr('hidden','');
+                    t.closest(uiAccoWrap).find(tarCt).stop().animate({ 'height' : 0},motSpd);
                     t.closest('li').removeClass('active');
                 }
 
@@ -538,7 +545,7 @@ TNUI.module = (function(){
             
 
             //init
-            uiAccoCt.attr('hidden','');
+            // uiAccoCt.hide();
             opendSt.trigger('click');
             uiAccoWrap.each(function(){
                 var t = $(this);

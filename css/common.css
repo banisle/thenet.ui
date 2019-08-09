@@ -343,7 +343,7 @@ ul.ui-tab li span{
 /* 어코디언 */
 .ui-accordian h3.acco-btn{padding: 0;margin: 0;}
 .ui-accordian h3.acco-btn .ui-btn-acco{display: block;width: 100%;padding: 10px;text-align: left;border-bottom: 0; font-size: 16px; font-weight: bold;}
-.ui-accordian .acco-ct[hidden]{display: none;}
+.ui-accordian .ui-acco-ct{overflow: hidden;height:0px;}
 .ui-accordian .acco-ct {display: block;width: 100%;padding: 10px; border-bottom: 0;border-top: 0;background:#e1e1e1;box-sizing: border-box;}
 .ui-accordian li{ border: 1px solid #c0c0c0; border-bottom:0; box-sizing: border-box;transition: all ease .5s; }
 .ui-accordian li:last-child{border-bottom:1px solid #c0c0c0}

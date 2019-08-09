@@ -1,9 +1,9 @@
 <!-- accordion detail -->
 
 <h3>accordion</h3>
-<p class="sub-txt">접근성: aria-expanded 속성 제어(js),<strong>data-open</strong> 속성으로 초기 열림상태<br/>키 조작(tab, up down ctrl+pagedown ctrl+pageup ctrl+home ctrl+end)<br/>ctrl+pageup,pagedown ie에서만 됨</p>
+<p class="sub-txt">접근성: aria-expanded 속성 제어(js),<strong>data-open</strong> 속성으로 초기 열림상태, <strong>data-trans-speed</strong>속성으로 모션 속도(0일때 없음) <br/>키 조작(tab, up down ctrl+pagedown ctrl+pageup ctrl+home ctrl+end)<br/>ctrl+pageup,pagedown ie에서만 됨</p>
 
-<ul class="ui-accordian">
+<ul class="ui-accordian" data-trans-speed="300">
     <li>
         <h3 class="acco-btn">
                 <button type="button" id="ui-acco01" class="ui-btn-acco" data-open="true" aria-expanded="false" aria-controls="acco01" aria-disabled="false"><span>아코디언01</span></button>
@@ -46,7 +46,7 @@
 
 <p class="sub-txt">data-allow-multiple 속성, 동시 열림 가능</p>
 
-<ul class="ui-accordian" data-allow-multiple="true">
+<ul class="ui-accordian" data-allow-multiple="true" data-trans-speed="300">
     <li>
         <h3 class="acco-btn">
             <button type="button" id="ui-acco11" class="ui-btn-acco" aria-expanded="false" aria-controls="acco11" aria-disabled="false"><span>아코디언01</span></button>
