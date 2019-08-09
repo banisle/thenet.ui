@@ -453,6 +453,7 @@ TNUI.module = (function(){
                 var t = $(this),
                 allowMultiple = t.closest(uiAccoWrap).attr('data-allow-multiple') == 'true',
                 isExpanded = t.attr('aria-expanded') == 'true',
+                isSub = t.closest(uiAccoWrap).hasClass('sub-accord'),
                 tarId = t.attr('aria-controls'),
                 tarCt = t.closest(uiAccoWrap).find('#' + tarId),
                 motSpd = parseInt(t.closest(uiAccoWrap).attr('data-trans-speed')),
@@ -469,10 +470,17 @@ TNUI.module = (function(){
                         t.closest(uiAccoWrap).find('li').removeClass('active');
                         t.attr('aria-disabled', 'true');
                     };
+                    
                     t.attr('aria-expanded','true');
+                    t.closest('li').addClass('active');
+                    //서브 어코디언 클릭시 부모의 높이값 증가
+                    if(isSub){
+                        console.log(tarCtH,tarCtAH);
+                        var pH = t.closest(uiAccoCt).height();
+                        t.closest(uiAccoCt).height( parseInt(pH) + parseInt(tarCtAH));
+                    }
                     t.closest(uiAccoWrap).find(tarCt).stop().height(tarCtH).animate({ 'height' : tarCtAH + 'px'},motSpd);
                     
-                    t.closest('li').addClass('active');
 
                 } else {
 
@@ -489,6 +497,12 @@ TNUI.module = (function(){
                     };
 
                     t.attr('aria-expanded','false')
+                    //서브 어코디언 클릭시 부모의 높이값 감소
+                    if(isSub){
+                        console.log(tarCtH,tarCtAH);
+                        var pH = t.closest(uiAccoCt).height();
+                        t.closest(uiAccoCt).height( parseInt(pH) - parseInt(tarCtAH));
+                    }
                     t.closest(uiAccoWrap).find(tarCt).stop().animate({ 'height' : 0},motSpd);
                     t.closest('li').removeClass('active');
                 }

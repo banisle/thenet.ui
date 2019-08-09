@@ -1,24 +1,24 @@
 <!-- accordion detail -->
 
-<h3>accordion</h3>
+<h3>단일 어코디언</h3>
 <p class="sub-txt">접근성: aria-expanded 속성 제어(js),<strong>data-open</strong> 속성으로 초기 열림상태, <strong>data-trans-speed</strong>속성으로 모션 속도(0일때 없음) <br/>키 조작(tab, up down ctrl+pagedown ctrl+pageup ctrl+home ctrl+end)<br/>ctrl+pageup,pagedown ie에서만 됨</p>
 
 <ul class="ui-accordian" data-trans-speed="300">
     <li>
         <h3 class="acco-btn">
-                <button type="button" id="ui-acco01" class="ui-btn-acco" data-open="true" aria-expanded="false" aria-controls="acco01" aria-disabled="false"><span>아코디언01</span></button>
-            </h3>
-            <div class="ui-acco-ct" id="acco01" aria-labelledby="ui-acco01" role="region">
-                <div class="acco-ct">
-                    <h4>아코디언01 내용</h4>
-                    <div class="form_grp">
-                        <label for="txt01">이름</label><input type="text" name="" id="txt01">
-                        <label for="txt02">이름2</label><input type="text" name="" id="txt02">
-                        <label for="txt03">이름3</label><input type="text" name="" id="txt03">
-                        <label for="txt04">이름4</label><input type="text" name="" id="txt04">
-                    </div>
+            <button type="button" id="ui-acco01" class="ui-btn-acco" data-open="true" aria-expanded="false" aria-controls="acco01" aria-disabled="false"><span>아코디언01</span></button>
+        </h3>
+        <div class="ui-acco-ct" id="acco01" aria-labelledby="ui-acco01" role="region">
+            <div class="acco-ct">
+                <h4>아코디언01 내용</h4>
+                <div class="form_grp">
+                    <label for="txt01">이름</label><input type="text" name="" id="txt01">
+                    <label for="txt02">이름2</label><input type="text" name="" id="txt02">
+                    <label for="txt03">이름3</label><input type="text" name="" id="txt03">
+                    <label for="txt04">이름4</label><input type="text" name="" id="txt04">
                 </div>
             </div>
+        </div>
     </li>
     <li>
         <h3 class="acco-btn">
@@ -76,3 +76,67 @@
 <pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
 </pre>
 <!-- (end) pre sample -->
+<h3>다중 어코디언</h3>
+<p class="sub-txt">어코디언 내에 어코디언 케이스</p>
+
+<ul class="ui-accordian" data-trans-speed="0" data-allow-multiple="true">
+    <li>
+        <h3 class="acco-btn">
+            <button type="button" id="ui-acco31" class="ui-btn-acco" aria-expanded="false" aria-controls="acco31" aria-disabled="false"><span>아코디언01</span></button>
+        </h3>
+        <div class="ui-acco-ct" id="acco31" aria-labelledby="ui-acco31" role="region">
+            <!-- (sta) sub accordian -->
+            <ul class="ui-accordian sub-accord" data-trans-speed="330" data-allow-multiple="true">
+                <li>
+                    <h3 class="acco-btn">
+                        <button type="button" id="ui-accoS01" class="ui-btn-acco" aria-expanded="false" aria-controls="accoS01" aria-disabled="false"><span>서브 아코디언01</span></button>
+                    </h3>
+                    <div class="ui-acco-ct" id="accoS01" aria-labelledby="ui-accoS01" role="region">
+                        <div class="acco-ct">
+                            <h4>서브 아코디언01</h4>
+                            <div class="form_grp">
+                                <label for="txt11">이름</label><input type="text" name="" id="txt11">
+                                <label for="txt12">이름2</label><input type="text" name="" id="txt12">
+                                <label for="txt13">이름3</label><input type="text" name="" id="txt13">
+                                <label for="txt14">이름4</label><input type="text" name="" id="txt14">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="acco-btn">
+                        <button type="button" id="ui-accoS02" class="ui-btn-acco" aria-expanded="false" aria-controls="accoS02" aria-disabled="false"><span>서브 아코디언02</span></button>
+                    </h3>
+                    <div class="ui-acco-ct" id="accoS02" aria-labelledby="ui-accoS02" role="region">
+                        <div class="acco-ct">서브 아코디언02 내용</div>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="acco-btn">
+                        <button type="button" id="ui-accoS03" class="ui-btn-acco" aria-expanded="false" aria-controls="accoS03" aria-disabled="false"><span>서브 아코디언03</span></button>
+                    </h3>
+                    <div class="ui-acco-ct" id="accoS03" aria-labelledby="ui-acco03" role="region">
+                        <div class="acco-ct">서브 아코디언03 내용</div>
+                    </div>
+                </li>
+            </ul>
+            <!-- (end) sub accordian -->
+        </div>
+    </li>
+    <li>
+        <h3 class="acco-btn">
+            <button type="button" id="ui-acco32" class="ui-btn-acco" aria-expanded="false" aria-controls="acco32" aria-disabled="false"><span>아코디언02</span></button>
+        </h3>
+        <div class="ui-acco-ct" id="acco32" aria-labelledby="ui-acco32" role="region">
+            <div class="acco-ct">아코디언02 내용</div>
+        </div>
+    </li>
+    <li>
+        <h3 class="acco-btn">
+            <button type="button" id="ui-acco33" class="ui-btn-acco" aria-expanded="false" aria-controls="acco33" aria-disabled="false"><span>아코디언03</span></button>
+        </h3>
+        <div class="ui-acco-ct" id="acco33" aria-labelledby="ui-acco33" role="region">
+            <div class="acco-ct">아코디언03 내용</div>
+        </div>
+    </li>
+</ul>

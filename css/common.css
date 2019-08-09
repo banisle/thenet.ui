@@ -341,6 +341,7 @@ ul.ui-tab li span{
 
 
 /* 어코디언 */
+.ui-accordian.sub-accord{padding:10px;}
 .ui-accordian h3.acco-btn{padding: 0;margin: 0;}
 .ui-accordian h3.acco-btn .ui-btn-acco{display: block;width: 100%;padding: 10px;text-align: left;border-bottom: 0; font-size: 16px; font-weight: bold;}
 .ui-accordian .ui-acco-ct{overflow: hidden;height:0px;}
