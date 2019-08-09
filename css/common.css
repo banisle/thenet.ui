@@ -316,7 +316,8 @@ ul.ui-tab li span{
 
 /* tooltip */
 .uiTooltip a {display: inline-block; padding: 10px 15px; background: #450e4c; border-radius: 5px; color: #fff; font-size: 12px;}
-.tooltipContent {display: none; position: absolute; padding: 10px; background-color: #ffc8a2;	border-radius: 5px; font-size: 12px; text-align: left; z-index: 9999;}
+.tooltipContent {visibility:hidden; position: absolute; padding: 10px; background-color: #ffc8a2;	border-radius: 5px; font-size: 12px; text-align: left; z-index: 9999; opacity: 0; transition: opacity 1s;}
+.tooltipContent.active {visibility: visible; opacity: 1;} 
 .tooltipContent::after {content: ''; position: absolute; border-style: solid; display: block; width: 0;}
 .right.tooltipContent::after {top: 6px; left: -10px; border-color: transparent #ffc8a2; border-width: 10px 10px 10px 0;}
 .left.tooltipContent::after {top: 6px; right: -10px; border-color: transparent #ffc8a2; border-width: 10px 0 10px 10px;}

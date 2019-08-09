@@ -272,15 +272,11 @@ TNUI.module = (function(){
 
         tooltipUi : function(){
             var tooltip = '[class^="tooltip"]';
-            // 링크 막기
-            // $(tooltip).click(function(e){
-            //     return false;
-            // });
-            $(tooltip).on('mouseenter mouseleave keydown', function(e){
-                
+            
+            $(tooltip).on('mouseenter focus', function(e){
                 var $this = $(this),
                     $dataOt = $this.data('option'),
-                    $tip = $this.attr('data-tooltip'),
+                    $datatip = $this.data('tooltip'),
                     $targetOff = $this.offset(),
                     $targetW = $this.outerWidth(),
                     $targetH = $this.outerHeight();
@@ -305,22 +301,25 @@ TNUI.module = (function(){
                 };
                 switch ($dataOt) {
                     case 'top':
-                        $($tip).css(config.top).addClass('top');
+                        $($datatip).css(config.top).addClass('top');
                         break;
                     case 'bottom':
-                        $($tip).css(config.bottom).addClass('bottom');
+                        $($datatip).css(config.bottom).addClass('bottom');
                         break;
                     case 'left':
-                        $($tip).css(config.left).addClass('left');
+                        $($datatip).css(config.left).addClass('left');
                         break;
                     case 'right':
-                        $($tip).css(config.right).addClass('right');
+                        $($datatip).css(config.right).addClass('right');
                         break;
                 };
-                (e.type == 'mouseenter') ? $($tip).show() : $($tip).hide();
+               
+                $($datatip).addClass('active');
                 return false;
+
+            }).on('blur mouseleave', function(e){
+                $(tooltip).removeClass('active');
             });
-            
         },
 
         modalUi : function(){
@@ -437,6 +436,19 @@ TNUI.module = (function(){
                 }();
 
                 console.log('scrollUi');
+        },
+
+        accoUi : function(){
+            var t = this,
+            uiAccoWrap = $('.ui-accordian'),
+            uiAccobtn = uiAccoWrap.find('.btn_acco'),
+            uiAccoCt = uiAccoWrap.find('.acco-wrap');
+            $.each(uiAccoWrap, function(i){
+                
+            });
+            
+
+
         },
 
         init : function(){
