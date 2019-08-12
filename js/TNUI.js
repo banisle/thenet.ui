@@ -446,9 +446,15 @@ TNUI.module = (function(){
             uiAccobtn = uiAccoWrap.find('.ui-btn-acco'),
             uiAccoCt = uiAccoWrap.find('.ui-acco-ct'),
             ArrBtn = Array.prototype.slice.call(uiAccobtn),
+            ArrSubBtn = ArrBtn.filter(function(i){
+                return $(i).hasClass('sub');
+            }),
             opendSt = $('[data-open]'),tarCtH;
 
-            //click evt
+            console.log( ArrSubBtn );
+
+
+            //click evtrmsid
             uiAccobtn.on('click',function(e){
                 var t = $(this),
                 allowMultiple = t.closest(uiAccoWrap).attr('data-allow-multiple') == 'true',
@@ -475,7 +481,6 @@ TNUI.module = (function(){
                     t.closest('li').addClass('active');
                     //서브 어코디언 클릭시 부모의 높이값 증가
                     if(isSub){
-                        console.log(tarCtH,tarCtAH);
                         var pH = t.closest(uiAccoCt).height();
                         t.closest(uiAccoCt).height( parseInt(pH) + parseInt(tarCtAH));
                     }
