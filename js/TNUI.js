@@ -272,56 +272,56 @@ TNUI.module = (function(){
 
         tooltipUi : function(){
             var tooltip = '[class^="tooltip"]';
-            $(tooltip).click(function(e){
-                return false;
-            });
-            $(tooltip).on('mouseenter mouseleave', function(e){
+            
+            $(tooltip).on('mouseenter focus', function(e){
                 var $this = $(this),
                     $dataOt = $this.data('option'),
-                    $datatip = $this.data('tooltip'),
-                    $idValue = $this.val(),
+                    $dataTip = $this.data('tooltip'),
                     $targetOff = $this.offset(),
-                    $targetW = $this.outerWidth(),
-                    $targetH = $this.outerHeight();
-                    console.log($idValue);
+                    $thisBtnW = $this.outerWidth(),
+                    $thisBtnH = $this.outerHeight(),
+                    $targetW = $($dataTip).outerWidth(),
+                    $targetH = $($dataTip).outerHeight();
 
                 var config = {
                     top: {
-                        top: $targetOff.top - $targetH * 2,
+                        top: $targetOff.top - $targetH - 9,
                         left: $targetOff.left,
                     },
                     left: {
-                        top: $targetOff.top,
-                        left: $targetOff.left - $targetW - 46,
+                        top: $targetOff.top - $targetH / 4,
+                        left: $targetOff.left - $thisBtnW - 44,
                     },
                     right: {
-                        top: $targetOff.top,
-                        left: $targetOff.left + $targetW + 10,
+                        top: $targetOff.top - $targetH / 4,
+                        left: $targetOff.left + $thisBtnW + 9,
                     },
                     bottom: {
-                        top: $targetOff.top + $targetH + 7,
+                        top: $targetOff.top + $targetH - 16,
                         left: $targetOff.left,
                     }
                 };
                 switch ($dataOt) {
                     case 'top':
-                        $($idValue).css(config.top).addClass('top');
+                        $($dataTip).css(config.top).addClass('top');
                         break;
                     case 'bottom':
-                        $($idValue).css(config.bottom).addClass('bottom');
+                        $($dataTip).css(config.bottom).addClass('bottom');
                         break;
                     case 'left':
-                        $($idValue).css(config.left).addClass('left');
+                        $($dataTip).css(config.left).addClass('left');
                         break;
                     case 'right':
-                        $($idValue).css(config.right).addClass('right');
+                        $($dataTip).css(config.right).addClass('right');
                         break;
                 };
                
-                (e.type == 'mouseenter') ? $($idValue).show() : $($idValue).hide();
+                $($dataTip).addClass('active');
                 return false;
 
-            })
+            }).on('blur mouseleave', function(e){
+                $(tooltip).removeClass('active');
+            });
         },
 
         modalUi : function(){
