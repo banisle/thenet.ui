@@ -278,6 +278,8 @@ TNUI.module = (function(){
                     $dataOt = $this.data('option'),
                     $dataTip = $this.data('tooltip'),
                     $targetOff = $this.offset(),
+                    $thisBtnW = $this.outerWidth(),
+                    $thisBtnH = $this.outerHeight(),
                     $targetW = $($dataTip).outerWidth(),
                     $targetH = $($dataTip).outerHeight();
 
@@ -288,11 +290,11 @@ TNUI.module = (function(){
                     },
                     left: {
                         top: $targetOff.top - $targetH / 4,
-                        left: $targetOff.left - $targetW - 11,
+                        left: $targetOff.left - $thisBtnW - 44,
                     },
                     right: {
                         top: $targetOff.top - $targetH / 4,
-                        left: $targetOff.left + $targetW - 16,
+                        left: $targetOff.left + $thisBtnW + 9,
                     },
                     bottom: {
                         top: $targetOff.top + $targetH - 16,
