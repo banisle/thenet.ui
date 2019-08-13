@@ -57,7 +57,7 @@ a:active,
 a:visited{text-decoration: none;color:initial}
 
 input[type="checkbox"],
-input[type="radio"]{display: none;}
+input[type="radio"]{overflow: hidden; border: 0; position: absolute; width: 1px; height: 1px; clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%);}
 
 /* lib : syntaxhighlighter */
 .syntaxhighlighter {

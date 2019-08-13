@@ -504,7 +504,6 @@ TNUI.module = (function(){
                     t.attr('aria-expanded','false')
                     //서브 어코디언 클릭시 부모의 높이값 감소
                     if(isSub){
-                        console.log(tarCtH,tarCtAH);
                         var pH = t.closest(uiAccoCt).height();
                         t.closest(uiAccoCt).height( parseInt(pH) - parseInt(tarCtAH));
                     }
@@ -539,6 +538,7 @@ TNUI.module = (function(){
                         var length = ArrBtn.length;
                         var newIndex = (index + length + direction) % length;
 
+                        //서브 아코디언 있을경우 
                         if( $(target).is('.sub-has') && $(target).attr('aria-expanded') == 'false' ){
                             direction == 1 ? newIndex = newIndex + ArrSubBtn.length : newIndex;
                         } else if( $(target).is('.ui-sub-next') && $(target).closest('[data-li]').prev().find(uiAccobtn).attr('aria-expanded') == 'false'){
