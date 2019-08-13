@@ -279,8 +279,6 @@ TNUI.module = (function(){
                     $dataTip = $this.data('tooltip'),
                     $targetOff = $this.offset(),
                     $thisBtnW = $this.outerWidth(),
-                    $thisBtnH = $this.outerHeight(),
-                    $targetW = $($dataTip).outerWidth(),
                     $targetH = $($dataTip).outerHeight();
 
                 var config = {
@@ -384,7 +382,7 @@ TNUI.module = (function(){
             console.log('modalUi');
         },
 
-        scrollUi :function() {
+        scrollUi :function(){
             var t = this,
                 scrollWrap = $('.ui-scrollview'),
                 scrollArea = scrollWrap.find('.ui-scrollarea'),
@@ -440,16 +438,136 @@ TNUI.module = (function(){
                 console.log('scrollUi');
         },
 
+        menuUi : function(){
+            
+        },
+
         accoUi : function(){
             var t = this,
             uiAccoWrap = $('.ui-accordian'),
-            uiAccobtn = uiAccoWrap.find('.btn_acco'),
-            uiAccoCt = uiAccoWrap.find('.acco-wrap');
-            $.each(uiAccoWrap, function(i){
-                
+            uiAccobtn = uiAccoWrap.find('.ui-btn-acco'),
+            uiAccoCt = uiAccoWrap.find('.ui-acco-ct'),
+            ArrBtn = Array.prototype.slice.call(uiAccobtn),
+            opendSt = $('[data-open]'),tarCtH;
+
+            //click evt
+            uiAccobtn.on('click',function(e){
+                var t = $(this),
+                allowMultiple = t.closest(uiAccoWrap).attr('data-allow-multiple') == 'true',
+                isExpanded = t.attr('aria-expanded') == 'true',
+                isSub = t.closest(uiAccoWrap).hasClass('sub-accord'),
+                tarId = t.attr('aria-controls'),
+                tarCt = t.closest(uiAccoWrap).find('#' + tarId),
+                motSpd = parseInt(t.closest(uiAccoWrap).attr('data-trans-speed')),
+                tarCtH = t.closest(uiAccoWrap).find(tarCt).height(),
+                tarCtAH = t.closest(uiAccoWrap).find(tarCt).css('height','auto').height();
+
+                if(tarCt.is(':animated')){ return}
+
+                if(!isExpanded){
+                    //다중 열기 불가능
+                    if (!allowMultiple) {
+                        t.closest(uiAccoWrap).find(uiAccoCt).animate({'height' : 0},0);
+                        t.closest(uiAccoWrap).find(uiAccobtn).attr('aria-expanded','false').removeAttr('aria-disabled');
+                        t.closest(uiAccoWrap).find('li').removeClass('active');
+                        t.attr('aria-disabled', 'true');
+                    };
+                    
+                    t.attr('aria-expanded','true');
+                    t.closest('li').addClass('active');
+                    //서브 어코디언 클릭시 부모의 높이값 증가
+                    if(isSub){
+                        console.log(tarCtH,tarCtAH);
+                        var pH = t.closest(uiAccoCt).height();
+                        t.closest(uiAccoCt).height( parseInt(pH) + parseInt(tarCtAH));
+                    }
+                    t.closest(uiAccoWrap).find(tarCt).stop().height(tarCtH).animate({ 'height' : tarCtAH + 'px'},motSpd);
+                    
+
+                } else {
+
+                    //다중 열기 불가능
+                    if (!allowMultiple) {
+                        if(isExpanded){ return };
+                        t.attr('aria-expanded','false');
+                        t.closest(uiAccoWrap).find(uiAccoCt).animate({ 'height' : 0},motSpd);
+                        t.closest(uiAccoWrap).find(uiAccobtn).attr('aria-expanded','false');
+                        t.closest(uiAccoWrap).find(tarCt).stop().animate({ 'height' : tarCtAH + 'px'},motSpd);
+                        t.removeAttr('aria-disabled');
+                        t.closest('li').addClass('active');
+                        return;
+                    };
+
+                    t.attr('aria-expanded','false')
+                    //서브 어코디언 클릭시 부모의 높이값 감소
+                    if(isSub){
+                        console.log(tarCtH,tarCtAH);
+                        var pH = t.closest(uiAccoCt).height();
+                        t.closest(uiAccoCt).height( parseInt(pH) - parseInt(tarCtAH));
+                    }
+                    t.closest(uiAccoWrap).find(tarCt).stop().animate({ 'height' : 0},motSpd);
+                    t.closest('li').removeClass('active');
+                }
+
+                e.preventDefault();
+
+            }).on('focus',function(){
+                $(this).closest(uiAccoWrap).addClass('focus');
+            }).on('blur',function(){
+                $(this).closest(uiAccoWrap).removeClass('focus');
+            });
+
+            // 키 바인딩
+            uiAccoWrap.on('keydown', function (e) {
+                var target = e.target;
+                var key = e.which.toString();
+
+
+                // 33 = Page Up, 34 = Page Down
+                var ctrlModifier = (e.ctrlKey && key.match(/33|34/));
+
+                // Is this coming from an accordion header?
+                if ( uiAccobtn ) {
+                    // Up/ Down arrow and Control + Page Up/ Page Down keyboard operations
+                    // 38 = Up, 40 = Down
+                    if (key.match(/38|40/) || ctrlModifier) {
+                        var index = ArrBtn.indexOf(target);
+                        var direction = (key.match(/34|40/)) ? 1 : -1;
+                        var length = ArrBtn.length;
+                        var newIndex = (index + length + direction) % length;
+
+                        ArrBtn[newIndex].focus();
+
+                        e.preventDefault();
+                    } else if (key.match(/35|36/)) {
+                        // 35 = End, 36 = Home keyboard operations
+                        switch (key) {
+                            // Go to first accordion
+                            case '36':
+                                ArrBtn[0].focus();
+                                break;
+                                // Go to last accordion
+                            case '35':
+                                ArrBtn[ArrBtn.length - 1].focus();
+                                break;
+                        }
+                        e.preventDefault();
+
+                    }
+
+                }
             });
             
+            
 
+            //init
+            // uiAccoCt.hide();
+            opendSt.trigger('click');
+            uiAccoWrap.each(function(){
+                var t = $(this);
+                t.find('.ui-btn-acco').last().addClass('last');
+            })
+            console.log('accoUi');
 
         },
 
@@ -461,6 +579,8 @@ TNUI.module = (function(){
             t.tooltipUi();
             t.modalUi();
             t.scrollUi();
+            t.menuUi();
+            t.accoUi();
         }
 
 

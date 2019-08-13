@@ -77,7 +77,7 @@ html.fixed{overflow-y: hidden;}
 .guide-side .tn-lnb-menu .menu-item > a.on,
 .guide-side .tn-lnb-menu .menu-item .sub-menu .on{color:#ed4b30}
 .guide-side .tn-lnb-menu .menu-item .sub-menu a{position: relative; cursor: pointer;}
-.guide-side .tn-lnb-menu .menu-item .sub-menu a:hover:after{
+.guide-side .tn-lnb-menu .menu-item .sub-menu a:after{
 	display:block;
 	content:attr(data-menu);
 	position:absolute;
@@ -87,6 +87,11 @@ html.fixed{overflow-y: hidden;}
 	background:#eee;
 	border:1px solid #e3e3e3;
 	border-radius:3px;
+	opacity:0;
+	transition:all ease .5s;
+}
+.guide-side .tn-lnb-menu .menu-item .sub-menu a:hover:after{
+	opacity:1;
 }
 .guide-side{
     position: fixed;
@@ -336,6 +341,24 @@ ul.ui-tab li span{
 .ui-scrollbar .bar:hover{background:#222}
 .scrollview{line-height: 1.6}
 
+
+
+/* 어코디언 */
+.ui-accordian.sub-accord{padding:10px;}
+.ui-accordian h3.acco-btn{padding: 0;margin: 0;}
+.ui-accordian h3.acco-btn .ui-btn-acco{display: block;width: 100%;padding: 10px;text-align: left;border-bottom: 0; font-size: 16px; font-weight: bold;}
+.ui-accordian .ui-acco-ct{overflow: hidden;height:0px;}
+.ui-accordian .acco-ct {display: block;width: 100%;padding: 10px; border-bottom: 0;border-top: 0;background:#e1e1e1;box-sizing: border-box;}
+.ui-accordian li{ border: 1px solid #c0c0c0; border-bottom:0; box-sizing: border-box;transition: all ease .5s; }
+.ui-accordian li:last-child{border-bottom:1px solid #c0c0c0}
+.ui-accordian li.active { border: 1px solid red; border-bottom:0; }
+.ui-accordian li.active + li{border-top:1px solid red;}
+.ui-accordian li.active:last-child{border-bottom:1px solid red}
+.ui-accordian li:hover{border-color:#333;border-top:1px solid #333 !important}
+.ui-accordian li:hover + li{border-top:1px solid #333}
+.ui-accordian li:last-child:hover{border-bottom:1px solid #333}
+
+
 /* media query */
 @media screen and (max-width: 768px) {
 	.guide-side{left:-320px; }
@@ -362,4 +385,6 @@ ul.ui-tab li span{
 	input + label > .label-txt{position: initial;}
 
 	.scrollview{overflow-y: auto}
+
+	
 }
