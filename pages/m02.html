@@ -77,12 +77,12 @@
 </pre>
 <!-- (end) pre sample -->
 <h3>다중 어코디언</h3>
-<p class="sub-txt">어코디언 내에 어코디언 케이스, 서브 어코디언 버튼 태그에 클래스 <i>sub</i> 추가</p>
+<p class="sub-txt">어코디언 내에 어코디언 케이스, 서브 어코디언 버튼 태그에 클래스 <i>sub</i> 추가,서브 어코디언 부모의 버튼에 <i>sub-has</i>클래스 추가<br/> li에 해당하는 태그에 <strong >data-li</strong>속성 추가(li 태그 안쓸 경우 대비)</p>
 
 <ul class="ui-accordian" data-trans-speed="0" data-allow-multiple="true">
-    <li>
+    <li data-li>
         <h3 class="acco-btn">
-            <button type="button" id="ui-acco31" class="ui-btn-acco" aria-expanded="false" aria-controls="acco31" aria-disabled="false"><span>아코디언01</span></button>
+            <button type="button" id="ui-acco31" class="ui-btn-acco sub-has" aria-expanded="false" aria-controls="acco31" aria-disabled="false"><span>아코디언01</span></button>
         </h3>
         <div class="ui-acco-ct" id="acco31" aria-labelledby="ui-acco31" role="region">
             <!-- (sta) sub accordian -->
@@ -123,7 +123,7 @@
             <!-- (end) sub accordian -->
         </div>
     </li>
-    <li>
+    <li data-li>
         <h3 class="acco-btn">
             <button type="button" id="ui-acco32" class="ui-btn-acco" aria-expanded="false" aria-controls="acco32" aria-disabled="false"><span>아코디언02</span></button>
         </h3>
@@ -131,7 +131,7 @@
             <div class="acco-ct">아코디언02 내용</div>
         </div>
     </li>
-    <li>
+    <li data-li>
         <h3 class="acco-btn">
             <button type="button" id="ui-acco33" class="ui-btn-acco" aria-expanded="false" aria-controls="acco33" aria-disabled="false"><span>아코디언03</span></button>
         </h3>

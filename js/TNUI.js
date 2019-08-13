@@ -451,7 +451,7 @@ TNUI.module = (function(){
             }),
             opendSt = $('[data-open]'),tarCtH;
 
-            console.log( ArrSubBtn );
+            // console.log( ArrSubBtn );
 
 
             //click evtrmsid
@@ -539,6 +539,12 @@ TNUI.module = (function(){
                         var length = ArrBtn.length;
                         var newIndex = (index + length + direction) % length;
 
+                        if( $(target).is('.sub-has') && $(target).attr('aria-expanded') == 'false' ){
+                            direction == 1 ? newIndex = newIndex + ArrSubBtn.length : newIndex;
+                        } else if( $(target).is('.ui-sub-next') && $(target).closest('[data-li]').prev().find(uiAccobtn).attr('aria-expanded') == 'false'){
+                            direction == -1 ? newIndex = newIndex - ArrSubBtn.length : newIndex;
+                        };
+
                         ArrBtn[newIndex].focus();
 
                         e.preventDefault();
@@ -569,7 +575,10 @@ TNUI.module = (function(){
             uiAccoWrap.each(function(){
                 var t = $(this);
                 t.find('.ui-btn-acco').last().addClass('last');
-            })
+            });
+            // 서브 어코디언 있을때 다음 어코디언(키맵핑)에 클래스 추가
+            if( $('.sub-has').length !== 0) $('.sub-has').closest('[data-li]').next().find(uiAccobtn).addClass('ui-sub-next');
+            
             console.log('accoUi');
 
         },
