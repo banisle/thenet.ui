@@ -321,8 +321,8 @@ ul.ui-tab li span{
 
 /* tooltip */
 .uiTooltip a {display: inline-block; padding: 10px 15px; background: #450e4c; border-radius: 5px; color: #fff; font-size: 12px;}
-.tooltipContent {visibility:hidden; position: absolute; padding: 10px; background-color: #ffc8a2;	border-radius: 5px; font-size: 12px; text-align: left; z-index: 9999; opacity: 0; transition: opacity 1s;}
-.tooltipContent.active {visibility: visible; opacity: 1;} 
+.tooltipContent {visibility:hidden; position: absolute; padding: 10px; background-color: #ffc8a2;	border-radius: 5px; font-size: 12px; text-align: left; z-index: 9999; opacity: 0; transition: visibility 0s .5s, opacity 1s linear;}
+.tooltipContent.active {visibility: visible; opacity: 1; transition: opacity 1s linear;} 
 .tooltipContent::after {content: ''; position: absolute; border-style: solid; display: block; width: 0;}
 .right.tooltipContent::after {top: 18px; left: -7px; border-color: transparent #ffc8a2; border-width: 10px 10px 10px 0;}
 .left.tooltipContent::after {top: 18px; right: -7px; border-color: transparent #ffc8a2; border-width: 10px 0 10px 10px;}
@@ -341,7 +341,13 @@ ul.ui-tab li span{
 .ui-scrollbar .bar:hover{background:#222}
 .scrollview{line-height: 1.6}
 
-
+/* menuWrap */
+.container{width: 100%;}
+ul.tabs {overflow:hidden; width:100%;}
+ul.tabs li{float:left; width:25%; box-sizing:border-box; text-align:center; background: #33ca; color: #222; display: block;	padding: 10px 15px;	cursor: pointer;}
+ul.tabs li.current{background: #ededed;	color: #222;}
+.tab-content{display: none;	background: #ededed; padding: 15px;}
+.tab-content.current{display: inherit;}
 
 /* 어코디언 */
 .ui-accordian.sub-accord{padding:10px;}
