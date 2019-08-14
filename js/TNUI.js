@@ -439,7 +439,27 @@ TNUI.module = (function(){
         },
 
         menuUi : function(){
-            
+            var menuEvent = $('ul.menu li a');
+            menuEvent.bind('mouseenter focus', function(){
+
+                var tab_id = $(this).attr('data-menu');
+                menuEvent.removeClass('current');
+                $('.submenu').removeClass('current');
+                $(this).addClass('current');
+                $("#" + tab_id).addClass('current');
+                // $(this).parent().parent().parent().find('.submenu').css('background','#000').stop(true,true).slideDown(200,function(){
+                //     $('.submenu').not('.slided').hide();
+                // });
+
+            }).bind('blur mouseleave', function(){
+
+                var tab_id = $(this).attr('data-menu');
+                $(this).removeClass('current');
+                $("#" + tab_id).removeClass('current');
+                //$(this).removeClass('selected').children('div').css('z-index','1');
+
+            });
+
         },
 
         accoUi : function(){

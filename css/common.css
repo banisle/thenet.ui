@@ -343,11 +343,12 @@ ul.ui-tab li span{
 
 /* menuWrap */
 .container{width: 100%;}
-ul.tabs {overflow:hidden; width:100%;}
-ul.tabs li{float:left; width:25%; box-sizing:border-box; text-align:center; background: #33ca; color: #222; display: block;	padding: 10px 15px;	cursor: pointer;}
-ul.tabs li.current{background: #ededed;	color: #222;}
-.tab-content{display: none;	background: #ededed; padding: 15px;}
-.tab-content.current{display: inherit;}
+ul.menu {overflow:hidden; width:100%;}
+ul.menu li{float:left; width:25%; }
+ul.menu li a {box-sizing:border-box; text-align:center; background: #33ca; color: #fff; display: block;	padding: 10px 15px;}
+ul.menu li a.current {background: #ededed;	color: #222;}
+.submenu{display: none;	background: #ededed; padding: 15px;}
+.submenu.current{display: inherit;}
 
 /* 어코디언 */
 .ui-accordian.sub-accord{padding:10px;}
