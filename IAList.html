@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>코딩리스트 샘플</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<style type="text/css">
+@charset "utf-8";
+/* reset */
+*{margin:0; padding:0;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
+body{line-height:1;line-height:16px;}
+h1, h2, h3, h4, h5, h6, input, select, textarea, option, label, button{font-size:100%; font-weight:normal;}
+fieldset, img, abbr, acronym{border:0 none;}
+ol, ul{list-style:none;}
+table{border-collapse:collapse; border-spacing:0;}
+em{font-style:normal;color:#A00327 !important;}
+img, a, input, select, textarea, label, button, span, em, strong{vertical-align:baseline;}
+hr{display:none;}
+
+/* common */
+html, body{width:100%; height:100%; font-size:16px; line-height:1.6; font-family:"나눔고딕", NanumGothic, "돋움", Dotum;}
+html{overflow-y:scroll;}
+body{min-width:1000px; }
+a{color:#000; text-decoration:none;}
+caption, legend{overflow:hidden; width:0; height:0; font-size:0; line-height:0; visibility:0;}
+.red {color:#ff6600;}
+
+/* 본문스타일 */
+.overlay{position:absolute; top:0; left:0; display:none; width:100%; height:auto !important; height:100%; min-height:100%; background-color: rgba(0, 0, 0, 0.5); z-index:1; zoom:1;}
+.wrapper{padding:10px 20px 20px 20px;}
+
+h1{margin-bottom:10px;}
+h1 span{display:inline-block; padding:10px 0; font-size:28px; font-weight: bold;}
+
+.menuWrap{position:relative;padding-top:43px;}
+.menu, .menu table{width:100%;}
+.menu>dt{position:absolute; top:0; width:10%;}
+.menu>dt a{display:block; margin-top:2px; padding:8px 0 7px 0; border:1px solid #CCC; border-bottom:0; border-left:0; text-align:center; cursor:pointer;font-weight:bold;background:#fff;}
+.menu>dt a.selected{margin-top:0; padding:9px 0; background:#333; color:#fff; border-color:#333;}
+.menu>dt a.tm.selected{border-color:#333;}
+.menu>dt a.tm{border-left:1px solid #CCC;}
+.menu>dt.tm1 a{border-left:1px solid #CCC;}
+.menu>dt.tm1 a.selected{border-left:1px solid #333;}
+.tm2{left:10%;}
+.tm3{left:20%;}
+.tm4{left:30%;}
+.tm5{left:40%;}
+.tm6{left:50%;}
+.tm7{left:60%;}
+.tm8{left:70%;}
+.tm9{left:80%;}
+.tm10{left:90%;}
+.viewAll{right:0;}
+.menu>dd{display:none; padding:20px 0; border-top:1px solid #ccc;}
+.menu>dd>p:first-child{padding-bottom:5px;}
+
+.menu_link{overflow:hidden;}
+.menu_link li{float:left;padding:7px 5px;}
+.menu_link li a{color:#333;}
+.menu_link li a:hover{text-decoration:underline;}
+
+table{border-bottom:1px solid #ccc; font-size: 14px}
+tr{background:#fff;}
+tr:hover {background:#edeaea;}
+tr:hover td a{}
+tr:hover td a:hover{text-decoration:underline;color:orange;}
+tr.tit{border-top:2px solid #222;}
+th{padding:5px 0; color:#fff; background:#363636; border-top:1px solid #ccc;border-left:1px solid #ccc}
+td{padding:7px 5px; border-top:1px solid #ccc;border-left:1px solid #ccc;line-height:16px;}
+th:first-child, td:first-child{border-left:0;}
+th a{color:#fff;}
+table tr td.aCenter,table tr td.ct {text-align:center;}
+tr.launch{background:#e1e1e1;}
+tr.launch:hover{background:#666;color:#fff;}
+tr.active{background:#ffc246}
+td .ck1{color:#1f8504;font-weight:600;}
+td .ck2{color:#ed4545;font-weight:600;}
+td .ck3{color:#4574ed;font-weight:600;}
+td .ck4{color:#eda845;font-weight:600;}
+td .lyr{display:inline-block;padding-left:3px;line-height:18px;color:#305ed2;}
+td:hover .lyr{color:#b5e8fd;}
+
+.hold td, .hold{background:#DDC8DA}
+.del td, .del{background:#999; text-decoration:line-through;}
+.ing td, .ing{background:#FC6;}
+.link td, .link {background:#b7cedf;}
+.noHtml td, .noHtml{background:#bad8ba;}
+.sIcon{display:inline-block; width:20px; height:13px;vertical-align:middle;}
+.line{border-left:1px solid #f6f6f6 !important;}
+
+.hisWrap{position:relative; zoom:1; }
+.hisList li{display:none; padding:1px 0;}
+.hisList .on{display:block;}
+
+.btn{display:inline-block;min-width:25px;padding:3px 5px; -webkit-border-radius:3px; border-radius:3px; font-size:11px;text-align:center;background:#848484; color:#fff;}
+.btn1{display:inline-block;min-width:25px;padding:3px 5px; -webkit-border-radius:3px; border-radius:3px; font-size:11px;text-align:center;background:#000; color:#fff;}
+.btn2{display:inline-block;min-width:25px;padding:3px 5px; -webkit-border-radius:3px; border-radius:3px; font-size:11px;text-align:center;background:#b63333; color:#fff;}
+.btn3{display:inline-block;min-width:25px;padding:3px 5px; -webkit-border-radius:3px; border-radius:3px; font-size:11px;text-align:center;background:#dbdbdb; color:#fff;}
+.btn4{display:inline-block;min-width:25px;padding:3px 5px; -webkit-border-radius:3px; border-radius:3px; font-size:11px;text-align:center;background:#5080d1; color:#fff;}
+
+.btn.ex{background:#eeab24;}
+.btnHis{position:absolute; top:0; right:10px; cursor:pointer;}
+.tip{position:relative; display:inline-block; cursor:pointer;}
+.tip span{display:none; position:absolute; z-index:1; top:17px; left:0; min-width:120px; margin-left:-60px; padding:3px; font-weight:normal; font-size:11px; background:#FF0; -webkit-border-radius:3px; border-radius:3px; border:1px solid #F90; color:#000; line-height:17px;}
+tbody .tip span{width:200px; margin-left:-80px;}
+
+.notice{display:table; width:100%;}
+.notice dl{position:relative;width:33%; float:left;}
+.notice dt, .notice dd{width:100%; padding:5px 0;}
+.notice dd{position:absolute;top:25px;left:0;width:80%;padding:5px 5%;border:1px solid #666;background:#fff;z-index:1;}
+.notice li{width:90%; position:relative; padding:0 0 3px 8px; font-size:14px; line-height:1.6; color:#767676;}
+.notice .bul{position:absolute; top:5px; left:0; width:2px; height:2px; background:#626262;}
+.dNotice{display:none; position:absolute; top:50%; left:50%; z-index:2; padding:20px; width:680px; margin:-300px 0 0 -361px; border:1px solid #999; background:#F9F9F9;}
+.dNotice li{width:100%; padding-bottom:10px;}
+
+.siteInfo{display:table; width:100%;}
+.siteInfo dt{display:table-cell; width:10%; min-width:120px;  padding:5px; border:1px solid #999; background:#555; color:#fff; text-align:center; vertical-align:middle;}
+.siteInfo dd{display:table-cell;  padding:5px 10px; border:1px solid #ccc; border-right:0; border-left:0;}
+
+.tabIntab{padding:10px 0;}
+.tabIntab li{display:inline; padding:0 10px; border-left:1px solid #ccc;}
+.tabIntab li:first-child{border-left:0; padding-left:0;}
+
+#toTop{display:none; position:fixed; bottom:0; width:100%;}
+#toTop a{display:block; padding:9px 10px; background:#333; color:#FFF; text-align:center;}
+</style>
+
+<!-- urlOpen -->
+<script type="text/javascript">
+function urlOpen(url,width,height, scrollbars) {
+	window.open(url,'', 'width='+width+', height='+height+', left=0, top=0, statusbar=0, scrollbars='+scrollbars);
+}
+function fnToggle(targetId){
+	$("#"+targetId).toggle();
+	$("#"+targetId).parent().siblings().children("dd").hide();
+}
+
+$(function($){
+
+	// 전체페이지 및 수정완료 수량 체크
+	var TotalBtn1 = $("[data-complete]").length;
+	var TotalBtn2 = $("td").find("[data-mod]").length;	
+	var TotalEnd = $("[data-complete]").find("[data-end]").length;
+	var TotalStand = TotalBtn1 - TotalEnd;	
+	var TotalRate = (TotalEnd/TotalBtn1)*100;
+		TotalRate = TotalRate.toFixed(2) + " %"; 
+
+	$(".cntadd").html(TotalBtn1);
+	$(".cntadd2").html(TotalBtn2);
+	$(".count1").html(TotalEnd);
+	$(".count2").html(TotalStand);
+	$(".count3").html(TotalRate);
+
+	$('.hisList li:first-child').addClass('on');
+
+	$('.hisList').each(function(){
+		$(this).wrap('<div class="hisWrap" />');
+		var nodes=$(this).children();
+		if(nodes.length>1){
+			$('<a class="btn off btnHis" />').prependTo($(this).parent('div')).text('수정이력');
+		}
+	});
+	$('.tm').click(function(){
+		$(this).addClass('selected');
+		$('.menu>dd').show().siblings('dt').children('a').removeClass('selected');
+		return false;
+	});
+	$('.menu>dt a').click(function(){
+		$('.tm').removeClass('selected');
+		$(this).addClass('selected').parent('dt').siblings('dt').children('a').removeClass('selected');
+		$(this).parent('dt').next('dd').show().siblings('dd').hide();
+		return false;
+	});
+	$('.btnHis').click(function(){
+		$(this).toggleClass('off');
+		$(this).next('.hisList').children('li:not(.on)').toggle();
+		return false;
+	});
+	$('.tip').hover(function(){
+		$(this).children('span').toggle();
+	});
+	$('.notice li').append('<span class="bul"></span>');
+	// to top
+	var scrollDiv = document.createElement('div');
+	$(scrollDiv).attr('id', 'toTop').html('<a href="#nohref">↑ 처음으로 이동</a>').appendTo('body');    
+	$(window).scroll(function(){
+		if ($(this).scrollTop() != 0) {
+			$('#toTop').fadeIn();
+		} else {
+			$('#toTop').fadeOut();
+		}
+	});
+	$('#toTop').click(function(){
+		$('body,html').animate({scrollTop: 0},	600);
+		return false;
+	});
+	$('.overlay').click(function(){
+		$('.dNotice').hide(200); $('.overlay').fadeOut();
+	});
+
+	//a 링크 text 생성
+	$('table a').each(function(){
+		$(this).text( $(this).attr('href') );
+	});
+	//tr active 생성
+	$('tr').on('click',function(){
+		$(this).toggleClass('active');
+	})
+
+});
+</script>
+</head>
+
+<body>
+<div class="overlay"></div>
+<div class="wrapper">
+	<h1><span>코딩리스트 샘플</span></h1>
+
+	<dl class="siteInfo">
+		<dt>진행상황</dt>
+		<dd>전체페이지 : <span class="button btn1 cntadd"></span></dd>
+		<dd>완료 페이지 : <b class="btn btn count1"></b></dd>
+		<dd>수정 페이지 : <span class="btn btn2 cntadd2"></span></dd>
+		<dd>대기 페이지 : <span class="btn btn3 count2"></span></dd>
+		<dd>진척율 : <b class="btn btn4 count3"></b></dd>
+	</dl>
+	<div class="notice">
+		<dl>
+			<dt><a href="#none" onClick="fnToggle('noti1');return false;" onKeyPress="this.onclick;">개발자 알림 ▼</a></dt>
+			<dd id="noti1" style="display:none">
+				<ul>
+					<li> html을 클릭하시면 html 페이지 확인 가능.</li>
+					<li>퍼블리싱이 완료된 기본 레이아웃은 수정해야할 경우 퍼블리셔 상의.</li>
+					<li>내부 링크일 경우 수정 이력은 원본 파일에만 표기.</li>
+					<li>마크업 변경 안내 : 해당 HTML페이지내, &lt;-- 07.15 --&gt; 으로 주석처리.</li>
+				</ul>
+			</dd>
+		</dl>
+		<dl>
+			<dt><a href="#none" onClick="fnToggle('noti2');return false;" onKeyPress="this.onclick;">퍼블리셔 알림 ▼</a></dt>
+			<dd id="noti2" style="display:none">
+				<ul>
+					<li>페이지 완료시 퍼블리싱 체크후 담당자 이름과 완료일을 기재해주세요</li>
+					<li>w3c, 디바이스체크, 자체 접근성 체크 후 ○ 표시</li>
+					<li>범위 : OS 젤리빈(4.1~4.3) 이상/ iOS 9.0 이상</li>
+					<li>최저단말 : 갤럭시 S3, 노트2, iPhone 4S / 타켓단말: 노트3, S4, iPhone 6</li>
+					<li><strong class="red">juery 스크립트 부분은 각 담당자가 스크립트를 삽입합니다.</strong></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl>
+			<dt><a href="#none" onClick="fnToggle('noti3');return false;" onKeyPress="this.onclick;">작업 안내▼</a></dt>
+			<dd id="noti3" style="display:none">
+				<ul>
+					<li>페이지 완료시 퍼블리싱 체크후 담당자 이름과 완료일을 기재.</li>
+					<li>완료일 : 페이지 처음 완료된 날 기입. <b style="color:blue">파란색bg</b>로 표시.</li>
+					<li>수정완료일 : 페이지 마지막으로 완료된 날 기입. <b style="color:red">빨간색 bg</b>로 표시.</li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+	<br>
+	<div class="menuWrap">
+		<dl class="menu">
+			<dt class="viewAll"><a class="tm">전체보기</a></dt>
+			<dt class="tm1"><a class="selected">sub01</a></dt>
+			<dd style="display:block;">
+				<table>
+					<colgroup>
+						<col width="100" />
+						<col width="" />
+						<col width="" />
+						<col width="70" />
+						<col width="70" />
+						<col width="130" />
+						<col width="70" />
+						<col width="70" />
+						<col width="70" />
+						<col width="280" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th colspan="5" scope="col">DEPTH</th>
+							<th scope="col" rowspan="2">URL</th>
+							<th scope="col" rowspan="2">담당자</th>
+							<th rowspan="2" align="center" scope="col">완료일</th>
+							<th rowspan="2" align="center" scope="col">수정 완료일</th>
+							<th scope="col" rowspan="2">메모</th>
+						</tr>
+						<tr>
+							<th scope="col">1depth</th>
+							<th scope="col">2depth</th>
+							<th scope="col">3depth</th>
+							<th scope="col">팝업(win)</th>
+							<th scope="col">팝업(layer)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth2</td>
+							<td>depth3</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
+							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth2</td>
+							<td>depth3</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
+							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth2</td>
+							<td>depth3</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
+							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</dd>
+
+			<dt class="tm2"><a class="">sub02</a></dt>
+			<dd>
+				<table>
+					<colgroup>
+						<col width="100" />
+						<col width="" />
+						<col width="" />
+						<col width="70" />
+						<col width="70" />
+						<col width="130" />
+						<col width="70" />
+						<col width="70" />
+						<col width="70" />
+						<col width="280" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th colspan="5" scope="col">DEPTH</th>
+							<th scope="col" rowspan="2">URL</th>
+							<th scope="col" rowspan="2">담당자</th>
+							<th rowspan="2" align="center" scope="col">완료일</th>
+							<th rowspan="2" align="center" scope="col">수정 완료일</th>
+							<th scope="col" rowspan="2">메모</th>
+						</tr>
+						<tr>
+							<th scope="col">1depth</th>
+							<th scope="col">2depth</th>
+							<th scope="col">3depth</th>
+							<th scope="col">팝업(win)</th>
+							<th scope="col">팝업(layer)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth2</td>
+							<td>depth3</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter"><span class="btn">00.00</span></td>
+							<td class="aCenter"></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</dd>
+
+			<dt class="tm3"><a href="#">sub03</a></dt>
+			<dd>
+				<table>
+					<colgroup>
+						<col width="100" />
+						<col width="" />
+						<col width="" />
+						<col width="70" />
+						<col width="70" />
+						<col width="130" />
+						<col width="70" />
+						<col width="70" />
+						<col width="70" />
+						<col width="280" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th colspan="5" scope="col">DEPTH</th>
+							<th scope="col" rowspan="2">URL</th>
+							<th scope="col" rowspan="2">담당자</th>
+							<th rowspan="2" align="center" scope="col">완료일</th>
+							<th rowspan="2" align="center" scope="col">수정 완료일</th>
+							<th scope="col" rowspan="2">메모</th>
+						</tr>
+						<tr>
+							<th scope="col">1depth</th>
+							<th scope="col">2depth</th>
+							<th scope="col">3depth</th>
+							<th scope="col">팝업(win)</th>
+							<th scope="col">팝업(layer)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth2</td>
+							<td>depth3</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter"><span class="btn">00.00</span></td>
+							<td class="aCenter"></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</dd>
+
+			<dt class="tm4"><a href="#">sub04</a></dt>
+			<dd>
+				<table>
+					<colgroup>
+						<col width="100" />
+						<col width="" />
+						<col width="" />
+						<col width="70" />
+						<col width="70" />
+						<col width="130" />
+						<col width="70" />
+						<col width="70" />
+						<col width="70" />
+						<col width="280" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th colspan="5" scope="col">DEPTH</th>
+							<th scope="col" rowspan="2">URL</th>
+							<th scope="col" rowspan="2">담당자</th>
+							<th rowspan="2" align="center" scope="col">완료일</th>
+							<th rowspan="2" align="center" scope="col">수정 완료일</th>
+							<th scope="col" rowspan="2">메모</th>
+						</tr>
+						<tr>
+							<th scope="col">1depth</th>
+							<th scope="col">2depth</th>
+							<th scope="col">3depth</th>
+							<th scope="col">팝업(win)</th>
+							<th scope="col">팝업(layer)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth2</td>
+							<td>depth3</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
+							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</dd>
+
+			<dt class="tm5"><a href="#">sub05</a></dt>
+			<dd>
+				<table>
+					<colgroup>
+						<col width="100" />
+						<col width="" />
+						<col width="" />
+						<col width="70" />
+						<col width="70" />
+						<col width="130" />
+						<col width="70" />
+						<col width="70" />
+						<col width="70" />
+						<col width="280" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th colspan="5" scope="col">DEPTH</th>
+							<th scope="col" rowspan="2">URL</th>
+							<th scope="col" rowspan="2">담당자</th>
+							<th rowspan="2" align="center" scope="col">완료일</th>
+							<th rowspan="2" align="center" scope="col">수정 완료일</th>
+							<th scope="col" rowspan="2">메모</th>
+						</tr>
+						<tr>
+							<th scope="col">1depth</th>
+							<th scope="col">2depth</th>
+							<th scope="col">3depth</th>
+							<th scope="col">팝업(win)</th>
+							<th scope="col">팝업(layer)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth2</td>
+							<td>depth3</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter"><span class="btn">00.00</span></td>
+							<td class="aCenter"></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</dd>
+
+			<dt class="tm6"><a href="#">sub06</a></dt>
+			<dd>
+				<table>
+					<colgroup>
+						<col width="100" />
+						<col width="" />
+						<col width="" />
+						<col width="70" />
+						<col width="70" />
+						<col width="130" />
+						<col width="70" />
+						<col width="70" />
+						<col width="70" />
+						<col width="280" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th colspan="5" scope="col">DEPTH</th>
+							<th scope="col" rowspan="2">URL</th>
+							<th scope="col" rowspan="2">담당자</th>
+							<th rowspan="2" align="center" scope="col">완료일</th>
+							<th rowspan="2" align="center" scope="col">수정 완료일</th>
+							<th scope="col" rowspan="2">메모</th>
+						</tr>
+						<tr>
+							<th scope="col">1depth</th>
+							<th scope="col">2depth</th>
+							<th scope="col">3depth</th>
+							<th scope="col">팝업(win)</th>
+							<th scope="col">팝업(layer)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth2</td>
+							<td>depth3</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
+							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</dd>
+
+			<dt class="tm7"><a href="#">sub07</a></dt>
+			<dd>
+				<table>
+					<colgroup>
+						<col width="100" />
+						<col width="" />
+						<col width="" />
+						<col width="70" />
+						<col width="70" />
+						<col width="130" />
+						<col width="70" />
+						<col width="70" />
+						<col width="70" />
+						<col width="280" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th colspan="5" scope="col">DEPTH</th>
+							<th scope="col" rowspan="2">URL</th>
+							<th scope="col" rowspan="2">담당자</th>
+							<th rowspan="2" align="center" scope="col">완료일</th>
+							<th rowspan="2" align="center" scope="col">수정 완료일</th>
+							<th scope="col" rowspan="2">메모</th>
+						</tr>
+						<tr>
+							<th scope="col">1depth</th>
+							<th scope="col">2depth</th>
+							<th scope="col">3depth</th>
+							<th scope="col">팝업(win)</th>
+							<th scope="col">팝업(layer)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth2</td>
+							<td>depth3</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
+							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</dd>
+		</dl>
+	</div>
+</div>
+</body>
+</html>

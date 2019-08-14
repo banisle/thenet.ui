@@ -389,7 +389,11 @@ TNUI.module = (function(){
                 scrollWrap = $('.ui-scrollview'),
                 scrollArea = scrollWrap.find('.ui-scrollarea'),
                 scrollCt = scrollArea.find('.ui-content'),
-                barCursor = $('.bar');
+                scrollBar = scrollWrap.find('.ui-scrollbar'),
+                barCursor = scrollBar.find('.bar'),
+                down = false,
+                rangeTop,
+                rangeSize;
                 
                 //scroll width & height 구하기
                 var calWidth = function(){
@@ -427,11 +431,47 @@ TNUI.module = (function(){
                             barCursor.eq(i).css({
                                 'top': parseInt(barPer * scTopPer) + 'px'
                             });
-
-                        
                     });
 
+                    scrollBar.on('mousedown', function(e){
+                        var t = $(this);
+                        rangeTop = t.offset().top,
+                        rangeSize = t.height();
+                        scrollCt = t.closest(scrollWrap).find(scrollArea),
+                        down = true;
+                        console.log(scrollCt);
+
+                        updateDrag(e);
+                        return false;
+                    });
+
+                    $(document).on('mousemove', function(e){
+                        console.log('mousemove');
+                        updateDrag(e);
+                    });
+                    
+                    $(document).on('mouseup', function(){
+                        console.log('mouseup');
+                        down = false;
+                    });
+
+
+
                     //스크롤바 drag 이벤트
+                    function updateDrag(e){
+                        var t = $(e.target),
+                            barCursor = t.closest(scrollWrap).find('.bar'),
+                            barSize =  parseInt(barCursor.height())/2,
+                            curTop = e.pageY - rangeTop - barSize,
+                            curScTop = Math.round((curTop * 100) / (rangeSize - (barSize*2)) * (scrollCt.find('.ui-content').prop('scrollHeight') - scrollCt.height()) / 100);
+
+                            // console.log('updateDrag',e.pageY,rangeTop,barSize);
+
+                        if( down && e.pageY >= (rangeTop + barSize) && e.pageY <= (rangeTop + rangeSize - barSize) ){
+                            barCursor.css('top', curTop + 'px');
+                            scrollCt.scrollTop(curScTop);
+                        }
+                    }
 
                     
                     
