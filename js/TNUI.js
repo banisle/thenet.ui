@@ -337,7 +337,7 @@ TNUI.module = (function(){
 
                     $('html').addClass('fixed');
                     $('[data-target='+ mvId +']').fadeIn(0);
-                    if(!isMobile) t.scrollUi();
+                    if(!isMobile) TNUI.module.scrollUi();
 
                     if( optTrans == 'true'){
                         $('[data-target='+ mvId +']').addClass('on');

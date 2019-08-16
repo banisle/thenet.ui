@@ -14,7 +14,7 @@ $(function () {
                 $("#load-ct").html(data);
                 SyntaxHighlighter.highlight();
                 TNUI.wsg.init();
-                TNUI.module.init();
+                // TNUI.module.init();
             }
         });
         if(isMobile) $('.mo-guide-btn').trigger('click');
