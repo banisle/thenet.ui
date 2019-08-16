@@ -324,13 +324,12 @@ TNUI.module = (function(){
         },
 
         modalUi : function(){
-            var t = this,
-                mvBtn = $('a[data-modal]'),
+            var mvBtn = $('a[data-modal]'),
                 btnClose = $('.mvClose'),
                 optTrans = 'false',
                 openSt = 'false',
                 mvId;
-
+                
                 var dimLyOpen = function(mvId){
                     if( openSt == 'true'){
                         return;
@@ -384,8 +383,7 @@ TNUI.module = (function(){
         },
 
         scrollUi :function() {
-            var t = this,
-                scrollWrap = $('.ui-scrollview'),
+            var scrollWrap = $('.ui-scrollview'),
                 scrollArea = scrollWrap.find('.ui-scrollarea'),
                 scrollCt = scrollArea.find('.ui-content'),
                 scrollBar = scrollWrap.find('.ui-scrollbar'),
@@ -478,15 +476,14 @@ TNUI.module = (function(){
         },
 
         accoUi : function(){
-            var t = this,
-            uiAccoWrap = $('.ui-accordian'),
-            uiAccobtn = uiAccoWrap.find('.ui-btn-acco'),
-            uiAccoCt = uiAccoWrap.find('.ui-acco-ct'),
-            ArrBtn = Array.prototype.slice.call(uiAccobtn),
-            ArrSubBtn = ArrBtn.filter(function(i){
-                return $(i).hasClass('sub');
-            }),
-            opendSt = $('[data-open]'),tarCtH;
+            var uiAccoWrap = $('.ui-accordian'),
+                uiAccobtn = uiAccoWrap.find('.ui-btn-acco'),
+                uiAccoCt = uiAccoWrap.find('.ui-acco-ct'),
+                ArrBtn = Array.prototype.slice.call(uiAccobtn),
+                ArrSubBtn = ArrBtn.filter(function(i){
+                    return $(i).hasClass('sub');
+                }),
+                opendSt = $('[data-open]'),tarCtH;
 
             // console.log( ArrSubBtn );
 
