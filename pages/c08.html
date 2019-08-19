@@ -50,7 +50,10 @@ TNUI.module.sliderUi(&#39;sr3&#39;, true, 1900, 2008, 1, 10, true, true, 1950, 2
 
 
 <script>
-    TNUI.module.sliderUi('sr1', false, 0, 100, 5, 10, true, false, 30);
-    TNUI.module.sliderUi('sr2', false, 190000, 200800, 1, 10, true, true, 195000, 200000);
-    TNUI.module.sliderUi('sr3', true, 1, 10, 1, 2, true, true, 3, 5);
+    //pre태그 높이값 계산 후 적용 위해
+    $(document).ready(function(){
+        TNUI.module.sliderUi('sr1', false, 0, 100, 5, 10, true, false, 30);
+        TNUI.module.sliderUi('sr2', false, 190000, 200800, 1, 10, true, true, 195000, 200000);
+        TNUI.module.sliderUi('sr3', true, 1, 10, 1, 2, true, true, 3, 5);
+    });
 </script>

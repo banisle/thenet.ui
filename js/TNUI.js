@@ -1203,8 +1203,8 @@ TNUI.module = (function(){
             //
             sliderUiIn.prototype.handleFocus = function ($handle, evt) {
 
-                $handle.attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_' + (this.vert == true ?
-                    'v' : 'h') + '-focus.png');
+                // $handle.attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_' + (this.vert == true ?
+                //     'v' : 'h') + '-focus.png');
                 $handle.addClass('focus');
                 $handle.css('z-index', '20');
 
@@ -1223,8 +1223,8 @@ TNUI.module = (function(){
             //
             sliderUiIn.prototype.handleBlur = function ($handle, evt) {
 
-                $handle.attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_' + (this.vert == true ?
-                    'v' : 'h') + '.png');
+                // $handle.attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_' + (this.vert == true ?
+                //     'v' : 'h') + '.png');
                 $handle.removeClass('focus');
                 $handle.css('z-index', '10');
 
@@ -1247,10 +1247,12 @@ TNUI.module = (function(){
                 var thisObj = this; // store the this pointer
 
                 // remove focus highlight from all other slider handles on the page
-                $('.hsliderHandle').attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_h.png')
-                    .removeClass('focus').css('z-index', '10');
-                $('.vsliderHandle').attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_v.png')
-                    .removeClass('focus').css('z-index', '10');
+                // $('.hsliderHandle').attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_h.png')
+                //     .removeClass('focus').css('z-index', '10');
+                // $('.vsliderHandle').attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_v.png')
+                //     .removeClass('focus').css('z-index', '10');
+                $('.hsliderHandle').removeClass('focus').css('z-index', '10');
+                $('.vsliderHandle').removeClass('focus').css('z-index', '10');
 
                 // Set focus to the clicked handle
                 $handle.focus();
@@ -1328,7 +1330,10 @@ TNUI.module = (function(){
                     // vertical slider
 
                     // Calculate the new slider value based on the vertical pixel position of the mouse
-                    newVal = Math.round((evt.pageY - this.top) / this.height * (this.max - this.min)) + this.min;
+                    // newVal = Math.round((evt.pageY - this.top) / this.height * (this.max - this.min)) + this.min;
+                    newVal = Math.round((evt.pageY - this.top ) / this.height * (this.max - this.min)) + this.min;
+
+                    console.log( evt.pageY, this.top, this.height);
                 }
 
                 if (newVal >= startVal && newVal <= stopVal) {
