@@ -635,7 +635,8 @@ TNUI.module = (function(){
         },
 
         sliderUi : function(container_id, vert, min, max, inc, jump, showVals, range, val1, val2){
-            var sliderUiIn;
+            var sliderUiIn,
+                keyCodes;
 
             function keyCodes() {
                 // Define values for keycodes
@@ -683,7 +684,7 @@ TNUI.module = (function(){
             // @return N/A
             //
 
-            sliderUiIn = function () {
+            sliderUiIn = function() {
                 // define slider object properties
                 this.keys = new keyCodes();
 
@@ -1351,8 +1352,7 @@ TNUI.module = (function(){
 
             } // end handleMouseMove            
 
-
-
+            //슬라이더 호출 생성
             var container_id = new sliderUiIn(''+container_id+'', vert, min, max, inc, jump, showVals, range, val1, val2);
 
             console.log('sliderUi');
