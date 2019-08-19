@@ -264,9 +264,26 @@ TNUI.module = (function(){
             console.log('tabUi');
         },
 
-        selectUi : function(){
+        selectUi : function(s){
+            var $t = s,
+                selectUibox;
+
+            selectUibox = function(){
+                console.log('selectUibox in func');
+                this.defaultSet();
+            };
+
+            
+            selectUibox.prototype.defaultSet = function(){
+                console.log('selectUibox prototype' + $t); 
+            };
+
+            var $t = new selectUibox();
+           
 
             console.log('selectUi');
+
+
         },
 
         tooltipUi : function(){
