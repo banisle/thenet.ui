@@ -264,22 +264,99 @@ TNUI.module = (function(){
             console.log('tabUi');
         },
 
-        selectUi : function(s){
-            var $t = s,
-                selectUibox;
-
-            selectUibox = function(){
-                console.log('selectUibox in func');
-                this.defaultSet();
-            };
-
+        selectUi : function(selId){
+            var opt = opt || null,
+                selectUibox,
+                $selWrap = $('.selectWrap.ui-selectbox'),
+                $selBox = $('#'+ selId +''),
+                $optGrp = $selBox.find('option'),
+                selOpen = 'false';
+                
             
-            selectUibox.prototype.defaultSet = function(){
-                console.log('selectUibox prototype' + $t); 
+            selectUibox = function(){
+                
+                $(document).on('focusin click', function(){
+                    // console.log( $('.ui-selected-one[aria-expanded]').length );
+
+                    if($('.ui-selected-one[aria-expanded]').length > 0){
+                        console.log(selOpen);
+                        if(selOpen == 'true'){
+                            //셀렉트 결과 창 닫기
+                            $selWrap.removeClass('active ui-result-active');
+                            //셀렉트박스 포커스
+
+                            selOpen = 'false';
+                        }
+                    }
+                });
+                
+                this.init();
+                this.createDiv();
+                this.selUpdate();
+                this.selOne();
+
+                
+
             };
 
-            var $t = new selectUibox();
-           
+            selectUibox.prototype.init = function(){
+                $selBox.hide();
+                $selBox.closest($selWrap).attr('data-select',selId);
+
+            };
+            selectUibox.prototype.createDiv = function(){
+
+                $selBox.closest($selWrap)
+                .append( $('<div class="pc_selwrap"><div class="selOneWrap"><button class="ui-selected-one" aria-haspopup="listbox" aria-labelledby="sel_'+ selId +'">'+ $selBox.find(':selected').val() +'</button></div><div class="ui-result-ul" tabindex="-1" role="listbox" ><ul></ul></div>') );
+
+                $selBox.find($optGrp).each(function(i){
+                    $selBox.closest($selWrap).find('ul').append( $('<li><button role="option" aria-labelledby="sel_'+ selId +'">'+ $optGrp.eq(i).val() +'</button></li>') );
+                });
+            };
+
+            selectUibox.prototype.selUpdate = function(){
+                var $selectedOne = $selBox.closest($selWrap).find('.ui-selected-one'),
+                    $uiResult = $selBox.closest($selWrap).find('.ui-result-ul')
+                    ;
+
+                $uiResult.find('button').on('click',function(e){
+                    var index = $(this).parent().index();
+
+                    //셀렉트박스 셀렉트
+                    $selBox.find('option').eq(index).prop('selected',true);
+                    // 선택된 값 출력
+                    $selectedOne.text( $selBox.find('option').eq(index).val() ).removeAttr('aria-expanded');
+                    //셀렉트 결과 창 닫기
+                    $selWrap.removeClass('active ui-result-active');
+                    //셀렉트박스 포커스
+                    $(this).closest($selWrap).find($selectedOne).focus();
+
+                    selOpen = 'false';
+
+                    e.preventDefault();
+                });
+            }
+
+            selectUibox.prototype.selOne = function(){
+                var $selectedOne = $selWrap.find('.ui-selected-one');
+
+                $selectedOne.on('click',function(e){
+                    $selWrap.removeClass('active ui-result-active');
+                    $selectedOne.removeAttr('aria-expanded');
+                    $(this).attr('aria-expanded', true).closest($selWrap).removeClass('active ui-result-active').addClass('active ui-result-active');
+                    selOpen = 'true';
+                    e.preventDefault();
+                });
+
+            }
+
+
+
+            selectUibox.prototype.defaultSet = function(){
+                console.log('selectUibox prototype' + opt); 
+            };
+
+            var selId = new selectUibox(''+selId+'');
 
             console.log('selectUi');
 
@@ -500,7 +577,8 @@ TNUI.module = (function(){
                 ArrSubBtn = ArrBtn.filter(function(i){
                     return $(i).hasClass('sub');
                 }),
-                opendSt = $('[data-open]'),tarCtH;
+                opendSt = $('[data-open]'),
+                tarCtH;
 
             // console.log( ArrSubBtn );
 
@@ -1332,8 +1410,6 @@ TNUI.module = (function(){
                     // Calculate the new slider value based on the vertical pixel position of the mouse
                     // newVal = Math.round((evt.pageY - this.top) / this.height * (this.max - this.min)) + this.min;
                     newVal = Math.round((evt.pageY - this.top ) / this.height * (this.max - this.min)) + this.min;
-
-                    console.log( evt.pageY, this.top, this.height);
                 }
 
                 if (newVal >= startVal && newVal <= stopVal) {
@@ -1368,12 +1444,12 @@ TNUI.module = (function(){
         init : function(){
             var t = this;
 
-            t.tabUi();
-            t.selectUi();
-            t.tooltipUi();
-            t.modalUi();
-            t.scrollUi();
-            t.accoUi();
+            // t.tabUi();
+            // t.selectUi();
+            // t.tooltipUi();
+            // t.modalUi();
+            // t.scrollUi();
+            // t.accoUi();
         }
 
     }

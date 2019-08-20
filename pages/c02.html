@@ -61,13 +61,23 @@
 &lt;/div&gt;
 </pre>
 
-<p class="sub-txt">PC: TNUI.module.selectUi() 호출 </p>
-<div class="selectWrap">
-    <select title="test" class="ui-selectbox form_select" >
+<p class="sub-txt">PC: TNUI.module.selectUi('인자값') 호출 </p>
+<div class="selectWrap ui-selectbox">
+    <select title="test" id="sel01" class="" >
         <option value="test1">test1</option>
         <option value="test2">test2</option>
         <option value="test3">test3</option>
         <option value="test4">test4</option>
+    </select>
+</div>
+
+<p class="sub-txt">PC: TNUI.module.selectUi('인자값') 호출 </p>
+<div class="selectWrap ui-selectbox">
+    <select title="test" id="sel02" class="" >
+        <option value="test22231">test22231</option>
+        <option value="test22232">test22232</option>
+        <option value="test22233">test22233</option>
+        <option value="test22234">test22234</option>
     </select>
 </div>
 
@@ -134,5 +144,9 @@
 
 
 <script>
-    TNUI.module.tabUi();
+    $(document).ready(function(){
+        TNUI.module.tabUi();
+        TNUI.module.selectUi('sel01');
+        // TNUI.module.selectUi('sel02');
+    })
 </script>
