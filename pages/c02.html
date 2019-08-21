@@ -61,7 +61,7 @@
 &lt;/div&gt;
 </pre>
 
-<p class="sub-txt">PC: TNUI.module.selectUi('인자값') 호출 </p>
+<p class="sub-txt">PC: TNUI.module.selectUi('id') 호출 </p>
 <div class="selectWrap ui-selectbox">
     <select title="test" id="sel01" class="" >
         <option value="test1">test1</option>
@@ -70,16 +70,47 @@
         <option value="test4">test4</option>
     </select>
 </div>
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;div class=&quot;selectWrap ui-selectbox&quot;&gt;
+    &lt;select title=&quot;test&quot; id=&quot;sel01&quot; class=&quot;&quot; &gt;
+        &lt;option value=&quot;test1&quot;&gt;test1&lt;/option&gt;
+        &lt;option value=&quot;test2&quot;&gt;test2&lt;/option&gt;
+        &lt;option value=&quot;test3&quot;&gt;test3&lt;/option&gt;
+        &lt;option value=&quot;test4&quot;&gt;test4&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+</pre>
 
-<p class="sub-txt">PC: TNUI.module.selectUi('인자값') 호출 </p>
+<p class="sub-txt">PC: TNUI.module.selectUi('id') 호출 </p>
 <div class="selectWrap ui-selectbox">
     <select title="test" id="sel02" class="" >
         <option value="test22231">test22231</option>
         <option value="test22232">test22232</option>
         <option value="test22233">test22233</option>
         <option value="test22234">test22234</option>
+        <option value="test22234">test22234</option>
+        <option value="test22234">test22234</option>
+        <option value="test22234">test22234</option>
+        <option value="test22234">test22234</option>
+        <option value="test22234">test22234</option>
     </select>
 </div>
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+    &lt;div class=&quot;selectWrap ui-selectbox&quot;&gt;
+        &lt;select title=&quot;test&quot; id=&quot;sel02&quot; class=&quot;&quot; &gt;
+            &lt;option value=&quot;test22231&quot;&gt;test22231&lt;/option&gt;
+            &lt;option value=&quot;test22232&quot;&gt;test22232&lt;/option&gt;
+            &lt;option value=&quot;test22233&quot;&gt;test22233&lt;/option&gt;
+            &lt;option value=&quot;test22234&quot;&gt;test22234&lt;/option&gt;
+            &lt;option value=&quot;test22234&quot;&gt;test22234&lt;/option&gt;
+            &lt;option value=&quot;test22234&quot;&gt;test22234&lt;/option&gt;
+            &lt;option value=&quot;test22234&quot;&gt;test22234&lt;/option&gt;
+            &lt;option value=&quot;test22234&quot;&gt;test22234&lt;/option&gt;
+            &lt;option value=&quot;test22234&quot;&gt;test22234&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    </pre>
+
 
 
 <h3>tab</h3>
@@ -147,6 +178,6 @@
     $(document).ready(function(){
         TNUI.module.tabUi();
         TNUI.module.selectUi('sel01');
-        // TNUI.module.selectUi('sel02');
+        TNUI.module.selectUi('sel02');
     })
 </script>

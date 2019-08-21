@@ -270,22 +270,17 @@ TNUI.module = (function(){
                 $selWrap = $('.selectWrap.ui-selectbox'),
                 $selBox = $('#'+ selId +''),
                 $optGrp = $selBox.find('option'),
-                selOpen = 'false';
+                $selectedOne = $('.ui-selected-one')
+                ;
                 
             
             selectUibox = function(){
-                
-                $(document).on('focusin click', function(){
-                    // console.log( $('.ui-selected-one[aria-expanded]').length );
-
-                    if($('.ui-selected-one[aria-expanded]').length > 0){
-                        console.log(selOpen);
-                        if(selOpen == 'true'){
+                //포커스 잃었을때 
+                $(document).on('focusin click', function(e){
+                    if($selWrap){
+                        if( !$selWrap.find(e.target).length ){
                             //셀렉트 결과 창 닫기
                             $selWrap.removeClass('active ui-result-active');
-                            //셀렉트박스 포커스
-
-                            selOpen = 'false';
                         }
                     }
                 });
@@ -327,11 +322,10 @@ TNUI.module = (function(){
                     // 선택된 값 출력
                     $selectedOne.text( $selBox.find('option').eq(index).val() ).removeAttr('aria-expanded');
                     //셀렉트 결과 창 닫기
-                    $selWrap.removeClass('active ui-result-active');
+                    $selWrap.removeClass('ui-result-active');
                     //셀렉트박스 포커스
                     $(this).closest($selWrap).find($selectedOne).focus();
 
-                    selOpen = 'false';
 
                     e.preventDefault();
                 });
@@ -344,7 +338,6 @@ TNUI.module = (function(){
                     $selWrap.removeClass('active ui-result-active');
                     $selectedOne.removeAttr('aria-expanded');
                     $(this).attr('aria-expanded', true).closest($selWrap).removeClass('active ui-result-active').addClass('active ui-result-active');
-                    selOpen = 'true';
                     e.preventDefault();
                 });
 
