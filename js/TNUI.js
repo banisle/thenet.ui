@@ -195,8 +195,8 @@ TNUI.module = (function(){
 
                             // 초점이 첫 번째 요소에 있었다면, 마지막 탭으로 초점 이동
                             $(this)
-                                .attr("tabindex", "-1");
-                            $(this).closest(uiTab).children().last().find(uiTabBtn)
+                                .attr("tabindex", "-1")
+                                .closest(uiTab).children().last().find(uiTabBtn)
                                 .attr("tabindex", "0")
                                 .focus();
                         }
@@ -213,8 +213,8 @@ TNUI.module = (function(){
                         } else {
                             // 초점이 마지막 요소에 있었다면, 첫 번째 탭으로 초점 이동
                             $(this)
-                                .attr("tabindex", "-1");
-                                $(this).closest(uiTab).children().first().find(uiTabBtn)
+                                .attr("tabindex", "-1")
+                                .closest(uiTab).children().first().find(uiTabBtn)
                                 .attr("tabindex", "0")
                                 .focus();
                         }
@@ -269,9 +269,7 @@ TNUI.module = (function(){
                 selectUibox,
                 $selWrap = $('.selectWrap.ui-selectbox'),
                 $selBox = $('#'+ selId +''),
-                $optGrp = $selBox.find('option'),
-                $selectedOne = $('.ui-selected-one')
-                ;
+                $optGrp = $selBox.find('option');
                 
             
             selectUibox = function(){
@@ -300,13 +298,17 @@ TNUI.module = (function(){
 
             };
             selectUibox.prototype.createDiv = function(){
+                var appendLi = '';
 
                 $selBox.closest($selWrap)
                 .append( $('<div class="pc_selwrap"><div class="selOneWrap"><button class="ui-selected-one" aria-haspopup="listbox" aria-labelledby="sel_'+ selId +'">'+ $selBox.find(':selected').val() +'</button></div><div class="ui-result-ul" tabindex="-1" role="listbox" ><ul></ul></div>') );
 
                 $selBox.find($optGrp).each(function(i){
-                    $selBox.closest($selWrap).find('ul').append( $('<li><button role="option" aria-labelledby="sel_'+ selId +'">'+ $optGrp.eq(i).val() +'</button></li>') );
+                    appendLi += '<li><button role="option" aria-labelledby="sel_'+ selId +'">'+ $optGrp.eq(i).val() +'</button></li>';
                 });
+                
+                $selBox.closest($selWrap).find('ul').html(appendLi);
+
             };
 
             selectUibox.prototype.selUpdate = function(){
