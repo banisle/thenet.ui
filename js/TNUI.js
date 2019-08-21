@@ -491,15 +491,16 @@ TNUI.module = (function(){
                             wrapOrgH = scrollWrap.eq(i).height(),
                             barSize =  parseInt( (wrapOrgH / wrapH) * 100 );
     
-                        scrollWrap.eq(i).width(wrapW);
-                        scrollCt.eq(i).width(wrapW).height(wrapOrgH);
-                        
-                        barCursor.eq(i).height( barSize + '%');
                         // console.log(
+                        //     'wrapW' + wrapW,
                         //     'wrapOrgH' + wrapOrgH,
                         //     'wrapH' + wrapH,
                         //     'barSize' + barSize
                         //     );
+                        scrollWrap.eq(i).width(wrapW);
+                        scrollCt.eq(i).width(wrapW).height(wrapOrgH);
+                        
+                        barCursor.eq(i).height( barSize + '%');
 
                     });
 
