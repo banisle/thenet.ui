@@ -22,7 +22,7 @@ var context = window,
         // 그외, IE가 아니라면 ( If it's not IE or Edge )  
         else return -1;
         var reg = new RegExp(word + "([0-9]{1,})(\\.{0,}[0-9]{0,1})");
-        if (reg.exec(agent) != null) return parseFloat(RegExp.$1 + RegExp.$2);
+        if (reg.exec(agent) != null) return parseInt(RegExp.$1 + RegExp.$2);
         return -1;
     }
 
@@ -288,8 +288,6 @@ TNUI.module = (function(){
                 this.selUpdate();
                 this.selOne();
 
-                
-
             };
 
             selectUibox.prototype.init = function(){
@@ -358,58 +356,63 @@ TNUI.module = (function(){
 
         },
 
-        tooltipUi : function(){
-            var tooltip = '[class^="tooltip"]';
-            
-            $(tooltip).on('mouseenter focus', function(e){
-                var $this = $(this),
-                    $dataOt = $this.data('option'),
-                    $dataTip = $this.data('tooltip'),
-                    $targetOff = $this.offset(),
-                    $thisBtnW = $this.outerWidth(),
-                    $thisBtnH = $this.outerHeight(),
-                    $targetW = $($dataTip).outerWidth(),
-                    $targetH = $($dataTip).outerHeight();
+        tooltipUi : function(arrW,arrH,opt){
+            var tooltip,
+                $tooltip = $('.ui-tooltip a'),
+                opt = opt || 0; // 페이드 효과 없엘때 0으로;
+                
 
-                var config = {
-                    top: {
-                        top: $targetOff.top - $targetH - 9,
-                        left: $targetOff.left,
-                    },
-                    left: {
-                        top: $targetOff.top - $targetH / 4,
-                        left: $targetOff.left - $thisBtnW - 44,
-                    },
-                    right: {
-                        top: $targetOff.top - $targetH / 4,
-                        left: $targetOff.left + $thisBtnW + 9,
-                    },
-                    bottom: {
-                        top: $targetOff.top + $targetH - 16,
-                        left: $targetOff.left,
-                    }
-                };
-                switch ($dataOt) {
-                    case 'top':
-                        $($dataTip).css(config.top).addClass('top');
-                        break;
-                    case 'bottom':
-                        $($dataTip).css(config.bottom).addClass('bottom');
-                        break;
-                    case 'left':
-                        $($dataTip).css(config.left).addClass('left');
-                        break;
-                    case 'right':
-                        $($dataTip).css(config.right).addClass('right');
-                        break;
-                };
-               
-                $($dataTip).addClass('active');
-                return false;
+            tooltip = function(){
 
-            }).on('blur mouseleave', function(e){
-                $(tooltip).removeClass('active');
-            });
+                this.evt();
+            }
+
+            tooltip.prototype.evt = function(){
+                $tooltip.on('mouseenter focus', function(){
+                    var t = $(this),
+                        targetOff = t.offset(),
+                        dataOpt = t.data('option'),
+                        tarId = t.data('id'),
+                        tarH = $('#'+tarId+'').outerHeight(),
+                        tarW = $('#'+tarId+'').outerWidth(),
+                        thisBtnW = t.outerWidth(),
+                        thisBtnH = t.outerHeight()
+                        ;
+
+                        // console.log( 
+                        //     'targetOff top' + targetOff.top,
+                        //     'targetOff left' + targetOff.left,
+                        //     'thisBtnW' + thisBtnW);
+                    var config = {
+                        top: {
+                            top: parseInt(targetOff.top - tarH - arrH),
+                            left: parseInt(targetOff.left),
+                        },
+                        left: {
+                            top: parseInt(targetOff.top - tarH/4 ),
+                            left: parseInt(targetOff.left - tarW - arrW),
+                        },
+                        right: {
+                            top: parseInt(targetOff.top - tarH/4),
+                            left: parseInt(targetOff.left + thisBtnW + arrW),
+                        },
+                        bottom: {
+                            top: parseInt(targetOff.top + thisBtnH + arrH),
+                            left: parseInt(targetOff.left),
+                        }
+                    };
+
+                    $('#'+tarId+'').css(config[dataOpt]).addClass(dataOpt).stop().fadeIn(opt);
+
+                }).on('blur mouseleave', function(){
+                    var t = $(this),
+                        tarId = t.data('id');
+                    $('#'+tarId+'').stop().fadeOut(opt);
+                });;
+            }
+            new tooltip(arrW,arrH,opt);
+            console.log('tooltipUi');
+
         },
 
         modalUi : function(){

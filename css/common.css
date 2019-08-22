@@ -263,8 +263,8 @@ html.mobile .form_select{ -webkit-appearance: none; position: relative; width: 1
 .selectWrap.ui-selectbox.active.ui-result-active .ui-result-ul button:focus,
 .selectWrap.ui-selectbox.active.ui-result-active .ui-result-ul button:active{background:#c1c1c1;}
 .selectWrap.ui-selectbox .pc_selwrap{position: relative;}
-.selectWrap.ui-selectbox .pc_selwrap > div.selOneWrap{position: relative;display: block;overflow: hidden; height: 25px;border: 1px solid #aaa;border-radius: 5px;background-color: #fff;background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #fff), color-stop(50%, #f6f6f6), color-stop(52%, #eee), to(#f4f4f4));background: linear-gradient(#fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);background-clip: padding-box;-webkit-box-shadow: 0 0 3px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);box-shadow: 0 0 3px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);color: #444;text-decoration: none;white-space: nowrap;line-height: 24px;}
-.selectWrap.ui-selectbox .pc_selwrap > div.selOneWrap .ui-selected-one{overflow: hidden;width:100%;line-height: 24px;text-align:left;text-overflow: ellipsis;white-space: nowrap;cursor: pointer;box-sizing: border-box;text-indent: 8px;}
+.selectWrap.ui-selectbox .pc_selwrap > div.selOneWrap{position: relative;display: block;overflow: hidden; height: 25px;border: 1px solid #aaa;border-radius: 5px;background-color: #fff;background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #fff), color-stop(50%, #f6f6f6), color-stop(52%, #eee), to(#f4f4f4));background: linear-gradient(#fff 20%, #f6f6f6 50%, #eee 52%, #f4f4f4 100%);background-clip: padding-box;-webkit-box-shadow: 0 0 3px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);box-shadow: 0 0 3px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);color: #444;text-decoration: none;white-space: nowrap;line-height: 25px; box-sizing:border-box}
+.selectWrap.ui-selectbox .pc_selwrap > div.selOneWrap .ui-selected-one{overflow: hidden; float:left; width:100%;line-height: 24px;text-align:left;text-overflow: ellipsis;white-space: nowrap;cursor: pointer;box-sizing: border-box;text-indent: 8px;}
 .selectWrap.ui-selectbox.active.ui-result-active .pc_selwrap > div.selOneWrap{border: 1px solid #aaa; border-bottom-right-radius: 0; border-bottom-left-radius: 0; background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #eee), color-stop(80%, #fff)); background-image: linear-gradient(#eee 20%, #fff 80%); -webkit-box-shadow: 0 1px 0 #fff inset; box-shadow: 0 1px 0 #fff inset;border-bottom: 1px solid #d4d4d4; z-index: 1011;}
 
 
@@ -303,9 +303,8 @@ html.mobile .form_select{ -webkit-appearance: none; position: relative; width: 1
 .mo_submenu_wrap li:last-child:after{display:none;}
 
 /* tooltip */
-.uiTooltip a {display: inline-block; padding: 10px 15px; background: #450e4c; border-radius: 5px; color: #fff; font-size: 12px;}
-.tooltipContent {visibility:hidden; position: absolute; padding: 10px; background-color: #ffc8a2;	border-radius: 5px; font-size: 12px; text-align: left; z-index: 9999; opacity: 0; transition: opacity 1s;}
-.tooltipContent.active {visibility: visible; opacity: 1;} 
+.ui-tooltip a {display: inline-block; padding: 10px 15px; background: #450e4c; border-radius: 5px; color: #fff; font-size: 12px;}
+.tooltipContent {display:none;position: absolute; padding: 10px; background-color: #ffc8a2;	border-radius: 5px; font-size: 12px; text-align: left; z-index: 9999; }
 .tooltipContent::after {content: ''; position: absolute; border-style: solid; display: block; width: 0;}
 .right.tooltipContent::after {top: 18px; left: -7px; border-color: transparent #ffc8a2; border-width: 10px 10px 10px 0;}
 .left.tooltipContent::after {top: 18px; right: -7px; border-color: transparent #ffc8a2; border-width: 10px 0 10px 10px;}
