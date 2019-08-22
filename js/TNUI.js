@@ -582,7 +582,7 @@ TNUI.module = (function(){
             // console.log( ArrSubBtn );
 
 
-            //click evtrmsid
+            //click evt
             uiAccobtn.on('click',function(e){
                 var t = $(this),
                 allowMultiple = t.closest(uiAccoWrap).attr('data-allow-multiple') == 'true',
@@ -1078,8 +1078,13 @@ TNUI.module = (function(){
                     return thisObj.handleBlur($handle, e);
                 });
 
-                $handle.mousedown(function (e) {
+                // $handle.mousedown(function (e) {
+                //     return thisObj.handleMouseDown($handle, e);
+                // });
+                
+                $handle.on('touchstart mousedown',function (e) {
                     return thisObj.handleMouseDown($handle, e);
+
                 });
 
             } // end bindHandlers()
@@ -1283,7 +1288,7 @@ TNUI.module = (function(){
                 // $handle.attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_' + (this.vert == true ?
                 //     'v' : 'h') + '-focus.png');
                 $handle.addClass('focus');
-                $handle.css('z-index', '20');
+                $handle.css('z-index', '2');
 
                 return true;
 
@@ -1303,7 +1308,7 @@ TNUI.module = (function(){
                 // $handle.attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_' + (this.vert == true ?
                 //     'v' : 'h') + '.png');
                 $handle.removeClass('focus');
-                $handle.css('z-index', '10');
+                $handle.css('z-index', '1');
 
                 return true;
 
@@ -1322,25 +1327,34 @@ TNUI.module = (function(){
             sliderUiIn.prototype.handleMouseDown = function ($handle, evt) {
 
                 var thisObj = this; // store the this pointer
+                    
+
 
                 // remove focus highlight from all other slider handles on the page
                 // $('.hsliderHandle').attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_h.png')
                 //     .removeClass('focus').css('z-index', '10');
                 // $('.vsliderHandle').attr('src', 'http://www.oaa-accessibility.org/media/examples/images/slider_v.png')
                 //     .removeClass('focus').css('z-index', '10');
-                $('.hsliderHandle').removeClass('focus').css('z-index', '10');
-                $('.vsliderHandle').removeClass('focus').css('z-index', '10');
+                $('.hsliderHandle').removeClass('focus').css('z-index', '1');
+                $('.vsliderHandle').removeClass('focus').css('z-index', '1');
 
                 // Set focus to the clicked handle
                 $handle.focus();
 
                 // bind a mousemove event handler to the document to capture the mouse
-                $(document).mousemove(function (e) {
+                // $(document).mousemove(function (e) {
+                //     thisObj.handleMouseMove($handle, e);
+                // });
+                $(document).on('mousemove touchmove',function (e) {
                     thisObj.handleMouseMove($handle, e);
                 });
 
                 //bind a mouseup event handler to the document to capture the mouse
-                $(document).mouseup(function (e) {
+                // $(document).mouseup(function (e) {
+                //     return thisObj.handleMouseUp($handle, e);
+                // });
+
+                $(document).on('mouseup touchend',function (e) {
                     return thisObj.handleMouseUp($handle, e);
                 });
 
@@ -1362,8 +1376,12 @@ TNUI.module = (function(){
             sliderUiIn.prototype.handleMouseUp = function ($handle, evt) {
 
                 // unbind the event listeners to release the mouse
-                $(document).unbind('mousemove');
-                $(document).unbind('mouseup');
+                // $(document).unbind('mousemove');
+                // $(document).unbind('mouseup');
+                // $(document).unbind('touchmove');
+                // $(document).unbind('touchend');
+
+                $(document).off('mousemove mouseup touchmove touchend');
 
                 evt.stopPropagation;
                 return false;
@@ -1385,6 +1403,15 @@ TNUI.module = (function(){
                 var newVal;
                 var startVal = this.min;
                 var stopVal = this.max;
+                var touch = undefined,
+                    pos_x = evt.pageX,
+                    pos_y = evt.pageY;
+                    
+                    if(evt.originalEvent.touches){
+                        touch = evt.originalEvent.touches[0],
+                        pos_x = touch.pageX,
+                        pos_y = touch.pageY;
+                    }
 
                 if (this.range == true) {
                     // if this is handle 1, set stopVal to be the value
@@ -1402,13 +1429,13 @@ TNUI.module = (function(){
                     // horizontal slider
 
                     // Calculate the new slider value based on the horizontal pixel position of the mouse
-                    newVal = Math.round((evt.pageX - this.left) / this.width * (this.max - this.min)) + this.min;
+                    newVal = Math.round((pos_x - this.left) / this.width * (this.max - this.min)) + this.min;
                 } else {
                     // vertical slider
 
                     // Calculate the new slider value based on the vertical pixel position of the mouse
                     // newVal = Math.round((evt.pageY - this.top) / this.height * (this.max - this.min)) + this.min;
-                    newVal = Math.round((evt.pageY - this.top ) / this.height * (this.max - this.min)) + this.min;
+                    newVal = Math.round((pos_y - this.top ) / this.height * (this.max - this.min)) + this.min;
                 }
 
                 if (newVal >= startVal && newVal <= stopVal) {
@@ -1441,7 +1468,7 @@ TNUI.module = (function(){
         },
 
         init : function(){
-            var t = this;
+            // var t = this;
 
             // t.tabUi();
             // t.selectUi();

@@ -52,6 +52,7 @@
 </pre>
 <script>
 $(document).ready(function(){
-    TNUI.module.scrollUi();
+    // 모바일에선 호출 안함
+    if(!$('html').hasClass('mobile')) TNUI.module.scrollUi();
 })
 </script>

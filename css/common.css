@@ -95,7 +95,7 @@ html.fixed{overflow-y: hidden;}
 }
 .guide-side{
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     top: 0;
     left: 0;
     bottom: 0;
@@ -109,7 +109,7 @@ html.fixed{overflow-y: hidden;}
 
 
 .guide-container{ padding-left: 320px; }
-.guide-container .guide-smaple{padding: 20px;}
+.guide-container .guide-smaple{overflow: hidden; padding: 20px;}
 .guide-container .guide-smaple .guide-h1{margin: 0 0 24px 0; border-bottom: 2px solid #645F66; color: #645F66; font-size: 40px; line-height:50px }
 .guide-container .guide-smaple h3{padding: 24px 0 8px; color: #545151; font-size: 24px; line-height: 32px; letter-spacing: 0;}
 .guide-container .guide-smaple .sub-txt{margin: 0 0 20px; padding: 10px; color: #545151; border: 1px solid #e3e3e3; border-radius: 5px; background: #eee; line-height: 1.6}
@@ -322,6 +322,8 @@ html.mobile .form_select{ -webkit-appearance: none; position: relative; width: 1
 .ui-scrollbar .bar{ display: block; position: absolute; top:0; left:0; background: #555; width: 100%; border-radius: 5px; z-index: 1; /* cursor: pointer; */}
 .ui-scrollbar .bar:hover{background:#222}
 .scrollview{line-height: 1.6}
+html.mobile .ui-scrollbar{display: none;}
+html.mobile .ui-scrollview{overflow: auto;}
 
 
 /* 어코디언 */
@@ -344,12 +346,12 @@ html.mobile .form_select{ -webkit-appearance: none; position: relative; width: 1
 
 
 /* 슬라이더 */
-.sliderWrap div.hslider {position: relative;padding: 0;width: 540px;height: 20px;background-color: #e7e7e7;border: 1px solid black;}
-.sliderWrap .hsliderHandle {margin: 0;padding: 7px 2px;width: 24px;height: 12px;background-color: #808080;position: absolute;left: -300em;top: -30em;z-index: 10;border: 1px solid black;}
-.sliderWrap .hsliderValue { margin: 24px 0 0 -50px; padding: 5px; width: 100px; height: 24px; text-align: center; font-size:14px; font-weight: bold; position: absolute; left: -30em; top: -30em; z-index: 10; box-sizing: border-box}
-.sliderWrap div.vslider {position: relative;padding: 0;height: 240px;width: 20px;background-color: #e7e7e7;border: 1px solid black;}
-.sliderWrap .vsliderHandle { margin: 0; padding: 2px 7px; width: 12px; height: 24px; background-color: #808080; position: absolute; left: -300em; top: -30em; z-index: 10; border: 1px solid black; }
-.sliderWrap .vsliderValue { margin: 0 0 0 30px; padding: 5px; width: 100px; height: 24px; text-align: left; font-weight: bold; position: absolute; left: -30em; top: -30em; z-index: 10; box-sizing: border-box}
+.sliderWrap div.hslider {position: relative;padding: 0;width: 100%;height: 20px;background-color: #e7e7e7;border: 1px solid black;}
+.sliderWrap .hsliderHandle {margin: 0;padding: 7px 2px;width: 24px;height: 12px;background-color: #808080;position: absolute;left: -300em;top: -30em;z-index: 1;border: 1px solid black;}
+.sliderWrap .hsliderValue { margin: 24px 0 0 -50px; padding: 5px; width: 100px; height: 24px; text-align: center; font-size:14px; font-weight: bold; position: absolute; left: -30em; top: -30em; z-index: 1; box-sizing: border-box}
+.sliderWrap div.vslider {position: relative; margin: 0 auto; padding: 0;height: 240px;width: 20px;background-color: #e7e7e7;border: 1px solid black;}
+.sliderWrap .vsliderHandle { margin: 0; padding: 2px 7px; width: 12px; height: 24px; background-color: #808080; position: absolute; left: -300em; top: -30em; z-index: 1; border: 1px solid black; }
+.sliderWrap .vsliderValue { margin: 0 0 0 30px; padding: 5px; width: 100px; height: 24px; text-align: left; font-weight: bold; position: absolute; left: -30em; top: -30em; z-index: 1; box-sizing: border-box}
 .sliderWrap div.sliderRange {padding: 0;width: 1px;height: 1px;background-color: #939393;position: absolute;left: -300em;top: -30em;z-index: 0;}
 .sliderWrap .focus { background-color: #eee !important; }
 
@@ -358,8 +360,8 @@ html.mobile .form_select{ -webkit-appearance: none; position: relative; width: 1
 @media screen and (max-width: 768px) {
 	.guide-side{left:-320px; }
 	.guide-container{padding: 43px 0 0 0;}
-	.mo-guide-side{ display: block; text-align: right; background: #eee; width: 100%; border-bottom: 1px solid #e3e3e3; position: fixed; box-sizing: border-box; padding: 10px 20px; z-index: 2;}
-	.mo-guide-side > button{position: relative; z-index: 2;}
+	.mo-guide-side{ display: block; text-align: right; background: #eee; width: 100%; border-bottom: 1px solid #e3e3e3; position: fixed; box-sizing: border-box; padding: 10px 20px; z-index: 3;}
+	.mo-guide-side > button{position: relative; z-index: 3;}
 	.mo-guide-side > button,
 	.mo-guide-side > button span { display : inline-block; transition : all .4s; box-sizing : border-box; }
 	.mo-guide-side > button { position : relative; width : 20px; height : 20px; }
@@ -380,4 +382,5 @@ html.mobile .form_select{ -webkit-appearance: none; position: relative; width: 1
 	input + label > .label-txt{position: initial;}
 
 	.scrollview{overflow-y: auto}
+	
 }

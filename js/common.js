@@ -19,5 +19,18 @@ $(function () {
         });
         if(isMobile) $('.mo-guide-btn').trigger('click');
     })
+
+    $.ajax({
+        type: 'get',
+        url: 'pages/c08.html',
+        dataType: 'html',
+        success: function (data) {
+            $("#load-ct").html(data);
+            SyntaxHighlighter.highlight();
+            TNUI.wsg.init();
+            // TNUI.module.init();
+        }
+    });
+
     TNUI.wsg.init();
 })
