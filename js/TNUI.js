@@ -385,20 +385,20 @@ TNUI.module = (function(){
                         //     'thisBtnW' + thisBtnW);
                     var config = {
                         top: {
-                            top: parseInt(targetOff.top - tarH - arrH),
-                            left: parseInt(targetOff.left),
+                            'top': parseInt(targetOff.top - tarH - arrH),
+                            'left': parseInt(targetOff.left)
                         },
                         left: {
-                            top: parseInt(targetOff.top - tarH/4 ),
-                            left: parseInt(targetOff.left - tarW - arrW),
+                            'top': parseInt(targetOff.top - tarH/4 ),
+                            'left': parseInt(targetOff.left - tarW - arrW)
                         },
                         right: {
-                            top: parseInt(targetOff.top - tarH/4),
-                            left: parseInt(targetOff.left + thisBtnW + arrW),
+                            'top': parseInt(targetOff.top - tarH/4),
+                            'left': parseInt(targetOff.left + thisBtnW + arrW)
                         },
                         bottom: {
-                            top: parseInt(targetOff.top + thisBtnH + arrH),
-                            left: parseInt(targetOff.left),
+                            'top': parseInt(targetOff.top + thisBtnH + arrH),
+                            'left': parseInt(targetOff.left)
                         }
                     };
 
