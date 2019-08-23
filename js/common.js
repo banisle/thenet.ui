@@ -22,7 +22,7 @@ $(function () {
 
     $.ajax({
         type: 'get',
-        url: 'pages/c08.html',
+        url: 'pages/c14.html',
         dataType: 'html',
         success: function (data) {
             $("#load-ct").html(data);

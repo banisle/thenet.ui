@@ -356,6 +356,19 @@ html.mobile .ui-scrollview{overflow: auto;}
 .sliderWrap .focus { background-color: #eee !important; }
 
 
+/* swipe */
+.ui-swipe-wrap{overflow-x: hidden;}
+.ui-swipe-wrap .container{    
+	width: 100%;
+	height: 100px;
+}
+.ui-swipe-wrap .container.smooth { transition: transform .5s ease-out; }
+.ui-swipe-wrap .container [data-item]{
+	float: left;
+	height: 100%;
+	pointer-events: none;
+}
+
 /* media query */
 @media screen and (max-width: 768px) {
 	.guide-side{left:-320px; }

@@ -1,3 +1,6 @@
+// thenet UI LIB 0.7
+// banisle@gmail.com
+
 'use strict';
 var context = window,
     $root = $(document.documentElement).addClass("js"),
@@ -1465,6 +1468,150 @@ TNUI.module = (function(){
             console.log('sliderUi');
 
             
+        },
+
+        swipeUi : function(container_id,opt){
+            var swipeUiIn,
+                $swipeWrap = $('.ui-swipe-wrap'),
+                sWW = $swipeWrap.width(),
+                t = $('#'+ container_id +''),
+                c = t.children('[data-item]'),
+                N = c.length,
+                x0 = null,
+                i = 0,
+                tx = 0,
+                locked = false,
+                opt = {
+                    'loop' : opt.loop || 'false', //무한 롤링
+                    'transition' : opt.transition || 'none' // 모션
+
+                }
+                ;
+
+
+                function unify(e) { return e.changedTouches ? e.changedTouches[0] : e };
+            
+            
+            swipeUiIn = function(){
+                this.init();
+
+                var thisObj = this;
+
+
+
+                $swipeWrap.on('mousedown touchstart', function(e){
+                    return thisObj.lock(e);
+                });
+
+                $swipeWrap.on('mouseup touchend', function(e){
+                    return thisObj.move(e);
+                });
+
+                $swipeWrap.on('mousemove touchmove', function(e){
+                    return thisObj.drag(e);
+                });
+
+                //ie edge fix
+                // $swipeWrap.on('touchmove', function(e){
+                //     e.preventDefault();
+                // });
+                
+
+            };
+
+            swipeUiIn.prototype.init = function(){
+                t.css({ 'width' : sWW * N });
+                c.css({ 'width' : sWW });
+            };
+
+            swipeUiIn.prototype.lock = function(e){
+                console.log('touchstart');
+                x0 = unify(e).clientX;
+                locked = true;
+                t.removeClass('smooth');
+            };
+
+            swipeUiIn.prototype.drag = function(e){
+                e.preventDefault();
+                tx = -(sWW * i) + Math.round(unify(e).clientX - x0);
+                
+                // console.log(tx);
+                if(locked){
+                    t.css({
+                        '-webkit-transform' : 'translate('+ tx  +'px)'
+                    });
+                }
+            }
+            
+            swipeUiIn.prototype.move = function(e){
+                if (locked) {
+                    console.log('touchend', i);
+                    var dx = unify(e).clientX - x0,
+                        s = Math.sign(dx);// < = 1 , > = -1
+
+                    //무한 롤링 옵션
+                    if(opt.loop == 'true'){
+                        if(i == 0 && s == 1) { 
+                            i = N - 1
+                            t.css({
+                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                            });
+                        }
+                        else if(i == N-1 && s == -1) { 
+                            i = 0;
+                            t.css({
+                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                            });
+                        }
+                        else if ((i > 0 || s < 0) && (i < N - 1 || s > 0)){
+                            i -= s;
+
+                            t.css({
+                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                            });
+                        } 
+                    } else{ //롤링 없음
+                        if(i == 0 && s == 1) { 
+                            i=0;
+                            t.css({
+                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                            });
+                        }
+                        else if(i == N-1 && s == -1) { 
+                            i = N-1;
+                            t.css({
+                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                            });
+                        } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0)){
+                            console.log(
+                                // 'i' + i,
+                                // 's' + s, 
+                                // 'N' + N,
+                                -((i / N) * sWW) + tx
+                                );
+    
+                            i -= s;
+                            // tx = 0;
+                            t.css({
+                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                            })
+                            .addClass('smooth');
+
+                            
+                            console.log('locked' + locked);
+                        } 
+                    }
+                    x0 = null;
+                    locked = false;
+                }
+            };
+            
+
+            var container_id = new swipeUiIn(container_id,opt);
+
+            
+
+            console.log('swipeUi');
         },
 
         init : function(){
