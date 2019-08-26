@@ -1508,6 +1508,7 @@ TNUI.module = (function(){
                 });
 
                 $swipeWrap.on('mousemove touchmove', function(e){
+                    e.preventDefault();
                     return thisObj.drag(e);
                 });
 
@@ -1525,18 +1526,21 @@ TNUI.module = (function(){
             };
 
             swipeUiIn.prototype.lock = function(e){
-                console.log('touchstart');
+                // console.log('touchstart');
                 x0 = unify(e).clientX;
                 locked = true;
-                t.removeClass('smooth');
+                t.removeClass('smooth smooth-s');
             };
 
             swipeUiIn.prototype.drag = function(e){
-                e.preventDefault();
                 tx = -(sWW * i) + Math.round(unify(e).clientX - x0);
+
                 
                 // console.log(tx);
                 if(locked){
+                    if(detectIe > 0 && detectIe < 12){
+                        t.css({ 'left' : tx+'px' });
+                    }
                     t.css({
                         '-webkit-transform' : 'translate('+ tx  +'px)'
                     });
@@ -1545,61 +1549,98 @@ TNUI.module = (function(){
             
             swipeUiIn.prototype.move = function(e){
                 if (locked) {
-                    console.log('touchend', i);
+                    // console.log('touchend', i);
                     var dx = unify(e).clientX - x0,
-                        s = Math.sign(dx);// < = 1 , > = -1
+                        // s = Math.sign(dx);// < = 1 , > = -1
+                        s = dx > 0 ? s = 1 : s = -1, // 방향 < = 1 , > = -1
+                        f = +(s*dx/sWW).toFixed(2); // 이동 감도
+
+
 
                     //무한 롤링 옵션
                     if(opt.loop == 'true'){
-                        if(i == 0 && s == 1) { 
+                        if(i == 0 && s == 1 && f > .2) { 
                             i = N - 1
-                            t.css({
-                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                            });
-                        }
-                        else if(i == N-1 && s == -1) { 
-                            i = 0;
-                            t.css({
-                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                            });
-                        }
-                        else if ((i > 0 || s < 0) && (i < N - 1 || s > 0)){
-                            i -= s;
+                            if(detectIe > 0 && detectIe < 12){
+                                t.css({ 'left' : (sWW * i) +'px' });
+                            } else{
+                                t.css({
+                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                                });
+                            }
 
-                            t.css({
-                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                            });
+                        } else if(i == N-1 && s == -1 && f > .2) { 
+                            i = 0;
+                            if(detectIe > 0 && detectIe < 12){
+                                t.css({ 'left' : (sWW * i) +'px' });
+                            } else{
+                                t.css({
+                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                                });
+                            }
+                        } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > .2){
+                            i -= s;
+                            if(detectIe > 0 && detectIe < 12){
+                                t.stop().animate({ 'left' : -(sWW * i) +'px' },500)
+                                .addClass('smooth');
+                            } else{
+                                t.css({
+                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                                }).addClass('smooth');
+                            }
                         } 
                     } else{ //롤링 없음
-                        if(i == 0 && s == 1) { 
+                        if(i == 0 && s == 1 && f > .2) { 
                             i=0;
-                            t.css({
-                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                            });
+                            if(detectIe > 0 && detectIe < 12){
+                                t.css({ 'left' : -(sWW * i) +'px' });
+                            } else{
+                                t.css({
+                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                                });
+                            }
                         }
-                        else if(i == N-1 && s == -1) { 
+                        else if(i == N-1 && s == -1 && f > .2) { 
                             i = N-1;
-                            t.css({
-                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                            });
-                        } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0)){
-                            console.log(
-                                // 'i' + i,
-                                // 's' + s, 
-                                // 'N' + N,
-                                -((i / N) * sWW) + tx
-                                );
+                            if(detectIe > 0 && detectIe < 12){
+                                t.css({ 'left' : -(sWW * i) +'px' });
+                            } else{
+                                t.css({
+                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                                });
+                            }
+                        } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > .2){
+                            // console.log(
+                            //     // 'i' + i,
+                            //     // 's' + s, 
+                            //     // 'N' + N,
+                            //     -((i / N) * sWW) + tx
+                            //     );
     
                             i -= s;
-                            // tx = 0;
-                            t.css({
-                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                            })
-                            .addClass('smooth');
-
+                            if(detectIe > 0 && detectIe < 12){
+                                t.stop().animate({ 'left' : -(sWW * i) +'px' },500)
+                                .addClass('smooth');
+                            } else{
+                                t.css({
+                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                                })
+                                .addClass('smooth');
+                            }
+                            x0 = null;
+                            locked = false;
+                            return false;
                             
-                            console.log('locked' + locked);
                         } 
+                    }
+
+                    //페이지 이동없이 원래 슬라이드 돌아갈떄
+                    if(detectIe > 0 && detectIe < 12){
+                        t.stop().animate({ 'left' : -(sWW * i) +'px' },100);
+                    } else{
+                        t.css({
+                            '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                        }).addClass('smooth-s');
                     }
                     x0 = null;
                     locked = false;

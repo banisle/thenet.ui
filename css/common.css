@@ -359,10 +359,12 @@ html.mobile .ui-scrollview{overflow: auto;}
 /* swipe */
 .ui-swipe-wrap{overflow-x: hidden;}
 .ui-swipe-wrap .container{    
+	position: relative;
 	width: 100%;
 	height: 100px;
 }
 .ui-swipe-wrap .container.smooth { transition: transform .5s ease-out; }
+.ui-swipe-wrap .container.smooth-s { transition: transform .1s ease-out; }
 .ui-swipe-wrap .container [data-item]{
 	float: left;
 	height: 100%;
