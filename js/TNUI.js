@@ -1483,8 +1483,9 @@ TNUI.module = (function(){
                 locked = false,
                 opt = {
                     'loop' : opt.loop || 'false', //무한 롤링
-                    'transition' : opt.transition || 'none' // 모션
-
+                    'transition' : opt.transition || 500, // 슬라이드시 모션 속도
+                    'transition2' : opt.transition2 || 100, // 원복할때 모션 속도
+                    'thresold' : opt.thresold || .2 //감도(%)
                 }
                 ;
 
@@ -1529,7 +1530,7 @@ TNUI.module = (function(){
                 // console.log('touchstart');
                 x0 = unify(e).clientX;
                 locked = true;
-                t.removeClass('smooth smooth-s');
+                t.css('trasnlate','none');
             };
 
             swipeUiIn.prototype.drag = function(e){
@@ -1565,7 +1566,8 @@ TNUI.module = (function(){
                                 t.css({ 'left' : (sWW * i) +'px' });
                             } else{
                                 t.css({
-                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
+                                    'transition' : 'all ' + opt.transition +'ms ease-out'
                                 });
                             }
 
@@ -1575,18 +1577,19 @@ TNUI.module = (function(){
                                 t.css({ 'left' : (sWW * i) +'px' });
                             } else{
                                 t.css({
-                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
+                                    'transition' : 'transform :' + opt.transition +'ms ease-out'
                                 });
                             }
-                        } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > .2){
+                        } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > opt.thresold){
                             i -= s;
                             if(detectIe > 0 && detectIe < 12){
-                                t.stop().animate({ 'left' : -(sWW * i) +'px' },500)
-                                .addClass('smooth');
+                                t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition);
                             } else{
                                 t.css({
-                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                                }).addClass('smooth');
+                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
+                                    'transition' : 'all ' + opt.transition +'ms ease-out'
+                                })
                             }
                         } 
                     } else{ //롤링 없음
@@ -1609,7 +1612,7 @@ TNUI.module = (function(){
                                     '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
                                 });
                             }
-                        } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > .2){
+                        } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > opt.thresold){
                             // console.log(
                             //     // 'i' + i,
                             //     // 's' + s, 
@@ -1619,13 +1622,12 @@ TNUI.module = (function(){
     
                             i -= s;
                             if(detectIe > 0 && detectIe < 12){
-                                t.stop().animate({ 'left' : -(sWW * i) +'px' },500)
-                                .addClass('smooth');
+                                t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition);
                             } else{
                                 t.css({
-                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                                })
-                                .addClass('smooth');
+                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
+                                    'transition' : 'all ' + opt.transition +'ms ease-out'
+                                });
                             }
                             x0 = null;
                             locked = false;
@@ -1635,12 +1637,15 @@ TNUI.module = (function(){
                     }
 
                     //페이지 이동없이 원래 슬라이드 돌아갈떄
+                    console.log(opt.transition2);
+
                     if(detectIe > 0 && detectIe < 12){
-                        t.stop().animate({ 'left' : -(sWW * i) +'px' },100);
+                        t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition2);
                     } else{
                         t.css({
-                            '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                        }).addClass('smooth-s');
+                            '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
+                            'transition' : 'all ' + opt.transition2 +'ms ease-out'
+                        });
                     }
                     x0 = null;
                     locked = false;
