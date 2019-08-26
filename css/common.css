@@ -366,8 +366,9 @@ html.mobile .ui-scrollview{overflow: auto;}
 .ui-swipe-wrap .container [data-item]{
 	float: left;
 	height: 100%;
-	pointer-events: none;
+	/* pointer-events: none; */
 }
+.ui-swipe-wrap  .ui-bullet .active{ color: red;}
 
 /* media query */
 @media screen and (max-width: 768px) {

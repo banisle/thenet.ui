@@ -267,15 +267,19 @@ TNUI.module = (function(){
             console.log('tabUi');
         },
 
-        selectUi : function(selId){
+        // selectUi : function(selId){
+        selectUi : function(){
             var opt = opt || null,
+                selId,
                 selectUibox,
                 $selWrap = $('.selectWrap.ui-selectbox'),
+                $selBox,
+                $optGrp;
+            
+            selectUibox = function(selId){
                 $selBox = $('#'+ selId +''),
                 $optGrp = $selBox.find('option');
-                
-            
-            selectUibox = function(){
+
                 //포커스 잃었을때 
                 $(document).on('focusin click', function(e){
                     if($selWrap){
@@ -352,7 +356,11 @@ TNUI.module = (function(){
                 console.log('selectUibox prototype' + opt); 
             };
 
-            var selId = new selectUibox(''+selId+'');
+            $.each($selWrap, function(i){
+                selId = $selWrap.eq(i).find('select').attr('id');
+
+                new selectUibox(''+selId+'');
+            });
 
             console.log('selectUi');
 
@@ -1486,7 +1494,9 @@ TNUI.module = (function(){
                     'transition' : opt.transition || 500, // 슬라이드시 모션 속도
                     'transition2' : opt.transition2 || 100, // 원복할때 모션 속도
                     'thresold' : opt.thresold || .2 //감도(%)
-                }
+                },
+                $prevBtn = t.closest($swipeWrap).find('.ui-swipe-btn .ui-btn-prev'),
+                $nextBtn = t.closest($swipeWrap).find('.ui-swipe-btn .ui-btn-next')
                 ;
 
 
@@ -1495,9 +1505,8 @@ TNUI.module = (function(){
             
             swipeUiIn = function(){
                 this.init();
-
-                var thisObj = this;
-
+                var thisObj = this,
+                    $bullet = $('.ui-bullet button');
 
 
                 $swipeWrap.on('mousedown touchstart', function(e){
@@ -1513,18 +1522,91 @@ TNUI.module = (function(){
                     return thisObj.drag(e);
                 });
 
+                $prevBtn.on('click', function(e){return thisObj.prev(e)} );
+                $nextBtn.on('click', function(e){return thisObj.next(e)} );
+
+                $bullet.on('click', function(e){
+                    var t = $(this),
+                        buN = t.data('bullet').split('b'),
+                        n = parseInt(buN[1]);
+
+                    return thisObj.bulletEvt(e,n);
+
+                });
+
                 //ie edge fix
                 // $swipeWrap.on('touchmove', function(e){
                 //     e.preventDefault();
                 // });
-                
-
             };
 
             swipeUiIn.prototype.init = function(){
                 t.css({ 'width' : sWW * N });
                 c.css({ 'width' : sWW });
+                this.createBullet();
+                this.bulletOn();
+                // this.rolling();
             };
+
+            swipeUiIn.prototype.rolling = function(){
+
+                var delay = 1000,
+                    thisObj = this,
+                    
+
+                timer = setInterval( function(){
+                    thisObj.next(i)
+                }, delay);
+
+
+            };
+
+            swipeUiIn.prototype.prev = function(e){
+                locked = true;
+                t.css('trasnlate','none');
+                if (locked) {
+                    if(i > 0){
+                        i =  i - 1;
+                        this.move(e,i);
+                    }
+                }
+                locked = false;
+            };
+            swipeUiIn.prototype.next = function(e){
+                locked = true;
+                t.css('trasnlate','none');
+                if (locked) {
+                    if(i - (N-1)){
+                        i =  i + 1;
+                        this.move(e,i);
+                    }
+                }
+                locked = false;
+            };
+
+            swipeUiIn.prototype.createBullet = function(){
+                var appendBul = '';
+
+                t.closest($swipeWrap).append( $('<div class="ui-bullet">') );
+                c.each(function(i){
+                    appendBul += '<button data-bullet="b'+ i +'">' + i + '</button>';
+                });
+                t.closest($swipeWrap).find('.ui-bullet').html(appendBul);
+            };
+            
+            swipeUiIn.prototype.bulletOn = function(){
+                var $bullet = $('.ui-bullet');
+
+                $bullet.children().removeClass('active').eq(i).addClass('active');
+            };
+
+            swipeUiIn.prototype.bulletEvt = function(e,n){
+                locked = true;
+                t.css('trasnlate','none');
+                this.move(e,n);
+                locked = false;
+            }
+            
 
             swipeUiIn.prototype.lock = function(e){
                 // console.log('touchstart');
@@ -1536,7 +1618,6 @@ TNUI.module = (function(){
             swipeUiIn.prototype.drag = function(e){
                 tx = -(sWW * i) + Math.round(unify(e).clientX - x0);
 
-                
                 // console.log(tx);
                 if(locked){
                     if(detectIe > 0 && detectIe < 12){
@@ -1548,7 +1629,8 @@ TNUI.module = (function(){
                 }
             }
             
-            swipeUiIn.prototype.move = function(e){
+            swipeUiIn.prototype.move = function(e,idx){
+
                 if (locked) {
                     // console.log('touchend', i);
                     var dx = unify(e).clientX - x0,
@@ -1556,100 +1638,118 @@ TNUI.module = (function(){
                         s = dx > 0 ? s = 1 : s = -1, // 방향 < = 1 , > = -1
                         f = +(s*dx/sWW).toFixed(2); // 이동 감도
 
-
-
-                    //무한 롤링 옵션
-                    if(opt.loop == 'true'){
-                        if(i == 0 && s == 1 && f > .2) { 
-                            i = N - 1
-                            if(detectIe > 0 && detectIe < 12){
-                                t.css({ 'left' : (sWW * i) +'px' });
-                            } else{
-                                t.css({
-                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
-                                    'transition' : 'all ' + opt.transition +'ms ease-out'
-                                });
-                            }
-
-                        } else if(i == N-1 && s == -1 && f > .2) { 
-                            i = 0;
-                            if(detectIe > 0 && detectIe < 12){
-                                t.css({ 'left' : (sWW * i) +'px' });
-                            } else{
-                                t.css({
-                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
-                                    'transition' : 'transform :' + opt.transition +'ms ease-out'
-                                });
-                            }
-                        } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > opt.thresold){
-                            i -= s;
-                            if(detectIe > 0 && detectIe < 12){
-                                t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition);
-                            } else{
-                                t.css({
-                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
-                                    'transition' : 'all ' + opt.transition +'ms ease-out'
-                                })
-                            }
-                        } 
-                    } else{ //롤링 없음
-                        if(i == 0 && s == 1 && f > .2) { 
-                            i=0;
-                            if(detectIe > 0 && detectIe < 12){
-                                t.css({ 'left' : -(sWW * i) +'px' });
-                            } else{
-                                t.css({
-                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                                });
-                            }
+                    //prev,next 통해서 올때
+                    if(idx >= 0 || !!idx ){
+                        i = idx;
+                        if(detectIe > 0 && detectIe < 12){
+                            t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition);
+                        } else{
+                            t.css({
+                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
+                                'transition' : 'all ' + opt.transition +'ms ease-out'
+                            });
                         }
-                        else if(i == N-1 && s == -1 && f > .2) { 
-                            i = N-1;
-                            if(detectIe > 0 && detectIe < 12){
-                                t.css({ 'left' : -(sWW * i) +'px' });
-                            } else{
-                                t.css({
-                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                                });
-                            }
-                        } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > opt.thresold){
-                            // console.log(
-                            //     // 'i' + i,
-                            //     // 's' + s, 
-                            //     // 'N' + N,
-                            //     -((i / N) * sWW) + tx
-                            //     );
-    
-                            i -= s;
-                            if(detectIe > 0 && detectIe < 12){
-                                t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition);
-                            } else{
-                                t.css({
-                                    '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
-                                    'transition' : 'all ' + opt.transition +'ms ease-out'
-                                });
-                            }
-                            x0 = null;
-                            locked = false;
-                            return false;
-                            
-                        } 
-                    }
+                        this.bulletOn();
 
-                    //페이지 이동없이 원래 슬라이드 돌아갈떄
-                    console.log(opt.transition2);
-
-                    if(detectIe > 0 && detectIe < 12){
-                        t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition2);
+                        return false;
                     } else{
-                        t.css({
-                            '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
-                            'transition' : 'all ' + opt.transition2 +'ms ease-out'
-                        });
+                        //무한 롤링 옵션
+                        if(opt.loop == 'true'){
+                            if(i == 0 && s == 1 && f > .2) { 
+                                i = N - 1
+                                if(detectIe > 0 && detectIe < 12){
+                                    t.css({ 'left' : (sWW * i) +'px' });
+                                } else{
+                                    t.css({
+                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
+                                        'transition' : 'all ' + opt.transition +'ms ease-out'
+                                    });
+                                }
+
+                            } else if(i == N-1 && s == -1 && f > .2) { 
+                                i = 0;
+                                if(detectIe > 0 && detectIe < 12){
+                                    t.css({ 'left' : (sWW * i) +'px' });
+                                } else{
+                                    t.css({
+                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
+                                        'transition' : 'transform :' + opt.transition +'ms ease-out'
+                                    });
+                                }
+                            } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > opt.thresold){
+                                i -= s;
+                                if(detectIe > 0 && detectIe < 12){
+                                    t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition);
+                                } else{
+                                    t.css({
+                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
+                                        'transition' : 'all ' + opt.transition +'ms ease-out'
+                                    })
+                                }
+                                this.bulletOn();
+                            } 
+                        } else{ //롤링 없음
+                            if(i == 0 && s == 1 && f > .2) { 
+                                i=0;
+                                if(detectIe > 0 && detectIe < 12){
+                                    t.css({ 'left' : -(sWW * i) +'px' });
+                                } else{
+                                    t.css({
+                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                                    });
+                                }
+                            }
+                            else if(i == N-1 && s == -1 && f > .2) { 
+                                i = N-1;
+                                if(detectIe > 0 && detectIe < 12){
+                                    t.css({ 'left' : -(sWW * i) +'px' });
+                                } else{
+                                    t.css({
+                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                                    });
+                                }
+                            } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > opt.thresold){
+                                // console.log(
+                                    // 'i' + i,
+                                    // 's' + s, 
+                                    // 'N' + N,
+                                    // -((i / N) * sWW) + tx
+                                    // );
+                                i -= s;
+                                if(detectIe > 0 && detectIe < 12){
+                                    t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition);
+                                } else{
+                                    t.css({
+                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
+                                        'transition' : 'all ' + opt.transition +'ms ease-out'
+                                    });
+                                }
+
+                                this.bulletOn();
+
+                                x0 = null;
+                                locked = false;
+                                return false;
+                                
+                            } 
+                        }
+
+                        //페이지 이동없이 원래 슬라이드 돌아갈떄
+                        if(detectIe > 0 && detectIe < 12){
+                            t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition2);
+                        } else{
+                            t.css({
+                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
+                                'transition' : 'all ' + opt.transition2 +'ms ease-out'
+                            });
+                        }
+                        x0 = null;
+                        locked = false;
+
                     }
-                    x0 = null;
-                    locked = false;
+
                 }
+                
             };
             
 

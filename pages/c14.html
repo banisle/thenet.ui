@@ -3,10 +3,14 @@
 <p class="sub-txt">TNUI.module.swipeUi('swipe01',{'loop':'', 'transition' : 500,'transition2' : 100,'thresold' : .2});<br/> 옵션에서 감도, 모션 속도 조절 </p>
 <div class="ui-swipe-wrap">
     <div class="container" id="swipe01">
-        <div data-item="i01" style="background:#ff7272">item 01</div>
-        <div data-item="i02" style="background:#ffc072">item 02</div>
-        <div data-item="i03" style="background:#a0d14f">item 03</div>
-        <div data-item="i04" style="background:#4fb3d1">item 04</div>
+        <div data-item="i01" style="background:#ff7272"><a href="#1">item 01</a></div>
+        <div data-item="i02" style="background:#ffc072"><a href="#2">item 02</a></div>
+        <div data-item="i03" style="background:#a0d14f"><a href="#3">item 03</a></div>
+        <div data-item="i04" style="background:#4fb3d1"><a href="#4">item 04</a></div>
+    </div>
+    <div class="ui-swipe-btn btn_wrap">
+        <button class="ui-btn-prev"><span>prev</span></button>
+        <button class="ui-btn-next"><span>next</span></button>
     </div>
 </div>
 
@@ -27,6 +31,6 @@
 <h3>갤러리</h3>
 <script>
 $(document).ready(function(){
-    TNUI.module.swipeUi('swipe01',{'loop':'', 'transition' : 500,'transition2' : 100,'thresold' : .2});
+    TNUI.module.swipeUi('swipe01',{'loop':'', 'transition' : 300,'transition2' : 100,'thresold' : .2});
 });
 </script>
