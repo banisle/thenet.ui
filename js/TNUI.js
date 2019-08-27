@@ -306,10 +306,10 @@ TNUI.module = (function(){
                 var appendLi = '';
 
                 $selBox.closest($selWrap)
-                .append( $('<div class="pc_selwrap"><div class="selOneWrap"><button class="ui-selected-one" aria-haspopup="listbox" aria-labelledby="sel_'+ selId +'">'+ $selBox.find(':selected').val() +'</button></div><div class="ui-result-ul" tabindex="-1" role="listbox" ><ul></ul></div>') );
+                .append( $('<div class="pc_selwrap"><div class="selOneWrap"><button class="ui-selected-one" aria-haspopup="listbox" aria-labelledby="sel_'+ selId +'">'+ $selBox.find(':selected').text() +'</button></div><div class="ui-result-ul" tabindex="-1" role="listbox" ><ul></ul></div>') );
 
                 $selBox.find($optGrp).each(function(i){
-                    appendLi += '<li><button role="option" aria-labelledby="sel_'+ selId +'">'+ $optGrp.eq(i).val() +'</button></li>';
+                    appendLi += '<li><button role="option" aria-labelledby="sel_'+ selId +'">'+ $optGrp.eq(i).text() +'</button></li>';
                 });
                 
                 $selBox.closest($selWrap).find('ul').html(appendLi);
@@ -327,7 +327,7 @@ TNUI.module = (function(){
                     //셀렉트박스 셀렉트
                     $selBox.find('option').eq(index).prop('selected',true);
                     // 선택된 값 출력
-                    $selectedOne.text( $selBox.find('option').eq(index).val() ).removeAttr('aria-expanded');
+                    $selectedOne.text( $selBox.find('option').eq(index).text() ).removeAttr('aria-expanded');
                     //셀렉트 결과 창 닫기
                     $selWrap.removeClass('ui-result-active');
                     //셀렉트박스 포커스
