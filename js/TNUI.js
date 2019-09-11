@@ -274,11 +274,13 @@ TNUI.module = (function(){
                 selectUibox,
                 $selWrap = $('.selectWrap.ui-selectbox'),
                 $selBox,
-                $optGrp;
+                $optGrp
+                ;
             
             selectUibox = function(selId){
                 $selBox = $('#'+ selId +''),
                 $optGrp = $selBox.find('option');
+                
 
                 //포커스 잃었을때 
                 $(document).on('focusin click', function(e){
@@ -309,7 +311,10 @@ TNUI.module = (function(){
                 .append( $('<div class="pc_selwrap"><div class="selOneWrap"><button class="ui-selected-one" aria-haspopup="listbox" aria-labelledby="sel_'+ selId +'">'+ $selBox.find(':selected').text() +'</button></div><div class="ui-result-ul" tabindex="-1" role="listbox" ><ul></ul></div>') );
 
                 $selBox.find($optGrp).each(function(i){
-                    appendLi += '<li><button role="option" aria-labelledby="sel_'+ selId +'">'+ $optGrp.eq(i).text() +'</button></li>';
+                    var isDisabled = $(this).prop('disabled') ? 'disabled' : '';
+                    console.log(isDisabled);
+
+                    appendLi += '<li><button role="option" '+ isDisabled +' aria-labelledby="sel_'+ selId +'">'+ $optGrp.eq(i).text() +'</button></li>';
                 });
                 
                 $selBox.closest($selWrap).find('ul').html(appendLi);
@@ -427,7 +432,7 @@ TNUI.module = (function(){
         },
 
         modalUi : function(){
-            var mvBtn = $('a[data-modal]'),
+            var mvBtn = $('[data-modal]'),
                 btnClose = $('.mvClose'),
                 optTrans = 'false',
                 openSt = 'false',
