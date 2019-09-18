@@ -312,7 +312,6 @@ TNUI.module = (function(){
 
                 $selBox.find($optGrp).each(function(i){
                     var isDisabled = $(this).prop('disabled') ? 'disabled' : '';
-                    console.log(isDisabled);
 
                     appendLi += '<li><button role="option" '+ isDisabled +' aria-labelledby="sel_'+ selId +'">'+ $optGrp.eq(i).text() +'</button></li>';
                 });
@@ -322,7 +321,8 @@ TNUI.module = (function(){
             };
 
             selectUibox.prototype.selUpdate = function(){
-                var $selectedOne = $selBox.closest($selWrap).find('.ui-selected-one'),
+                var $selBox = $('#'+ selId +''),
+                    $selectedOne = $selBox.closest($selWrap).find('.ui-selected-one'),
                     $uiResult = $selBox.closest($selWrap).find('.ui-result-ul')
                     ;
 
@@ -344,9 +344,16 @@ TNUI.module = (function(){
             }
 
             selectUibox.prototype.selOne = function(){
-                var $selectedOne = $selWrap.find('.ui-selected-one');
+                var $selBox = $('#'+ selId +''),
+                    $selectedOne = $selBox.closest($selWrap).find('.ui-selected-one')
+                    ;
 
-                $selectedOne.on('click',function(e){
+                    
+                    $selectedOne.on('click',function(e){
+                        console.log( $selBox.prop('disabled') );
+                        if( $selBox.prop('disabled') ){
+                            return false;
+                        }
                     $selWrap.removeClass('active ui-result-active');
                     $selectedOne.removeAttr('aria-expanded');
                     $(this).attr('aria-expanded', true).closest($selWrap).removeClass('active ui-result-active').addClass('active ui-result-active');

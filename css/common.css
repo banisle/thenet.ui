@@ -301,6 +301,7 @@ html.mobile .form_select{ -webkit-appearance: none; position: relative; width: 1
 .selectWrap.ui-selectbox .ui-result-ul {display:none; position: absolute; top: 100%; z-index: 1010; width: 100%; border: 1px solid #aaa; border-top: 0; background: #fff; -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15); box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15); clip: rect(0, 0, 0, 0); -webkit-clip-path: inset(100% 100%); clip-path: inset(100% 100%); box-sizing: border-box}
 .selectWrap.ui-selectbox.active.ui-result-active .ui-result-ul {display:block;clip: auto; -webkit-clip-path: none; clip-path: none;margin-top: -1px; border-radius: 0 0 4px 4px; background-clip: padding-box;z-index: 1112;}
 .selectWrap.ui-selectbox.active.ui-result-active .ui-result-ul button{display: block;width: 100%;padding: 8px;cursor: pointer;box-sizing: border-box;text-align: left;}
+.selectWrap.ui-selectbox.active.ui-result-active .ui-result-ul button:disabled{cursor: default;}
 .selectWrap.ui-selectbox.active.ui-result-active .ui-result-ul button:hover,
 .selectWrap.ui-selectbox.active.ui-result-active .ui-result-ul button:focus,
 .selectWrap.ui-selectbox.active.ui-result-active .ui-result-ul button:active{background:#c1c1c1;}
