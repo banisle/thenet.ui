@@ -9,6 +9,6 @@
 		"debug.console.fontSize": 16,
 		"terminal.integrated.fontSize": 16,
 		"liveServer.settings.multiRootWorkspaceName": "thenet.ui",
-		"liveServer.settings.port": 5501
+		"liveServer.settings.port": 5502
 	}
 }

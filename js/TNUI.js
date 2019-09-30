@@ -10,68 +10,68 @@ var context = window,
     supportPlaceholder = ("placeholder" in tmpInput),
     detectIe = get_version_of_IE();
 
-    isTouch && $root.addClass("touch");
-    isMobile && $root.addClass("mobile");
+isTouch && $root.addClass("touch");
+isMobile && $root.addClass("mobile");
 
-    function get_version_of_IE() { //ie aegent 체크
-        var word;
-        var agent = navigator.userAgent.toLowerCase();
-        // IE old version ( IE 10 or Lower ) 
-        if (navigator.appName == "Microsoft Internet Explorer") word = "msie ";
-        // IE 11 
-        else if (agent.search("trident") > -1) word = "trident/.*rv:";
-        // Microsoft Edge  
-        else if (agent.search("edge/") > -1) word = "edge/";
-        // 그외, IE가 아니라면 ( If it's not IE or Edge )  
-        else return -1;
-        var reg = new RegExp(word + "([0-9]{1,})(\\.{0,}[0-9]{0,1})");
-        if (reg.exec(agent) != null) return parseInt(RegExp.$1 + RegExp.$2);
-        return -1;
-    }
+function get_version_of_IE() { //ie aegent 체크
+    var word;
+    var agent = navigator.userAgent.toLowerCase();
+    // IE old version ( IE 10 or Lower ) 
+    if (navigator.appName == "Microsoft Internet Explorer") word = "msie ";
+    // IE 11 
+    else if (agent.search("trident") > -1) word = "trident/.*rv:";
+    // Microsoft Edge  
+    else if (agent.search("edge/") > -1) word = "edge/";
+    // 그외, IE가 아니라면 ( If it's not IE or Edge )  
+    else return -1;
+    var reg = new RegExp(word + "([0-9]{1,})(\\.{0,}[0-9]{0,1})");
+    if (reg.exec(agent) != null) return parseInt(RegExp.$1 + RegExp.$2);
+    return -1;
+}
 
-    if (!(window.console && console.log)) {
-        console = {
-            log: function () {},
-            debug: function () {},
-            info: function () {},
-            warn: function () {},
-            error: function () {}
-        };
-    }
-    
+if (!(window.console && console.log)) {
+    console = {
+        log: function () {},
+        debug: function () {},
+        info: function () {},
+        warn: function () {},
+        error: function () {}
+    };
+}
 
-    if (typeof Function.prototype.bind === "undefined") {
-        Function.prototype.bind = function() {
-            var fn = this,
-                args = arraySlice.call(arguments),
-                object = args.shift();
-            return function(context) {
-                var local_args = args.concat(arraySlice.call(arguments));
-                if (this !== window) {
-                    local_args.push(this)
-                }
-                return fn.apply(object, local_args)
+
+if (typeof Function.prototype.bind === "undefined") {
+    Function.prototype.bind = function () {
+        var fn = this,
+            args = arraySlice.call(arguments),
+            object = args.shift();
+        return function (context) {
+            var local_args = args.concat(arraySlice.call(arguments));
+            if (this !== window) {
+                local_args.push(this)
             }
+            return fn.apply(object, local_args)
         }
     }
+}
 
 var TNUI = TNUI || {};
 
-TNUI.wsg = (function(){
-    return{
-        createH1 : function(s2ItemTXT){
+TNUI.wsg = (function () {
+    return {
+        createH1: function (s2ItemTXT) {
             var ct = $('.guide-container'),
                 ctH1 = ct.find('.guide-h1');
 
             ctH1.text(s2ItemTXT);
         },
-        moGuideMenu : function(){
+        moGuideMenu: function () {
             var mobtn = $('.mo-guide-btn'),
                 sg = $('.guide-side'),
                 dimBtn = $('.mo-guide-dim'),
                 openSt = 'false';
 
-            var dimLyOpen = function(){
+            var dimLyOpen = function () {
                 $('html').addClass('fixed');
                 mobtn.addClass('active');
                 sg.addClass('open');
@@ -79,65 +79,65 @@ TNUI.wsg = (function(){
                 openSt = 'true';
             }
 
-            var dimLyClose = function(){
+            var dimLyClose = function () {
                 $('html').removeClass('fixed');
                 mobtn.removeClass('active');
                 sg.removeClass('open');
                 dimBtn.removeClass('active');
                 openSt = 'false';
             }
-            mobtn.add(dimBtn).on('click', function(e){
-                (openSt == 'false')? dimLyOpen():dimLyClose();
+            mobtn.add(dimBtn).on('click', function (e) {
+                (openSt == 'false') ? dimLyOpen(): dimLyClose();
             });
 
         },
-        toggleOn : function(){
+        toggleOn: function () {
             var t = this,
                 guSide = $('.guide-side'),
                 s1Item = guSide.find('.menu-item > a'),
                 s2Item = guSide.find('.sub-menu > li > a'),
                 s2ItemTXT;
 
-            s2Item.on('click',function(){
-                
-                if( $(this).hasClass('on') ) return;
-                
+            s2Item.on('click', function () {
+
+                if ($(this).hasClass('on')) return;
+
                 s1Item.add(s2Item).removeClass('on');
                 $(this).addClass('on').closest('.menu-item').find('> a').addClass('on');
-                
+
                 s2ItemTXT = s2Item.parent().find('a.on').text();
-                
+
                 t.createH1(s2ItemTXT);
             });
         },
-        modalEvt :function(){
+        modalEvt: function () {
             var t = this,
                 btnTog = $('#btn-transtoggle'),
                 modalT = $('#mot-tog');
-            
-                btnTog.on('click', function(e){
-                    modalT.toggleClass('trans-ms');
-                    modalT.hasClass('trans-ms') ? $(this).find('span').text('모션 제거') : $(this).find('span').text('모션 생성');
-                });
+
+            btnTog.on('click', function (e) {
+                modalT.toggleClass('trans-ms');
+                modalT.hasClass('trans-ms') ? $(this).find('span').text('모션 제거') : $(this).find('span').text('모션 생성');
+            });
         },
-        init : function(){
+        init: function () {
             var t = this;
 
             t.createH1();
             t.toggleOn();
             t.moGuideMenu();
             t.modalEvt();
-            
+
             console.log('init');
         }
     }
 })();
 
-TNUI.module = (function(){
+TNUI.module = (function () {
     // (sta) TNUI returm module
-    return{
+    return {
 
-        tabUi : function(){
+        tabUi: function () {
             var uiTabWrap = $('.ui-tabWrap'),
                 uiTab = uiTabWrap.find('.ui-tab'),
                 uiTabBtn = uiTab.find('.ui-tab-btn'),
@@ -148,24 +148,26 @@ TNUI.module = (function(){
             uiTabList.first().addClass("on").attr('tabindex', '0');
             uiTabBtn.first().attr('aria-selected', 'true');
 
-    
-            uiTabBtn.on('click', function(e){
-                if( $(e.target).prev().is('input[type=checkbox]') || $(e.target).prev().is('input[type=radio]') ){
+
+            uiTabBtn.on('click', function (e) {
+                if ($(e.target).prev().is('input[type=checkbox]') || $(e.target).prev().is('input[type=radio]')) {
                     return;
                 };
-                
+
                 e.preventDefault();
-    
-                if( $(this).hasClass('on') ) return;
-                
+
+                if ($(this).hasClass('on')) return;
+
                 $(this).closest(uiTabWrap).find(uiTabBtn).removeClass('on').attr({
                     "tabindex": "-1",
-                    "aria-selected": "false"});
+                    "aria-selected": "false"
+                });
                 $(this).addClass('on').attr({
-                    "tabindex": "0",
-                    "aria-selected": "true"})
+                        "tabindex": "0",
+                        "aria-selected": "true"
+                    })
                     .focus();
-                
+
                 $("#" + $(this).attr("aria-controls"))
                     .attr("tabindex", "0")
                     .addClass("on")
@@ -173,22 +175,22 @@ TNUI.module = (function(){
                     .attr("tabindex", "-1")
                     .removeClass("on");
 
-                    
-                });
+
+            });
             // 탭 키 초점
             uiTabBtn.on("keydown", function (event) {
                 event = event || window.event;
                 event.preventDefault ? event.preventDefault() : event.returnValue = false;
                 var keycode = event.keyCode || event.which;
 
-                if( $(event.target).prev().is('input[type=checkbox]') ||  $(event.target).prev().is('input[type=radio]')){
+                if ($(event.target).prev().is('input[type=checkbox]') || $(event.target).prev().is('input[type=radio]')) {
                     return;
                 };
 
                 switch (keycode) {
                     case 37: // left arrow
-                    
-                        if ( $(this).closest('li').prev().length == 1 ) {
+
+                        if ($(this).closest('li').prev().length == 1) {
                             $(this)
                                 .attr("tabindex", "-1")
                                 .closest('li').prev().find(uiTabBtn)
@@ -206,7 +208,7 @@ TNUI.module = (function(){
                         break;
                     case 39: // right arrow
 
-                        if ( $(this).closest('li').next().length  == 1) {
+                        if ($(this).closest('li').next().length == 1) {
                             $(this)
                                 .attr("tabindex", "-1")
                                 .closest('li').next().find(uiTabBtn)
@@ -226,24 +228,24 @@ TNUI.module = (function(){
                     case 13: // Enter
                         // 기존 탭 비활성화
                         $(this).closest(uiTab).children().find(uiTabBtn)
-                        .removeClass("on")
-                        .attr("aria-selected", "false");
+                            .removeClass("on")
+                            .attr("aria-selected", "false");
                         // 선택된 탭 활성화
                         $(this)
-                        .addClass("on")
-                        .attr("aria-selected", "true")
+                            .addClass("on")
+                            .attr("aria-selected", "true")
                         // 연관된 탭 패널 활성화
                         $("#" + $(this).attr("aria-controls"))
-                        .attr("tabindex", "0")
-                        .addClass("on");
+                            .attr("tabindex", "0")
+                            .addClass("on");
                         // 기존 탭 패널 비활성화
                         $("#" + $(this).attr("aria-controls")).siblings()
-                        .attr("tabindex", "-1")
-                        .removeClass("on");
+                            .attr("tabindex", "-1")
+                            .removeClass("on");
                         break;
                 }
             });
-            
+
 
             //탭 상세로 이동 (tab키)
             uiTab.on("keydown", ".on", function (event) {
@@ -262,36 +264,35 @@ TNUI.module = (function(){
                         .removeClass("on");
                 }
             });
-            
+
 
             console.log('tabUi');
         },
 
         // selectUi : function(selId){
-        selectUi : function(){
+        selectUi: function () {
             var opt = opt || null,
                 selId,
                 selectUibox,
                 $selWrap = $('.selectWrap.ui-selectbox'),
                 $selBox,
-                $optGrp
-                ;
-            
-            selectUibox = function(selId){
-                $selBox = $('#'+ selId +''),
-                $optGrp = $selBox.find('option');
-                
+                $optGrp;
+
+            selectUibox = function (selId) {
+                $selBox = $('#' + selId + ''),
+                    $optGrp = $selBox.find('option');
+
 
                 //포커스 잃었을때 
-                $(document).on('focusin click', function(e){
-                    if($selWrap){
-                        if( !$selWrap.find(e.target).length ){
+                $(document).on('focusin click', function (e) {
+                    if ($selWrap) {
+                        if (!$selWrap.find(e.target).length) {
                             //셀렉트 결과 창 닫기
                             $selWrap.removeClass('active ui-result-active');
                         }
                     }
                 });
-                
+
                 this.init();
                 this.createDiv();
                 this.selUpdate();
@@ -299,40 +300,39 @@ TNUI.module = (function(){
 
             };
 
-            selectUibox.prototype.init = function(){
+            selectUibox.prototype.init = function () {
                 $selBox.hide();
-                $selBox.closest($selWrap).attr('data-select',selId);
+                $selBox.closest($selWrap).attr('data-select', selId);
 
             };
-            selectUibox.prototype.createDiv = function(){
+            selectUibox.prototype.createDiv = function () {
                 var appendLi = '';
 
                 $selBox.closest($selWrap)
-                .append( $('<div class="pc_selwrap"><div class="selOneWrap"><button class="ui-selected-one" aria-haspopup="listbox" aria-labelledby="sel_'+ selId +'">'+ $selBox.find(':selected').text() +'</button></div><div class="ui-result-ul" tabindex="-1" role="listbox" ><ul></ul></div>') );
+                    .append($('<div class="pc_selwrap"><div class="selOneWrap"><button class="ui-selected-one" aria-haspopup="listbox" aria-labelledby="sel_' + selId + '">' + $selBox.find(':selected').text() + '</button></div><div class="ui-result-ul" tabindex="-1" role="listbox" ><ul></ul></div>'));
 
-                $selBox.find($optGrp).each(function(i){
+                $selBox.find($optGrp).each(function (i) {
                     var isDisabled = $(this).prop('disabled') ? 'disabled' : '';
 
-                    appendLi += '<li><button role="option" '+ isDisabled +' aria-labelledby="sel_'+ selId +'">'+ $optGrp.eq(i).text() +'</button></li>';
+                    appendLi += '<li><button role="option" ' + isDisabled + ' aria-labelledby="sel_' + selId + '">' + $optGrp.eq(i).text() + '</button></li>';
                 });
-                
+
                 $selBox.closest($selWrap).find('ul').html(appendLi);
 
             };
 
-            selectUibox.prototype.selUpdate = function(){
-                var $selBox = $('#'+ selId +''),
+            selectUibox.prototype.selUpdate = function () {
+                var $selBox = $('#' + selId + ''),
                     $selectedOne = $selBox.closest($selWrap).find('.ui-selected-one'),
-                    $uiResult = $selBox.closest($selWrap).find('.ui-result-ul')
-                    ;
+                    $uiResult = $selBox.closest($selWrap).find('.ui-result-ul');
 
-                $uiResult.find('button').on('click',function(e){
+                $uiResult.find('button').on('click', function (e) {
                     var index = $(this).parent().index();
 
                     //셀렉트박스 셀렉트
-                    $selBox.find('option').eq(index).prop('selected',true);
+                    $selBox.find('option').eq(index).prop('selected', true);
                     // 선택된 값 출력
-                    $selectedOne.text( $selBox.find('option').eq(index).text() ).removeAttr('aria-expanded');
+                    $selectedOne.text($selBox.find('option').eq(index).text()).removeAttr('aria-expanded');
                     //셀렉트 결과 창 닫기
                     $selWrap.removeClass('ui-result-active');
                     //셀렉트박스 포커스
@@ -343,17 +343,16 @@ TNUI.module = (function(){
                 });
             }
 
-            selectUibox.prototype.selOne = function(){
-                var $selBox = $('#'+ selId +''),
-                    $selectedOne = $selBox.closest($selWrap).find('.ui-selected-one')
-                    ;
+            selectUibox.prototype.selOne = function () {
+                var $selBox = $('#' + selId + ''),
+                    $selectedOne = $selBox.closest($selWrap).find('.ui-selected-one');
 
-                    
-                    $selectedOne.on('click',function(e){
-                        console.log( $selBox.prop('disabled') );
-                        if( $selBox.prop('disabled') ){
-                            return false;
-                        }
+
+                $selectedOne.on('click', function (e) {
+                    console.log($selBox.prop('disabled'));
+                    if ($selBox.prop('disabled')) {
+                        return false;
+                    }
                     $selWrap.removeClass('active ui-result-active');
                     $selectedOne.removeAttr('aria-expanded');
                     $(this).attr('aria-expanded', true).closest($selWrap).removeClass('active ui-result-active').addClass('active ui-result-active');
@@ -364,14 +363,14 @@ TNUI.module = (function(){
 
 
 
-            selectUibox.prototype.defaultSet = function(){
-                console.log('selectUibox prototype' + opt); 
+            selectUibox.prototype.defaultSet = function () {
+                console.log('selectUibox prototype' + opt);
             };
 
-            $.each($selWrap, function(i){
+            $.each($selWrap, function (i) {
                 selId = $selWrap.eq(i).find('select').attr('id');
 
-                new selectUibox(''+selId+'');
+                new selectUibox('' + selId + '');
             });
 
             console.log('selectUi');
@@ -379,44 +378,43 @@ TNUI.module = (function(){
 
         },
 
-        tooltipUi : function(arrW,arrH,opt){
+        tooltipUi: function (arrW, arrH, opt) {
             var tooltip,
                 $tooltip = $('.ui-tooltip a'),
                 opt = opt || 0; // 페이드 효과 없엘때 0으로;
-                
 
-            tooltip = function(){
+
+            tooltip = function () {
 
                 this.evt();
             }
 
-            tooltip.prototype.evt = function(){
-                $tooltip.on('mouseenter focus', function(){
+            tooltip.prototype.evt = function () {
+                $tooltip.on('mouseenter focus', function () {
                     var t = $(this),
                         targetOff = t.offset(),
                         dataOpt = t.data('option'),
                         tarId = t.data('id'),
-                        tarH = $('#'+tarId+'').outerHeight(),
-                        tarW = $('#'+tarId+'').outerWidth(),
+                        tarH = $('#' + tarId + '').outerHeight(),
+                        tarW = $('#' + tarId + '').outerWidth(),
                         thisBtnW = t.outerWidth(),
-                        thisBtnH = t.outerHeight()
-                        ;
+                        thisBtnH = t.outerHeight();
 
-                        // console.log( 
-                        //     'targetOff top' + targetOff.top,
-                        //     'targetOff left' + targetOff.left,
-                        //     'thisBtnW' + thisBtnW);
+                    // console.log( 
+                    //     'targetOff top' + targetOff.top,
+                    //     'targetOff left' + targetOff.left,
+                    //     'thisBtnW' + thisBtnW);
                     var config = {
                         top: {
                             'top': parseInt(targetOff.top - tarH - arrH),
                             'left': parseInt(targetOff.left)
                         },
                         left: {
-                            'top': parseInt(targetOff.top - tarH/4 ),
+                            'top': parseInt(targetOff.top - tarH / 4),
                             'left': parseInt(targetOff.left - tarW - arrW)
                         },
                         right: {
-                            'top': parseInt(targetOff.top - tarH/4),
+                            'top': parseInt(targetOff.top - tarH / 4),
                             'left': parseInt(targetOff.left + thisBtnW + arrW)
                         },
                         bottom: {
@@ -425,79 +423,95 @@ TNUI.module = (function(){
                         }
                     };
 
-                    $('#'+tarId+'').css(config[dataOpt]).addClass(dataOpt).stop().fadeIn(opt);
+                    $('#' + tarId + '').css(config[dataOpt]).addClass(dataOpt).stop().fadeIn(opt);
 
-                }).on('blur mouseleave', function(){
+                }).on('blur mouseleave', function () {
                     var t = $(this),
                         tarId = t.data('id');
-                    $('#'+tarId+'').stop().fadeOut(opt);
+                    $('#' + tarId + '').stop().fadeOut(opt);
                 });;
             }
-            new tooltip(arrW,arrH,opt);
+            new tooltip(arrW, arrH, opt);
             console.log('tooltipUi');
 
         },
 
-        modalUi : function(){
+        modalUi: function () {
             var mvBtn = $('[data-modal]'),
                 btnClose = $('.mvClose'),
                 optTrans = 'false',
                 openSt = 'false',
                 mvId;
-                
-                var dimLyOpen = function(mvId){
-                    if( openSt == 'true'){
-                        return;
-                    }
 
-                    $('html').addClass('fixed');
-                    $('[data-target='+ mvId +']').fadeIn(0);
-                    if(!isMobile) TNUI.module.scrollUi();
-
-                    if( optTrans == 'true'){
-                        $('[data-target='+ mvId +']').addClass('on');
-                    }
-                    
-                    //ie9 flag
-                    if( detectIe == '9' ){
-                        $('[data-target='+ mvId +'] .inner').css({
-                            'top' : '50%',
-                            'marginTop' : -(  $('[data-target='+ mvId +']').find('.inner').height() / 2)
-                        });
-                    }
-                    openSt = 'true';
-
-                }
-    
-                var dimLyClose = function(){
-                    $('html').removeClass('fixed');
-                    if( optTrans == 'true'){
-                        //css transition ease값 = delay
-                        $('[data-target='+ mvId +']').removeClass('on').delay(500).fadeOut(0);
-                    } else{
-                        $('[data-target='+ mvId +']').hide(0);
-                    }
-                    openSt = 'false';
+            var dimLyOpen = function (mvId) {
+                if (openSt == 'true') {
+                    return;
                 }
 
-                mvBtn.on('click', function(e){
-                    e.preventDefault();
+                $('html').addClass('fixed');
+                $('[data-target=' + mvId + ']').fadeIn(0);
+                if (!isMobile) TNUI.module.scrollUi();
 
-                    mvId = $(this).attr('data-modal');
-                    $('[data-target='+ mvId +']').hasClass('trans-ms')? optTrans = 'true': optTrans = 'false';
+                if (optTrans == 'true') {
+                    $('[data-target=' + mvId + ']').addClass('on');
+                }
 
+                //ie9 flag
+                if (detectIe == '9') {
+                    $('[data-target=' + mvId + '] .inner').css({
+                        'top': '50%',
+                        'marginTop': -($('[data-target=' + mvId + ']').find('.inner').height() / 2)
+                    });
+                }
+                openSt = 'true';
+                // console.log('open');
+
+
+            }
+
+            var dimLyClose = function (mvId) {
+                $('html').removeClass('fixed');
+                if (optTrans == 'true') {
+                    //css transition ease값 = delay
+                    $('[data-target=' + mvId + ']').removeClass('on').delay(500).fadeOut(0);
+                } else {
+                    $('[data-target=' + mvId + ']').hide(0);
+                }
+                openSt = 'false';
+                // console.log('close');
+
+            }
+
+            mvBtn.on('click', function (e) {
+                e.preventDefault();
+
+                mvId = $(this).attr('data-modal');
+                $('[data-target=' + mvId + ']').hasClass('trans-ms') ? optTrans = 'true' : optTrans = 'false';
+
+                dimLyOpen(mvId);
+            });
+
+            btnClose.on('click', function (e) {
+                e.preventDefault();
+                dimLyClose(mvId);
+            });
+
+            //외부 제어용 플러그인형식
+            $.fn.modalUi = function (evt, mvId) {
+                if (evt === 'open') {
                     dimLyOpen(mvId);
-                });
+                } else if (evt === 'close') {
+                    dimLyClose(mvId);
 
-                btnClose.on('click', function(e){
-                    e.preventDefault();
-                    dimLyClose();
-                });
+                }
+                return this;
+
+            }
 
             console.log('modalUi');
         },
 
-        scrollUi :function() {
+        scrollUi: function () {
             var scrollWrap = $('.ui-scrollview'),
                 scrollArea = scrollWrap.find('.ui-scrollarea'),
                 scrollCt = scrollArea.find('.ui-content'),
@@ -506,97 +520,97 @@ TNUI.module = (function(){
                 down = false,
                 rangeTop,
                 rangeSize;
-                
-                //scroll width & height 구하기
-                var calWidth = function(){
-                    var i = 0;
 
-                    scrollWrap.each(function(i){
-                        var wrapW = scrollWrap.eq(i).parent().width(),
-                            wrapH = scrollCt.eq(i).prop('scrollHeight'),
-                            wrapOrgH = scrollWrap.eq(i).height(),
-                            barSize =  parseInt( (wrapOrgH / wrapH) * 100 );
-    
-                        // console.log(
-                        //     'wrapW' + wrapW,
-                        //     'wrapOrgH' + wrapOrgH,
-                        //     'wrapH' + wrapH,
-                        //     'barSize' + barSize
-                        //     );
-                        scrollWrap.eq(i).width(wrapW);
-                        scrollCt.eq(i).width(wrapW).height(wrapOrgH);
-                        
-                        barCursor.eq(i).height( barSize + '%');
+            //scroll width & height 구하기
+            var calWidth = function () {
+                var i = 0;
 
+                scrollWrap.each(function (i) {
+                    var wrapW = scrollWrap.eq(i).parent().width(),
+                        wrapH = scrollCt.eq(i).prop('scrollHeight'),
+                        wrapOrgH = scrollWrap.eq(i).height(),
+                        barSize = parseInt((wrapOrgH / wrapH) * 100);
+
+                    // console.log(
+                    //     'wrapW' + wrapW,
+                    //     'wrapOrgH' + wrapOrgH,
+                    //     'wrapH' + wrapH,
+                    //     'barSize' + barSize
+                    //     );
+                    scrollWrap.eq(i).width(wrapW);
+                    scrollCt.eq(i).width(wrapW).height(wrapOrgH);
+
+                    barCursor.eq(i).height(barSize + '%');
+
+                });
+
+                // scrollbar 위치 구하기
+                scrollArea.on('scroll', function () {
+                    var t = $(this),
+                        wrapH = t.find('.ui-content').prop('scrollHeight'),
+                        wrapOrgH = t.parent().height(),
+                        barCursor = t.parent().find('.bar'),
+                        barSize = barCursor.height(),
+                        scTop = $(this).scrollTop(),
+                        scTopPer = parseInt(scTop / ((wrapH - wrapOrgH) / 100)),
+                        barPer = (wrapOrgH - barSize) / 100;
+
+                    barCursor.eq(i).css({
+                        'top': parseInt(barPer * scTopPer) + 'px'
                     });
+                });
 
-                    // scrollbar 위치 구하기
-                    scrollArea.on('scroll', function(){
-                        var t = $(this),
-                            wrapH = t.find('.ui-content').prop('scrollHeight'),
-                            wrapOrgH = t.parent().height(),
-                            barCursor = t.parent().find('.bar'),
-                            barSize =  barCursor.height(),
-                            scTop = $(this).scrollTop(),
-                            scTopPer = parseInt(scTop / ((wrapH - wrapOrgH) / 100) ),
-                            barPer = (wrapOrgH - barSize) / 100;
-
-                            barCursor.eq(i).css({
-                                'top': parseInt(barPer * scTopPer) + 'px'
-                            });
-                    });
-
-                    scrollBar.on('mousedown', function(e){
-                        var t = $(this);
-                        rangeTop = t.offset().top,
+                scrollBar.on('mousedown', function (e) {
+                    var t = $(this);
+                    rangeTop = t.offset().top,
                         rangeSize = t.height();
-                        scrollCt = t.closest(scrollWrap).find(scrollArea),
+                    scrollCt = t.closest(scrollWrap).find(scrollArea),
                         down = true;
-                        // console.log(scrollCt);
+                    // console.log(scrollCt);
 
-                        updateDrag(e);
-                        return false;
-                    });
+                    updateDrag(e);
+                    return false;
+                });
 
-                    $(document).on('mousemove', function(e){
-                        updateDrag(e);
-                    });
-                    
-                    $(document).on('mouseup', function(){
-                        down = false;
-                    });
+                $(document).on('mousemove', function (e) {
+                    updateDrag(e);
+                });
+
+                $(document).on('mouseup', function () {
+                    down = false;
+                });
 
 
 
-                    //스크롤바 drag 이벤트
-                    function updateDrag(e){
-                        var t = $(e.target),
-                            barCursor = t.closest(scrollWrap).find('.bar'),
-                            barSize =  parseInt(barCursor.height())/2,
-                            curTop = e.pageY - rangeTop - barSize,
-                            curScTop = Math.round((curTop * 100) / (rangeSize - (barSize*2)) * (scrollCt.find('.ui-content').prop('scrollHeight') - scrollCt.height()) / 100);
+                //스크롤바 drag 이벤트
+                function updateDrag(e) {
+                    var t = $(e.target),
+                        barCursor = t.closest(scrollWrap).find('.bar'),
+                        barSize = parseInt(barCursor.height()) / 2,
+                        curTop = e.pageY - rangeTop - barSize,
+                        curScTop = Math.round((curTop * 100) / (rangeSize - (barSize * 2)) * (scrollCt.find('.ui-content').prop('scrollHeight') - scrollCt.height()) / 100);
 
-                            // console.log('updateDrag',e.pageY,rangeTop,barSize);
+                    // console.log('updateDrag',e.pageY,rangeTop,barSize);
 
-                        if( down && e.pageY >= (rangeTop + barSize) && e.pageY <= (rangeTop + rangeSize - barSize) ){
-                            barCursor.css('top', curTop + 'px');
-                            scrollCt.scrollTop(curScTop);
-                        }
+                    if (down && e.pageY >= (rangeTop + barSize) && e.pageY <= (rangeTop + rangeSize - barSize)) {
+                        barCursor.css('top', curTop + 'px');
+                        scrollCt.scrollTop(curScTop);
                     }
+                }
 
-                    
-                    
-                }();
 
-                console.log('scrollUi');
+
+            }();
+
+            console.log('scrollUi');
         },
 
-        accoUi : function(){
+        accoUi: function () {
             var uiAccoWrap = $('.ui-accordian'),
                 uiAccobtn = uiAccoWrap.find('.ui-btn-acco'),
                 uiAccoCt = uiAccoWrap.find('.ui-acco-ct'),
                 ArrBtn = Array.prototype.slice.call(uiAccobtn),
-                ArrSubBtn = ArrBtn.filter(function(i){
+                ArrSubBtn = ArrBtn.filter(function (i) {
                     return $(i).hasClass('sub');
                 }),
                 opendSt = $('[data-open]'),
@@ -606,67 +620,81 @@ TNUI.module = (function(){
 
 
             //click evt
-            uiAccobtn.on('click',function(e){
+            uiAccobtn.on('click', function (e) {
                 var t = $(this),
-                allowMultiple = t.closest(uiAccoWrap).attr('data-allow-multiple') == 'true',
-                isExpanded = t.attr('aria-expanded') == 'true',
-                isSub = t.closest(uiAccoWrap).hasClass('sub-accord'),
-                tarId = t.attr('aria-controls'),
-                tarCt = t.closest(uiAccoWrap).find('#' + tarId),
-                motSpd = parseInt(t.closest(uiAccoWrap).attr('data-trans-speed')),
-                tarCtH = t.closest(uiAccoWrap).find(tarCt).height(),
-                tarCtAH = t.closest(uiAccoWrap).find(tarCt).css('height','auto').height();
+                    allowMultiple = t.closest(uiAccoWrap).attr('data-allow-multiple') == 'true',
+                    isExpanded = t.attr('aria-expanded') == 'true',
+                    isSub = t.closest(uiAccoWrap).hasClass('sub-accord'),
+                    tarId = t.attr('aria-controls'),
+                    tarCt = t.closest(uiAccoWrap).find('#' + tarId),
+                    motSpd = parseInt(t.closest(uiAccoWrap).attr('data-trans-speed')),
+                    tarCtH = t.closest(uiAccoWrap).find(tarCt).height(),
+                    tarCtAH = t.closest(uiAccoWrap).find(tarCt).css('height', 'auto').height();
 
-                if(tarCt.is(':animated')){ return}
+                if (tarCt.is(':animated')) {
+                    return
+                }
 
-                if(!isExpanded){
+                if (!isExpanded) {
                     //다중 열기 불가능
                     if (!allowMultiple) {
-                        t.closest(uiAccoWrap).find(uiAccoCt).animate({'height' : 0},0);
-                        t.closest(uiAccoWrap).find(uiAccobtn).attr('aria-expanded','false').removeAttr('aria-disabled');
+                        t.closest(uiAccoWrap).find(uiAccoCt).animate({
+                            'height': 0
+                        }, 0);
+                        t.closest(uiAccoWrap).find(uiAccobtn).attr('aria-expanded', 'false').removeAttr('aria-disabled');
                         t.closest(uiAccoWrap).find('li').removeClass('active');
                         t.attr('aria-disabled', 'true');
                     };
-                    
-                    t.attr('aria-expanded','true');
+
+                    t.attr('aria-expanded', 'true');
                     t.closest('li').addClass('active');
                     //서브 어코디언 클릭시 부모의 높이값 증가
-                    if(isSub){
+                    if (isSub) {
                         var pH = t.closest(uiAccoCt).height();
-                        t.closest(uiAccoCt).height( parseInt(pH) + parseInt(tarCtAH));
+                        t.closest(uiAccoCt).height(parseInt(pH) + parseInt(tarCtAH));
                     }
-                    t.closest(uiAccoWrap).find(tarCt).stop().height(tarCtH).animate({ 'height' : tarCtAH + 'px'},motSpd);
-                    
+                    t.closest(uiAccoWrap).find(tarCt).stop().height(tarCtH).animate({
+                        'height': tarCtAH + 'px'
+                    }, motSpd);
+
 
                 } else {
 
                     //다중 열기 불가능
                     if (!allowMultiple) {
-                        if(isExpanded){ return };
-                        t.attr('aria-expanded','false');
-                        t.closest(uiAccoWrap).find(uiAccoCt).animate({ 'height' : 0},motSpd);
-                        t.closest(uiAccoWrap).find(uiAccobtn).attr('aria-expanded','false');
-                        t.closest(uiAccoWrap).find(tarCt).stop().animate({ 'height' : tarCtAH + 'px'},motSpd);
+                        if (isExpanded) {
+                            return
+                        };
+                        t.attr('aria-expanded', 'false');
+                        t.closest(uiAccoWrap).find(uiAccoCt).animate({
+                            'height': 0
+                        }, motSpd);
+                        t.closest(uiAccoWrap).find(uiAccobtn).attr('aria-expanded', 'false');
+                        t.closest(uiAccoWrap).find(tarCt).stop().animate({
+                            'height': tarCtAH + 'px'
+                        }, motSpd);
                         t.removeAttr('aria-disabled');
                         t.closest('li').addClass('active');
                         return;
                     };
 
-                    t.attr('aria-expanded','false')
+                    t.attr('aria-expanded', 'false')
                     //서브 어코디언 클릭시 부모의 높이값 감소
-                    if(isSub){
+                    if (isSub) {
                         var pH = t.closest(uiAccoCt).height();
-                        t.closest(uiAccoCt).height( parseInt(pH) - parseInt(tarCtAH));
+                        t.closest(uiAccoCt).height(parseInt(pH) - parseInt(tarCtAH));
                     }
-                    t.closest(uiAccoWrap).find(tarCt).stop().animate({ 'height' : 0},motSpd);
+                    t.closest(uiAccoWrap).find(tarCt).stop().animate({
+                        'height': 0
+                    }, motSpd);
                     t.closest('li').removeClass('active');
                 }
 
                 e.preventDefault();
 
-            }).on('focus',function(){
+            }).on('focus', function () {
                 $(this).closest(uiAccoWrap).addClass('focus');
-            }).on('blur',function(){
+            }).on('blur', function () {
                 $(this).closest(uiAccoWrap).removeClass('focus');
             });
 
@@ -680,7 +708,7 @@ TNUI.module = (function(){
                 var ctrlModifier = (e.ctrlKey && key.match(/33|34/));
 
                 // Is this coming from an accordion header?
-                if ( uiAccobtn ) {
+                if (uiAccobtn) {
                     // Up/ Down arrow and Control + Page Up/ Page Down keyboard operations
                     // 38 = Up, 40 = Down
                     if (key.match(/38|40/) || ctrlModifier) {
@@ -690,9 +718,9 @@ TNUI.module = (function(){
                         var newIndex = (index + length + direction) % length;
 
                         //서브 아코디언 있을경우 
-                        if( $(target).is('.sub-has') && $(target).attr('aria-expanded') == 'false' ){
+                        if ($(target).is('.sub-has') && $(target).attr('aria-expanded') == 'false') {
                             direction == 1 ? newIndex = newIndex + ArrSubBtn.length : newIndex;
-                        } else if( $(target).is('.ui-sub-next') && $(target).closest('[data-li]').prev().find(uiAccobtn).attr('aria-expanded') == 'false'){
+                        } else if ($(target).is('.ui-sub-next') && $(target).closest('[data-li]').prev().find(uiAccobtn).attr('aria-expanded') == 'false') {
                             direction == -1 ? newIndex = newIndex - ArrSubBtn.length : newIndex;
                         };
 
@@ -717,24 +745,24 @@ TNUI.module = (function(){
 
                 }
             });
-            
-            
+
+
 
             //init
             // uiAccoCt.hide();
             opendSt.trigger('click');
-            uiAccoWrap.each(function(){
+            uiAccoWrap.each(function () {
                 var t = $(this);
                 t.find('.ui-btn-acco').last().addClass('last');
             });
             // 서브 어코디언 있을때 다음 어코디언(키맵핑)에 클래스 추가
-            if( $('.sub-has').length !== 0) $('.sub-has').closest('[data-li]').next().find(uiAccobtn).addClass('ui-sub-next');
-            
+            if ($('.sub-has').length !== 0) $('.sub-has').closest('[data-li]').next().find(uiAccobtn).addClass('ui-sub-next');
+
             console.log('accoUi');
 
         },
 
-        sliderUi : function(container_id, vert, min, max, inc, jump, showVals, range, val1, val2){
+        sliderUi: function (container_id, vert, min, max, inc, jump, showVals, range, val1, val2) {
             var sliderUiIn,
                 keyCodes;
 
@@ -757,7 +785,7 @@ TNUI.module = (function(){
                 this.down = 40;
 
             } // end keyCodes
-            
+
             ////////////////////////////////////////////////////
             //
             // function slider() is a class to define an ARIA-enabled slider widget. The class
@@ -784,7 +812,7 @@ TNUI.module = (function(){
             // @return N/A
             //
 
-            sliderUiIn = function() {
+            sliderUiIn = function () {
                 // define slider object properties
                 this.keys = new keyCodes();
 
@@ -837,7 +865,7 @@ TNUI.module = (function(){
 
             }
 
-            
+
             // 슬라이더 프로토타입 속성
             // function createHandle() creates a handle for the slider. It defines ARIA attributes for
             // the handle and positions it at the specified value in the slider range. if showVals is true,
@@ -1104,8 +1132,8 @@ TNUI.module = (function(){
                 // $handle.mousedown(function (e) {
                 //     return thisObj.handleMouseDown($handle, e);
                 // });
-                
-                $handle.on('touchstart mousedown',function (e) {
+
+                $handle.on('touchstart mousedown', function (e) {
                     return thisObj.handleMouseDown($handle, e);
 
                 });
@@ -1350,7 +1378,7 @@ TNUI.module = (function(){
             sliderUiIn.prototype.handleMouseDown = function ($handle, evt) {
 
                 var thisObj = this; // store the this pointer
-                    
+
 
 
                 // remove focus highlight from all other slider handles on the page
@@ -1368,7 +1396,7 @@ TNUI.module = (function(){
                 // $(document).mousemove(function (e) {
                 //     thisObj.handleMouseMove($handle, e);
                 // });
-                $(document).on('mousemove touchmove',function (e) {
+                $(document).on('mousemove touchmove', function (e) {
                     thisObj.handleMouseMove($handle, e);
                 });
 
@@ -1377,7 +1405,7 @@ TNUI.module = (function(){
                 //     return thisObj.handleMouseUp($handle, e);
                 // });
 
-                $(document).on('mouseup touchend',function (e) {
+                $(document).on('mouseup touchend', function (e) {
                     return thisObj.handleMouseUp($handle, e);
                 });
 
@@ -1429,12 +1457,12 @@ TNUI.module = (function(){
                 var touch = undefined,
                     pos_x = evt.pageX,
                     pos_y = evt.pageY;
-                    
-                    if(evt.originalEvent.touches){
-                        touch = evt.originalEvent.touches[0],
+
+                if (evt.originalEvent.touches) {
+                    touch = evt.originalEvent.touches[0],
                         pos_x = touch.pageX,
                         pos_y = touch.pageY;
-                    }
+                }
 
                 if (this.range == true) {
                     // if this is handle 1, set stopVal to be the value
@@ -1458,7 +1486,7 @@ TNUI.module = (function(){
 
                     // Calculate the new slider value based on the vertical pixel position of the mouse
                     // newVal = Math.round((evt.pageY - this.top) / this.height * (this.max - this.min)) + this.min;
-                    newVal = Math.round((pos_y - this.top ) / this.height * (this.max - this.min)) + this.min;
+                    newVal = Math.round((pos_y - this.top) / this.height * (this.max - this.min)) + this.min;
                 }
 
                 if (newVal >= startVal && newVal <= stopVal) {
@@ -1483,18 +1511,18 @@ TNUI.module = (function(){
             } // end handleMouseMove            
 
             //슬라이더 호출 생성
-            var container_id = new sliderUiIn(''+container_id+'', vert, min, max, inc, jump, showVals, range, val1, val2);
+            var container_id = new sliderUiIn('' + container_id + '', vert, min, max, inc, jump, showVals, range, val1, val2);
 
             console.log('sliderUi');
 
-            
+
         },
 
-        swipeUi : function(container_id,opt){
+        swipeUi: function (container_id, opt) {
             var swipeUiIn,
                 $swipeWrap = $('.ui-swipe-wrap'),
                 sWW = $swipeWrap.width(),
-                t = $('#'+ container_id +''),
+                t = $('#' + container_id + ''),
                 c = t.children('[data-item]'),
                 N = c.length,
                 x0 = null,
@@ -1502,47 +1530,52 @@ TNUI.module = (function(){
                 tx = 0,
                 locked = false,
                 opt = {
-                    'loop' : opt.loop || 'false', //무한 롤링
-                    'transition' : opt.transition || 500, // 슬라이드시 모션 속도
-                    'transition2' : opt.transition2 || 100, // 원복할때 모션 속도
-                    'thresold' : opt.thresold || .2 //감도(%)
+                    'loop': opt.loop || 'false', //무한 롤링
+                    'transition': opt.transition || 500, // 슬라이드시 모션 속도
+                    'transition2': opt.transition2 || 100, // 원복할때 모션 속도
+                    'thresold': opt.thresold || .2 //감도(%)
                 },
                 $prevBtn = t.closest($swipeWrap).find('.ui-swipe-btn .ui-btn-prev'),
-                $nextBtn = t.closest($swipeWrap).find('.ui-swipe-btn .ui-btn-next')
-                ;
+                $nextBtn = t.closest($swipeWrap).find('.ui-swipe-btn .ui-btn-next');
 
 
-                function unify(e) { return e.changedTouches ? e.changedTouches[0] : e };
-            
-            
-            swipeUiIn = function(){
+            function unify(e) {
+                return e.changedTouches ? e.changedTouches[0] : e
+            };
+
+
+            swipeUiIn = function () {
                 this.init();
                 var thisObj = this,
                     $bullet = $('.ui-bullet button');
 
 
-                $swipeWrap.on('mousedown touchstart', function(e){
+                $swipeWrap.on('mousedown touchstart', function (e) {
                     return thisObj.lock(e);
                 });
 
-                $swipeWrap.on('mouseup touchend', function(e){
+                $swipeWrap.on('mouseup touchend', function (e) {
                     return thisObj.move(e);
                 });
 
-                $swipeWrap.on('mousemove touchmove', function(e){
+                $swipeWrap.on('mousemove touchmove', function (e) {
                     e.preventDefault();
                     return thisObj.drag(e);
                 });
 
-                $prevBtn.on('click', function(e){return thisObj.prev(e)} );
-                $nextBtn.on('click', function(e){return thisObj.next(e)} );
+                $prevBtn.on('click', function (e) {
+                    return thisObj.prev(e)
+                });
+                $nextBtn.on('click', function (e) {
+                    return thisObj.next(e)
+                });
 
-                $bullet.on('click', function(e){
+                $bullet.on('click', function (e) {
                     var t = $(this),
                         buN = t.data('bullet').split('b'),
                         n = parseInt(buN[1]);
 
-                    return thisObj.bulletEvt(e,n);
+                    return thisObj.bulletEvt(e, n);
 
                 });
 
@@ -1552,188 +1585,207 @@ TNUI.module = (function(){
                 // });
             };
 
-            swipeUiIn.prototype.init = function(){
-                t.css({ 'width' : sWW * N });
-                c.css({ 'width' : sWW });
+            swipeUiIn.prototype.init = function () {
+                t.css({
+                    'width': sWW * N
+                });
+                c.css({
+                    'width': sWW
+                });
                 this.createBullet();
                 this.bulletOn();
                 // this.rolling();
             };
 
-            swipeUiIn.prototype.rolling = function(){
+            swipeUiIn.prototype.rolling = function () {
 
                 var delay = 1000,
                     thisObj = this,
-                    
 
-                timer = setInterval( function(){
-                    thisObj.next(i)
-                }, delay);
+
+                    timer = setInterval(function () {
+                        thisObj.next(i)
+                    }, delay);
 
 
             };
 
-            swipeUiIn.prototype.prev = function(e){
+            swipeUiIn.prototype.prev = function (e) {
                 locked = true;
-                t.css('trasnlate','none');
+                t.css('trasnlate', 'none');
                 if (locked) {
-                    if(i > 0){
-                        i =  i - 1;
-                        this.move(e,i);
+                    if (i > 0) {
+                        i = i - 1;
+                        this.move(e, i);
                     }
                 }
                 locked = false;
             };
-            swipeUiIn.prototype.next = function(e){
+            swipeUiIn.prototype.next = function (e) {
                 locked = true;
-                t.css('trasnlate','none');
+                t.css('trasnlate', 'none');
                 if (locked) {
-                    if(i - (N-1)){
-                        i =  i + 1;
-                        this.move(e,i);
+                    if (i - (N - 1)) {
+                        i = i + 1;
+                        this.move(e, i);
                     }
                 }
                 locked = false;
             };
 
-            swipeUiIn.prototype.createBullet = function(){
+            swipeUiIn.prototype.createBullet = function () {
                 var appendBul = '';
 
-                t.closest($swipeWrap).append( $('<div class="ui-bullet">') );
-                c.each(function(i){
-                    appendBul += '<button data-bullet="b'+ i +'">' + i + '</button>';
+                t.closest($swipeWrap).append($('<div class="ui-bullet">'));
+                c.each(function (i) {
+                    appendBul += '<button data-bullet="b' + i + '">' + i + '</button>';
                 });
                 t.closest($swipeWrap).find('.ui-bullet').html(appendBul);
             };
-            
-            swipeUiIn.prototype.bulletOn = function(){
+
+            swipeUiIn.prototype.bulletOn = function () {
                 var $bullet = $('.ui-bullet');
 
                 $bullet.children().removeClass('active').eq(i).addClass('active');
             };
 
-            swipeUiIn.prototype.bulletEvt = function(e,n){
+            swipeUiIn.prototype.bulletEvt = function (e, n) {
                 locked = true;
-                t.css('trasnlate','none');
-                this.move(e,n);
+                t.css('trasnlate', 'none');
+                this.move(e, n);
                 locked = false;
             }
-            
 
-            swipeUiIn.prototype.lock = function(e){
+
+            swipeUiIn.prototype.lock = function (e) {
                 // console.log('touchstart');
                 x0 = unify(e).clientX;
                 locked = true;
-                t.css('trasnlate','none');
+                t.css('trasnlate', 'none');
             };
 
-            swipeUiIn.prototype.drag = function(e){
+            swipeUiIn.prototype.drag = function (e) {
                 tx = -(sWW * i) + Math.round(unify(e).clientX - x0);
 
                 // console.log(tx);
-                if(locked){
-                    if(detectIe > 0 && detectIe < 12){
-                        t.css({ 'left' : tx+'px' });
+                if (locked) {
+                    if (detectIe > 0 && detectIe < 12) {
+                        t.css({
+                            'left': tx + 'px'
+                        });
                     }
                     t.css({
-                        '-webkit-transform' : 'translate('+ tx  +'px)'
+                        '-webkit-transform': 'translate(' + tx + 'px)'
                     });
                 }
             }
-            
-            swipeUiIn.prototype.move = function(e,idx){
+
+            swipeUiIn.prototype.move = function (e, idx) {
 
                 if (locked) {
                     // console.log('touchend', i);
                     var dx = unify(e).clientX - x0,
                         // s = Math.sign(dx);// < = 1 , > = -1
                         s = dx > 0 ? s = 1 : s = -1, // 방향 < = 1 , > = -1
-                        f = +(s*dx/sWW).toFixed(2); // 이동 감도
+                        f = +(s * dx / sWW).toFixed(2); // 이동 감도
 
                     //prev,next 통해서 올때
-                    if(idx >= 0 || !!idx ){
+                    if (idx >= 0 || !!idx) {
                         i = idx;
-                        if(detectIe > 0 && detectIe < 12){
-                            t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition);
-                        } else{
+                        if (detectIe > 0 && detectIe < 12) {
+                            t.stop().animate({
+                                'left': -(sWW * i) + 'px'
+                            }, opt.transition);
+                        } else {
                             t.css({
-                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
-                                'transition' : 'all ' + opt.transition +'ms ease-out'
+                                '-webkit-transform': 'translate(-' + (sWW * i) + 'px)',
+                                'transition': 'all ' + opt.transition + 'ms ease-out'
                             });
                         }
                         this.bulletOn();
 
                         return false;
-                    } else{
+                    } else {
                         //무한 롤링 옵션
-                        if(opt.loop == 'true'){
-                            if(i == 0 && s == 1 && f > .2) { 
+                        if (opt.loop == 'true') {
+                            if (i == 0 && s == 1 && f > .2) {
                                 i = N - 1
-                                if(detectIe > 0 && detectIe < 12){
-                                    t.css({ 'left' : (sWW * i) +'px' });
-                                } else{
+                                if (detectIe > 0 && detectIe < 12) {
                                     t.css({
-                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
-                                        'transition' : 'all ' + opt.transition +'ms ease-out'
+                                        'left': (sWW * i) + 'px'
+                                    });
+                                } else {
+                                    t.css({
+                                        '-webkit-transform': 'translate(-' + (sWW * i) + 'px)',
+                                        'transition': 'all ' + opt.transition + 'ms ease-out'
                                     });
                                 }
 
-                            } else if(i == N-1 && s == -1 && f > .2) { 
+                            } else if (i == N - 1 && s == -1 && f > .2) {
                                 i = 0;
-                                if(detectIe > 0 && detectIe < 12){
-                                    t.css({ 'left' : (sWW * i) +'px' });
-                                } else{
+                                if (detectIe > 0 && detectIe < 12) {
                                     t.css({
-                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
-                                        'transition' : 'transform :' + opt.transition +'ms ease-out'
+                                        'left': (sWW * i) + 'px'
+                                    });
+                                } else {
+                                    t.css({
+                                        '-webkit-transform': 'translate(-' + (sWW * i) + 'px)',
+                                        'transition': 'transform :' + opt.transition + 'ms ease-out'
                                     });
                                 }
-                            } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > opt.thresold){
+                            } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > opt.thresold) {
                                 i -= s;
-                                if(detectIe > 0 && detectIe < 12){
-                                    t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition);
-                                } else{
+                                if (detectIe > 0 && detectIe < 12) {
+                                    t.stop().animate({
+                                        'left': -(sWW * i) + 'px'
+                                    }, opt.transition);
+                                } else {
                                     t.css({
-                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
-                                        'transition' : 'all ' + opt.transition +'ms ease-out'
+                                        '-webkit-transform': 'translate(-' + (sWW * i) + 'px)',
+                                        'transition': 'all ' + opt.transition + 'ms ease-out'
                                     })
                                 }
                                 this.bulletOn();
-                            } 
-                        } else{ //롤링 없음
-                            if(i == 0 && s == 1 && f > .2) { 
-                                i=0;
-                                if(detectIe > 0 && detectIe < 12){
-                                    t.css({ 'left' : -(sWW * i) +'px' });
-                                } else{
-                                    t.css({
-                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
-                                    });
-                                }
                             }
-                            else if(i == N-1 && s == -1 && f > .2) { 
-                                i = N-1;
-                                if(detectIe > 0 && detectIe < 12){
-                                    t.css({ 'left' : -(sWW * i) +'px' });
-                                } else{
+                        } else { //롤링 없음
+                            if (i == 0 && s == 1 && f > .2) {
+                                i = 0;
+                                if (detectIe > 0 && detectIe < 12) {
                                     t.css({
-                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)'
+                                        'left': -(sWW * i) + 'px'
+                                    });
+                                } else {
+                                    t.css({
+                                        '-webkit-transform': 'translate(-' + (sWW * i) + 'px)'
                                     });
                                 }
-                            } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > opt.thresold){
-                                // console.log(
-                                    // 'i' + i,
-                                    // 's' + s, 
-                                    // 'N' + N,
-                                    // -((i / N) * sWW) + tx
-                                    // );
-                                i -= s;
-                                if(detectIe > 0 && detectIe < 12){
-                                    t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition);
-                                } else{
+                            } else if (i == N - 1 && s == -1 && f > .2) {
+                                i = N - 1;
+                                if (detectIe > 0 && detectIe < 12) {
                                     t.css({
-                                        '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
-                                        'transition' : 'all ' + opt.transition +'ms ease-out'
+                                        'left': -(sWW * i) + 'px'
+                                    });
+                                } else {
+                                    t.css({
+                                        '-webkit-transform': 'translate(-' + (sWW * i) + 'px)'
+                                    });
+                                }
+                            } else if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > opt.thresold) {
+                                // console.log(
+                                // 'i' + i,
+                                // 's' + s, 
+                                // 'N' + N,
+                                // -((i / N) * sWW) + tx
+                                // );
+                                i -= s;
+                                if (detectIe > 0 && detectIe < 12) {
+                                    t.stop().animate({
+                                        'left': -(sWW * i) + 'px'
+                                    }, opt.transition);
+                                } else {
+                                    t.css({
+                                        '-webkit-transform': 'translate(-' + (sWW * i) + 'px)',
+                                        'transition': 'all ' + opt.transition + 'ms ease-out'
                                     });
                                 }
 
@@ -1742,17 +1794,19 @@ TNUI.module = (function(){
                                 x0 = null;
                                 locked = false;
                                 return false;
-                                
-                            } 
+
+                            }
                         }
 
                         //페이지 이동없이 원래 슬라이드 돌아갈떄
-                        if(detectIe > 0 && detectIe < 12){
-                            t.stop().animate({ 'left' : -(sWW * i) +'px' },opt.transition2);
-                        } else{
+                        if (detectIe > 0 && detectIe < 12) {
+                            t.stop().animate({
+                                'left': -(sWW * i) + 'px'
+                            }, opt.transition2);
+                        } else {
                             t.css({
-                                '-webkit-transform' : 'translate(-'+ (sWW * i) +'px)',
-                                'transition' : 'all ' + opt.transition2 +'ms ease-out'
+                                '-webkit-transform': 'translate(-' + (sWW * i) + 'px)',
+                                'transition': 'all ' + opt.transition2 + 'ms ease-out'
                             });
                         }
                         x0 = null;
@@ -1761,18 +1815,18 @@ TNUI.module = (function(){
                     }
 
                 }
-                
+
             };
-            
 
-            var container_id = new swipeUiIn(container_id,opt);
 
-            
+            var container_id = new swipeUiIn(container_id, opt);
+
+
 
             console.log('swipeUi');
         },
 
-        init : function(){
+        init: function () {
             // var t = this;
 
             // t.tabUi();
@@ -1786,6 +1840,6 @@ TNUI.module = (function(){
     }
     // (end) TNUI returm module
 
-    
+
 
 })();
