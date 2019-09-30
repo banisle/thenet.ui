@@ -45,16 +45,16 @@
 <p class="sub-txt">ajax 호출: before,after<br /> $({selector}).modalUi('open|close',
     '{data-target 속성}'); 형태로 적용</p>
 <p>
-    <input type="text" id="ajax_input" value="input name">
-    <a href="#" class="btn_icn" id="ajax_btn"><span>모달 호출 ajax 통신</span></a>
+    <span class="inp_wrap has_btn">
+        <input type="text" id="ajax_input" value="input name">
+        <span class="inp_btn"><a href="#" class="btn_org btn_mid btn_ok" id="ajax_btn"><span>ajax 모달</span></a></span>
+    </span>
 </p>
 <script>
     $("#ajax_btn").on('click', function (e) {
         e.preventDefault();
-        var url = '/pages/c04.html',
+        var url = this.href,
             dataVal = $('#ajax_input').val();
-        console.log(dataVal)
-
 
         $.ajax({
             type: "get",
@@ -77,30 +77,28 @@
 </script>
 
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ ">
-$("#ajax_btn").on('click', function (e) {
+$(&quot;#ajax_btn&quot;).on(&#39;click&#39;, function (e) {
     e.preventDefault();
-    var url = '/pages/c04.html',
-        dataVal = $('#ajax_input').val();
-    console.log(dataVal)
-
+    var url = this.href,
+        dataVal = $(&#39;#ajax_input&#39;).val();
 
     $.ajax({
-        type: "get",
+        type: &quot;get&quot;,
         url: url,
-        dataType: "html",
+        dataType: &quot;html&quot;,
         success: function () {
-            $("#ajax_data").text(dataVal);
-            $('#a').modalUi('open', 'ajax_modal01');
+            $(&quot;#ajax_data&quot;).text(dataVal);
+            $(&#39;#a&#39;).modalUi(&#39;open&#39;, &#39;ajax_modal01&#39;);
         },
         error: function (request, status, error) {
-            console.log("code:" + request.status + "\n" + "message:" + request.responseText +
-                "\n" + "error:" + error);
+            console.log(&quot;code:&quot; + request.status + &quot;\n&quot; + &quot;message:&quot; + request.responseText +
+                &quot;\n&quot; + &quot;error:&quot; + error);
         }
     });
 });
 
-$('.mvClose').on('click', function () {
-    $('#a').modalUi('close', 'ajax_modal01');
+$(&#39;.mvClose&#39;).on(&#39;click&#39;, function () {
+    $(&#39;#a&#39;).modalUi(&#39;close&#39;, &#39;ajax_modal01&#39;);
 })
 </pre>
 
