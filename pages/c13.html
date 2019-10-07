@@ -36,3 +36,58 @@
 
 <h3>모바일 : 햄버거 & 사이드 </h3>
 <p class="sub-txt">wsg refer</p>
+
+
+<h3>기본 2depth </h3>
+<p class="sub-txt">TNUI.module.gnb2Ui() 호출</p>
+<ul role="menubar" class="menu2depth ui-menu2depth">
+    <li class=""><a href="" role="menuitem"><span>depth1</span></a></li>
+    <li class=""><a href="" role="menuitem"><span>depth2</span></a></li>
+    <li><a href="" role="menuitem"><span>depth3</span></a>
+        <ul role="menu">
+            <li role="none"><a href="" role="menuitem">depth3-a</a></li>
+            <li role="none"><a href="" role="menuitem">depth3-b</a></li>
+        </ul>
+    </li>
+    <li class="cs"><a href="" role="menuitem"><span>depth4</span></a>
+        <ul role="menu">
+            <li role="none"><a href="" role="menuitem">depth4-a</a></li>
+            <li role="none"><a href="" role="menuitem">depth4-b</a></li>
+        </ul>
+    </li>
+    <li class=""><a href="" role="menuitem"><span>depth5</span></a></li>
+</ul>
+
+<pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
+&lt;ul role=&quot;menubar&quot; class=&quot;menu2depth ui-menu2depth&quot;&gt;
+    &lt;li class=&quot;&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;&lt;span&gt;depth1&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;&lt;span&gt;depth2&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;&lt;span&gt;depth3&lt;/span&gt;&lt;/a&gt;
+        &lt;ul role=&quot;menu&quot;&gt;
+            &lt;li role=&quot;none&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;depth3-a&lt;/a&gt;&lt;/li&gt;
+            &lt;li role=&quot;none&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;depth3-b&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;cs&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;&lt;span&gt;depth4&lt;/span&gt;&lt;/a&gt;
+        &lt;ul role=&quot;menu&quot;&gt;
+            &lt;li role=&quot;none&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;depth4-a&lt;/a&gt;&lt;/li&gt;
+            &lt;li role=&quot;none&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;depth4-b&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;&lt;span&gt;depth5&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+
+<h3>top버튼</h3>
+<p class="sub-txt">TNUI.module.scrlTopUi({right 인자값, 없을시 0}) 호출</p>
+<!-- (sta) 맨위로 -->
+<button type="button" class="ui-scrlTop"><span class="hidden">맨 위로</span></button>
+<!-- (end) 맨위로 -->
+
+<script>
+$(document).ready(function(){
+    TNUI.module.gnb2Ui();
+    TNUI.module.scrlTopUi(10);
+});
+</script>

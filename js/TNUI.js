@@ -1826,6 +1826,140 @@ TNUI.module = (function () {
             console.log('swipeUi');
         },
 
+        searchUi: function(){
+            var searchBtn = function () {
+                var $searchWrap = $('.searchWrap'),
+                    $searchInp = $searchWrap.find('.inp_form input'),
+                    $btnIcn = $searchWrap.find('.icn_search');
+        
+                $searchInp.on('click focus', function () {
+                    $btnIcn.addClass('active');
+                }).on('blur', function () {
+                    $btnIcn.removeClass('active');
+                })
+            }();
+        
+            //input del txt
+            var inpTxtDel = function () {
+                var $inp_form = $('.inp_form'),
+                    $inp = $inp_form.find('input.ui-hasDel'),
+                    $btnDel = $('.ui-deltxt'),
+                    isOpen = false;
+        
+                $inp.on('propertychange change keyup paste input focusin', function (e) {
+                    var t = $(e.target),
+                        curVal = t.val(),
+                        oldVal;
+                    if (curVal !== oldVal && curVal !== '') {
+        
+                        t.closest($inp_form).find($btnDel).addClass('active');
+                        isOpen = true;
+                        return;
+                    } else {
+        
+                        $btnDel.removeClass('active');
+                        isOpen = false;
+                    }
+        
+                    oldVal = curVal;
+                });
+        
+                //포커스 잃었을때 
+                $(document).on('focusin click', function (e) {
+                    if ($inp_form) {
+                        if (!$inp_form.find(e.target).length) {
+                            $btnDel.removeClass('active');
+                        }
+                    }
+                });
+        
+                $btnDel.on('click', function (e) {
+                    if (isOpen == true) {
+                        var t = $(e.target);
+                        t.prev($inp).val('');
+                        $btnDel.removeClass('active');
+                        isOpen = false;
+        
+                    }
+                });
+            }();
+            console.log('searchUi');
+
+        },
+
+        gnb2Ui: function(){
+            var $menu = $('.ui-menu2depth > li');
+    
+            //init
+            $menu.on('mouseenter focusin', function (e) {
+                var $t = $(this).find('> a');
+    
+                $t.parent('li').addClass('active').siblings('li').removeClass('active');
+    
+            }).on('mouseleave foucsout', function () {
+                $menu.removeClass('active');
+            });
+        },
+
+        scrlTopUi: function(rV){
+            var scrTopF,
+                optLen = arguments.length,
+                rV,
+                $top = $('.ui-scrlTop');
+    
+            scrTopF = function () {
+                this.init(rV);
+                this.evt();
+                this.resize();
+                this.scroll();
+            };
+    
+            //init
+            scrTopF.prototype.init = function (rV) {
+
+                if( optLen === 0 ){
+                    rV = $(window).width() >= $('.guide-container').width() ? ($(window).width() - $('.guide-container').width()) / 2 - $top.width() - 30 : 0;
+                } else{
+                    rV = rV;
+                }
+    
+                $top.css({
+                    'right': rV
+                });
+
+            };
+    
+            scrTopF.prototype.evt = function () {
+                $top.on('click', function () {
+                    $('html,body').animate({
+                        scrollTop: 0
+                    }, 500);
+                });
+            };
+    
+            scrTopF.prototype.resize = function () {
+                var thisObj = this;
+    
+                $(window).on('resize', function () {
+                    thisObj.init();
+                });
+            };
+    
+            scrTopF.prototype.scroll = function () {
+                $(window).scroll(function () {
+                    var height = $(window).scrollTop();
+    
+                    if (height > 100) {
+                        $top.fadeIn();
+                    } else {
+                        $top.fadeOut();
+                    }
+                });
+            };
+    
+            new scrTopF(rV);
+        },
+
         init: function () {
             // var t = this;
 
