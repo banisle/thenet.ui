@@ -1142,6 +1142,95 @@ html.mobile .form_select {
     z-index: 9999;
 }
 
+/* paging */
+.pagewrap {
+	display: block;
+	width: 100%;
+	margin: 30px 0 0;
+	text-align: center;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	position: relative;
+	float: left;
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	color: #b2b2b2;
+	font-size: 12px;
+}
+
+.pagination a:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border: 1px solid #dfdee1;
+	border-right: 0;
+}
+
+.pagination .prev:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 5px;
+	height: 9px;
+	background: url('/img/icn_ir.png') 0 0 no-repeat;
+	background-position: -279px -7px;
+	transform: translate(-50%, -50%);
+}
+
+.pagination .next:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 5px;
+	height: 9px;
+	background: url('/img/icn_ir.png') 0 0 no-repeat;
+	background-position: -254px -7px;
+	transform: translate(-50%, -50%);
+}
+
+.pagination a:last-child:after {
+	border: 1px solid #dfdee1;
+}
+
+.pagination a:hover,
+.pagination a:focus,
+.pagination a.active {
+	color: #3fad57;
+}
+
+.pagination a:hover:after,
+.pagination a:focus:after,
+.pagination a.active:after {
+	right: -1px;
+	color: #3fad57;
+	border: 1px solid #3fad57;
+	z-index: 1;
+}
+
+.pagination .prev:hover:before,
+.pagination .prev:focus:before,
+.pagination .prev.active:before {
+	background-position: -305px -7px;
+}
+
+.pagination .next:hover:before,
+.pagination .next:focus:before,
+.pagination .next.active:before {
+	background-position: -332px -7px;
+}
+
+
 /* tooltip */
 .ui-tooltip a {
 	display: inline-block;
