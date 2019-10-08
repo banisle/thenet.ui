@@ -93,6 +93,7 @@ video {
 	font-size: 100%;
 	font-family: 'NotoKr', '맑은 고딕', 'Malgun Gothic', Helvetica, 'Apple SD Gothic Neo', sans-serif;
 	vertical-align: baseline;
+	font-weight: 300;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -369,7 +370,7 @@ html.fixed {
 input[type=search],
 input[type=password],
 input[type=text] {
-	font-family: 'NotoKrM';
+	font-weight: 300;
 	font-size: 13px
 }
 
@@ -515,6 +516,7 @@ input[type=text] {
 	padding: 0 20px 0;
 	color: #fff
 }
+.btn_org.free_width >span{position: relative;}
 
 .btn_no {
 	background: #5b5b5b
