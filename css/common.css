@@ -1004,7 +1004,7 @@ html.mobile .form_select {
 	overflow-x: hidden;
 }
 
-.laypop:before {
+.laypop .mask {
 	content: "";
 	position: fixed;
 	left: 0;

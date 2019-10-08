@@ -361,8 +361,6 @@ TNUI.module = (function () {
 
             }
 
-
-
             selectUibox.prototype.defaultSet = function () {
                 console.log('selectUibox prototype' + opt);
             };
@@ -436,20 +434,32 @@ TNUI.module = (function () {
 
         },
 
-        modalUi: function () {
+        modalUi: function (maskClick) {
             var mvBtn = $('[data-modal]'),
                 btnClose = $('.mvClose'),
                 optTrans = 'false',
                 openSt = 'false',
-                mvId;
+                mask = '<div class="mask">',
+                $layer = $('.wrap-modal .inner'),
+                $mask = $('.laypop .mask'),
+                mvId,
+                maskClick = maskClick || false;
 
-            var dimLyOpen = function (mvId) {
+
+            var dimLyOpen = function (mvId, maskClick) {
                 if (openSt == 'true') {
                     return;
                 }
 
                 $('html').addClass('fixed');
                 $('[data-target=' + mvId + ']').fadeIn(0);
+
+                if( $('[data-target=' + mvId + '] .mask').length ){
+                    $mask.show();
+                } else{
+                    $('[data-target=' + mvId + ']').prepend(mask);
+                }
+                
                 if (!isMobile) TNUI.module.scrollUi();
 
                 if (optTrans == 'true') {
@@ -466,6 +476,19 @@ TNUI.module = (function () {
                 openSt = 'true';
                 // console.log('open');
 
+                //바닥 클릭시 창 닫기 옵션
+                if(maskClick == true){
+
+                    $(document).on('click', function (e) {
+                        // e.preventDefault();
+                        if (e.target.className === 'wrap-modal') {
+                            $('.mvClose').find(':visible').trigger('click');
+                        }
+                    });
+                } else{
+                    $(document).off('click');
+                }
+
 
             }
 
@@ -479,7 +502,6 @@ TNUI.module = (function () {
                 }
                 openSt = 'false';
                 // console.log('close');
-
             }
 
             mvBtn.on('click', function (e) {
@@ -488,7 +510,7 @@ TNUI.module = (function () {
                 mvId = $(this).attr('data-modal');
                 $('[data-target=' + mvId + ']').hasClass('trans-ms') ? optTrans = 'true' : optTrans = 'false';
 
-                dimLyOpen(mvId);
+                dimLyOpen(mvId, maskClick);
             });
 
             btnClose.on('click', function (e) {
@@ -497,112 +519,126 @@ TNUI.module = (function () {
             });
 
             //외부 제어용 플러그인형식
-            $.fn.modalUi = function (evt, mvId) {
+            $.fn.modalUi = function (evt, mvId, maskClick) {
+
                 if (evt === 'open') {
-                    dimLyOpen(mvId);
+                    dimLyOpen(mvId, maskClick);
                 } else if (evt === 'close') {
                     dimLyClose(mvId);
 
                 }
                 return this;
-
             }
+
 
             console.log('modalUi');
         },
 
         scrollUi: function () {
+            
             var scrollWrap = $('.ui-scrollview'),
-                scrollArea = scrollWrap.find('.ui-scrollarea'),
-                scrollCt = scrollArea.find('.ui-content'),
-                scrollBar = scrollWrap.find('.ui-scrollbar'),
-                barCursor = scrollBar.find('.bar'),
-                down = false,
-                rangeTop,
-                rangeSize;
-
-            //scroll width & height 구하기
-            var calWidth = function () {
-                var i = 0;
-
-                scrollWrap.each(function (i) {
-                    var wrapW = scrollWrap.eq(i).parent().width(),
-                        wrapH = scrollCt.eq(i).prop('scrollHeight'),
-                        wrapOrgH = scrollWrap.eq(i).height(),
-                        barSize = parseInt((wrapOrgH / wrapH) * 100);
-
-                    // console.log(
-                    //     'wrapW' + wrapW,
-                    //     'wrapOrgH' + wrapOrgH,
-                    //     'wrapH' + wrapH,
-                    //     'barSize' + barSize
-                    //     );
-                    scrollWrap.eq(i).width(wrapW);
-                    scrollCt.eq(i).width(wrapW).height(wrapOrgH);
-
-                    barCursor.eq(i).height(barSize + '%');
-
-                });
-
-                // scrollbar 위치 구하기
-                scrollArea.on('scroll', function () {
-                    var t = $(this),
-                        wrapH = t.find('.ui-content').prop('scrollHeight'),
-                        wrapOrgH = t.parent().height(),
-                        barCursor = t.parent().find('.bar'),
-                        barSize = barCursor.height(),
-                        scTop = $(this).scrollTop(),
-                        scTopPer = parseInt(scTop / ((wrapH - wrapOrgH) / 100)),
-                        barPer = (wrapOrgH - barSize) / 100;
-
-                    barCursor.eq(i).css({
-                        'top': parseInt(barPer * scTopPer) + 'px'
+                    scrollArea = scrollWrap.find('.ui-scrollarea'),
+                    scrollCt = scrollArea.find('.ui-content'),
+                    scrollBar = scrollWrap.find('.ui-scrollbar'),
+                    barCursor = scrollBar.find('.bar'),
+                    down = false,
+                    rangeTop,
+                    rangeSize;
+                    
+            if(scrollWrap.length !== 0){
+                //scroll width & height 구하기
+                var calWidth = function () {
+                    var i = 0;
+    
+                    scrollWrap.each(function (i) {
+                        var wrapW = scrollWrap.eq(i).parent().width(),
+                            wrapH = scrollCt.eq(i).prop('scrollHeight'),
+                            wrapOrgH = scrollWrap.eq(i).height(),
+                            barSize = parseInt((wrapOrgH / wrapH) * 100);
+    
+                        // console.log(
+                        //     'wrapW' + wrapW,
+                        //     'wrapOrgH' + wrapOrgH,
+                        //     'wrapH' + wrapH,
+                        //     'barSize' + barSize
+                        //     );
+                        scrollWrap.eq(i).width(wrapW);
+                        scrollCt.eq(i).width(wrapW).height(wrapOrgH);
+    
+                        barCursor.eq(i).height(barSize + '%');
+    
                     });
-                });
-
-                scrollBar.on('mousedown', function (e) {
-                    var t = $(this);
-                    rangeTop = t.offset().top,
-                        rangeSize = t.height();
-                    scrollCt = t.closest(scrollWrap).find(scrollArea),
-                        down = true;
-                    // console.log(scrollCt);
-
-                    updateDrag(e);
-                    return false;
-                });
-
-                $(document).on('mousemove', function (e) {
-                    updateDrag(e);
-                });
-
-                $(document).on('mouseup', function () {
-                    down = false;
-                });
-
-
-
-                //스크롤바 drag 이벤트
-                function updateDrag(e) {
-                    var t = $(e.target),
-                        barCursor = t.closest(scrollWrap).find('.bar'),
-                        barSize = parseInt(barCursor.height()) / 2,
-                        curTop = e.pageY - rangeTop - barSize,
-                        curScTop = Math.round((curTop * 100) / (rangeSize - (barSize * 2)) * (scrollCt.find('.ui-content').prop('scrollHeight') - scrollCt.height()) / 100);
-
-                    // console.log('updateDrag',e.pageY,rangeTop,barSize);
-
-                    if (down && e.pageY >= (rangeTop + barSize) && e.pageY <= (rangeTop + rangeSize - barSize)) {
-                        barCursor.css('top', curTop + 'px');
-                        scrollCt.scrollTop(curScTop);
+    
+                    // scrollbar 위치 구하기
+                    scrollArea.on('scroll', function () {
+                        var t = $(this),
+                            wrapH = t.find('.ui-content').prop('scrollHeight'),
+                            wrapOrgH = t.parent().height(),
+                            barCursor = t.parent().find('.bar'),
+                            barSize = barCursor.height(),
+                            scTop = $(this).scrollTop(),
+                            scTopPer = parseInt(scTop / ((wrapH - wrapOrgH) / 100)),
+                            barPer = (wrapOrgH - barSize) / 100;
+    
+                        barCursor.eq(i).css({
+                            'top': parseInt(barPer * scTopPer) + 'px'
+                        });
+                    });
+    
+                    scrollBar.on('mousedown', function (e) {
+                        var t = $(this);
+                        rangeTop = t.offset().top,
+                            rangeSize = t.height();
+                        scrollCt = t.closest(scrollWrap).find(scrollArea),
+                            down = true;
+                        // console.log(scrollCt);
+    
+                        updateDrag(e);
+                        return false;
+                    });
+    
+                    $(document).on('mousemove', function (e) {
+                        updateDrag(e);
+                    });
+    
+                    $(document).on('mouseup', function () {
+                        down = false;
+                    });
+    
+                    //스크롤바 drag 이벤트
+                    function updateDrag(e) {
+                        var t = $(e.target),
+                            barCursor = t.closest(scrollWrap).find('.bar'),
+                            barSize = parseInt(barCursor.height()) / 2,
+                            curTop = e.pageY - rangeTop - barSize,
+                            curScTop = Math.round((curTop * 100) / (rangeSize - (barSize * 2)) * (scrollCt.find('.ui-content').prop('scrollHeight') - scrollCt.height()) / 100);
+    
+                        // console.log('updateDrag',e.pageY,rangeTop,barSize);
+    
+                        if (down && e.pageY >= (rangeTop + barSize) && e.pageY <= (rangeTop + rangeSize - barSize)) {
+                            barCursor.css('top', curTop + 'px');
+                            scrollCt.scrollTop(curScTop);
+                        }
                     }
-                }
+                    
+                    
+                    
+                }();
 
+                // 리사이즈시 적용
+                var thisObj = this;
 
+                $(window).on('resize', function() {
+                    clearTimeout(window.resizedFinished);
+                    window.resizedFinished = setTimeout(function(){
+                        thisObj.scrollUi();
 
-            }();
+                    }, 250);
+                });
 
-            console.log('scrollUi');
+                
+                console.log('scrollUi');
+            }
         },
 
         accoUi: function () {
@@ -1939,10 +1975,15 @@ TNUI.module = (function () {
     
             scrTopF.prototype.resize = function () {
                 var thisObj = this;
-    
-                $(window).on('resize', function () {
-                    thisObj.init();
+
+                $(window).on('resize',function() {
+                    clearTimeout(window.resizedFinished);
+                    window.resizedFinished = setTimeout(function(){
+                        thisObj.init();
+
+                    }, 250);
                 });
+
             };
     
             scrTopF.prototype.scroll = function () {

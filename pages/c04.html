@@ -1,7 +1,7 @@
 <!-- modal -->
 <h3>pc 모달</h3>
 <!-- (sta)모달 호출 버튼 -->
-<p class="sub-txt">TNUI.module.modalUi() 호출<br />type01 클래스 :width값 옵션, data-modal속성, 모달 레이어 data-target 속성, </p>
+<p class="sub-txt">TNUI.module.modalUi({인자값:true시 dim 부분 클릭시 창닫기 적용, default나 false시 미적용}) 호출<br />type01 클래스 :width값 옵션, data-modal속성, 모달 레이어 data-target 속성, </p>
 <p><a href="#" class="btn_icn" data-modal="modal01"><span>모달 호출 width:728px</span></a></p>
 
 
@@ -42,8 +42,7 @@
 
 <h3>ajax 호출, 플러그인 형태</h3>
 
-<p class="sub-txt">ajax 호출: before,after<br /> $({selector}).modalUi('open|close',
-    '{data-target 속성}'); 형태로 적용</p>
+<p class="sub-txt">ajax 호출: before,after<br /> $({selector}).modalUi('open|close', '{data-target 속성}', {dim부분 클릭 적용 true | false}); 형태로 적용</p>
 <p>
     <span class="inp_wrap has_btn">
         <input type="text" id="ajax_input" value="input name">
@@ -62,7 +61,7 @@
             dataType: "html",
             success: function () {
                 $("#ajax_data").text(dataVal);
-                $('#a').modalUi('open', 'ajax_modal01');
+                $('#a').modalUi('open', 'ajax_modal01', true );
             },
             error: function (request, status, error) {
                 console.log("code:" + request.status + "\n" + "message:" + request.responseText +
@@ -88,7 +87,7 @@ $(&quot;#ajax_btn&quot;).on(&#39;click&#39;, function (e) {
         dataType: &quot;html&quot;,
         success: function () {
             $(&quot;#ajax_data&quot;).text(dataVal);
-            $(&#39;#a&#39;).modalUi(&#39;open&#39;, &#39;ajax_modal01&#39;);
+            $(&#39;#a&#39;).modalUi(&#39;open&#39;, &#39;ajax_modal01&#39;, true);
         },
         error: function (request, status, error) {
             console.log(&quot;code:&quot; + request.status + &quot;\n&quot; + &quot;message:&quot; + request.responseText +
