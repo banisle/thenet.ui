@@ -136,7 +136,7 @@ TNUI.wsg = (function () {
 TNUI.module = (function () {
     // (sta) TNUI returm module
     return {
-
+        // mark : tabUi
         tabUi: function () {
             var uiTabWrap = $('.ui-tabWrap'),
                 uiTab = uiTabWrap.find('.ui-tab'),
@@ -269,7 +269,7 @@ TNUI.module = (function () {
             console.log('tabUi');
         },
 
-        // selectUi : function(selId){
+        // mark : selectUi
         selectUi: function () {
             var opt = opt || null,
                 selId,
@@ -375,7 +375,7 @@ TNUI.module = (function () {
 
 
         },
-
+        // mark :tooltipUi
         tooltipUi: function (arrW, arrH, opt) {
             var tooltip,
                 $tooltip = $('.ui-tooltip a'),
@@ -433,7 +433,7 @@ TNUI.module = (function () {
             console.log('tooltipUi');
 
         },
-
+        // mark : modalUi
         modalUi: function (maskClick) {
             var mvBtn = $('[data-modal]'),
                 btnClose = $('.mvClose'),
@@ -533,7 +533,7 @@ TNUI.module = (function () {
 
             console.log('modalUi');
         },
-
+        // mark :scrollUi
         scrollUi: function () {
             
             var scrollWrap = $('.ui-scrollview'),
@@ -640,7 +640,7 @@ TNUI.module = (function () {
                 console.log('scrollUi');
             }
         },
-
+        // mark : accoUi
         accoUi: function () {
             var uiAccoWrap = $('.ui-accordian'),
                 uiAccobtn = uiAccoWrap.find('.ui-btn-acco'),
@@ -797,7 +797,7 @@ TNUI.module = (function () {
             console.log('accoUi');
 
         },
-
+        // mark : sliderUi
         sliderUi: function (container_id, vert, min, max, inc, jump, showVals, range, val1, val2) {
             var sliderUiIn,
                 keyCodes;
@@ -1553,7 +1553,7 @@ TNUI.module = (function () {
 
 
         },
-
+        // mark : swiperUi
         swipeUi: function (container_id, opt) {
             var swipeUiIn,
                 $swipeWrap = $('.ui-swipe-wrap'),
@@ -1861,7 +1861,7 @@ TNUI.module = (function () {
 
             console.log('swipeUi');
         },
-
+        // mark : searchUi
         searchUi: function(){
             var searchBtn = function () {
                 var $searchWrap = $('.searchWrap'),
@@ -1922,7 +1922,7 @@ TNUI.module = (function () {
             console.log('searchUi');
 
         },
-
+        // mark : gnb2Ui
         gnb2Ui: function(){
             var $menu = $('.ui-menu2depth > li');
     
@@ -1936,7 +1936,7 @@ TNUI.module = (function () {
                 $menu.removeClass('active');
             });
         },
-
+        // mark : scrlTopUi
         scrlTopUi: function(rV){
             var scrTopF,
                 optLen = arguments.length,
@@ -2000,7 +2000,7 @@ TNUI.module = (function () {
     
             new scrTopF(rV);
         },
-
+        // mark : init
         init: function () {
             // var t = this;
 
