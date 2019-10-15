@@ -174,40 +174,40 @@ input[type="radio"] {
 	font-family: 'NotoKr';
 	font-style: normal;
 	font-weight: 100;
-	src: url('/fonts/notokr-light.eot');
-	src: url('/fonts/notokr-light.eot?#iefix') format('embedded-opentype'),
-		url('/fonts/notokr-light.woff2') format('woff2'),
-		url('/fonts/notokr-light.woff') format('woff');
+	src: url('../fonts/notokr-light.eot');
+	src: url('../fonts/notokr-light.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/notokr-light.woff2') format('woff2'),
+		url('../fonts/notokr-light.woff') format('woff');
 }
 
 @font-face {
 	font-family: 'NotoKr';
 	font-style: normal;
 	font-weight: 300;
-	src: url('/fonts/notokr-regular.eot');
-	src: url('/fonts/notokr-regular.eot?#iefix') format('embedded-opentype'),
-		url('/fonts/notokr-regular.woff2') format('woff2'),
-		url('/fonts/notokr-regular.woff') format('woff');
+	src: url('../fonts/notokr-regular.eot');
+	src: url('../fonts/notokr-regular.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/notokr-regular.woff2') format('woff2'),
+		url('../fonts/notokr-regular.woff') format('woff');
 }
 
 @font-face {
 	font-family: 'NotoKr';
 	font-style: normal;
 	font-weight: 500;
-	src: url('/fonts/notokr-medium.eot');
-	src: url('/fonts/notokr-medium.eot?#iefix') format('embedded-opentype'),
-		url('/fonts/notokr-medium.woff2') format('woff2'),
-		url('/fonts/notokr-medium.woff') format('woff');
+	src: url('../fonts/notokr-medium.eot');
+	src: url('../fonts/notokr-medium.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/notokr-medium.woff2') format('woff2'),
+		url('../fonts/notokr-medium.woff') format('woff');
 }
 
 @font-face {
 	font-family: 'NotoKr';
 	font-style: normal;
 	font-weight: 700;
-	src: url('/fonts/notokr-bold.eot');
-	src: url('/fonts/notokr-bold.eot?#iefix') format('embedded-opentype'),
-		url('/fonts/notokr-bold.woff2') format('woff2'),
-		url('/fonts/notokr-bold.woff') format('woff');
+	src: url('../fonts/notokr-bold.eot');
+	src: url('../fonts/notokr-bold.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/notokr-bold.woff2') format('woff2'),
+		url('../fonts/notokr-bold.woff') format('woff');
 }
 
 .fw-l{font-weight: 100}
@@ -392,7 +392,7 @@ input[type=text] {
 	right: 0;
 	padding: 0 8px;
 	transform: translateY(-50%);
-	background: url('/img/icn_ir.png') 0 0 no-repeat;
+	background: url('../img/icn_ir.png') 0 0 no-repeat;
 	background-position: -100px -4px;
 	z-index: 10;
 }
@@ -980,14 +980,14 @@ html.mobile .form_select {
 	height: 24px;
 	font-size: 0;
 	line-height: 0;
-	background: url('/img/icn_ir.png') 0 0 no-repeat;
+	background: url('../img/icn_ir.png') 0 0 no-repeat;
 	background-position: -48px 0;
 }
 
 .searchWrap button:focus .icn_search,
 .searchWrap button:active .icn_search,
 .searchWrap button .icn_search.active {
-	background: url('/img/icn_ir.png') 0 0 no-repeat;
+	background: url('../img/icn_ir.png') 0 0 no-repeat;
 	background-position: -72px 0;
 }
 
@@ -1143,7 +1143,7 @@ html.mobile .form_select {
     height: 38px;
     position: fixed;
     bottom: 50px;
-    background: url('/img/icn_ir.png') 0 0 no-repeat;
+    background: url('../img/icn_ir.png') 0 0 no-repeat;
     background-position: -43px -83px;
     z-index: 9999;
 }
@@ -1188,7 +1188,7 @@ html.mobile .form_select {
 	left: 50%;
 	width: 5px;
 	height: 9px;
-	background: url('/img/icn_ir.png') 0 0 no-repeat;
+	background: url('../img/icn_ir.png') 0 0 no-repeat;
 	background-position: -279px -7px;
 	transform: translate(-50%, -50%);
 }
@@ -1200,7 +1200,7 @@ html.mobile .form_select {
 	left: 50%;
 	width: 5px;
 	height: 9px;
-	background: url('/img/icn_ir.png') 0 0 no-repeat;
+	background: url('../img/icn_ir.png') 0 0 no-repeat;
 	background-position: -254px -7px;
 	transform: translate(-50%, -50%);
 }
