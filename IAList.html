@@ -95,8 +95,10 @@ td:hover .lyr{color:#b5e8fd;}
 .hisList .on{display:block;}
 
 .btn{display:inline-block;min-width:25px;padding:3px 5px; -webkit-border-radius:3px; border-radius:3px; font-size:11px;text-align:center;background:#848484; color:#fff;}
+.btn[data-end=true] { background: #2c35b1 }
+.btn2[data-mod=true] { background: #b63333 }
 .btn1{display:inline-block;min-width:25px;padding:3px 5px; -webkit-border-radius:3px; border-radius:3px; font-size:11px;text-align:center;background:#000; color:#fff;}
-.btn2{display:inline-block;min-width:25px;padding:3px 5px; -webkit-border-radius:3px; border-radius:3px; font-size:11px;text-align:center;background:#b63333; color:#fff;}
+.btn2{display:inline-block;min-width:25px;padding:3px 5px; -webkit-border-radius:3px; border-radius:3px; font-size:11px;text-align:center;background:#8f7272; color:#fff;}
 .btn3{display:inline-block;min-width:25px;padding:3px 5px; -webkit-border-radius:3px; border-radius:3px; font-size:11px;text-align:center;background:#dbdbdb; color:#fff;}
 .btn4{display:inline-block;min-width:25px;padding:3px 5px; -webkit-border-radius:3px; border-radius:3px; font-size:11px;text-align:center;background:#5080d1; color:#fff;}
 
@@ -105,15 +107,6 @@ td:hover .lyr{color:#b5e8fd;}
 .tip{position:relative; display:inline-block; cursor:pointer;}
 .tip span{display:none; position:absolute; z-index:1; top:17px; left:0; min-width:120px; margin-left:-60px; padding:3px; font-weight:normal; font-size:11px; background:#FF0; -webkit-border-radius:3px; border-radius:3px; border:1px solid #F90; color:#000; line-height:17px;}
 tbody .tip span{width:200px; margin-left:-80px;}
-
-.notice{display:table; width:100%;}
-.notice dl{position:relative;width:33%; float:left;}
-.notice dt, .notice dd{width:100%; padding:5px 0;}
-.notice dd{position:absolute;top:25px;left:0;width:80%;padding:5px 5%;border:1px solid #666;background:#fff;z-index:1;}
-.notice li{width:90%; position:relative; padding:0 0 3px 8px; font-size:14px; line-height:1.6; color:#767676;}
-.notice .bul{position:absolute; top:5px; left:0; width:2px; height:2px; background:#626262;}
-.dNotice{display:none; position:absolute; top:50%; left:50%; z-index:2; padding:20px; width:680px; margin:-300px 0 0 -361px; border:1px solid #999; background:#F9F9F9;}
-.dNotice li{width:100%; padding-bottom:10px;}
 
 .siteInfo{display:table; width:100%;}
 .siteInfo dt{display:table-cell; width:10%; min-width:120px;  padding:5px; border:1px solid #999; background:#555; color:#fff; text-align:center; vertical-align:middle;}
@@ -139,10 +132,18 @@ function fnToggle(targetId){
 
 $(function($){
 
+	// data-end속성 자동 추가
+	$("[data-complete]").each(function(i){
+		$(this).find('>span').text() == '' ? $(this).find('>span').attr('data-end',false) : $(this).find('>span').attr('data-end',true);
+	});
+	$("[data-mod]").each(function(i){
+		$(this).text() == '' ? $(this).attr('data-mod',false) : $(this).attr('data-mod',true);
+	});
+
 	// 전체페이지 및 수정완료 수량 체크
 	var TotalBtn1 = $("[data-complete]").length;
-	var TotalBtn2 = $("td").find("[data-mod]").length;	
-	var TotalEnd = $("[data-complete]").find("[data-end]").length;
+	var TotalBtn2 = $("td").find("[data-mod=true]").length;	
+	var TotalEnd = $("[data-complete]").find("[data-end=true]").length;
 	var TotalStand = TotalBtn1 - TotalEnd;	
 	var TotalRate = (TotalEnd/TotalBtn1)*100;
 		TotalRate = TotalRate.toFixed(2) + " %"; 
@@ -181,7 +182,6 @@ $(function($){
 	$('.tip').hover(function(){
 		$(this).children('span').toggle();
 	});
-	$('.notice li').append('<span class="bul"></span>');
 	// to top
 	var scrollDiv = document.createElement('div');
 	$(scrollDiv).attr('id', 'toTop').html('<a href="#nohref">↑ 처음으로 이동</a>').appendTo('body');    
@@ -196,9 +196,6 @@ $(function($){
 		$('body,html').animate({scrollTop: 0},	600);
 		return false;
 	});
-	$('.overlay').click(function(){
-		$('.dNotice').hide(200); $('.overlay').fadeOut();
-	});
 
 	//a 링크 text 생성
 	$('table a').each(function(){
@@ -209,6 +206,41 @@ $(function($){
 		$(this).toggleClass('active');
 	})
 
+	//Created By: Brij Mohan
+	//Website: http://techbrij.com
+	function groupTable($rows, startIndex, total) {
+		if (total === 0) {
+			return;
+	}
+	var i, currentIndex = startIndex,
+		count = 1,
+		lst = [];
+	var tds = $rows.find('td:eq(' + currentIndex + ')');
+	var ctrl = $(tds[0]);
+	lst.push($rows[0]);
+	for (i = 1; i <= tds.length; i++) { 
+		if (ctrl.text()==$(tds[i]).text()) { count++; $(tds[i]).addClass('deleted');
+			lst.push($rows[i]); } else { if (count> 1) {
+				ctrl.attr('rowspan', count);
+				groupTable($(lst), startIndex + 1, total - 1)
+			}
+			count = 1;
+			lst = [];
+			ctrl = $(tds[i]);
+			lst.push($rows[i]);
+			}
+		}
+		}
+
+	$('table').each(function(i){
+		groupTable( $(this).find('tr:has(td)') , 0, 3);
+	})
+	$('table .deleted').remove();
+	// groupTable method has 3 arguments:
+	// $rows: jQuery object of table rows to be grouped
+	// startIndex: index of first column to be grouped
+	// total: total number of columns to be grouped
+
 });
 </script>
 </head>
@@ -217,6 +249,7 @@ $(function($){
 <div class="overlay"></div>
 <div class="wrapper">
 	<h1><span>코딩리스트 샘플</span></h1>
+	<p>* rowspan 자동적용, 완료일 완료시에만 span태그내에 날짜 기입</p>
 
 	<dl class="siteInfo">
 		<dt>진행상황</dt>
@@ -226,48 +259,14 @@ $(function($){
 		<dd>대기 페이지 : <span class="btn btn3 count2"></span></dd>
 		<dd>진척율 : <b class="btn btn4 count3"></b></dd>
 	</dl>
-	<!-- <div class="notice">
-		<dl>
-			<dt><a href="#none" onClick="fnToggle('noti1');return false;" onKeyPress="this.onclick;">개발자 알림 ▼</a></dt>
-			<dd id="noti1" style="display:none">
-				<ul>
-					<li> html을 클릭하시면 html 페이지 확인 가능.</li>
-					<li>퍼블리싱이 완료된 기본 레이아웃은 수정해야할 경우 퍼블리셔 상의.</li>
-					<li>내부 링크일 경우 수정 이력은 원본 파일에만 표기.</li>
-					<li>마크업 변경 안내 : 해당 HTML페이지내, &lt;-- 07.15 --&gt; 으로 주석처리.</li>
-				</ul>
-			</dd>
-		</dl>
-		<dl>
-			<dt><a href="#none" onClick="fnToggle('noti2');return false;" onKeyPress="this.onclick;">퍼블리셔 알림 ▼</a></dt>
-			<dd id="noti2" style="display:none">
-				<ul>
-					<li>페이지 완료시 퍼블리싱 체크후 담당자 이름과 완료일을 기재해주세요</li>
-					<li>w3c, 디바이스체크, 자체 접근성 체크 후 ○ 표시</li>
-					<li>범위 : OS 젤리빈(4.1~4.3) 이상/ iOS 9.0 이상</li>
-					<li>최저단말 : 갤럭시 S3, 노트2, iPhone 4S / 타켓단말: 노트3, S4, iPhone 6</li>
-					<li><strong class="red">juery 스크립트 부분은 각 담당자가 스크립트를 삽입합니다.</strong></li>
-				</ul>
-			</dd>
-		</dl>
-		<dl>
-			<dt><a href="#none" onClick="fnToggle('noti3');return false;" onKeyPress="this.onclick;">작업 안내▼</a></dt>
-			<dd id="noti3" style="display:none">
-				<ul>
-					<li>페이지 완료시 퍼블리싱 체크후 담당자 이름과 완료일을 기재.</li>
-					<li>완료일 : 페이지 처음 완료된 날 기입. <b style="color:blue">파란색bg</b>로 표시.</li>
-					<li>수정완료일 : 페이지 마지막으로 완료된 날 기입. <b style="color:red">빨간색 bg</b>로 표시.</li>
-				</ul>
-			</dd>
-		</dl>
-	</div> -->
+	
 	<br>
 	<div class="menuWrap">
 		<dl class="menu">
 			<dt class="viewAll"><a class="tm">전체보기</a></dt>
 			<dt class="tm1"><a class="selected">sub01</a></dt>
 			<dd style="display:block;">
-				<table>
+				<table >
 					<colgroup>
 						<col width="100" />
 						<col width="" />
@@ -306,8 +305,8 @@ $(function($){
 							<td>1</td>
 							<td><a href="/guide.html" target="_blank"></a></td>
 							<td class="ct"></td> 
-							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
-							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
+							<td class="aCenter" data-complete><span class="btn" ></span></td>
+							<td class="aCenter"><span data-mod class="btn2"></span></td>
 							<td></td>
 						</tr>
 						<tr>
@@ -340,7 +339,7 @@ $(function($){
 
 			<dt class="tm2"><a class="">sub02</a></dt>
 			<dd>
-				<table>
+				<table >
 					<colgroup>
 						<col width="100" />
 						<col width="" />
@@ -374,6 +373,42 @@ $(function($){
 						<tr>
 							<td><strong>depth1</strong></td>
 							<td>depth2</td>
+							<td>depth3</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter"><span class="btn">00.00</span></td>
+							<td class="aCenter"></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth2</td>
+							<td>depth3-1</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter"><span class="btn">00.00</span></td>
+							<td class="aCenter"></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth21</td>
+							<td>depth3-2</td>
+							<td>1</td>
+							<td>1</td>
+							<td><a href="/guide.html" target="_blank"></a></td>
+							<td class="ct"></td> 
+							<td class="aCenter"><span class="btn">00.00</span></td>
+							<td class="aCenter"></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><strong>depth1</strong></td>
+							<td>depth21</td>
 							<td>depth3</td>
 							<td>1</td>
 							<td>1</td>
