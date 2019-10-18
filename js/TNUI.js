@@ -1869,37 +1869,43 @@ TNUI.module = (function () {
                     $btnIcn = $searchWrap.find('.icn_search');
         
                 $searchInp.on('click focus', function () {
-                    $btnIcn.addClass('active');
+                    $(this).closest( $searchWrap ).find($btnIcn).addClass('active');
                 }).on('blur', function () {
-                    $btnIcn.removeClass('active');
+                    $(this).closest( $searchWrap ).find($btnIcn).removeClass('active');
                 })
             }();
+
+            this.inputDelUi();
         
-            //input del txt
+            console.log('searchUi');
+
+        },
+        // mark : input del
+        inputDelUi: function(){
             var inpTxtDel = function () {
-                var $inp_form = $('.inp_form'),
+                var $inp_form = $('.ui-hasDelForm'),
                     $inp = $inp_form.find('input.ui-hasDel'),
                     $btnDel = $('.ui-deltxt'),
                     isOpen = false;
-        
+
                 $inp.on('propertychange change keyup paste input focusin', function (e) {
                     var t = $(e.target),
                         curVal = t.val(),
                         oldVal;
                     if (curVal !== oldVal && curVal !== '') {
-        
+
                         t.closest($inp_form).find($btnDel).addClass('active');
                         isOpen = true;
                         return;
                     } else {
-        
+
                         $btnDel.removeClass('active');
                         isOpen = false;
                     }
-        
+
                     oldVal = curVal;
                 });
-        
+
                 //포커스 잃었을때 
                 $(document).on('focusin click', function (e) {
                     if ($inp_form) {
@@ -1908,19 +1914,18 @@ TNUI.module = (function () {
                         }
                     }
                 });
-        
+
                 $btnDel.on('click', function (e) {
                     if (isOpen == true) {
                         var t = $(e.target);
                         t.prev($inp).val('');
                         $btnDel.removeClass('active');
                         isOpen = false;
-        
+
                     }
                 });
             }();
-            console.log('searchUi');
-
+            console.log('inputDelUI');
         },
         // mark : gnb2Ui
         gnb2Ui: function(){

@@ -379,8 +379,8 @@ input[type=text] {
 	box-sizing: border-box
 }
 
-.inp_form.ui-hasDelForm {
-	padding-right: 15px;
+.inp_form.ui-hasDelForm > input {
+	padding-right: 30px;
 }
 
 .inp_form input[type=text]+.ui-deltxt {
@@ -389,7 +389,7 @@ input[type=text] {
 	height: 15px;
 	position: absolute;
 	top: 50%;
-	right: 0;
+	right: 10px;
 	padding: 0 8px;
 	transform: translateY(-50%);
 	background: url('../img/icn_ir.png') 0 0 no-repeat;
@@ -413,6 +413,11 @@ input[type=text] {
 	box-sizing: border-box;
 	outline: none;
 }
+
+.inp_wrap.ui-hasDelForm {
+	
+}
+
 
 .inp_wrap input:focus {
 	border-color: #3ead57;
