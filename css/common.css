@@ -169,7 +169,7 @@ input[type="radio"] {
 	clip-path: inset(50%);
 }
 
-/* fonts */
+/* //mark: fonts */
 @font-face {
 	font-family: 'NotoKr';
 	font-style: normal;
@@ -215,14 +215,14 @@ input[type="radio"] {
 .fw-m{font-weight: 500}
 .fw-b{font-weight: 700}
 
-/* lib : syntaxhighlighter */
+/* //mark: lib : syntaxhighlighter */
 .syntaxhighlighter {
 	overflow-y: hidden !important;
 	padding: 20px 0;
 	margin-bottom: 30px !important;
 }
 
-/* wsg */
+/* //mark: wsg */
 html.fixed {
 	overflow-y: hidden;
 }
@@ -337,7 +337,7 @@ html.fixed {
 }
 
 
-/* snippet */
+/* //mark: snippet */
 .w100 {
 	width: 100%
 }
@@ -366,7 +366,7 @@ html.fixed {
 }
 
 
-/* 공통(form,select) */
+/* //mark: 공통(form,select) */
 input[type=search],
 input[type=password],
 input[type=text] {
@@ -463,7 +463,7 @@ input[type=text] {
 	right: 0;
 }
 
-/* buttons */
+/* //mark: buttons */
 .btn_wrap {
 	overflow: hidden;
 }
@@ -617,7 +617,7 @@ input[type=text] {
 }
 
 
-/* selection controls */
+/* //mark: selection controls */
 input.form_chk+label {
 	font-family: 'Font Awesome 5 Free';
 	font-weight: normal;
@@ -935,7 +935,7 @@ html.mobile .form_select {
 }
 
 
-/* search  */
+/* //mark: search  */
 .searchWrap{
 	float: left;
     position: relative;
@@ -996,7 +996,7 @@ html.mobile .form_select {
 	background-position: -72px 0;
 }
 
-/* modal */
+/* //mark: modal */
 .laypop {
 	display: none;
 	z-index: 10;
@@ -1085,7 +1085,7 @@ html.mobile .form_select {
 	padding: 14px;
 }
 
-/* gnb */
+/* //mark: gnb */
 .mo_submenu_wrap {
 	white-space: nowrap;
 	width: 100%;
@@ -1124,7 +1124,7 @@ html.mobile .form_select {
 	display: none;
 }
 
-/* 2depth gnb */
+/* //mark:  2depth gnb */
 .menu2depth { width: 100%; height: 35px; background: #3ead57; box-sizing: border-box; }
 .menu2depth >li { float: left; width: 20%; position: relative; text-align: center; }
 .menu2depth >li>a { display: block; position: relative; padding: 0; line-height: 35px }
@@ -1141,7 +1141,7 @@ html.mobile .form_select {
 .menu2depth >li ul a { display: inline-block; line-height: 30px; font-size: 14px; color: #666; border-bottom: 1px solid #fff; }
 .menu2depth >li ul a:hover { color: #3ead57; border-color: #3ead57; }
 
-/* top버튼 */
+/* //mark:  top버튼 */
 .ui-scrlTop {
     display: none;
     width: 39px;
@@ -1153,7 +1153,7 @@ html.mobile .form_select {
     z-index: 9999;
 }
 
-/* paging */
+/* //mark:  paging */
 .pagewrap {
 	display: block;
 	width: 100%;
@@ -1242,7 +1242,7 @@ html.mobile .form_select {
 }
 
 
-/* tooltip */
+/* //mark:  tooltip */
 .ui-tooltip a {
 	display: inline-block;
 	padding: 10px 15px;
@@ -1300,7 +1300,7 @@ html.mobile .form_select {
 }
 
 
-/* scroll */
+/* //mark:  scroll */
 .ui-scrollview {
 	overflow: hidden;
 	position: relative;
@@ -1367,7 +1367,7 @@ html.mobile .ui-scrollview {
 }
 
 
-/* 어코디언 */
+/* //mark:  어코디언 */
 .ui-accordian.sub-accord {
 	padding: 10px;
 }
@@ -1463,7 +1463,7 @@ html.mobile .ui-scrollview {
 
 
 
-/* 슬라이더 */
+/* //mark:  슬라이더 */
 .sliderWrap div.hslider {
 	position: relative;
 	padding: 0;
@@ -1554,7 +1554,62 @@ html.mobile .ui-scrollview {
 }
 
 
-/* swipe */
+/* //mark: table */
+.scroll-table {
+    width:100%;
+    margin-top: 20px;
+    position: relative;
+    padding-top: 40px;
+    border: 1px solid #d4d4d4;
+}
+.scroll-table div {
+    max-height: 300px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.scroll-table table {
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+.scroll-table table thead tr {
+    position: absolute;
+    top: 0;
+}
+.scroll-table table thead tr th {
+    padding: 16px;
+    font-weight: normal;
+    background:#eee;
+}
+.scroll-table table thead tr th:first-child {
+	width: 25%;
+    font-weight: bold;
+}
+.scroll-table table td {
+    height: 40px;
+    text-align: center;
+	color: #2a4383;
+	vertical-align: middle;
+}
+.scroll-table table td:first-child {
+    width: 25%;
+    font-weight: bold;
+}
+.scroll-table table tr {
+	width: 100%;
+    display: inline-table;
+    table-layout: fixed;
+}
+.scroll-table table tr td {
+	padding: 10px;
+    border-top: 1px solid #d4d4d4;
+}
+.scroll-table table tr.even td {
+    background: #eef3f8;
+}
+
+/* //mark:  swipe */
 .ui-swipe-wrap {
 	overflow-x: hidden;
 }
@@ -1575,7 +1630,7 @@ html.mobile .ui-scrollview {
 	color: red;
 }
 
-/* media query */
+/* //mark:  media query */
 @media screen and (max-width: 768px) {
 	.guide-side {
 		left: -320px;
