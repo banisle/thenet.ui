@@ -221,6 +221,10 @@ input[type="radio"] {
 	padding: 20px 0;
 	margin-bottom: 30px !important;
 }
+.syntaxhighlighter .line{
+	white-space: pre-wrap !important; /*자동 줄바꿈하기*/
+	word-break: break-word !important; /*자동 줄바꿈하기*/
+}
 .syntaxhighlighter .line.alt1:hover,
 .syntaxhighlighter .line.alt2:hover{
     background-color: rgba(255,255,255,.2) !important;
