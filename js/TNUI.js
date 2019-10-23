@@ -554,7 +554,7 @@ TNUI.module = (function () {
                         var wrapW = scrollWrap.eq(i).parent().width(),
                             wrapH = scrollCt.eq(i).prop('scrollHeight'),
                             wrapOrgH = scrollWrap.eq(i).height(),
-                            barSize = parseInt((wrapOrgH / wrapH) * 100);
+                            barSize = parseFloat((wrapOrgH / wrapH) * 100);
 
                         // console.log(
                         //     'wrapW' + wrapW,
@@ -577,11 +577,11 @@ TNUI.module = (function () {
                             barCursor = t.parent().find('.bar'),
                             barSize = barCursor.height(),
                             scTop = $(this).scrollTop(),
-                            scTopPer = parseInt(scTop / ((wrapH - wrapOrgH) / 100)),
+                            scTopPer = parseFloat(scTop / ((wrapH - wrapOrgH) / 100)),
                             barPer = (wrapOrgH - barSize) / 100;
 
                         barCursor.eq(i).css({
-                            'top': parseInt(barPer * scTopPer) + 'px'
+                            'top': parseFloat(barPer * scTopPer) + 'px'
                         });
                     });
 
@@ -608,7 +608,7 @@ TNUI.module = (function () {
                     function updateDrag(e) {
                         var t = $(e.target),
                             barCursor = t.closest(scrollWrap).find('.bar'),
-                            barSize = parseInt(barCursor.height()) / 2,
+                            barSize = parseFloat(barCursor.height()) / 2,
                             curTop = e.pageY - rangeTop - barSize,
                             curScTop = Math.round((curTop * 100) / (rangeSize - (barSize * 2)) * (scrollCt.find('.ui-content').prop('scrollHeight') - scrollCt.height()) / 100);
 
