@@ -454,12 +454,12 @@ TNUI.module = (function () {
                 $('html').addClass('fixed');
                 $('[data-target=' + mvId + ']').fadeIn(0);
 
-                if( $('[data-target=' + mvId + '] .mask').length ){
+                if ($('[data-target=' + mvId + '] .mask').length) {
                     $mask.show();
-                } else{
+                } else {
                     $('[data-target=' + mvId + ']').prepend(mask);
                 }
-                
+
                 if (!isMobile) TNUI.module.scrollUi();
 
                 if (optTrans == 'true') {
@@ -477,7 +477,7 @@ TNUI.module = (function () {
                 // console.log('open');
 
                 //바닥 클릭시 창 닫기 옵션
-                if(maskClick == true){
+                if (maskClick == true) {
 
                     $(document).on('click', function (e) {
                         // e.preventDefault();
@@ -485,7 +485,7 @@ TNUI.module = (function () {
                             $('.mvClose').find(':visible').trigger('click');
                         }
                     });
-                } else{
+                } else {
                     $(document).off('click');
                 }
 
@@ -535,27 +535,27 @@ TNUI.module = (function () {
         },
         // mark :scrollUi
         scrollUi: function () {
-            
+
             var scrollWrap = $('.ui-scrollview'),
-                    scrollArea = scrollWrap.find('.ui-scrollarea'),
-                    scrollCt = scrollArea.find('.ui-content'),
-                    scrollBar = scrollWrap.find('.ui-scrollbar'),
-                    barCursor = scrollBar.find('.bar'),
-                    down = false,
-                    rangeTop,
-                    rangeSize;
-                    
-            if(scrollWrap.length !== 0){
+                scrollArea = scrollWrap.find('.ui-scrollarea'),
+                scrollCt = scrollArea.find('.ui-content'),
+                scrollBar = scrollWrap.find('.ui-scrollbar'),
+                barCursor = scrollBar.find('.bar'),
+                down = false,
+                rangeTop,
+                rangeSize;
+
+            if (scrollWrap.length !== 0) {
                 //scroll width & height 구하기
                 var calWidth = function () {
                     var i = 0;
-    
+
                     scrollWrap.each(function (i) {
                         var wrapW = scrollWrap.eq(i).parent().width(),
                             wrapH = scrollCt.eq(i).prop('scrollHeight'),
                             wrapOrgH = scrollWrap.eq(i).height(),
                             barSize = parseInt((wrapOrgH / wrapH) * 100);
-    
+
                         // console.log(
                         //     'wrapW' + wrapW,
                         //     'wrapOrgH' + wrapOrgH,
@@ -564,11 +564,11 @@ TNUI.module = (function () {
                         //     );
                         scrollWrap.eq(i).width(wrapW);
                         scrollCt.eq(i).width(wrapW).height(wrapOrgH);
-    
+
                         barCursor.eq(i).height(barSize + '%');
-    
+
                     });
-    
+
                     // scrollbar 위치 구하기
                     scrollArea.on('scroll', function () {
                         var t = $(this),
@@ -579,32 +579,31 @@ TNUI.module = (function () {
                             scTop = $(this).scrollTop(),
                             scTopPer = parseInt(scTop / ((wrapH - wrapOrgH) / 100)),
                             barPer = (wrapOrgH - barSize) / 100;
-    
+
                         barCursor.eq(i).css({
                             'top': parseInt(barPer * scTopPer) + 'px'
                         });
                     });
-    
+
                     scrollBar.on('mousedown', function (e) {
                         var t = $(this);
-                        rangeTop = t.offset().top,
+                            rangeTop = t.offset().top,
                             rangeSize = t.height();
-                        scrollCt = t.closest(scrollWrap).find(scrollArea),
+                            scrollCt = t.closest(scrollWrap).find(scrollArea),
                             down = true;
                         // console.log(scrollCt);
-    
-                        updateDrag(e);
+
                         return false;
                     });
-    
+
                     $(document).on('mousemove', function (e) {
                         updateDrag(e);
                     });
-    
+
                     $(document).on('mouseup', function () {
                         down = false;
                     });
-    
+
                     //스크롤바 drag 이벤트
                     function updateDrag(e) {
                         var t = $(e.target),
@@ -612,31 +611,31 @@ TNUI.module = (function () {
                             barSize = parseInt(barCursor.height()) / 2,
                             curTop = e.pageY - rangeTop - barSize,
                             curScTop = Math.round((curTop * 100) / (rangeSize - (barSize * 2)) * (scrollCt.find('.ui-content').prop('scrollHeight') - scrollCt.height()) / 100);
-    
+
                         // console.log('updateDrag',e.pageY,rangeTop,barSize);
-    
+
                         if (down && e.pageY >= (rangeTop + barSize) && e.pageY <= (rangeTop + rangeSize - barSize)) {
                             barCursor.css('top', curTop + 'px');
                             scrollCt.scrollTop(curScTop);
                         }
                     }
-                    
-                    
-                    
+
+
+
                 }();
 
                 // 리사이즈시 적용
                 var thisObj = this;
 
-                $(window).on('resize', function() {
+                $(window).on('resize', function () {
                     clearTimeout(window.resizedFinished);
-                    window.resizedFinished = setTimeout(function(){
+                    window.resizedFinished = setTimeout(function () {
                         thisObj.scrollUi();
 
                     }, 250);
                 });
 
-                
+
                 console.log('scrollUi');
             }
         },
@@ -1862,26 +1861,26 @@ TNUI.module = (function () {
             console.log('swipeUi');
         },
         // mark : searchUi
-        searchUi: function(){
+        searchUi: function () {
             var searchBtn = function () {
                 var $searchWrap = $('.searchWrap'),
                     $searchInp = $searchWrap.find('.inp_form input'),
                     $btnIcn = $searchWrap.find('.icn_search');
-        
+
                 $searchInp.on('click focus', function () {
-                    $(this).closest( $searchWrap ).find($btnIcn).addClass('active');
+                    $(this).closest($searchWrap).find($btnIcn).addClass('active');
                 }).on('blur', function () {
-                    $(this).closest( $searchWrap ).find($btnIcn).removeClass('active');
+                    $(this).closest($searchWrap).find($btnIcn).removeClass('active');
                 })
             }();
 
             this.inputDelUi();
-        
+
             console.log('searchUi');
 
         },
         // mark : input del
-        inputDelUi: function(){
+        inputDelUi: function () {
             var inpTxtDel = function () {
                 var $inp_form = $('.ui-hasDelForm'),
                     $inp = $inp_form.find('input.ui-hasDel'),
@@ -1928,48 +1927,48 @@ TNUI.module = (function () {
             console.log('inputDelUI');
         },
         // mark : gnb2Ui
-        gnb2Ui: function(){
+        gnb2Ui: function () {
             var $menu = $('.ui-menu2depth > li');
-    
+
             //init
             $menu.on('mouseenter focusin', function (e) {
                 var $t = $(this).find('> a');
-    
+
                 $t.parent('li').addClass('active').siblings('li').removeClass('active');
-    
+
             }).on('mouseleave foucsout', function () {
                 $menu.removeClass('active');
             });
         },
         // mark : scrlTopUi
-        scrlTopUi: function(rV){
+        scrlTopUi: function (rV) {
             var scrTopF,
                 optLen = arguments.length,
                 rV,
                 $top = $('.ui-scrlTop');
-    
+
             scrTopF = function () {
                 this.init(rV);
                 this.evt();
                 this.resize();
                 this.scroll();
             };
-    
+
             //init
             scrTopF.prototype.init = function (rV) {
 
-                if( optLen === 0 ){
+                if (optLen === 0) {
                     rV = $(window).width() >= $('.guide-container').width() ? ($(window).width() - $('.guide-container').width()) / 2 - $top.width() - 30 : 0;
-                } else{
+                } else {
                     rV = rV;
                 }
-    
+
                 $top.css({
                     'right': rV
                 });
 
             };
-    
+
             scrTopF.prototype.evt = function () {
                 $top.on('click', function () {
                     $('html,body').animate({
@@ -1977,24 +1976,24 @@ TNUI.module = (function () {
                     }, 500);
                 });
             };
-    
+
             scrTopF.prototype.resize = function () {
                 var thisObj = this;
 
-                $(window).on('resize',function() {
+                $(window).on('resize', function () {
                     clearTimeout(window.resizedFinished);
-                    window.resizedFinished = setTimeout(function(){
+                    window.resizedFinished = setTimeout(function () {
                         thisObj.init();
 
                     }, 250);
                 });
 
             };
-    
+
             scrTopF.prototype.scroll = function () {
                 $(window).scroll(function () {
                     var height = $(window).scrollTop();
-    
+
                     if (height > 100) {
                         $top.fadeIn();
                     } else {
@@ -2002,7 +2001,7 @@ TNUI.module = (function () {
                     }
                 });
             };
-    
+
             new scrTopF(rV);
         },
         // mark : init
