@@ -2004,6 +2004,116 @@ TNUI.module = (function () {
 
             new scrTopF(rV);
         },
+
+        // mark : tab anckor
+        tabAnchorUi: function(pT,fix){
+                var $t = $('.ui-tabAnchor'),
+                $aWrap = $('.ui-anchorWrap'),
+                tTop = $t.offset().top,
+                $linkA = $t.find('a'),
+                $target = $($linkA.attr('href')),
+                $lastTarget = $($linkA.attr('href')).parent().children().last(),
+                lastTargetTop = $lastTarget.offset().top + $lastTarget.height(),
+                tabFixed,padT,
+                linkArr = $linkA.get(),
+                rangeArr = new Array(),
+                optFix = fix
+                ;
+                
+                $linkA.each(function(i){
+                    var targetArr = $(linkArr[i]).attr('href');
+
+                    var range = $(targetArr).offset().top;
+                    rangeArr.push(range);
+                    // console.log(rangeArr);
+                })
+
+
+            tabFixed = function (pT) {
+                padT = pT;
+                //옵션 fix값 true
+                if(optFix == 'true' ) this.scroll();
+                this.evt();
+            }
+
+            tabFixed.prototype.scroll = function () {
+                var tPosY = $t.offset().top;
+
+                $(window).on('scroll', function () {
+                    var curTop = $(document).scrollTop();
+
+                    //스크롤시 탭고정됐을때 상단 여백 처리
+                    if (curTop < lastTargetTop) {
+                        if( curTop > (tPosY ) ){
+                            $t.addClass('fixed-on');
+                            $aWrap.css('paddingTop',padT)
+                        } else{
+                            $t.removeClass('fixed-on')
+                            $aWrap.removeAttr('style');
+                        }
+                    } else {
+                        $t.removeClass('fixed-on')
+                        $aWrap.removeAttr('style');
+                    }
+                });
+            };
+
+            tabFixed.prototype.evt = function () {
+                $(document).on("scroll", onScroll);
+
+                $linkA.on('click', function (e) {
+                    $(document).off("scroll");
+
+                    var _t = $(this),
+                        $target = $(_t.attr('href')),
+                        idx = _t.parent().index();
+                        
+                        // 첫번쨰 요소 선택시 분기
+                        if ( _t.parent().index() == 0 ){
+                            var scrVal = tTop;
+                        } else{
+                            // var scrVal = rangeArr[idx] - ( tTop - $t.outerHeight());
+                            var scrVal = rangeArr[idx] - $t.outerHeight();
+                            // console.log(tTop, $t.outerHeight() , padT);
+                        }
+                        ;
+
+                    e.preventDefault();
+                    
+                    
+                    $('html,body').animate({
+                        'scrollTop': scrVal
+                    }, 500, function () {
+                        $(document).on("scroll", onScroll);
+                    });
+
+                    $linkA.removeClass('active');
+                    _t.addClass('active');
+                });
+
+                function onScroll(e) {
+                    var curTop = $(document).scrollTop() + padT;
+
+                    $linkA.each(function () {
+                        var $t = $(this),
+                        $target = $($t.attr('href'));
+
+                        //fix :
+                        if ($target.offset().top <= curTop && $target.offset().top + $target.outerHeight() >= curTop) {
+                            $linkA.removeClass("active");
+                            $t.addClass("active");
+                        } else {
+                            $t.removeClass("active");
+                        }
+
+
+                    });
+                }
+            };
+
+            // 인자값 : 고정 탭 높이값, 고정됐을때 컨텐츠가 상단으로부터의 여백 지정
+            new tabFixed(pT,fix);
+        },
         // mark : init
         init: function () {
             // var t = this;
