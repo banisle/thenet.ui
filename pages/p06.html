@@ -176,9 +176,38 @@
 </div>
 
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;div class=&quot;tab_list ui-tabAnchor&quot;&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;#t01&quot; class=&quot;&quot;&gt;&lt;span&gt;tab 0&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#t02&quot;&gt;&lt;span&gt;tab 1&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#t03&quot;&gt;&lt;span&gt;tab 2&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#t04&quot;&gt;&lt;span&gt;tab 3&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ui-anchorWrap&quot;&gt;
+    &lt;div id=&quot;t01&quot;&gt;
+       
+    &lt;/div&gt;
 
+    &lt;!-- (sta) 테스트 샘플 --&gt;
+    &lt;div class=&quot;test_sample&quot; id=&quot;t02&quot;&gt;
+      
+    &lt;/div&gt;
+    &lt;!-- (end) 테스트 샘플 --&gt;
+
+    &lt;!-- (sta) 가격정책정보 --&gt;
+    &lt;div class=&quot;price_wrap&quot; id=&quot;t03&quot;&gt;
+       
+    &lt;/div&gt;
+    &lt;!-- (end) 가격정책정보 --&gt;
+
+    &lt;!-- (sta) 제약 및 규정 정보 --&gt;
+    &lt;div class=&quot;terms_wrap&quot; id=&quot;t04&quot;&gt;
+       
+    &lt;/div&gt;
+    &lt;!-- (end) 제약 및 규정 정보 --&gt;
+&lt;/div&gt;
 </pre>
-
 <script>
     $(document).ready(function(){
         TNUI.module.tabAnchorUi(68,'true');

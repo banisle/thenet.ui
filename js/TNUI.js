@@ -2065,7 +2065,6 @@ TNUI.module = (function () {
                     $(document).off("scroll");
 
                     var _t = $(this),
-                        $target = $(_t.attr('href')),
                         idx = _t.parent().index();
                         
                         // 첫번쨰 요소 선택시 분기
@@ -2092,18 +2091,24 @@ TNUI.module = (function () {
                 });
 
                 function onScroll(e) {
-                    var curTop = $(document).scrollTop() + padT;
+                    // var curTop = $(document).scrollTop() + padT;
+                    var curTop = $(document).scrollTop();
 
                     $linkA.each(function () {
-                        var $t = $(this),
-                        $target = $($t.attr('href'));
+                        var _t = $(this),
+                        idx = _t.parent().index();
 
                         //fix :
-                        if ($target.offset().top <= curTop && $target.offset().top + $target.outerHeight() >= curTop) {
+                        // if ($target.offset().top <= curTop && $target.offset().top + $target.outerHeight() >= curTop) {
+                            if ( rangeArr[idx] <= curTop) {
+                                
+                                // console.log( parseInt(rangeArr[idx]) )
                             $linkA.removeClass("active");
-                            $t.addClass("active");
+                            _t.addClass("active");
                         } else {
-                            $t.removeClass("active");
+                            _t.removeClass("active");
+                            // console.log( 'no')
+
                         }
 
 
