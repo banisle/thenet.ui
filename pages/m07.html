@@ -1,0 +1,612 @@
+<link rel="stylesheet" href="lib/slick.css">
+<link rel="stylesheet" href="lib/slick-theme.css">
+<p class="sub-txt">
+    slick_wrap 클래스로 감싸고, slider클래스 선언<br/>
+    option,evt,method 참고
+    https://github.com/kenwheeler/slick/
+</p>
+<div class="slick_wrap">
+        <div class="slider">
+            <div>your<br/><br/> content 1</div>
+            <div>your<br/><br/> content 2</div>
+            <div>your<br/><br/> content 3</div>
+            <div>your<br/><br/> content 4</div>
+            <div>your<br/><br/> content 5</div>
+            <div>your<br/><br/> content 6</div>
+            <div>your<br/><br/> content 7</div>
+            <div>your<br/><br/> content 8</div>
+            <div>your<br/><br/> content 9</div>
+            <div>your<br/><br/> content 10</div>
+            <div>your<br/><br/> content 11</div>
+            <div>your<br/><br/> content 12</div>
+        </div>
+    </div>
+    <script src="lib/slick.js"></script>
+    
+    <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
+    &lt;div class=&quot;slider&quot;&gt;
+        &lt;div&gt;your content 1&lt;/div&gt;
+        &lt;div&gt;your content 2&lt;/div&gt;
+        &lt;div&gt;your content 3&lt;/div&gt;
+        &lt;div&gt;your content 4&lt;/div&gt;
+        &lt;div&gt;your content 5&lt;/div&gt;
+        &lt;div&gt;your content 6&lt;/div&gt;
+        &lt;div&gt;your content 7&lt;/div&gt;
+        &lt;div&gt;your content 8&lt;/div&gt;
+        &lt;div&gt;your content 9&lt;/div&gt;
+        &lt;div&gt;your content 10&lt;/div&gt;
+        &lt;div&gt;your content 11&lt;/div&gt;
+        &lt;div&gt;your content 12&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        $('.slider').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            arrows: true,
+            // appendDots: $(element)
+        });
+    &lt;/script&gt;
+    </pre>
+
+    
+<h3>Settings</h3>
+<div class="board_list">
+<table>
+    <thead>
+    <tr>
+    <th>Option</th>
+    <th>Type</th>
+    <th>Default</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>accessibility</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Enables tabbing and arrow key navigation.  Unless <code>autoplay: true</code>, sets browser focus to current slide (or first of current slide set, if multiple <code>slidesToShow</code>) after slide change. For full a11y compliance enable focusOnChange in addition to this.</td>
+    </tr>
+    <tr>
+    <td>adaptiveHeight</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Adapts slider height to the current slide</td>
+    </tr>
+    <tr>
+    <td>appendArrows</td>
+    <td>string</td>
+    <td>$(element)</td>
+    <td>Change where the navigation arrows are attached (Selector, htmlString, Array, Element, jQuery object)</td>
+    </tr>
+    <tr>
+    <td>appendDots</td>
+    <td>string</td>
+    <td>$(element)</td>
+    <td>Change where the navigation dots are attached (Selector, htmlString, Array, Element, jQuery object)</td>
+    </tr>
+    <tr>
+    <td>arrows</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Enable Next/Prev arrows</td>
+    </tr>
+    <tr>
+    <td>asNavFor</td>
+    <td>string</td>
+    <td>$(element)</td>
+    <td>Enables syncing of multiple sliders</td>
+    </tr>
+    <tr>
+    <td>autoplay</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Enables auto play of slides</td>
+    </tr>
+    <tr>
+    <td>autoplaySpeed</td>
+    <td>int</td>
+    <td>3000</td>
+    <td>Auto play change interval</td>
+    </tr>
+    <tr>
+    <td>centerMode</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Enables centered view with partial prev/next slides. Use with odd numbered slidesToShow counts.</td>
+    </tr>
+    <tr>
+    <td>centerPadding</td>
+    <td>string</td>
+    <td>'50px'</td>
+    <td>Side padding when in center mode. (px or %)</td>
+    </tr>
+    <tr>
+    <td>cssEase</td>
+    <td>string</td>
+    <td>'ease'</td>
+    <td>CSS3 easing</td>
+    </tr>
+    <tr>
+    <td>customPaging</td>
+    <td>function</td>
+    <td>n/a</td>
+    <td>Custom paging templates. See source for use example.</td>
+    </tr>
+    <tr>
+    <td>dots</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Current slide indicator dots</td>
+    </tr>
+    <tr>
+    <td>dotsClass</td>
+    <td>string</td>
+    <td>'slick-dots'</td>
+    <td>Class for slide indicator dots container</td>
+    </tr>
+    <tr>
+    <td>draggable</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Enables desktop dragging</td>
+    </tr>
+    <tr>
+    <td>easing</td>
+    <td>string</td>
+    <td>'linear'</td>
+    <td>animate() fallback easing</td>
+    </tr>
+    <tr>
+    <td>edgeFriction</td>
+    <td>integer</td>
+    <td>0.15</td>
+    <td>Resistance when swiping edges of non-infinite carousels</td>
+    </tr>
+    <tr>
+    <td>fade</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Enables fade</td>
+    </tr>
+    <tr>
+    <td>focusOnSelect</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Enable focus on selected element (click)</td>
+    </tr>
+    <tr>
+    <td>focusOnChange</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Puts focus on slide after change</td>
+    </tr>
+    <tr>
+    <td>infinite</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Infinite looping</td>
+    </tr>
+    <tr>
+    <td>initialSlide</td>
+    <td>integer</td>
+    <td>0</td>
+    <td>Slide to start on</td>
+    </tr>
+    <tr>
+    <td>lazyLoad</td>
+    <td>string</td>
+    <td>'ondemand'</td>
+    <td>Accepts 'ondemand' or 'progressive' for lazy load technique. 'ondemand' will load the image as soon as you slide to it, 'progressive' loads one image after the other when the page loads.</td>
+    </tr>
+    <tr>
+    <td>mobileFirst</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Responsive settings use mobile first calculation</td>
+    </tr>
+    <tr>
+    <td>nextArrow</td>
+    <td>string (html | jQuery selector) | object (DOM node | jQuery object)</td>
+    <td><code>&lt;button type="button" class="slick-next"&gt;Next&lt;/button&gt;</code></td>
+    <td>Allows you to select a node or customize the HTML for the "Next" arrow.</td>
+    </tr>
+    <tr>
+    <td>pauseOnDotsHover</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Pauses autoplay when a dot is hovered</td>
+    </tr>
+    <tr>
+    <td>pauseOnFocus</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Pauses autoplay when slider is focussed</td>
+    </tr>
+    <tr>
+    <td>pauseOnHover</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Pauses autoplay on hover</td>
+    </tr>
+    <tr>
+    <td>prevArrow</td>
+    <td>string (html | jQuery selector) | object (DOM node | jQuery object)</td>
+    <td><code>&lt;button type="button" class="slick-prev"&gt;Previous&lt;/button&gt;</code></td>
+    <td>Allows you to select a node or customize the HTML for the "Previous" arrow.</td>
+    </tr>
+    <tr>
+    <td>respondTo</td>
+    <td>string</td>
+    <td>'window'</td>
+    <td>Width that responsive object responds to. Can be 'window', 'slider' or 'min' (the smaller of the two).</td>
+    </tr>
+    <tr>
+    <td>responsive</td>
+    <td>array</td>
+    <td>null</td>
+    <td>Array of objects <a href="#responsive-option-example">containing breakpoints and settings objects (see example)</a>. Enables settings at given <code>breakpoint</code>. Set <code>settings</code> to "unslick" instead of an object to disable slick at a given breakpoint.</td>
+    </tr>
+    <tr>
+    <td>rows</td>
+    <td>int</td>
+    <td>1</td>
+    <td>Setting this to more than 1 initializes grid mode. Use slidesPerRow to set how many slides should be in each row.</td>
+    </tr>
+    <tr>
+    <td>rtl</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Change the slider's direction to become right-to-left</td>
+    </tr>
+    <tr>
+    <td>slide</td>
+    <td>string</td>
+    <td>''</td>
+    <td>Slide element query</td>
+    </tr>
+    <tr>
+    <td>slidesPerRow</td>
+    <td>int</td>
+    <td>1</td>
+    <td>With grid mode initialized via the rows option, this sets how many slides are in each grid row.</td>
+    </tr>
+    <tr>
+    <td>slidesToScroll</td>
+    <td>int</td>
+    <td>1</td>
+    <td># of slides to scroll at a time</td>
+    </tr>
+    <tr>
+    <td>slidesToShow</td>
+    <td>int</td>
+    <td>1</td>
+    <td># of slides to show at a time</td>
+    </tr>
+    <tr>
+    <td>speed</td>
+    <td>int</td>
+    <td>300</td>
+    <td>Transition speed</td>
+    </tr>
+    <tr>
+    <td>swipe</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Enables touch swipe</td>
+    </tr>
+    <tr>
+    <td>swipeToSlide</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Swipe to slide irrespective of slidesToScroll</td>
+    </tr>
+    <tr>
+    <td>touchMove</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Enables slide moving with touch</td>
+    </tr>
+    <tr>
+    <td>touchThreshold</td>
+    <td>int</td>
+    <td>5</td>
+    <td>To advance slides, the user must swipe a length of (1/touchThreshold) * the width of the slider.</td>
+    </tr>
+    <tr>
+    <td>useCSS</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Enable/Disable CSS Transitions</td>
+    </tr>
+    <tr>
+    <td>useTransform</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Enable/Disable CSS Transforms</td>
+    </tr>
+    <tr>
+    <td>variableWidth</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Disables automatic slide width calculation</td>
+    </tr>
+    <tr>
+    <td>vertical</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Vertical slide direction</td>
+    </tr>
+    <tr>
+    <td>verticalSwiping</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>Changes swipe direction to vertical</td>
+    </tr>
+    <tr>
+    <td>waitForAnimate</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Ignores requests to advance the slide while animating</td>
+    </tr>
+    <tr>
+    <td>zIndex</td>
+    <td>number</td>
+    <td>1000</td>
+    <td>Set the zIndex values for slides, useful for IE9 and lower</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<pre class="brush:js; first-line:1; tab-size:2; toolbar:false; pad-line-numbers:true;">
+$(".slider").slick({
+
+    // normal options...
+    infinite: false,
+    
+    // the magic
+    responsive: [{
+    
+        breakpoint: 1024,
+        settings: {
+            slidesToShow: 3,
+            infinite: true
+        }
+    
+        }, {
+    
+        breakpoint: 600,
+        settings: {
+            slidesToShow: 2,
+            dots: true
+        }
+    
+        }, {
+    
+        breakpoint: 300,
+        settings: "unslick" // destroys slick
+    
+        }]
+    });
+</pre>
+<h3>Events</h3>
+<pre class="brush:js; first-line:1; tab-size:2; toolbar:false; pad-line-numbers:true;">
+    // On swipe event
+    $('.your-element').on('swipe', function(event, slick, direction){
+        console.log(direction);
+        // left
+    });
+    
+    // On edge hit
+    $('.your-element').on('edge', function(event, slick, direction){
+        console.log('edge was hit')
+    });
+    
+    // On before slide change
+    $('.your-element').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+        console.log(nextSlide);
+    });
+</pre>
+<div class="board_list">
+<table>
+    <thead>
+    <tr>
+    <th>Event</th>
+    <th>Params</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>afterChange</td>
+    <td>event, slick, currentSlide</td>
+    <td>After slide change callback</td>
+    </tr>
+    <tr>
+    <td>beforeChange</td>
+    <td>event, slick, currentSlide, nextSlide</td>
+    <td>Before slide change callback</td>
+    </tr>
+    <tr>
+    <td>breakpoint</td>
+    <td>event, slick, breakpoint</td>
+    <td>Fires after a breakpoint is hit</td>
+    </tr>
+    <tr>
+    <td>destroy</td>
+    <td>event, slick</td>
+    <td>When slider is destroyed, or unslicked.</td>
+    </tr>
+    <tr>
+    <td>edge</td>
+    <td>event, slick, direction</td>
+    <td>Fires when an edge is overscrolled in non-infinite mode.</td>
+    </tr>
+    <tr>
+    <td>init</td>
+    <td>event, slick</td>
+    <td>When Slick initializes for the first time callback. Note that this event should be defined before initializing the slider.</td>
+    </tr>
+    <tr>
+    <td>reInit</td>
+    <td>event, slick</td>
+    <td>Every time Slick (re-)initializes callback</td>
+    </tr>
+    <tr>
+    <td>setPosition</td>
+    <td>event, slick</td>
+    <td>Every time Slick recalculates position</td>
+    </tr>
+    <tr>
+    <td>swipe</td>
+    <td>event, slick, direction</td>
+    <td>Fires after swipe/drag</td>
+    </tr>
+    <tr>
+    <td>lazyLoaded</td>
+    <td>event, slick, image, imageSource</td>
+    <td>Fires after image loads lazily</td>
+    </tr>
+    <tr>
+    <td>lazyLoadError</td>
+    <td>event, slick, image, imageSource</td>
+    <td>Fires after image fails to load</td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+<h3>Methods</h3>
+<pre class="brush:js; first-line:1; tab-size:2; toolbar:false; pad-line-numbers:true;">
+    //Methods are called on slick instances through the slick method itself in version 1.4, see below:
+
+    // Add a slide
+    $('.your-element').slick('slickAdd',"<div></div>");
+    
+    // Get the current slide
+    var currentSlide = $('.your-element').slick('slickCurrentSlide');
+    
+    //This new syntax allows you to call any internal slick method as well:
+    
+    // Manually refresh positioning of slick
+    $('.your-element').slick('setPosition');
+</pre>
+<div class="board_list">
+<table>
+    <thead>
+    <tr>
+    <th>Method</th>
+    <th>Argument</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td><code>slick</code></td>
+    <td>options : object</td>
+    <td>Initializes Slick</td>
+    </tr>
+    <tr>
+    <td><code>unslick</code></td>
+    <td></td>
+    <td>Destroys Slick</td>
+    </tr>
+    <tr>
+    <td><code>slickNext</code></td>
+    <td></td>
+    <td>Triggers next slide</td>
+    </tr>
+    <tr>
+    <td><code>slickPrev</code></td>
+    <td></td>
+    <td>Triggers previous slide</td>
+    </tr>
+    <tr>
+    <td><code>slickPause</code></td>
+    <td></td>
+    <td>Pause Autoplay</td>
+    </tr>
+    <tr>
+    <td><code>slickPlay</code></td>
+    <td></td>
+    <td>Start Autoplay (<em>will also set <code>autoplay</code> option to <code>true</code></em>)</td>
+    </tr>
+    <tr>
+    <td><code>slickGoTo</code></td>
+    <td>index : int, dontAnimate : bool</td>
+    <td>Goes to slide by index, skipping animation if second parameter is set to true</td>
+    </tr>
+    <tr>
+    <td><code>slickCurrentSlide</code></td>
+    <td></td>
+    <td>Returns the current slide index</td>
+    </tr>
+    <tr>
+    <td><code>slickAdd</code></td>
+    <td>element : html or DOM object, index: int, addBefore: bool</td>
+    <td>Add a slide. If an index is provided, will add at that index, or before if addBefore is set. If no index is provided, add to the end or to the beginning if addBefore is set. Accepts HTML String</td>
+    </tr>
+    <tr>
+    <td><code>slickRemove</code></td>
+    <td>index: int, removeBefore: bool</td>
+    <td>Remove slide by index. If removeBefore is set true, remove slide preceding index, or the first slide if no index is specified. If removeBefore is set to false, remove the slide following index, or the last slide if no index is set.</td>
+    </tr>
+    <tr>
+    <td><code>slickFilter</code></td>
+    <td>filter : selector or function</td>
+    <td>Filters slides using jQuery .filter syntax</td>
+    </tr>
+    <tr>
+    <td><code>slickUnfilter</code></td>
+    <td></td>
+    <td>Removes applied filter</td>
+    </tr>
+    <tr>
+    <td><code>slickGetOption</code></td>
+    <td>option : string(option name)</td>
+    <td>Gets an option value.</td>
+    </tr>
+    <tr>
+    <td><code>slickSetOption</code></td>
+    <td>change an option, <code>refresh</code> is always <code>boolean</code> and will update UI changes...</td>
+    <td></td>
+    </tr>
+    <tr>
+    <td><code>option, value, refresh</code></td>
+    <td>change a <a href="https://github.com/kenwheeler/slick#settings">single <code>option</code></a> to given <code>value</code>; <code>refresh</code> is optional.</td>
+    <td></td>
+    </tr>
+    <tr>
+    <td><code>"responsive", [{ breakpoint: n, settings: {} }, ... ], refresh</code></td>
+    <td>change or add <a href="#responsive-option-example">whole sets of responsive options</a></td>
+    <td></td>
+    </tr>
+    <tr>
+    <td><code>{ option: value, option: value, ... }, refresh</code></td>
+    <td>change  <a href="https://github.com/kenwheeler/slick#settings">multiple <code>option</code>s</a> to corresponding <code>value</code>s.</td>
+    <td></td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+
+
+
+
+<script>
+$(document).ready(function () {
+    $('.slider').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: true,
+        // appendDots: $(element),
+        
+    });
+    // http://kenwheeler.github.io/slick/
+});
+</script>
