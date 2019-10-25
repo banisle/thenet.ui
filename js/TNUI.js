@@ -2005,7 +2005,7 @@ TNUI.module = (function () {
             new scrTopF(rV);
         },
 
-        // mark : tab anckor
+        // mark : tab anckorUI
         tabAnchorUi: function(pT,fix){
                 var $t = $('.ui-tabAnchor'),
                 $aWrap = $('.ui-anchorWrap'),
@@ -2119,6 +2119,86 @@ TNUI.module = (function () {
             // 인자값 : 고정 탭 높이값, 고정됐을때 컨텐츠가 상단으로부터의 여백 지정
             new tabFixed(pT,fix);
         },
+
+        // mark : parallaxUi
+        parallaxUi: function(){
+            // makes the parallax elements
+            function parallaxIt() {
+
+                // create variables
+                var $fwindow = $(window);
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                // on window scroll event
+                $fwindow.on('scroll resize', function () {
+                    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                });
+
+                // for each of content parallax element
+                $('[data-type="content"]').each(function (index, e) {
+                    var $contentObj = $(this);
+                    var fgOffset = parseInt($contentObj.offset().top);
+                    var yPos;
+                    var speed = ($contentObj.data('speed') || 1);
+
+                    $fwindow.on('scroll resize', function () {
+                        yPos = fgOffset - scrollTop / speed;
+
+                        $contentObj.css('top', yPos);
+                    });
+                });
+
+                // for each of background parallax element
+                $('[data-type="background"]').each(function () {
+                    var $backgroundObj = $(this);
+                    var bgOffset = parseInt($backgroundObj.offset().top);
+                    var yPos;
+                    var coords;
+                    var speed = ($backgroundObj.data('speed') || 0);
+
+                    $fwindow.on('scroll resize', function () {
+                        yPos = -((scrollTop - bgOffset) / speed);
+                        coords = '50% ' + yPos + 'px';
+
+                        $backgroundObj.css({
+                            backgroundPosition: coords
+                        });
+                    });
+                });
+
+                // triggers winodw scroll for refresh
+                $fwindow.trigger('scroll');
+            };
+
+            parallaxIt();
+
+        },
+
+        // updown changeUi
+        updnChgUi: function(elType){
+            var $el = elType; // div && tr 
+
+            var $up = $('.ui-row-up'),
+                $dn = $('.ui-row-dn');
+    
+                $up.on('click',function(){
+                    upFunc( $(this) );
+                });
+                $dn.on('click',function(){
+                    dnFunc( $(this) );
+                });
+    
+                var upFunc = function(t){
+                    var $tr = t.closest($el); // 클릭한 버튼이 속한 tr 요소
+                    $tr.prev().before($tr); // 현재 tr 의 이전 tr 앞에 선택한 tr 넣기
+                }
+    
+                var dnFunc = function(t){
+                    var $tr = t.closest($el); // 클릭한 버튼이 속한 tr 요소
+                    $tr.next().after($tr); // 현재 tr 의 다음 tr 뒤에 선택한 tr 넣기
+                }
+        },
+
         // mark : init
         init: function () {
             // var t = this;

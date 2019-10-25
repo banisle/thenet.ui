@@ -233,7 +233,7 @@ input[type="radio"] {
 .syntaxhighlighter .line.alt2:hover *{
     color: #fff !important;
 }
-
+.syntaxhighlighter table td.gutter .line{width:20px !important}
 /* //mark: wsg */
 html.fixed {
 	overflow-y: hidden;
@@ -533,7 +533,15 @@ input[type=text] {
 	padding: 0 20px 0;
 	color: #fff
 }
+.btn_org.free_width{min-width: auto;}
 .btn_org.free_width >span{position: relative;}
+
+.btn_org.md{height: 38px;}
+.btn_org.sm{height: 28px;}
+.btn_org.xs{height: 22px;}
+.btn_org.md>span{line-height: 38px}
+.btn_org.sm>span{line-height: 28px;font-size: 14px;}
+.btn_org.xs>span{line-height: 22px;font-size: 12px;}
 
 .btn_no {
 	background: #5b5b5b
@@ -1621,6 +1629,18 @@ html.mobile .ui-scrollview {
     background: #eef3f8;
 }
 
+.board_list table{ width:100%; font-size: 14px; border-top:1px solid #d2d2d2; border-bottom: 1px solid #d2d2d2; }
+.board_list table thead th{ padding:17px 0 15px; color:#333; background:#f9f9f9; border-bottom:1px solid #e8e8e8; }
+.board_list table tbody tr.noti{ font-weight: bold; }
+.board_list table tbody tr:last-child td{ border-bottom: 0; }
+.board_list table tbody td{ padding:17px 0 15px; text-align:center; border-bottom:1px solid #e8e8e8; color:#666; /*190626추가*/ vertical-align: middle;}
+
+/* //mark : list */
+.ul_list{width: 100%;border-top:1px solid #666;border-bottom:1px solid #666;}
+.ul_list li{width: 100%; padding: 10px; border-bottom:1px solid #666;box-sizing: border-box;}
+.ul_list li:last-child{border-bottom:0;}
+
+
 /* //mark:  swipe */
 .ui-swipe-wrap {
 	overflow-x: hidden;
@@ -1708,6 +1728,22 @@ html.mobile .ui-scrollview {
 	background: #fff;
 	z-index: 2;
 }
+
+/* //mark : parallax  */
+.ui-parallax{}
+.ui-parallax.container { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-align-content: center; -ms-flex-line-pack: center; align-content: center; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-flex-wrap: nowrap; -ms-flex-wrap: nowrap; flex-wrap: nowrap; height: 100%; -webkit-justify-content: space-around; -ms-flex-pack: distribute; justify-content: space-around; position: relative; width: 100%; }
+.ui-parallax.container section { width: 100%; height: 100vh; -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; text-align: center; position: relative; overflow: hidden; background-color: #000; }
+.ui-parallax.container section:nth-child(1) .image { background-image: url(https://images.unsplash.com/photo-1463412855783-af97e375664b?iq=100&fm=jpg&w=1000); }
+.ui-parallax.container section:nth-child(2) .image { background-image: url(https://images.unsplash.com/photo-1462819067004-905a72ea3996?iq=100&fm=jpg&w=1000); }
+.ui-parallax.container section:nth-child(3) .image { background-image: url(https://images.unsplash.com/photo-1461770354136-8f58567b617a?iq=100&fm=jpg&w=1000); }
+.ui-parallax.container section:nth-child(4) .image { background-image: url(https://images.unsplash.com/photo-1461080639469-66d73688fb21?iq=100&fm=jpg&w=1000); }
+.ui-parallax.container section:nth-child(5) .image { background-image: url(https://images.unsplash.com/photo-1460804198264-011ca89eaa43?iq=100&fm=jpg&w=1000); }
+.ui-parallax.container section:nth-child(6) .image { background-image: url(https://images.unsplash.com/photo-1463123081488-789f998ac9c4?iq=100&fm=jpg&w=1000); }
+.ui-parallax.container section .image { background-attachment: fixed; background-size: cover; width: 100%; height: 100%; position: absolute; z-index: 500; opacity: 0.4; }
+.ui-parallax.container section .stuff { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-flex-wrap: nowrap; -ms-flex-wrap: nowrap; flex-wrap: nowrap; height: 100%; width: 100%; max-width: 70%; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; text-align: center; z-index: 1000; color: #e67e22; margin: 0 auto; font-size: 26px; position: relative; }
+.ui-parallax.container section .stuff h2 { margin: 0px; }
+.ui-parallax.container section .stuff:before,
+.ui-parallax.container section .stuff:after { width: 100%; height: 1px; display: block; background-color: #d35400; content: ""; margin: 30px 0; }
 
 
 /* //mark:  media query */
