@@ -2174,7 +2174,7 @@ TNUI.module = (function () {
 
         },
 
-        // updown changeUi
+        // mark: updown changeUi
         updnChgUi: function(elType){
             var $el = elType; // div && tr 
 
@@ -2199,6 +2199,43 @@ TNUI.module = (function () {
                 }
         },
 
+        // mark : floatGnbUi
+        floatGnbUi : function(){
+
+            var $t = $('.ui-floatGnb'),
+                _t = $('this'),
+                $dimBg = $t.find('.dim_bg'),
+                //스크롤바 width 구하기
+                scrlW = window.innerWidth - document.documentElement.clientWidth;
+
+            function floatGnb(){
+                function showMenu() {
+                    $('.subMenu:not(:last)').add($dimBg).addClass('show');
+                    $('html').addClass('fixed').css('padding-right', scrlW);
+                }
+    
+                function hideMenu() {
+                    $('html').removeClass('fixed').css('padding-right','');
+                    $('.subMenu:not(:last)').removeClass('show');
+                    $('.subMenu:last')[0].tog = 0;
+                    window.setTimeout(function () {
+                        $dimBg.removeClass('show');
+                    }, 300);
+                }
+    
+                $('.subMenu:last').on('click', function () {
+                    (this.tog ^= 1) ? showMenu(): hideMenu();
+                });
+    
+                $dimBg.on('click', hideMenu);
+            }
+
+            //init
+            if($t.length > 0 ){
+                floatGnb();
+            }
+        },
+
         // mark : init
         init: function () {
             // var t = this;
@@ -2217,3 +2254,4 @@ TNUI.module = (function () {
 
 
 })();
+
