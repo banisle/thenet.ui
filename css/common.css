@@ -236,7 +236,8 @@ input[type="radio"] {
 .syntaxhighlighter table td.gutter .line{width:20px !important}
 /* //mark: wsg */
 html.fixed {
-	overflow-y: hidden;
+	position: fixed;
+	overflow-y:scroll
 }
 
 .guide-side {
@@ -1109,13 +1110,15 @@ html.mobile .form_select {
 .dim_bg { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; opacity: 0.7; z-index: 2;}
 .dim_bg.show { display: block; }
 .floatGnb { position: fixed; top: 50%; right: 20px; width: 100px; height: 50px; z-index: 3; transform: translateY(-50%)}
-.floatGnb .subMenu { position: absolute; top: 0; left: 0; text-align: right; width: 100px; height: 50px; color: white; opacity: 0; cursor: pointer; transition: all 0.2s ease 0.1s }
+.floatGnb .subMenu { position: absolute; top: 0; left: 0; text-align: right; width: 100px; height: 50px; background: rgb(123, 171, 211); color: white; opacity: 0; cursor: pointer; transition: all 0.2s ease 0.1s }
 .floatGnb .subMenu:last-child { width: 50px; margin-left: 50px; opacity: 1; }
-.floatGnb .subMenu img { vertical-align: middle; }
 .floatGnb .subMenu.show { opacity: 1; }
-.floatGnb .subMenu:nth-child(1).show { top: -180px; }
-.floatGnb .subMenu:nth-child(2).show { top: -120px; }
-.floatGnb .subMenu:nth-child(3).show { top: -60px; }
+.floatGnb .subMenu:nth-child(1).show { top: -180px; background: red;}
+.floatGnb .subMenu:nth-child(2).show { top: -120px; background: blue;}
+.floatGnb .subMenu:nth-child(3).show { top: -60px; background: rgb(47, 179, 117)}
+.floatGnb .subMenu.call{border-radius: 50%}
+.floatGnb .subMenu.call.active{background:rgb(42, 96, 139) }
+.floatGnb .subMenu.call > span{display: block;width: 100%; text-align: center; line-height: 50px;}
 
 /* //mark: gnb */
 .mo_submenu_wrap {

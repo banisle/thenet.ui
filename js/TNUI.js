@@ -2203,27 +2203,31 @@ TNUI.module = (function () {
         floatGnbUi : function(){
 
             var $t = $('.ui-floatGnb'),
-                _t = $('this'),
-                $dimBg = $t.find('.dim_bg'),
+                $call = $t.find('.call'),
+                $dimBg = $t.find('.dim_bg');
                 //스크롤바 width 구하기
-                scrlW = window.innerWidth - document.documentElement.clientWidth;
+                // scrlW = window.innerWidth - document.documentElement.clientWidth;
 
             function floatGnb(){
                 function showMenu() {
+                    $call.addClass('active');
                     $('.subMenu:not(:last)').add($dimBg).addClass('show');
-                    $('html').addClass('fixed').css('padding-right', scrlW);
+                    // $('html').addClass('fixed').css('padding-right', scrlW);
+                    $('html').addClass('fixed');
                 }
     
                 function hideMenu() {
-                    $('html').removeClass('fixed').css('padding-right','');
+                    // $('html').removeClass('fixed').css('padding-right','');
+                    $call.removeClass('active');
+                    $('html').removeClass('fixed');
                     $('.subMenu:not(:last)').removeClass('show');
-                    $('.subMenu:last')[0].tog = 0;
+                    $call.tog = 0;
                     window.setTimeout(function () {
                         $dimBg.removeClass('show');
                     }, 300);
                 }
     
-                $('.subMenu:last').on('click', function () {
+                $call.on('click', function () {
                     (this.tog ^= 1) ? showMenu(): hideMenu();
                 });
     
