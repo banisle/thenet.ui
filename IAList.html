@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>코딩리스트 샘플</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="../../js/jquery-3.4.1.min.js"></script>
 <style type="text/css">
 @charset "utf-8";
 /* reset */
@@ -20,11 +20,10 @@ img, a, input, select, textarea, label, button, span, em, strong{vertical-align:
 hr{display:none;}
 
 /* common */
-html, body{width:100%; height:100%; font-size:16px; line-height:1.6; font-family:"나눔고딕", NanumGothic, "돋움", Dotum;}
+html, body{width:100%; height:100%; font-size:14px; line-height:1.6; font-family:"나눔고딕", NanumGothic, "돋움", Dotum;}
 html{overflow-y:scroll;}
 body{min-width:1000px; }
 a{color:#000; text-decoration:none;}
-caption, legend{overflow:hidden; width:0; height:0; font-size:0; line-height:0; visibility:0;}
 .red {color:#ff6600;}
 
 /* 본문스타일 */
@@ -34,7 +33,7 @@ caption, legend{overflow:hidden; width:0; height:0; font-size:0; line-height:0; 
 h1{margin-bottom:10px;}
 h1 span{display:inline-block; padding:10px 0; font-size:28px; font-weight: bold;}
 
-.menuWrap{position:relative;padding-top:43px;}
+.menuWrap{position:relative;padding-top:40px;}
 .menu, .menu table{width:100%;}
 .menu>dt{position:absolute; top:0; width:10%;}
 .menu>dt a{display:block; margin-top:2px; padding:8px 0 7px 0; border:1px solid #CCC; border-bottom:0; border-left:0; text-align:center; cursor:pointer;font-weight:bold;background:#fff;}
@@ -61,7 +60,7 @@ h1 span{display:inline-block; padding:10px 0; font-size:28px; font-weight: bold;
 .menu_link li a{color:#333;}
 .menu_link li a:hover{text-decoration:underline;}
 
-table{border-bottom:1px solid #ccc; font-size: 14px}
+table{border-bottom:1px solid #ccc; font-size: 12px}
 tr{background:#fff;}
 tr:hover {background:#edeaea;}
 tr:hover td a{}
@@ -118,6 +117,10 @@ tbody .tip span{width:200px; margin-left:-80px;}
 
 #toTop{display:none; position:fixed; bottom:0; width:100%;}
 #toTop a{display:block; padding:9px 10px; background:#333; color:#FFF; text-align:center;}
+
+.allview caption{display: block; width: 100%; padding: 10px 0; text-align: left;font-weight: bold; font-size: 16px;}
+caption{display:none}
+
 </style>
 
 <!-- urlOpen -->
@@ -147,6 +150,13 @@ $(function($){
 	var TotalStand = TotalBtn1 - TotalEnd;	
 	var TotalRate = (TotalEnd/TotalBtn1)*100;
 		TotalRate = TotalRate.toFixed(2) + " %"; 
+	var $tbTit = $('[class^=tm]:not(.tm)');
+	
+	$tbTit.each(function(){
+		var capTit = $(this).find('a').text();
+		$(this).next().find('table > caption').text(capTit);
+
+	});
 
 	$(".cntadd").html(TotalBtn1);
 	$(".cntadd2").html(TotalBtn2);
@@ -163,17 +173,23 @@ $(function($){
 			$('<a class="btn off btnHis" />').prependTo($(this).parent('div')).text('수정이력');
 		}
 	});
-	$('.tm').click(function(){
-		$(this).addClass('selected');
-		$('.menu>dd').show().siblings('dt').children('a').removeClass('selected');
-		return false;
-	});
-	$('.menu>dt a').click(function(){
+
+	$('.menu>dt a:not(tm)').click(function(){
+		$('.menu').removeClass('allview');
 		$('.tm').removeClass('selected');
 		$(this).addClass('selected').parent('dt').siblings('dt').children('a').removeClass('selected');
 		$(this).parent('dt').next('dd').show().siblings('dd').hide();
 		return false;
 	});
+
+	$('.tm').click(function(){
+		$(this).closest('.menu').addClass('allview').end().addClass('selected');
+		$('.menu>dd').show().siblings('dt').children('a').removeClass('selected');
+		return false;
+	});
+
+
+
 	$('.btnHis').click(function(){
 		$(this).toggleClass('off');
 		$(this).next('.hisList').children('li:not(.on)').toggle();
@@ -234,6 +250,7 @@ $(function($){
 
 	$('table').each(function(i){
 		groupTable( $(this).find('tr:has(td)') , 0, 3);
+
 	})
 	$('table .deleted').remove();
 	// groupTable method has 3 arguments:
@@ -267,6 +284,7 @@ $(function($){
 			<dt class="tm1"><a class="selected">sub01</a></dt>
 			<dd style="display:block;">
 				<table >
+					<caption></caption>
 					<colgroup>
 						<col width="100" />
 						<col width="" />
@@ -309,363 +327,12 @@ $(function($){
 							<td class="aCenter"><span data-mod class="btn2"></span></td>
 							<td></td>
 						</tr>
-						<tr>
-							<td><strong>depth1</strong></td>
-							<td>depth2</td>
-							<td>depth3</td>
-							<td>1</td>
-							<td>1</td>
-							<td><a href="/guide.html" target="_blank"></a></td>
-							<td class="ct"></td> 
-							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
-							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><strong>depth1</strong></td>
-							<td>depth2</td>
-							<td>depth3</td>
-							<td>1</td>
-							<td>1</td>
-							<td><a href="/guide.html" target="_blank"></a></td>
-							<td class="ct"></td> 
-							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
-							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
-							<td></td>
-						</tr>
+						
 					</tbody>
 				</table>
 			</dd>
 
-			<dt class="tm2"><a class="">sub02</a></dt>
-			<dd>
-				<table >
-					<colgroup>
-						<col width="100" />
-						<col width="" />
-						<col width="" />
-						<col width="70" />
-						<col width="70" />
-						<col width="130" />
-						<col width="70" />
-						<col width="70" />
-						<col width="70" />
-						<col width="280" />
-					</colgroup>
-					<thead>
-						<tr>
-							<th colspan="5" scope="col">DEPTH</th>
-							<th scope="col" rowspan="2">URL</th>
-							<th scope="col" rowspan="2">담당자</th>
-							<th rowspan="2" align="center" scope="col">완료일</th>
-							<th rowspan="2" align="center" scope="col">수정 완료일</th>
-							<th scope="col" rowspan="2">메모</th>
-						</tr>
-						<tr>
-							<th scope="col">1depth</th>
-							<th scope="col">2depth</th>
-							<th scope="col">3depth</th>
-							<th scope="col">팝업(win)</th>
-							<th scope="col">팝업(layer)</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><strong>depth1</strong></td>
-							<td>depth2</td>
-							<td>depth3</td>
-							<td>1</td>
-							<td>1</td>
-							<td><a href="/guide.html" target="_blank"></a></td>
-							<td class="ct"></td> 
-							<td class="aCenter"><span class="btn">00.00</span></td>
-							<td class="aCenter"></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><strong>depth1</strong></td>
-							<td>depth2</td>
-							<td>depth3-1</td>
-							<td>1</td>
-							<td>1</td>
-							<td><a href="/guide.html" target="_blank"></a></td>
-							<td class="ct"></td> 
-							<td class="aCenter"><span class="btn">00.00</span></td>
-							<td class="aCenter"></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><strong>depth1</strong></td>
-							<td>depth21</td>
-							<td>depth3-2</td>
-							<td>1</td>
-							<td>1</td>
-							<td><a href="/guide.html" target="_blank"></a></td>
-							<td class="ct"></td> 
-							<td class="aCenter"><span class="btn">00.00</span></td>
-							<td class="aCenter"></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><strong>depth1</strong></td>
-							<td>depth21</td>
-							<td>depth3</td>
-							<td>1</td>
-							<td>1</td>
-							<td><a href="/guide.html" target="_blank"></a></td>
-							<td class="ct"></td> 
-							<td class="aCenter"><span class="btn">00.00</span></td>
-							<td class="aCenter"></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</dd>
-
-			<dt class="tm3"><a href="#">sub03</a></dt>
-			<dd>
-				<table>
-					<colgroup>
-						<col width="100" />
-						<col width="" />
-						<col width="" />
-						<col width="70" />
-						<col width="70" />
-						<col width="130" />
-						<col width="70" />
-						<col width="70" />
-						<col width="70" />
-						<col width="280" />
-					</colgroup>
-					<thead>
-						<tr>
-							<th colspan="5" scope="col">DEPTH</th>
-							<th scope="col" rowspan="2">URL</th>
-							<th scope="col" rowspan="2">담당자</th>
-							<th rowspan="2" align="center" scope="col">완료일</th>
-							<th rowspan="2" align="center" scope="col">수정 완료일</th>
-							<th scope="col" rowspan="2">메모</th>
-						</tr>
-						<tr>
-							<th scope="col">1depth</th>
-							<th scope="col">2depth</th>
-							<th scope="col">3depth</th>
-							<th scope="col">팝업(win)</th>
-							<th scope="col">팝업(layer)</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><strong>depth1</strong></td>
-							<td>depth2</td>
-							<td>depth3</td>
-							<td>1</td>
-							<td>1</td>
-							<td><a href="/guide.html" target="_blank"></a></td>
-							<td class="ct"></td> 
-							<td class="aCenter"><span class="btn">00.00</span></td>
-							<td class="aCenter"></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</dd>
-
-			<dt class="tm4"><a href="#">sub04</a></dt>
-			<dd>
-				<table>
-					<colgroup>
-						<col width="100" />
-						<col width="" />
-						<col width="" />
-						<col width="70" />
-						<col width="70" />
-						<col width="130" />
-						<col width="70" />
-						<col width="70" />
-						<col width="70" />
-						<col width="280" />
-					</colgroup>
-					<thead>
-						<tr>
-							<th colspan="5" scope="col">DEPTH</th>
-							<th scope="col" rowspan="2">URL</th>
-							<th scope="col" rowspan="2">담당자</th>
-							<th rowspan="2" align="center" scope="col">완료일</th>
-							<th rowspan="2" align="center" scope="col">수정 완료일</th>
-							<th scope="col" rowspan="2">메모</th>
-						</tr>
-						<tr>
-							<th scope="col">1depth</th>
-							<th scope="col">2depth</th>
-							<th scope="col">3depth</th>
-							<th scope="col">팝업(win)</th>
-							<th scope="col">팝업(layer)</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><strong>depth1</strong></td>
-							<td>depth2</td>
-							<td>depth3</td>
-							<td>1</td>
-							<td>1</td>
-							<td><a href="/guide.html" target="_blank"></a></td>
-							<td class="ct"></td> 
-							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
-							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</dd>
-
-			<dt class="tm5"><a href="#">sub05</a></dt>
-			<dd>
-				<table>
-					<colgroup>
-						<col width="100" />
-						<col width="" />
-						<col width="" />
-						<col width="70" />
-						<col width="70" />
-						<col width="130" />
-						<col width="70" />
-						<col width="70" />
-						<col width="70" />
-						<col width="280" />
-					</colgroup>
-					<thead>
-						<tr>
-							<th colspan="5" scope="col">DEPTH</th>
-							<th scope="col" rowspan="2">URL</th>
-							<th scope="col" rowspan="2">담당자</th>
-							<th rowspan="2" align="center" scope="col">완료일</th>
-							<th rowspan="2" align="center" scope="col">수정 완료일</th>
-							<th scope="col" rowspan="2">메모</th>
-						</tr>
-						<tr>
-							<th scope="col">1depth</th>
-							<th scope="col">2depth</th>
-							<th scope="col">3depth</th>
-							<th scope="col">팝업(win)</th>
-							<th scope="col">팝업(layer)</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><strong>depth1</strong></td>
-							<td>depth2</td>
-							<td>depth3</td>
-							<td>1</td>
-							<td>1</td>
-							<td><a href="/guide.html" target="_blank"></a></td>
-							<td class="ct"></td> 
-							<td class="aCenter"><span class="btn">00.00</span></td>
-							<td class="aCenter"></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</dd>
-
-			<dt class="tm6"><a href="#">sub06</a></dt>
-			<dd>
-				<table>
-					<colgroup>
-						<col width="100" />
-						<col width="" />
-						<col width="" />
-						<col width="70" />
-						<col width="70" />
-						<col width="130" />
-						<col width="70" />
-						<col width="70" />
-						<col width="70" />
-						<col width="280" />
-					</colgroup>
-					<thead>
-						<tr>
-							<th colspan="5" scope="col">DEPTH</th>
-							<th scope="col" rowspan="2">URL</th>
-							<th scope="col" rowspan="2">담당자</th>
-							<th rowspan="2" align="center" scope="col">완료일</th>
-							<th rowspan="2" align="center" scope="col">수정 완료일</th>
-							<th scope="col" rowspan="2">메모</th>
-						</tr>
-						<tr>
-							<th scope="col">1depth</th>
-							<th scope="col">2depth</th>
-							<th scope="col">3depth</th>
-							<th scope="col">팝업(win)</th>
-							<th scope="col">팝업(layer)</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><strong>depth1</strong></td>
-							<td>depth2</td>
-							<td>depth3</td>
-							<td>1</td>
-							<td>1</td>
-							<td><a href="/guide.html" target="_blank"></a></td>
-							<td class="ct"></td> 
-							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
-							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</dd>
-
-			<dt class="tm7"><a href="#">sub07</a></dt>
-			<dd>
-				<table>
-					<colgroup>
-						<col width="100" />
-						<col width="" />
-						<col width="" />
-						<col width="70" />
-						<col width="70" />
-						<col width="130" />
-						<col width="70" />
-						<col width="70" />
-						<col width="70" />
-						<col width="280" />
-					</colgroup>
-					<thead>
-						<tr>
-							<th colspan="5" scope="col">DEPTH</th>
-							<th scope="col" rowspan="2">URL</th>
-							<th scope="col" rowspan="2">담당자</th>
-							<th rowspan="2" align="center" scope="col">완료일</th>
-							<th rowspan="2" align="center" scope="col">수정 완료일</th>
-							<th scope="col" rowspan="2">메모</th>
-						</tr>
-						<tr>
-							<th scope="col">1depth</th>
-							<th scope="col">2depth</th>
-							<th scope="col">3depth</th>
-							<th scope="col">팝업(win)</th>
-							<th scope="col">팝업(layer)</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><strong>depth1</strong></td>
-							<td>depth2</td>
-							<td>depth3</td>
-							<td>1</td>
-							<td>1</td>
-							<td><a href="/guide.html" target="_blank"></a></td>
-							<td class="ct"></td> 
-							<td class="aCenter" data-complete><span class="btn" data-end>00/00</span></td>
-							<td class="aCenter"><span data-mod class="btn2">00/00</span></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</dd>
+		
 		</dl>
 	</div>
 </div>
