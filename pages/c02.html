@@ -172,10 +172,41 @@
 &lt;/div&gt;
 </pre>
 
+<button class="btn_org btn_ok" data-modal="modal01"><span>셀렉트박스 모달</span></button>
+<div class="laypop type01" id="" data-target="modal01">
+    <div class="wrap-modal">
+        <article class="inner">
+            <header class="laypop_header">
+                <h1>팝업 타이틀</h1>
+            </header>
+            <div class="laypop_content">
+                <div class="scrollWrap ui-scrollview">
+                    <div class="ui-scrollbar"><span class="bar"></span></div>
+                    <div class="scrollInner ui-scrollarea">
+                        <div class="scrollview ui-content">
+                            <div class="selectWrap ui-selectbox">
+                                <select title="test" id="sel03" class="" >
+                                    <option value="test1">modal0</option>
+                                    <option value="test2" disabled >modal02</option>
+                                    <option value="test3">modal03</option>
+                                    <option value="test4">modal04</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="laypop_footer">
+                <div class="btn_wrap"><a href="#" class="btn_org btn_ok w100 mvClose"><span>닫기</span></a></div>
+            </footer>
+        </article>
+    </div>
+</div>
 
 <script>
     $(document).ready(function(){
         TNUI.module.tabUi();
         TNUI.module.selectUi();
+        TNUI.module.modalUi();
     })
 </script>
