@@ -231,17 +231,21 @@ TNUI.module = (function () {
             };
             selectUibox.prototype.createDiv = function () {
                 var appendLi = '';
+                // 중복생성 체크
+                if ( $selBox.closest($selWrap).find('.pc_selwrap').length < 1 ){
+                    
+                    $selBox.closest($selWrap)
+                        .append($('<div class="pc_selwrap"><div class="selOneWrap"><button class="ui-selected-one" aria-haspopup="listbox" aria-labelledby="sel_' + selId + '">' + $selBox.find(':selected').text() + '</button></div><div class="ui-result-ul" tabindex="-1" role="listbox" ><ul></ul></div>'));
+    
+                    $selBox.find($optGrp).each(function (i) {
+                        var isDisabled = $(this).prop('disabled') ? 'disabled' : '';
+    
+                        appendLi += '<li><button role="option" ' + isDisabled + ' aria-labelledby="sel_' + selId + '">' + $optGrp.eq(i).text() + '</button></li>';
+                    });
+    
+                    $selBox.closest($selWrap).find('ul').html(appendLi);
+                }
 
-                $selBox.closest($selWrap)
-                    .append($('<div class="pc_selwrap"><div class="selOneWrap"><button class="ui-selected-one" aria-haspopup="listbox" aria-labelledby="sel_' + selId + '">' + $selBox.find(':selected').text() + '</button></div><div class="ui-result-ul" tabindex="-1" role="listbox" ><ul></ul></div>'));
-
-                $selBox.find($optGrp).each(function (i) {
-                    var isDisabled = $(this).prop('disabled') ? 'disabled' : '';
-
-                    appendLi += '<li><button role="option" ' + isDisabled + ' aria-labelledby="sel_' + selId + '">' + $optGrp.eq(i).text() + '</button></li>';
-                });
-
-                $selBox.closest($selWrap).find('ul').html(appendLi);
 
             };
 
