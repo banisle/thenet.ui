@@ -1648,8 +1648,10 @@ html.mobile .ui-scrollview {
 
 /* //mark : parallax  */
 .ui-parallax{}
-.ui-parallax.container { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-align-content: center; -ms-flex-line-pack: center; align-content: center; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-flex-wrap: nowrap; -ms-flex-wrap: nowrap; flex-wrap: nowrap; height: 100%; -webkit-justify-content: space-around; -ms-flex-pack: distribute; justify-content: space-around; position: relative; width: 100%; }
-.ui-parallax.container section { width: 100%; height: 100vh; -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; text-align: center; position: relative; overflow: hidden; background-color: #000; }
+/* .ui-parallax.container {display: flex;  display: -webkit-box; display: -webkit-flex; display: -ms-flexbox;  -webkit-align-content: center; -ms-flex-line-pack: center; align-content: center; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-flex-wrap: nowrap; -ms-flex-wrap: nowrap; flex-wrap: nowrap; height: 100%; -webkit-justify-content: space-around; -ms-flex-pack: distribute; justify-content: space-around; position: relative; width: 100%; } */
+.ui-parallax.container {height: 100%; position: relative; width: 100%; }
+/* .ui-parallax.container section { width: 100%; height: 100vh; -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; text-align: center; position: relative; overflow: hidden; background-color: #000; } */
+.ui-parallax.container section { width: 100%; height: 100vh; text-align: center; position: relative; overflow: hidden; background-color: #000; }
 .ui-parallax.container section:nth-child(1) .image { background-color: red; }
 .ui-parallax.container section:nth-child(2) .image { background-color: blue; }
 .ui-parallax.container section:nth-child(3) .image { background-color: cyan; }
@@ -1657,7 +1659,8 @@ html.mobile .ui-scrollview {
 .ui-parallax.container section:nth-child(5) .image { background-color: mediumorchid; }
 .ui-parallax.container section:nth-child(6) .image { background-color: yellow; }
 .ui-parallax.container section .image { background-attachment: fixed; background-size: cover; width: 100%; height: 100%; position: absolute; z-index: 500; opacity: 0.4; }
-.ui-parallax.container section .stuff { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-flex-wrap: nowrap; -ms-flex-wrap: nowrap; flex-wrap: nowrap; height: 100%; width: 100%; max-width: 70%; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; text-align: center; z-index: 1000; color: #e67e22; margin: 0 auto; font-size: 26px; position: relative; }
+/* .ui-parallax.container section .stuff { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; -webkit-flex-wrap: nowrap; -ms-flex-wrap: nowrap; flex-wrap: nowrap; height: 100%; width: 100%; max-width: 70%; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; text-align: center; z-index: 1000; color: #e67e22; margin: 0 auto; font-size: 26px; position: relative; } */
+.ui-parallax.container section .stuff {  height: 100%; width: 100%; max-width: 70%;text-align: center; z-index: 1000; color: #e67e22; margin: 0 auto; font-size: 26px; position: relative; }
 .ui-parallax.container section .stuff h2 { margin: 0px; }
 .ui-parallax.container section .stuff:before,
 .ui-parallax.container section .stuff:after { width: 100%; height: 1px; display: block; background-color: #d35400; content: ""; margin: 30px 0; }
