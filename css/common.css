@@ -133,8 +133,7 @@ input[type="radio"] {
 .syntaxhighlighter table td.gutter .line{width:20px !important}
 /* //mark: wsg */
 html.fixed {
-	position: fixed;
-	overflow-y:scroll
+	overflow-y:hidden;
 }
 
 .guide-side {

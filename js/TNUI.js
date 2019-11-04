@@ -371,15 +371,52 @@ TNUI.module = (function () {
                 $layer = $('.wrap-modal .inner'),
                 $mask = $('.laypop .mask'),
                 mvId,
-                maskClick = maskClick || false;
+                maskClick = maskClick || false,
+                bodyIsOverflowing
+                ;
 
-
+            // 브라우저 스크롤바 크기 구하기
+            function scrollbarWidth () {
+                var inner = document.createElement('p');
+                inner.style.width = "100%";
+                inner.style.height = "200px";
+            
+                var outer = document.createElement('div');
+                outer.style.position = "absolute";
+                outer.style.top = "0px";
+                outer.style.left = "0px";
+                outer.style.visibility = "hidden";
+                outer.style.width = "200px";
+                outer.style.height = "150px";
+                outer.style.overflow = "hidden";
+                outer.appendChild (inner);
+            
+                document.body.appendChild (outer);
+                var w1 = inner.offsetWidth;
+                outer.style.overflow = 'scroll';
+                var w2 = inner.offsetWidth;
+                if (w1 == w2) w2 = outer.clientWidth;
+            
+                document.body.removeChild (outer);
+            
+                return (w1 - w2);
+            };
+            
             var dimLyOpen = function (mvId, maskClick) {
                 if (openSt == 'true') {
                     return;
                 }
+                //스크롤바가 생겼는지 체크
+                bodyIsOverflowing = Math.sign( $(window).height() - $(document).height() ) > 0 ? 'true' : 'false';
 
+                //모달 출력시 바닥 고정
                 $('html').addClass('fixed');
+                // pc일떄만 스크롤바 있을때만 오른쪽 여백 생성
+                if (!isMobile) {
+                    if (bodyIsOverflowing && scrollbarWidth){
+                        $('html').css('padding-right', scrollbarWidth);
+                    }
+                }
                 $('[data-target=' + mvId + ']').fadeIn(0);
 
                 if ($('[data-target=' + mvId + '] .mask').length) {
@@ -387,7 +424,7 @@ TNUI.module = (function () {
                 } else {
                     $('[data-target=' + mvId + ']').prepend(mask);
                 }
-
+                // 모바일에서는 스크롤 ui 호출 안함
                 if (!isMobile) TNUI.module.scrollUi();
 
                 if (optTrans == 'true') {
@@ -406,7 +443,6 @@ TNUI.module = (function () {
 
                 //바닥 클릭시 창 닫기 옵션
                 if (maskClick == true) {
-
                     $(document).on('click', function (e) {
                         // e.preventDefault();
                         if (e.target.className === 'wrap-modal') {
@@ -422,6 +458,7 @@ TNUI.module = (function () {
 
             var dimLyClose = function (mvId) {
                 $('html').removeClass('fixed');
+                $('html').css('padding-right', '');
                 if (optTrans == 'true') {
                     //css transition ease값 = delay
                     $('[data-target=' + mvId + ']').removeClass('on').delay(500).fadeOut(0);
