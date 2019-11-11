@@ -2204,6 +2204,72 @@ TNUI.module = (function () {
                 floatGnb();
             }
         },
+        // mark : allChkUi
+        allChkUi : function(opt){
+
+            var $t = $('.ui-allChk'),
+                $allChk = $t.find('[data-allchk]'), //부모 체크박스
+                $optChk = $t.find('[data-optchk]'),
+                $subChk = $t.find('[data-subchk] input').not($optChk),//자식 체크박스
+                allChkFn,
+                opt = {
+                    'req': opt.req || true //전체 체크시 선택요소 체크 부분
+                };
+
+            allChkFn = function(opt){
+                this.init();
+                this.evt();
+                
+            }
+            allChkFn.prototype.init = function(){
+            }
+            allChkFn.prototype.evt = function(){
+                
+                //전체체크 버튼 이벤트
+                $allChk.on('change', function(){
+                    var _t = $(this);
+
+                    $optChk = _t.closest($t).find('[data-optchk]'),
+                    $subChk = _t.closest($t).find('[data-subchk] input').not($optChk);
+
+                    if( _t.prop('checked')  == true){
+                        //전체체크 옵션값이 true일때 선택요소도 체크되게, false 일때 선택요소는 체크 안되게 함
+                        opt.req == true ? $subChk.add($optChk).prop('checked', true) : $subChk.prop('checked', true);
+                    } else{
+                        $subChk.add($optChk).prop('checked', false);
+                    }
+                });
+
+                //자식요소 체크 이벤트
+                $subChk.on('change', function(){
+                    var f_name = $(this).attr('name'),
+                    checkBoxLength,checkedLength;
+                    
+                    $allChk = $(this).closest($t).find('[data-allchk]'),
+                    $optChk = $(this).closest($t).find('[data-optchk]'),
+                    $subChk = $(this).closest($t).find('[data-subchk] input').not($optChk);
+
+                    if( $(this).prop("checked") ){
+                        checkBoxLength = $("[name="+ f_name +"]").not($optChk).length;
+                        checkedLength = $("[name="+ f_name +"]:checked").not($optChk).length;
+                        
+                        if( checkBoxLength == checkedLength ) {
+                            $allChk.prop("checked", true);
+                        } else {
+                            $allChk.prop("checked", false);
+                        }
+                    } else {
+                        $allChk.prop("checked", false);
+                    }
+
+
+                });
+            }
+            new allChkFn(opt);
+
+            console.log('allChkUi');
+
+        },
 
         // mark : init
         init: function () {

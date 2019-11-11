@@ -1,1 +1,112 @@
-<div>약관/동의서 detail</div>
+<h3>전체 체크박스</h3>
+<p class="sub-txt">TNUI.module.allChkUi({'req':true}); 호출, req: 인자값(전체체크시 선택값을 포함 : true)<br/>가장 상위 ui-allchk 클래스 선언, 전체 체크 부모의 input 요소에 <strong>data-allchk</strong>속성<br/>자식들 감싼 상위에 data-subchk 속성</p>
+
+<fieldset>
+    <legend>전체 체크박스</legend>
+    <form >
+        <div class="ui-allChk">
+            <span class="form_grp">
+                <input type="checkbox" name="chk_all1" id="chk_a_all" class="form_chk" data-allchk>
+                <label for="chk_a_all"><span class="label-txt">전체체크</span></label>
+            </span>
+            <ul style="padding-left:30px;" data-subchk>
+                <li>
+                    <span class="form_grp">
+                        <input type="checkbox" name="all01" id="chk_a01" class="form_chk">
+                        <label for="chk_a01"><span class="label-txt">필수1</span></label>
+                    </span>
+                </li>
+                <li>
+                    <span class="form_grp">
+                        <input type="checkbox" name="all01" id="chk_a02" class="form_chk">
+                        <label for="chk_a02"><span class="label-txt">필수2</span></label>
+                    </span>
+                </li>
+                <li>
+                    <span class="form_grp">
+                        <input type="checkbox" name="all01" id="chk_a03" class="form_chk">
+                        <label for="chk_a03"><span class="label-txt">필수3</span></label>
+                    </span>
+                </li>
+                <li>
+                    <span class="form_grp">
+                        <input type="checkbox" name="all01" id="chk_a04" class="form_chk" data-optchk>
+                        <label for="chk_a04"><span class="label-txt">선택</span></label>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="ui-allChk" style="padding-top:30px">
+            <span class="form_grp">
+                <input type="checkbox" name="chk_all1" id="chk_a_all2" class="form_chk" data-allchk>
+                <label for="chk_a_all2"><span class="label-txt">전체체크</span></label>
+            </span>
+            <ul style="padding-left:30px;" data-subchk>
+                <li>
+                    <span class="form_grp">
+                        <input type="checkbox" name="all02" id="chk_a101" class="form_chk">
+                        <label for="chk_a101"><span class="label-txt">필수1</span></label>
+                    </span>
+                </li>
+                <li>
+                    <span class="form_grp">
+                        <input type="checkbox" name="all02" id="chk_a102" class="form_chk">
+                        <label for="chk_a102"><span class="label-txt">필수2</span></label>
+                    </span>
+                </li>
+                <li>
+                    <span class="form_grp">
+                        <input type="checkbox" name="all02" id="chk_a103" class="form_chk">
+                        <label for="chk_a103"><span class="label-txt">필수3</span></label>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </form>
+</fieldset>
+
+<pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
+&lt;fieldset&gt;
+    &lt;legend&gt;전체 체크박스&lt;/legend&gt;
+    &lt;form &gt;
+        &lt;div class=&quot;ui-allChk&quot;&gt;
+            &lt;span class=&quot;form_grp&quot;&gt;
+                &lt;input type=&quot;checkbox&quot; name=&quot;chk_all1&quot; id=&quot;chk_a_all&quot; class=&quot;form_chk&quot; data-allchk&gt;
+                &lt;label for=&quot;chk_a_all&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;전체체크&lt;/span&gt;&lt;/label&gt;
+            &lt;/span&gt;
+            &lt;ul style=&quot;padding-left:30px;&quot; data-subchk&gt;
+                &lt;li&gt;
+                    &lt;span class=&quot;form_grp&quot;&gt;
+                        &lt;input type=&quot;checkbox&quot; name=&quot;all01&quot; id=&quot;chk_a01&quot; class=&quot;form_chk&quot;&gt;
+                        &lt;label for=&quot;chk_a01&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;필수1&lt;/span&gt;&lt;/label&gt;
+                    &lt;/span&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;span class=&quot;form_grp&quot;&gt;
+                        &lt;input type=&quot;checkbox&quot; name=&quot;all01&quot; id=&quot;chk_a02&quot; class=&quot;form_chk&quot;&gt;
+                        &lt;label for=&quot;chk_a02&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;필수2&lt;/span&gt;&lt;/label&gt;
+                    &lt;/span&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;span class=&quot;form_grp&quot;&gt;
+                        &lt;input type=&quot;checkbox&quot; name=&quot;all01&quot; id=&quot;chk_a03&quot; class=&quot;form_chk&quot;&gt;
+                        &lt;label for=&quot;chk_a03&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;필수3&lt;/span&gt;&lt;/label&gt;
+                    &lt;/span&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;span class=&quot;form_grp&quot;&gt;
+                        &lt;input type=&quot;checkbox&quot; name=&quot;all01&quot; id=&quot;chk_a04&quot; class=&quot;form_chk&quot; data-optchk&gt;
+                        &lt;label for=&quot;chk_a04&quot;&gt;&lt;span class=&quot;label-txt&quot;&gt;선택&lt;/span&gt;&lt;/label&gt;
+                    &lt;/span&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/fieldset&gt;
+</pre>
+
+<script>
+    $(document).ready(function(){
+        TNUI.module.allChkUi({'req':true});
+    });
+</script>
