@@ -512,7 +512,6 @@ TNUI.module = (function () {
 
             if (scrollWrap.length !== 0) {
                 //scroll width & height 구하기
-                var calWidth = function () {
                     var i = 0;
 
                     scrollWrap.each(function (i) {
@@ -582,12 +581,12 @@ TNUI.module = (function () {
                         if (down && e.pageY >= (rangeTop + barSize) && e.pageY <= (rangeTop + rangeSize - barSize)) {
                             barCursor.css('top', curTop + 'px');
                             scrollCt.scrollTop(curScTop);
+
                         }
                     }
 
 
 
-                }();
 
                 // 리사이즈시 적용
                 var thisObj = this;
