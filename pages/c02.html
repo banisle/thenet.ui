@@ -44,30 +44,30 @@
 <p class="sub-txt">모바일 css로 스타일 변경</p>
 <div class="selectWrap">
     <select title="test" class="form_select" >
-        <option value="test1">test1</option>
-        <option value="test2">test2</option>
-        <option value="test3">test3</option>
-        <option value="test4">test4</option>
+        <option value="https://www.naver.com">naver</option>
+        <option value="https://www.google.com">google</option>
+        <option value="https://www.daum.net">daum</option>
     </select>
 </div>
+
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
 &lt;div class=&quot;selectWrap&quot;&gt;
     &lt;select title=&quot;test&quot; class=&quot;form_select&quot; &gt;
-        &lt;option value=&quot;test1&quot;&gt;test1&lt;/option&gt;
-        &lt;option value=&quot;test2&quot;&gt;test2&lt;/option&gt;
-        &lt;option value=&quot;test3&quot;&gt;test3&lt;/option&gt;
-        &lt;option value=&quot;test4&quot;&gt;test4&lt;/option&gt;
+        &lt;option value=&quot;https://www.naver.com&quot;&gt;naver&lt;/option&gt;
+        &lt;option value=&quot;https://www.google.com&quot;&gt;google&lt;/option&gt;
+        &lt;option value=&quot;https://www.daum.net&quot;&gt;daum&lt;/option&gt;
     &lt;/select&gt;
 &lt;/div&gt;
 </pre>
 
-<p class="sub-txt">PC: TNUI.module.selectUi(); 호출<br/> 클래스 selectWrap ui-selectbox 고정 </p>
+<p class="sub-txt">PC: TNUI.module.selectUi({'onChange':'true'}); 인자값 change이벤트시 option의 value값 링크 이동 여부<br/> 클래스 selectWrap ui-selectbox 고정 </p>
 <div class="selectWrap ui-selectbox">
-    <select title="test" id="sel01" class="">
+    <select title="test" id="sel_link"  class="">
         <option value="test1">test1</option>
         <option value="test2" disabled>test2</option>
-        <option value="test3">test3</option>
-        <option value="test4">test4</option>
+        <option value="https://www.naver.com">naver</option>
+        <option value="https://www.google.com">google</option>
+        <option value="https://www.daum.net">daum</option>
     </select>
 </div>
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
@@ -80,6 +80,7 @@
     &lt;/select&gt;
 &lt;/div&gt;
 </pre>
+
 
 <div class="selectWrap ui-selectbox">
     <select title="test" id="sel02" class="" >
@@ -206,7 +207,7 @@
 <script>
     $(document).ready(function(){
         TNUI.module.tabUi();
-        TNUI.module.selectUi();
+        TNUI.module.selectUi({'onChange':'true'});
         TNUI.module.modalUi();
     })
 </script>

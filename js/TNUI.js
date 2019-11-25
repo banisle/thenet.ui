@@ -194,8 +194,10 @@ TNUI.module = (function () {
         },
 
         // mark : selectUi
-        selectUi: function () {
-            var opt = opt || null,
+        selectUi: function (opt) {
+            var opt = {
+                    'onChange' : opt.onChange
+                } || null,
                 selId,
                 selectUibox,
                 $selWrap = $('.selectWrap.ui-selectbox'),
@@ -238,9 +240,10 @@ TNUI.module = (function () {
                         .append($('<div class="pc_selwrap"><div class="selOneWrap"><button class="ui-selected-one" aria-haspopup="listbox" aria-labelledby="sel_' + selId + '">' + $selBox.find(':selected').text() + '</button></div><div class="ui-result-ul" tabindex="-1" role="listbox" ><ul></ul></div>'));
     
                     $selBox.find($optGrp).each(function (i) {
-                        var isDisabled = $(this).prop('disabled') ? 'disabled' : '';
+                        var isDisabled = $(this).prop('disabled') ? 'disabled' : '',
+                            selVal = $(this).prop('value');
     
-                        appendLi += '<li><button role="option" ' + isDisabled + ' aria-labelledby="sel_' + selId + '">' + $optGrp.eq(i).text() + '</button></li>';
+                        appendLi += '<li><button role="option" ' + isDisabled + ' aria-labelledby="sel_' + selId + '" + value=' + selVal + '>' + $optGrp.eq(i).text() + '</button></li>';
                     });
     
                     $selBox.closest($selWrap).find('ul').html(appendLi);
@@ -265,6 +268,8 @@ TNUI.module = (function () {
                     $selWrap.removeClass('ui-result-active');
                     //셀렉트박스 포커스
                     $(this).closest($selWrap).find($selectedOne).focus();
+                    //밸류값 링크 이동
+                    if(opt.onChange == 'true') window.open($(this).val());
 
 
                     e.preventDefault();
@@ -277,7 +282,7 @@ TNUI.module = (function () {
 
 
                 $selectedOne.on('click', function (e) {
-                    console.log($selBox.prop('disabled'));
+                    // console.log($selBox.prop('disabled'));
                     if ($selBox.prop('disabled')) {
                         return false;
                     }
@@ -292,6 +297,7 @@ TNUI.module = (function () {
             selectUibox.prototype.defaultSet = function () {
                 console.log('selectUibox prototype' + opt);
             };
+
 
             $.each($selWrap, function (i) {
                 selId = $selWrap.eq(i).find('select').attr('id');
