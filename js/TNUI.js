@@ -241,9 +241,10 @@ TNUI.module = (function () {
     
                     $selBox.find($optGrp).each(function (i) {
                         var isDisabled = $(this).prop('disabled') ? 'disabled' : '',
-                            selVal = $(this).prop('value');
-    
-                        appendLi += '<li><button role="option" ' + isDisabled + ' aria-labelledby="sel_' + selId + '" + value=' + selVal + '>' + $optGrp.eq(i).text() + '</button></li>';
+                            selVal = $(this).prop('value'),
+                            newWindowTitle = opt.onChange == 'true' ? 'title="새창으로 열림"' : '';// 밸류값 링크 이동시 title 새창열림 속성 추가
+
+                            appendLi += '<li><button role="option" ' + isDisabled + newWindowTitle + ' aria-labelledby="sel_' + selId + '" value=' + selVal + '>' + $optGrp.eq(i).text() + '</button></li>';
                     });
     
                     $selBox.closest($selWrap).find('ul').html(appendLi);
