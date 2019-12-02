@@ -65,9 +65,9 @@
     <select title="test" id="sel_link"  class="">
         <option value="test1">test1</option>
         <option value="test2" disabled>test2</option>
-        <option value="https://www.naver.com">naver</option>
-        <option value="https://www.google.com">google</option>
-        <option value="https://www.daum.net">daum</option>
+        <option value="https://www.naver.com" title="새창으로 열림">naver</option>
+        <option value="https://www.google.com" title="새창으로 열림">google</option>
+        <option value="https://www.daum.net" title="새창으로 열림">daum</option>
     </select>
 </div>
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
@@ -207,7 +207,12 @@
 <script>
     $(document).ready(function(){
         TNUI.module.tabUi();
-        TNUI.module.selectUi({'onChange':'true'});
+        TNUI.module.selectUi();
         TNUI.module.modalUi();
+        $('#sel_link').on('change',function(){
+
+           console.log( $(this).val() );
+
+        })
     })
 </script>

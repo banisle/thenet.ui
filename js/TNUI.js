@@ -194,11 +194,8 @@ TNUI.module = (function () {
         },
 
         // mark : selectUi
-        selectUi: function (opt) {
-            var opt = {
-                    'onChange' : opt.onChange
-                } || null,
-                selId,
+        selectUi: function () {
+            var selId,
                 selectUibox,
                 $selWrap = $('.selectWrap.ui-selectbox'),
                 $selBox,
@@ -242,9 +239,9 @@ TNUI.module = (function () {
                     $selBox.find($optGrp).each(function (i) {
                         var isDisabled = $(this).prop('disabled') ? 'disabled' : '',
                             selVal = $(this).prop('value'),
-                            newWindowTitle = opt.onChange == 'true' ? 'title="새창으로 열림"' : '';// 밸류값 링크 이동시 title 새창열림 속성 추가
+                            optTitle = $(this).prop('title');
 
-                            appendLi += '<li><button role="option" ' + isDisabled + newWindowTitle + ' aria-labelledby="sel_' + selId + '" value=' + selVal + '>' + $optGrp.eq(i).text() + '</button></li>';
+                            appendLi += '<li><button role="option" ' + isDisabled + 'title="' + optTitle + '" aria-labelledby="sel_' + selId + '" value=' + selVal + '>' + $optGrp.eq(i).text() + '</button></li>';
                     });
     
                     $selBox.closest($selWrap).find('ul').html(appendLi);
@@ -262,15 +259,13 @@ TNUI.module = (function () {
                     var index = $(this).parent().index();
 
                     //셀렉트박스 셀렉트
-                    $selBox.find('option').eq(index).prop('selected', true);
+                    $selBox.find('option').eq(index).prop('selected', true).change();
                     // 선택된 값 출력
                     $selectedOne.text($selBox.find('option').eq(index).text()).removeAttr('aria-expanded');
                     //셀렉트 결과 창 닫기
                     $selWrap.removeClass('ui-result-active');
                     //셀렉트박스 포커스
                     $(this).closest($selWrap).find($selectedOne).focus();
-                    //밸류값 링크 이동
-                    if(opt.onChange == 'true') window.open($(this).val());
 
 
                     e.preventDefault();
@@ -295,16 +290,14 @@ TNUI.module = (function () {
 
             }
 
-            selectUibox.prototype.defaultSet = function () {
-                console.log('selectUibox prototype' + opt);
-            };
-
 
             $.each($selWrap, function (i) {
                 selId = $selWrap.eq(i).find('select').attr('id');
-
                 new selectUibox('' + selId + '');
+
             });
+        
+
 
             console.log('selectUi');
 
