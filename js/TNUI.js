@@ -238,10 +238,17 @@ TNUI.module = (function () {
     
                     $selBox.find($optGrp).each(function (i) {
                         var isDisabled = $(this).prop('disabled') ? 'disabled' : '',
+                            isHidden = $(this).prop('hidden') ? true : false,
                             selVal = $(this).prop('value'),
                             optTitle = $(this).prop('title');
 
-                            appendLi += '<li><button role="option" ' + isDisabled + 'title="' + optTitle + '" aria-labelledby="sel_' + selId + '" value=' + selVal + '>' + $optGrp.eq(i).text() + '</button></li>';
+                            //히든속성 체크
+                            if( isHidden  === true ){
+                                return;
+                            } else{
+                                appendLi += '<li><button role="option" ' + isDisabled + ' title="' + optTitle + '" aria-labelledby="sel_' + selId + '" value=' + selVal + '>' + $optGrp.eq(i).text() + '</button></li>';
+                            }
+
                     });
     
                     $selBox.closest($selWrap).find('ul').html(appendLi);
@@ -253,10 +260,11 @@ TNUI.module = (function () {
             selectUibox.prototype.selUpdate = function () {
                 var $selBox = $('#' + selId + ''),
                     $selectedOne = $selBox.closest($selWrap).find('.ui-selected-one'),
-                    $uiResult = $selBox.closest($selWrap).find('.ui-result-ul');
+                    $uiResult = $selBox.closest($selWrap).find('.ui-result-ul'),
+                    isHidden = $selBox.find('option').prop('hidden') ? true : false;
 
                 $uiResult.find('button').on('click', function (e) {
-                    var index = $(this).parent().index();
+                    var index = isHidden ? $(this).parent().index() + 1 : $(this).parent().index() + 1;
 
                     //셀렉트박스 셀렉트
                     $selBox.find('option').eq(index).prop('selected', true).change();
