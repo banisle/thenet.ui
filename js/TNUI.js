@@ -264,7 +264,7 @@ TNUI.module = (function () {
                     isHidden = $selBox.find('option').prop('hidden') ? true : false;
 
                 $uiResult.find('button').on('click', function (e) {
-                    var index = isHidden ? $(this).parent().index() + 1 : $(this).parent().index() + 1;
+                    var index = isHidden ? $(this).parent().index() + 1 : $(this).parent().index();
 
                     //셀렉트박스 셀렉트
                     $selBox.find('option').eq(index).prop('selected', true).change();
