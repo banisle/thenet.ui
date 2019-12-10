@@ -1,7 +1,7 @@
 <!-- scroll -->
 
 <h3>PC : 스크롤, *모바일은 네이티브로 적용(overflow-y:scroll)</h3>
-<p class="sub-txt">pc : overflow 적용, 네이티브 스크롤바 숨김 후 스크롤바 생성 방식<br/> ** 스크롤바 드래그 기능 구현 예정</p>
+<p class="sub-txt">pc : overflow 적용, 네이티브 스크롤바 숨김 후 스크롤바 생성 방식<br/> ** 스크롤바 드래그 좀 더 부드럽게?? <br/>*** 리사이즈시 버벅임 이슈 <br/>**** 프로토타입 속성으로 다시 짤 예정</p>
 <div class="scrollWrap ui-scrollview">
     <div class="ui-scrollbar"><span class="bar"></span></div>
     <div class="scrollInner ui-scrollarea">
@@ -50,3 +50,18 @@
     &lt;/div&gt;
 &lt;/div&gt;
 </pre>
+
+<h3>스크롤 아래로 하면 숨김 위로 하면 보여짐</h3>
+<p class="sub-txt">TNUI.module.scrlTopUi({right 인자값, 없을시 0}) 호출</p>
+<div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
+<div class="scrollMenu">
+    <h4>NAVMenu</h4>
+</div>
+
+<script>
+$(document).ready(function(){
+    // 모바일에선 호출 안함
+    if(!$('html').hasClass('mobile')) TNUI.module.scrollUi();
+    TNUI.module.scrollMenu();
+})
+</script>

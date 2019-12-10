@@ -1,23 +1,22 @@
 <h3>툴팁</h3>
-<p class="sub-txt">data-option속성 레이어 top, left, right, bottom 호출필요(선택)<br>data-tooltip속성으로 레이어 호출필요</p>
-<div class="uiTooltip">
-    <a href="#" data-option="top" data-tooltip="#tooltip01" class="tooltipTarget" title="툴팁 레이어 top">툴팁 레이어 top</a>
-    <a href="#" data-option="left" data-tooltip="#tooltip02" class="tooltipTarget" title="툴팁 레이어 left">툴팁 레이어 left</a>
-    <a href="#" data-option="right" data-tooltip="#tooltip03" class="tooltipTarget" title="툴팁 레이어 right">툴팁 레이어 right</a>
-    <a href="#" data-option="bottom" data-tooltip="#tooltip04" class="tooltipTarget" title="툴팁 레이어 bottom">툴팁 레이어 bottom</a>
+<p class="sub-txt">data-option속성 레이어 top, left, right, bottom 호출필요(선택)<br>data-id 속성으로 레이어 호출필요<br/>TNUI.module.tooltipUi(툴팁화살표 가로값, 툴팁화살표 높이값, 모션 속도);</p>
+<div class="ui-tooltip">
+    <a href="#" data-option="top" data-id="tooltip01" class="tooltipTarget" title="툴팁 레이어 top">툴팁 레이어 top</a>
+    <a href="#" data-option="left" data-id="tooltip02" class="tooltipTarget" title="툴팁 레이어 left">툴팁 레이어 left</a>
+    <a href="#" data-option="right" data-id="tooltip03" class="tooltipTarget" title="툴팁 레이어 right">툴팁 레이어 right</a>
+    <a href="#" data-option="bottom" data-id="tooltip04" class="tooltipTarget" title="툴팁 레이어 bottom">툴팁 레이어 bottom</a>
 </div>
 
 <!-- (sta) pre sample -->
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true; /* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
-    &lt;div class=&quot;uiTooltip&quot;&gt;
-        &lt;a href=&quot;#&quot; data-option=&quot;top&quot; data-tooltip=&quot;#tooltip01&quot; class=&quot;tooltipTarget&quot; title=&quot;툴팁 레이어 top&quot;&gt;툴팁 레이어 top&lt;/a&gt;
-        &lt;a href=&quot;#&quot; data-option=&quot;left&quot; data-tooltip=&quot;#tooltip02&quot; class=&quot;tooltipTarget&quot; title=&quot;툴팁 레이어 left&quot;&gt;툴팁 레이어 left&lt;/a&gt;
-        &lt;a href=&quot;#&quot; data-option=&quot;right&quot; data-tooltip=&quot;#tooltip03&quot; class=&quot;tooltipTarget&quot; title=&quot;툴팁 레이어 right&quot;&gt;툴팁 레이어 right&lt;/a&gt;
-        &lt;a href=&quot;#&quot; data-option=&quot;bottom&quot; data-tooltip=&quot;#tooltip04&quot; class=&quot;tooltipTarget&quot; title=&quot;툴팁 레이어 bottom&quot;&gt;툴팁 레이어 bottom&lt;/a&gt;
-    &lt;/div&gt;
+&lt;div class=&quot;ui-tooltip&quot;&gt;
+    &lt;a href=&quot;#&quot; data-option=&quot;top&quot; data-id=&quot;tooltip01&quot; class=&quot;tooltipTarget&quot; title=&quot;툴팁 레이어 top&quot;&gt;툴팁 레이어 top&lt;/a&gt;
+    &lt;a href=&quot;#&quot; data-option=&quot;left&quot; data-id=&quot;tooltip02&quot; class=&quot;tooltipTarget&quot; title=&quot;툴팁 레이어 left&quot;&gt;툴팁 레이어 left&lt;/a&gt;
+    &lt;a href=&quot;#&quot; data-option=&quot;right&quot; data-id=&quot;tooltip03&quot; class=&quot;tooltipTarget&quot; title=&quot;툴팁 레이어 right&quot;&gt;툴팁 레이어 right&lt;/a&gt;
+    &lt;a href=&quot;#&quot; data-option=&quot;bottom&quot; data-id=&quot;tooltip04&quot; class=&quot;tooltipTarget&quot; title=&quot;툴팁 레이어 bottom&quot;&gt;툴팁 레이어 bottom&lt;/a&gt;
+&lt;/div&gt;
 </pre>
 <!-- (end) pre sample -->
-
 <div id="tooltip01" class="tooltipContent"> 
     <ul> 
         <li>축복받은 폴리네의 판타스마, 무기 상자(30일) 100% 할인 쿠폰</li> 
@@ -49,33 +48,39 @@
 
 <!-- (sta) pre sample -->
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true; /* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
-    &lt;div id=&quot;tooltip01&quot; class=&quot;tooltipContent&quot;&gt;
-        &lt;ul&gt; 
-            &lt;li&gt;축복받은 폴리네의 판타스마, 무기 상자(30일) 100% 할인 쿠폰&lt;/li&gt; 
-            &lt;li&gt;축복받은 폴리네의 카데이라, 방어구 상자(30일) 100% 할인 쿠폰&lt;/li&gt; 
-            &lt;li&gt;축복받은 폴리네의 카데이라, 액세서리 상자(30일) 100% 할인 쿠폰&lt;/li&gt; 
-        &lt;/ul&gt; 
-    &lt;/div&gt; 
-    &lt;div id=&quot;tooltip02&quot; class=&quot;tooltipContent&quot;&gt; 
-        &lt;h2&gt;12주년 응원 수술(영구)&lt;/h2&gt; 
-        &lt;ul&gt; 
-            &lt;li&gt;공격력/마법력 +12 증가&lt;/li&gt; 
-            &lt;li&gt;액티브 스킬 : 폭죽&lt;/li&gt; 
-        &lt;/ul&gt; 
-    &lt;/div&gt;
-    &lt;div id=&quot;tooltip03&quot; class=&quot;tooltipContent&quot;&gt; 
-        &lt;h2&gt;12주년 응원 수술(영구)&lt;/h2&gt; 
-        &lt;ul&gt; 
-            &lt;li&gt;공격력/마법력 +12 증가&lt;/li&gt; 
-            &lt;li&gt;액티브 스킬 : 폭죽&lt;/li&gt; 
-        &lt;/ul&gt; 
-    &lt;/div&gt;
-    &lt;div id=&quot;tooltip04&quot; class=&quot;tooltipContent&quot;&gt; 
-        &lt;h2&gt;12주년 응원 수술(영구)&lt;/h2&gt; 
-        &lt;ul&gt; 
-            &lt;li&gt;공격력/마법력 +12 증가&lt;/li&gt; 
-            &lt;li&gt;액티브 스킬 : 폭죽&lt;/li&gt; 
-        &lt;/ul&gt; 
-    &lt;/div&gt;
+&lt;div id=&quot;tooltip01&quot; class=&quot;tooltipContent&quot;&gt; 
+    &lt;ul&gt; 
+        &lt;li&gt;축복받은 폴리네의 판타스마, 무기 상자(30일) 100% 할인 쿠폰&lt;/li&gt; 
+        &lt;li&gt;축복받은 폴리네의 카데이라, 방어구 상자(30일) 100% 할인 쿠폰&lt;/li&gt; 
+        &lt;li&gt;축복받은 폴리네의 카데이라, 액세서리 상자(30일) 100% 할인 쿠폰&lt;/li&gt; 
+    &lt;/ul&gt; 
+&lt;/div&gt; 
+&lt;div id=&quot;tooltip02&quot; class=&quot;tooltipContent&quot;&gt; 
+    &lt;h2&gt;12주년 응원 수술(영구)&lt;/h2&gt; 
+    &lt;ul&gt; 
+        &lt;li&gt;공격력/마법력 +12 증가&lt;/li&gt; 
+        &lt;li&gt;액티브 스킬 : 폭죽&lt;/li&gt; 
+    &lt;/ul&gt; 
+&lt;/div&gt;
+&lt;div id=&quot;tooltip03&quot; class=&quot;tooltipContent&quot;&gt; 
+    &lt;h2&gt;12주년 응원 수술(영구)&lt;/h2&gt; 
+    &lt;ul&gt; 
+        &lt;li&gt;공격력/마법력 +12 증가&lt;/li&gt; 
+        &lt;li&gt;액티브 스킬 : 폭죽&lt;/li&gt; 
+    &lt;/ul&gt; 
+&lt;/div&gt;
+&lt;div id=&quot;tooltip04&quot; class=&quot;tooltipContent&quot;&gt; 
+    &lt;h2&gt;12주년 응원 수술(영구)&lt;/h2&gt; 
+    &lt;ul&gt; 
+        &lt;li&gt;공격력/마법력 +12 증가&lt;/li&gt; 
+        &lt;li&gt;액티브 스킬 : 폭죽&lt;/li&gt; 
+    &lt;/ul&gt; 
+&lt;/div&gt;
 </pre>
 <!-- (end) pre sample -->
+
+<script>
+$(document).ready(function(){
+    TNUI.module.tooltipUi(10,7,300);
+})
+</script>

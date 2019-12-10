@@ -1,6 +1,6 @@
 <!-- gnb -->
 <h3>모바일 : 가로스크롤</h3>
-<p class="sub-txt">아이폰 모멘텀 적용, inline형식 스크롤</p>
+<p class="sub-txt">클릭시 활성화 센터정렬</p>
 <div class="mo_submenu_wrap">
     <ul>
         <li><a href="#"><span>menu1</span></a></li>
@@ -36,83 +36,59 @@
 
 <h3>모바일 : 햄버거 & 사이드 </h3>
 <p class="sub-txt">wsg refer</p>
-<div class="container">
 
-	<ul class="menu">
-		<li><a href="#" data-menu="menu1">menu01</a></li>
-		<li><a href="#" data-menu="menu2">menu02</a></li>
-		<li><a href="#" data-menu="menu3">menu03</a></li>
-		<li><a href="#" data-menu="menu4">menu04</a></li>
-	</ul>
 
-	<div id="menu1" class="submenu">
-		<ul>
-            <li><a href="#">submenu01</a></li>
-            <li><a href="#">submenu02</a></li>
-            <li><a href="#">submenu03</a></li>
+<h3>기본 2depth </h3>
+<p class="sub-txt">TNUI.module.gnb2Ui() 호출</p>
+<ul role="menubar" class="menu2depth ui-menu2depth">
+    <li class=""><a href="" role="menuitem"><span>depth1</span></a></li>
+    <li class=""><a href="" role="menuitem"><span>depth2</span></a></li>
+    <li><a href="" role="menuitem"><span>depth3</span></a>
+        <ul role="menu">
+            <li role="none"><a href="" role="menuitem">depth3-a</a></li>
+            <li role="none"><a href="" role="menuitem">depth3-b</a></li>
         </ul>
-	</div>
-	<div id="menu2" class="submenu">
-		<ul>
-            <li><a href="#">submenu01</a></li>
-            <li><a href="#">submenu02</a></li>
-            <li><a href="#">submenu03</a></li>
+    </li>
+    <li class="cs"><a href="" role="menuitem"><span>depth4</span></a>
+        <ul role="menu">
+            <li role="none"><a href="" role="menuitem">depth4-a</a></li>
+            <li role="none"><a href="" role="menuitem">depth4-b</a></li>
         </ul>
-	</div>
-	<div id="menu3" class="submenu">
-		<ul>
-            <li><a href="#">submenu01</a></li>
-            <li><a href="#">submenu02</a></li>
-            <li><a href="#">submenu03</a></li>
-        </ul>
-	</div>
-	<div id="menu4" class="submenu">
-		<ul>
-            <li><a href="#">submenu01</a></li>
-            <li><a href="#">submenu02</a></li>
-            <li><a href="#">submenu03</a></li>
-        </ul>
-	</div>
-    <ul class="menu">
-		<li><a href="#" data-menu="menu5">menu05</a></li>
-		<li><a href="#" data-menu="menu6">menu06</a></li>
-		<li><a href="#" data-menu="menu7">menu07</a></li>
-		<li><a href="#" data-menu="menu8">menu08</a></li>
-	</ul>
+    </li>
+    <li class=""><a href="" role="menuitem"><span>depth5</span></a></li>
+</ul>
 
-	<div id="menu5" class="submenu">
-		<ul>
-            <li><a href="#">submenu01</a></li>
-            <li><a href="#">submenu02</a></li>
-            <li><a href="#">submenu03</a></li>
-        </ul>
-	</div>
-	<div id="menu6" class="submenu">
-		 <ul>
-            <li><a href="#">submenu01</a></li>
-            <li><a href="#">submenu02</a></li>
-            <li><a href="#">submenu03</a></li>
-        </ul>
-	</div>
-	<div id="menu7" class="submenu">
-		<ul>
-            <li><a href="#">submenu01</a></li>
-            <li><a href="#">submenu02</a></li>
-            <li><a href="#">submenu03</a></li>
-        </ul>
-	</div>
-	<div id="menu8" class="submenu">
-		<ul>
-            <li><a href="#">submenu01</a></li>
-            <li><a href="#">submenu02</a></li>
-            <li><a href="#">submenu03</a></li>
-        </ul>
-	</div>
-
-</div>
-
-<!-- (sta) pre sample -->
 <pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
-
+&lt;ul role=&quot;menubar&quot; class=&quot;menu2depth ui-menu2depth&quot;&gt;
+    &lt;li class=&quot;&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;&lt;span&gt;depth1&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;&lt;span&gt;depth2&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;&lt;span&gt;depth3&lt;/span&gt;&lt;/a&gt;
+        &lt;ul role=&quot;menu&quot;&gt;
+            &lt;li role=&quot;none&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;depth3-a&lt;/a&gt;&lt;/li&gt;
+            &lt;li role=&quot;none&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;depth3-b&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;cs&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;&lt;span&gt;depth4&lt;/span&gt;&lt;/a&gt;
+        &lt;ul role=&quot;menu&quot;&gt;
+            &lt;li role=&quot;none&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;depth4-a&lt;/a&gt;&lt;/li&gt;
+            &lt;li role=&quot;none&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;depth4-b&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;&quot;&gt;&lt;a href=&quot;&quot; role=&quot;menuitem&quot;&gt;&lt;span&gt;depth5&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </pre>
-<!-- (end) pre sample -->
+
+
+<h3>top버튼</h3>
+<p class="sub-txt">TNUI.module.scrlTopUi({right 인자값, 없을시 0}) 호출</p>
+<!-- (sta) 맨위로 -->
+<button type="button" class="ui-scrlTop"><span class="hidden">맨 위로</span></button>
+<!-- (end) 맨위로 -->
+
+<script>
+$(document).ready(function(){
+    TNUI.module.gnb2Ui();
+    TNUI.module.scrlTopUi(10);
+    TNUI.module.clickCenter();
+});
+</script>

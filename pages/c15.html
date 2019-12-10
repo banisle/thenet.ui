@@ -1,0 +1,25 @@
+<!-- sticky -->
+
+<p class="sub-txt">pc,mobile : 스크롤이 하단까지 내려가면 sticky 내용이 보였다 안보였다 하기</p>
+<div class="sticky">
+    <ul>
+        <li>내용이 들어가는 영역</li>
+        <li>내용이 들어가는 영역</li>
+        <li>내용이 들어가는 영역</li>
+        <li>내용이 들어가는 영역</li>
+        <li>
+            <div class="totalSticky">
+                <p>제목이 들어가는 영역</p>
+                <div class="stickyBox">
+                        내용이 들어가는 영역
+                </div>
+            </div>
+            <button type="button" class="btnRed">버튼명</button>
+        </li>
+    </ul>
+</div>
+<script>
+$(document).ready(function(){
+    TNUI.module.stickyUi();
+})
+</script>

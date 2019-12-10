@@ -1,1 +1,59 @@
-<div>sliders detail</div>
+<!-- sliders detail -->
+<p class="sub-txt">접근성 키 맵핑: up,left = 이전 단계, down,right = 다음 단계, home = 최저, end= 최대<br/>
+    <strong>인자값: container_id, vert, min, max, inc, jump, showVals, range, val1, val2</strong>
+</p>
+
+<h3>가로 스크롤바</h3>
+<p class="sub-txt">감싸는 영역 <strong>sliderWrap</strong> 클래스, 가로 스크롤바 클래스 <strong>hslider</strong>,<br/>슬라이더 호출시 id선언</p>
+<div class="sliderWrap">
+    <div class="hslider" id="sr1"></div>
+</div>
+<!-- (sta) pre sample -->
+<pre class="brush:js html-script:true; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
+//가로 스크롤바 
+TNUI.module.sliderUi(&#39;sr1&#39;, false, 0, 100, 5, 10, true, false, 30);
+&lt;div class=&quot;sliderWrap&quot;&gt;
+    &lt;div class=&quot;hslider&quot; id=&quot;sr1&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<!-- (end) pre sample -->
+
+<h3>가로 스크롤바 범위형</h3>
+<p class="sub-txt">감싸는 영역 <strong>sliderWrap</strong> 클래스, 가로 스크롤바 클래스 <strong>hslider</strong>,<br/>슬라이더 호출시 id선언</p>
+<div class="sliderWrap">
+    <div class="hslider" id="sr2"></div>
+</div>
+<!-- (sta) pre sample -->
+<pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
+//가로 스크롤바 범위형
+TNUI.module.sliderUi(&#39;sr2&#39;, false, 190000, 200800, 1, 10, true, true, 195000, 200000);
+&lt;div class=&quot;sliderWrap&quot;&gt;
+    &lt;div class=&quot;hslider&quot; id=&quot;sr2&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<!-- (end) pre sample -->
+
+<h3>세로 스크롤바 범위형</h3>
+<p class="sub-txt">감싸는 영역 <strong>sliderWrap</strong> 클래스, 가세 스크롤바 클래스 <strong>vslider</strong>,<br/>슬라이더 호출시 id선언</p>
+<div class="sliderWrap">
+    <div class="vslider" id="sr3"></div>
+</div>
+<!-- (sta) pre sample -->
+<pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
+//세로 스크롤바 범위형
+TNUI.module.sliderUi(&#39;sr3&#39;, true, 1, 10, 1, 2, true, true, 3, 5);
+&lt;div class=&quot;sliderWrap&quot;&gt;
+    &lt;div class=&quot;vslider&quot; id=&quot;sr2&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<!-- (end) pre sample -->
+
+
+<script>
+    //pre태그 높이값 계산 후 적용 위해
+    $(document).ready(function(){
+        TNUI.module.sliderUi('sr1', false, 0, 100, 5, 10, true, false, 30);
+        TNUI.module.sliderUi('sr2', false, 190000, 200800, 1, 10, true, true, 195000, 200000);
+        TNUI.module.sliderUi('sr3', true, 1, 10, 1, 2, true, true, 3, 5);
+    });
+</script>

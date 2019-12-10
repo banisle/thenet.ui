@@ -1,0 +1,37 @@
+<!-- swipe -->
+<h3>기본</h3>
+<p class="sub-txt">*그냥 swiper나 다른 라이브러리 쓰는걸로,<br/>
+    <del>TNUI.module.swipeUi('swipe01',{'loop':'', 'transition' : 500,'transition2' : 100,'thresold' : .2});<br/> 옵션에서 감도, 모션 속도 조절</del></p>
+<div class="ui-swipe-wrap">
+    <div class="container" id="swipe01">
+        <div data-item="i01" style="background:#ff7272"><a href="#1">item 01</a></div>
+        <div data-item="i02" style="background:#ffc072"><a href="#2">item 02</a></div>
+        <div data-item="i03" style="background:#a0d14f"><a href="#3">item 03</a></div>
+        <div data-item="i04" style="background:#4fb3d1"><a href="#4">item 04</a></div>
+    </div>
+    <div class="ui-swipe-btn btn_wrap">
+        <button class="ui-btn-prev"><span>prev</span></button>
+        <button class="ui-btn-next"><span>next</span></button>
+    </div>
+</div>
+
+
+<!-- (sta) pre sample -->
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;div class=&quot;ui-swipe-wrap&quot;&gt;
+    &lt;div class=&quot;container&quot; id=&quot;swipe01&quot;&gt;
+        &lt;div data-item=&quot;i01&quot; style=&quot;background:#ff7272&quot;&gt;item 01&lt;/div&gt;
+        &lt;div data-item=&quot;i02&quot; style=&quot;background:#ffc072&quot;&gt;item 02&lt;/div&gt;
+        &lt;div data-item=&quot;i03&quot; style=&quot;background:#a0d14f&quot;&gt;item 03&lt;/div&gt;
+        &lt;div data-item=&quot;i04&quot; style=&quot;background:#4fb3d1&quot;&gt;item 04&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<!-- (end) pre sample -->
+
+<h3>갤러리</h3>
+<script>
+$(document).ready(function(){
+    TNUI.module.swipeUi('swipe01',{'loop':'', 'transition' : 300,'transition2' : 100,'thresold' : .2});
+});
+</script>
