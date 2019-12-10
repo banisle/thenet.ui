@@ -2072,9 +2072,8 @@ TNUI.module = (function () {
 
                         //fix :
                         // if ($target.offset().top <= curTop && $target.offset().top + $target.outerHeight() >= curTop) {
-                            if ( rangeArr[idx] <= curTop) {
-                                
-                                // console.log( parseInt(rangeArr[idx]) )
+                        if ( rangeArr[idx] <= curTop + padT) {
+                            
                             $linkA.removeClass("active");
                             _t.addClass("active");
                         } else {
