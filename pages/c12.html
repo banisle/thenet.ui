@@ -50,9 +50,18 @@
     &lt;/div&gt;
 &lt;/div&gt;
 </pre>
+
+<h3>스크롤 아래로 하면 숨김 위로 하면 보여짐</h3>
+<p class="sub-txt">TNUI.module.scrlTopUi({right 인자값, 없을시 0}) 호출</p>
+<div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
+<div class="scrollMenu">
+    <h4>NAVMenu</h4>
+</div>
+
 <script>
 $(document).ready(function(){
     // 모바일에선 호출 안함
     if(!$('html').hasClass('mobile')) TNUI.module.scrollUi();
+    TNUI.module.scrollMenu();
 })
 </script>

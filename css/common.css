@@ -161,7 +161,7 @@ html.fixed {
 }
 
 .guide-side .tn-lnb-menu .menu-item .sub-menu li {
-	line-height: 25px
+	line-height: 25px;
 }
 
 .guide-side .tn-lnb-menu .menu-item>a.on,
@@ -281,7 +281,10 @@ input[type=search],
 input[type=password],
 input[type=text] {
 	font-weight: 300;
-	font-size: 13px
+	font-size: 13px;
+}
+input:focus {
+	outline:none;
 }
 
 .inp_form {
@@ -854,7 +857,7 @@ html.mobile .form_select {
 
 
 /* //mark: search  */
-.searchWrap{
+.searchWrap {
 	float: left;
     position: relative;
     width: 387px;
@@ -865,6 +868,29 @@ html.mobile .form_select {
     border-radius: 50px;
     box-sizing: border-box;
 }
+.searchWrap.active {
+	border-radius:19px 19px 0 0;
+}
+.searchWrap .searchAuto {
+	display:none;
+	position:absolute;
+	left:0;
+	top:35px;
+	width:387px;
+	margin-left:-2px;
+	padding:10px 20px;
+	background:#fff;
+	border:2px solid #666;
+	border-radius:0 0 25px 25px;
+	box-sizing: border-box;
+	z-index: 2;
+}
+.searchWrap.active .searchAuto li + li {
+	margin-top:5px;
+}
+.searchWrap.active .searchAuto a {
+	word-break: break-all;
+}
 .searchWrap .inp_form {
 	display: inline-block;
 	width: 100%;
@@ -872,7 +898,7 @@ html.mobile .form_select {
 
 .searchWrap .inp_form input {
 	width: 100%;
-	padding: 8px 10px 10px 20px;
+	padding: 10px 10px 10px 20px;
 	color: #666;
 	background: none;
 	border: 0;
@@ -1019,18 +1045,17 @@ html.mobile .form_select {
 
 /* //mark: gnb */
 .mo_submenu_wrap {
-	white-space: nowrap;
 	width: 100%;
-	overflow: hidden;
+	overflow-x: auto;
 	padding: 5px 12px;
 	border: 1px solid #eee;
 	box-sizing: border-box;
 }
 
 .mo_submenu_wrap ul {
-	overflow: auto;
-	width: 100%;
-	-webkit-overflow-scrolling: touch;
+	position:relative;
+	display:inline-block;
+	white-space: nowrap;
 }
 
 .mo_submenu_wrap li {
@@ -1038,6 +1063,9 @@ html.mobile .form_select {
 	display: inline-block;
 	padding: 5px;
 	line-height: 1
+}
+.mo_submenu_wrap li.active {
+	border-bottom:2px solid #d35400;
 }
 
 .mo_submenu_wrap li:after {
@@ -1644,6 +1672,68 @@ html.mobile .ui-scrollview {
 	width: 1272px;
 	background: #fff;
 	z-index: 2;
+}
+
+/* //mark : scrollMenu  */
+.scrollMenu {
+	overflow:hidden;
+	position: fixed;
+	left:0;
+	bottom: 0;
+	width:100%;
+	height:60px;
+	padding-left:320px;
+	background:#d35400;
+	color:#fff;
+	line-height:60px;
+	text-align:center;
+	box-sizing:border-box;
+	transition:all 0.1s linear;
+}
+.is-hidden .scrollMenu {
+	margin-bottom:-60px;
+}
+
+/* //mark: sticky */
+.sticky ul {
+	width:100%;
+	border-top:1px solid #dcdcdc;
+}
+.sticky ul > li {
+	display:flex;
+	justify-content: center;
+	align-items:center;
+	height:300px;
+	border-bottom:1px solid #dcdcdc;
+}
+.sticky ul > li .totalSticky  {
+	position: fixed;
+	left:0;
+	bottom:60px;
+	width:100%;
+	padding-left:320px;
+	background:#f3f3f3;
+	box-sizing: border-box;
+	text-align:center;
+}
+.sticky ul > li .totalSticky.fixed {
+	position:relative;
+	height:300px;
+	padding-left:0;
+}
+.sticky ul > li .btnRed {
+	position: fixed;
+	left:0;
+	bottom:0;
+	width:100%;
+	height:60px;
+	padding-left:320px;
+	background:#d35400;
+	color:#fff;
+	font-size:18px;
+	font-weight:bold;
+	box-sizing: border-box;
+	text-align:center;
 }
 
 /* //mark : parallax  */

@@ -73,7 +73,7 @@ TNUI.module = (function () {
             uiTabBtn.first().attr('aria-selected', 'true');
 
 
-            uiTabBtn.on('click', function (e) {
+            uiTabBtn.on('click', function(e) {
                 if ($(e.target).prev().is('input[type=checkbox]') || $(e.target).prev().is('input[type=radio]')) {
                     return;
                 };
@@ -203,7 +203,7 @@ TNUI.module = (function () {
 
             selectUibox = function (selId) {
                 $selBox = $('#' + selId + ''),
-                    $optGrp = $selBox.find('option');
+                $optGrp = $selBox.find('option');
 
 
                 //포커스 잃었을때 
@@ -238,10 +238,12 @@ TNUI.module = (function () {
     
                     $selBox.find($optGrp).each(function (i) {
                         var isDisabled = $(this).prop('disabled') ? 'disabled' : '',
+                            isHidden = $(this).prop('hidden') ? true : false,
                             selVal = $(this).prop('value'),
                             optTitle = $(this).prop('title');
 
-                            appendLi += '<li><button role="option" ' + isDisabled + 'title="' + optTitle + '" aria-labelledby="sel_' + selId + '" value=' + selVal + '>' + $optGrp.eq(i).text() + '</button></li>';
+                            appendLi += '<li><button role="option" ' + isDisabled + ' title="' + optTitle + '" aria-labelledby="sel_' + selId + '" value=' + selVal + '>' + $optGrp.eq(i).text() + '</button></li>';
+
                     });
     
                     $selBox.closest($selWrap).find('ul').html(appendLi);
@@ -253,10 +255,11 @@ TNUI.module = (function () {
             selectUibox.prototype.selUpdate = function () {
                 var $selBox = $('#' + selId + ''),
                     $selectedOne = $selBox.closest($selWrap).find('.ui-selected-one'),
-                    $uiResult = $selBox.closest($selWrap).find('.ui-result-ul');
+                    $uiResult = $selBox.closest($selWrap).find('.ui-result-ul'),
+                    isHidden = $selBox.find('option').prop('hidden') ? true : false;
 
                 $uiResult.find('button').on('click', function (e) {
-                    var index = $(this).parent().index();
+                    var index = isHidden ? $(this).parent().index() + 1 : $(this).parent().index();
 
                     //셀렉트박스 셀렉트
                     $selBox.find('option').eq(index).prop('selected', true).change();
@@ -1835,7 +1838,7 @@ TNUI.module = (function () {
                     $(this).closest($searchWrap).find($btnIcn).addClass('active');
                 }).on('blur', function () {
                     $(this).closest($searchWrap).find($btnIcn).removeClass('active');
-                })
+                }); 
             }();
 
             this.inputDelUi();
@@ -2268,6 +2271,56 @@ TNUI.module = (function () {
 
             console.log('allChkUi');
 
+        },
+        
+        // mark : sticky
+        stickyUi : function(){
+            var $fixed = $('.totalSticky');
+            $(window).on('scroll',function(){
+                var scr = $(window).scrollTop();
+                var dHeight = $(document).height();
+                var wHeight = $(window).height();
+                if(scr == dHeight - wHeight){
+                    if(!$fixed.parent().hasClass('active')){
+                        $fixed.addClass('fixed');
+                    }
+                }else{
+                    $fixed.removeClass('fixed');
+                }
+            });
+        },
+
+        //mork : click center
+        clickCenter : function(){
+            $('.mo_submenu_wrap li a').on('click',function(){
+                $(this).parent().addClass('active').siblings('li').removeClass('active');
+                var navLi = $(this).parent('li');
+                var navWd = navLi.outerWidth();
+                var posL = navLi.position().left - $('.mo_submenu_wrap').outerWidth() * 0.5 + navWd * 0.5;
+                $('.mo_submenu_wrap').animate({scrollLeft: posL}, 300);
+            });
+        },
+
+        // mork : scrollMenu
+        scrollMenu : function(){
+            var prevScroll = 0;
+            var body = $('body');
+
+            $(window).on('scroll',function(){
+                var thisScr = $(this).scrollTop();
+                if(thisScr > prevScroll && thisScr > 0){
+                    body.addClass('is-hidden');
+                    if(body.hasClass('is-hidden')){
+                        body.addClass('is-hidden');
+                    }
+                    prevScroll = thisScr;
+                }else if(thisScr < prevScroll) {
+                    if (body.hasClass('is-hidden')){
+                        setTimeout(function(){body.removeClass("is-hidden")},200);
+                    }
+                    prevScroll = thisScr;
+                }
+            });
         },
 
         // mark : init
