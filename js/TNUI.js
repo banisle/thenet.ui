@@ -242,16 +242,12 @@ TNUI.module = (function () {
                             selVal = $(this).prop('value'),
                             optTitle = $(this).prop('title');
 
-<<<<<<< HEAD
-                            appendLi += '<li><button role="option" ' + isDisabled + ' title="' + optTitle + '" aria-labelledby="sel_' + selId + '" value=' + selVal + '>' + $optGrp.eq(i).text() + '</button></li>';
-=======
                             //히든속성 체크
                             if( isHidden  === true ){
                                 return;
                             } else{
                                 appendLi += '<li><button role="option" ' + isDisabled + ' title="' + optTitle + '" aria-labelledby="sel_' + selId + '" value=' + selVal + '>' + $optGrp.eq(i).text() + '</button></li>';
                             }
->>>>>>> 34de983dd973f06c2c31c5e8abc59312c3539995
 
                     });
     
