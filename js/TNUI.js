@@ -1980,17 +1980,18 @@ TNUI.module = (function () {
         // mark : tab anckorUI
         tabAnchorUi: function(pT,fix){
                 var $t = $('.ui-tabAnchor'),
-                $aWrap = $('.ui-anchorWrap'),
-                tTop = $t.offset().top,
-                $linkA = $t.find('a'),
-                $target = $($linkA.attr('href')),
-                $lastTarget = $($linkA.attr('href')).parent().children().last(),
-                lastTargetTop = $lastTarget.offset().top + $lastTarget.height(),
-                tabFixed,padT,
-                linkArr = $linkA.get(),
-                rangeArr = new Array(),
-                optFix = fix
-                ;
+                    $tabList = $t.find('.ui-tabList'),
+                    $aWrap = $('.ui-anchorWrap'),
+                    tTop = $tabList.offset().top,
+                    $linkA = $tabList.find('a'),
+                    $target = $($linkA.attr('href')),
+                    $lastTarget = $($linkA.attr('href')).parent().children().last(),
+                    lastTargetTop = $lastTarget.offset().top + $lastTarget.height(),
+                    tabFixed,padT,
+                    linkArr = $linkA.get(),
+                    rangeArr = new Array(),
+                    optFix = fix
+                    ;
                 
                 $linkA.each(function(i){
                     var targetArr = $(linkArr[i]).attr('href');
@@ -2009,7 +2010,7 @@ TNUI.module = (function () {
             }
 
             tabFixed.prototype.scroll = function () {
-                var tPosY = $t.offset().top;
+                var tPosY = $tabList.offset().top;
 
                 $(window).on('scroll', function () {
                     var curTop = $(document).scrollTop();
@@ -2017,14 +2018,14 @@ TNUI.module = (function () {
                     //스크롤시 탭고정됐을때 상단 여백 처리
                     if (curTop < lastTargetTop) {
                         if( curTop > (tPosY ) ){
-                            $t.addClass('fixed-on');
+                            $tabList.addClass('fixed-on');
                             $aWrap.css('paddingTop',padT)
                         } else{
-                            $t.removeClass('fixed-on')
+                            $tabList.removeClass('fixed-on')
                             $aWrap.removeAttr('style');
                         }
                     } else {
-                        $t.removeClass('fixed-on')
+                        $tabList.removeClass('fixed-on')
                         $aWrap.removeAttr('style');
                     }
                 });
