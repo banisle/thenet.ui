@@ -2048,7 +2048,7 @@ TNUI.module = (function () {
                             var scrVal = tTop;
                         } else{
                             // animate에 따라 스크롤이 조금씩 부족한 현상 fix +2
-                            var scrVal = rangeArr[idx] - tH + 2;
+                            var scrVal = rangeArr[idx] + 2;
                             // console.log(scrVal);
                         }
                         ;
@@ -2076,7 +2076,7 @@ TNUI.module = (function () {
 
                         //fix :
                         // animate에 따라 스크롤이 조금씩 부족한 현상 fix
-                        if ( rangeArr[idx] <= curTop + tH + 1) {
+                        if ( rangeArr[idx] <= curTop + 1) {
                             
                             $linkA.removeClass("active");
                             _t.addClass("active");
