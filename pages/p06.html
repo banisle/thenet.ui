@@ -1,5 +1,12 @@
 <!-- 검색버튼 -->
-<p class="sub-txt">TNUI.module.tabAnchorUi(pT, {fix} );<br/> pT = 상단 고정되는 탭 사이즈의 높이+여백;<br/> fix = 처음부터 상단에 고정되는 형태일 경우 'false', 스크롤에 따라 fixed되는 경우 'true' </p>
+<style>
+div[id^=t]{
+    border:1px solid
+}
+div#t02{border-color: red}
+div#t03{border-color: blue}
+</style>
+<p class="sub-txt">TNUI.module.tabAnchorUi(pT, {fix} );<br/> ui-tabAnchor = 고정되는 영역 부모, ui-tabList = 링크 a태그의 부모</br/> pT = 상단 고정되는 탭 사이즈의 높이+여백;<br/> fix = 처음부터 상단에 고정되는 형태일 경우 'false', 스크롤에 따라 fixed되는 경우 'true' </p>
 <header class="ui-tabAnchor">
     <h1>탭 앵커</h1>
     <a href="#test">외부링크 테스트</a>
@@ -11,7 +18,6 @@
             <li><a href="#t04"><span>tab 3</span></a></li>
         </ul>
     </div>
-
 </header>
 <div class="ui-anchorWrap">
     <div id="t01">
@@ -181,14 +187,18 @@
 </div>
 
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
-&lt;div class=&quot;tab_list ui-tabAnchor&quot;&gt;
-    &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&quot;#t01&quot; class=&quot;&quot;&gt;&lt;span&gt;tab 0&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#t02&quot;&gt;&lt;span&gt;tab 1&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#t03&quot;&gt;&lt;span&gt;tab 2&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;#t04&quot;&gt;&lt;span&gt;tab 3&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
+&lt;header class=&quot;ui-tabAnchor&quot;&gt;
+    &lt;h1&gt;탭 앵커&lt;/h1&gt;
+    &lt;a href=&quot;#test&quot;&gt;외부링크 테스트&lt;/a&gt;
+    &lt;div class=&quot;tab_list ui-tabList&quot;&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href=&quot;#t01&quot; class=&quot;&quot;&gt;&lt;span&gt;tab 0&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#t02&quot;&gt;&lt;span&gt;tab 1&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#t03&quot;&gt;&lt;span&gt;tab 2&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#t04&quot;&gt;&lt;span&gt;tab 3&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/header&gt;
 &lt;div class=&quot;ui-anchorWrap&quot;&gt;
     &lt;div id=&quot;t01&quot;&gt;
        

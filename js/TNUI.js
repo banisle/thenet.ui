@@ -1985,25 +1985,26 @@ TNUI.module = (function () {
                     tTop = $tabList.offset().top,
                     $linkA = $tabList.find('a'),
                     $target = $($linkA.attr('href')),
-                    $lastTarget = $($linkA.attr('href')).parent().children().last(),
-                    lastTargetTop = $lastTarget.offset().top + $lastTarget.height(),
+                    $lastTarget = $target.parent().children().last(),
+                    lastTargetTop = $lastTarget.position().top + $lastTarget.height(),
                     tabFixed,padT,
                     linkArr = $linkA.get(),
                     rangeArr = new Array(),
                     optFix = fix
                     ;
                 
-                $linkA.each(function(i){
-                    var targetArr = $(linkArr[i]).attr('href');
-
-                    var range = $(targetArr).offset().top;
-                    rangeArr.push(range);
-                    // console.log(rangeArr);
-                })
+                
 
 
             tabFixed = function (pT) {
                 padT = pT;
+                $linkA.each(function(i){
+                    var targetArr = $(linkArr[i]).attr('href');
+
+                    var range = $(targetArr).position().top;
+                    rangeArr.push(range);
+                    // console.log(targetArr,rangeArr);
+                });
                 //옵션 fix값 true
                 if(optFix == 'true' ) this.scroll();
                 this.evt();
@@ -2028,6 +2029,7 @@ TNUI.module = (function () {
                         $tabList.removeClass('fixed-on')
                         $aWrap.removeAttr('style');
                     }
+                    
                 });
             };
 
@@ -2045,7 +2047,8 @@ TNUI.module = (function () {
                             var scrVal = tTop;
                         } else{
                             // var scrVal = rangeArr[idx] - ( tTop - $t.outerHeight());
-                            var scrVal = rangeArr[idx] - $t.outerHeight();
+                            // var scrVal = rangeArr[idx] - $t.outerHeight();
+                            var scrVal = rangeArr[idx] - padT;
                             // console.log(tTop, $t.outerHeight() , padT);
                         }
                         ;
