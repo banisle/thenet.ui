@@ -1611,7 +1611,7 @@ html.mobile .ui-scrollview {
 .tab_list {
 	overflow: hidden;
 	width: 100%;
-	margin-bottom: 19px;
+	padding-bottom: 19px;
 }
 
 .tab_list li {
@@ -1665,11 +1665,10 @@ html.mobile .ui-scrollview {
 	right: 0
 }
 
-.tab_list.fixed-on {
+.ui-tabAnchor.fixed-on {
 	position: fixed;
 	top: 0;
 	padding-top: 0;
-	width: 1272px;
 	z-index: 2;
 }
 

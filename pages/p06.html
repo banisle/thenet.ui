@@ -6,9 +6,10 @@ div[id^=t]{
 div#t02{border-color: red}
 div#t03{border-color: blue}
 </style>
-<p class="sub-txt">TNUI.module.tabAnchorUi(pT, {fix} );<br/> ui-tabAnchor = 고정되는 영역 부모, ui-tabList = 링크 a태그의 부모</br/> pT = 상단 고정되는 탭 사이즈의 높이+여백;<br/> fix = 처음부터 상단에 고정되는 형태일 경우 'false', 스크롤에 따라 fixed되는 경우 'true' </p>
+<p class="sub-txt">TNUI.module.tabAnchorUi({fix} );<br/> ui-tabAnchor = 고정되는 영역 부모, ui-tabList = 링크 a태그의 부모</br/> fix = 처음부터 상단에 고정되는 형태일 경우 'false', 스크롤에 따라 fixed되는 경우 'true' </p>
 <header class="ui-tabAnchor">
     <h1>탭 앵커</h1>
+    <h2>탭 앵커 세부제목</h2>
     <a href="#test">외부링크 테스트</a>
     <div class="tab_list ui-tabList">
         <ul>
@@ -225,6 +226,6 @@ div#t03{border-color: blue}
 </pre>
 <script>
     $(document).ready(function(){
-        TNUI.module.tabAnchorUi(68,'true');
+        TNUI.module.tabAnchorUi('true');
     })
 </script>

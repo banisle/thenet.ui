@@ -1978,16 +1978,17 @@ TNUI.module = (function () {
         },
 
         // mark : tab anckorUI
-        tabAnchorUi: function(pT,fix){
+        tabAnchorUi: function(fix){
                 var $t = $('.ui-tabAnchor'),
                     $tabList = $t.find('.ui-tabList'),
+                    tH = Math.round( $t.outerHeight() ),
                     $aWrap = $('.ui-anchorWrap'),
-                    tTop = $tabList.offset().top,
+                    tTop = $t.offset().top,
                     $linkA = $tabList.find('a'),
                     $target = $($linkA.attr('href')),
                     $lastTarget = $target.parent().children().last(),
                     lastTargetTop = $lastTarget.position().top + $lastTarget.height(),
-                    tabFixed,padT,
+                    tabFixed,
                     linkArr = $linkA.get(),
                     rangeArr = new Array(),
                     optFix = fix
@@ -1996,14 +1997,14 @@ TNUI.module = (function () {
                 
 
 
-            tabFixed = function (pT) {
-                padT = pT;
+            tabFixed = function () {
+
                 $linkA.each(function(i){
                     var targetArr = $(linkArr[i]).attr('href');
 
-                    var range = $(targetArr).position().top;
+                    var range = Math.round( $(targetArr).position().top - tH );
                     rangeArr.push(range);
-                    // console.log(targetArr,rangeArr);
+                    // console.log(tH,rangeArr);
                 });
                 //옵션 fix값 true
                 if(optFix == 'true' ) this.scroll();
@@ -2011,22 +2012,22 @@ TNUI.module = (function () {
             }
 
             tabFixed.prototype.scroll = function () {
-                var tPosY = $tabList.offset().top;
+                var tPosY = $t.offset().top;
 
                 $(window).on('scroll', function () {
                     var curTop = $(document).scrollTop();
 
-                    //스크롤시 탭고정됐을때 상단 여백 처리
+                    //스크롤시 탭고정 되는 순간 상단 여백 처리
                     if (curTop < lastTargetTop) {
                         if( curTop > (tPosY ) ){
-                            $tabList.addClass('fixed-on');
-                            $aWrap.css('paddingTop',padT)
+                            $t.addClass('fixed-on');
+                            $aWrap.css('paddingTop', tH)
                         } else{
-                            $tabList.removeClass('fixed-on')
+                            $t.removeClass('fixed-on')
                             $aWrap.removeAttr('style');
                         }
                     } else {
-                        $tabList.removeClass('fixed-on')
+                        $t.removeClass('fixed-on')
                         $aWrap.removeAttr('style');
                     }
                     
@@ -2046,10 +2047,9 @@ TNUI.module = (function () {
                         if ( _t.parent().index() == 0 ){
                             var scrVal = tTop;
                         } else{
-                            // var scrVal = rangeArr[idx] - ( tTop - $t.outerHeight());
-                            // var scrVal = rangeArr[idx] - $t.outerHeight();
-                            var scrVal = rangeArr[idx] - padT;
-                            // console.log(tTop, $t.outerHeight() , padT);
+                            // animate에 따라 스크롤이 조금씩 부족한 현상 fix +2
+                            var scrVal = rangeArr[idx] - tH + 2;
+                            // console.log(scrVal);
                         }
                         ;
 
@@ -2075,8 +2075,8 @@ TNUI.module = (function () {
                         idx = _t.parent().index();
 
                         //fix :
-                        // if ($target.offset().top <= curTop && $target.offset().top + $target.outerHeight() >= curTop) {
-                        if ( rangeArr[idx] <= curTop + padT) {
+                        // animate에 따라 스크롤이 조금씩 부족한 현상 fix
+                        if ( rangeArr[idx] <= curTop + tH + 1) {
                             
                             $linkA.removeClass("active");
                             _t.addClass("active");
@@ -2092,7 +2092,7 @@ TNUI.module = (function () {
             };
 
             // 인자값 : 고정 탭 높이값, 고정됐을때 컨텐츠가 상단으로부터의 여백 지정
-            new tabFixed(pT,fix);
+            new tabFixed(fix);
         },
 
         // mark : parallaxUi
