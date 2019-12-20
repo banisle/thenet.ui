@@ -1,0 +1,245 @@
+@charset "utf-8";
+
+
+/* //mark: lib : syntaxhighlighter */
+.syntaxhighlighter {
+	overflow-y: hidden !important;
+	padding: 20px 0;
+	margin-bottom: 30px !important;
+}
+.syntaxhighlighter .line{
+	white-space: pre-wrap !important; /*자동 줄바꿈하기*/
+	word-break: break-word !important; /*자동 줄바꿈하기*/
+}
+.syntaxhighlighter .line.alt1:hover,
+.syntaxhighlighter .line.alt2:hover{
+    background-color: rgba(255,255,255,.2) !important;
+}
+.syntaxhighlighter .line.alt1:hover *,
+.syntaxhighlighter .line.alt2:hover *{
+    color: #fff !important;
+}
+.syntaxhighlighter table td.gutter .line{width:20px !important}
+
+
+/* //mark: wsg */
+.guide-side {
+	transition: all ease .5s
+}
+
+.guide-side.open {
+	left: 0
+}
+
+.guide-side .tn-lnb-menu {
+	overflow-y: auto;
+	max-height: 100%;
+}
+
+.guide-side .tn-lnb-menu .menu-item {
+	padding: 20px
+}
+
+.guide-side .tn-lnb-menu .menu-item>a {
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 32px;
+}
+
+.guide-side .tn-lnb-menu .menu-item .sub-menu li {
+	line-height: 25px
+}
+
+.guide-side .tn-lnb-menu .menu-item>a.on,
+.guide-side .tn-lnb-menu .menu-item .sub-menu .on {
+	color: #ed4b30
+}
+
+.guide-side .tn-lnb-menu .menu-item .sub-menu a {
+	position: relative;
+	cursor: pointer;
+}
+
+.guide-side .tn-lnb-menu .menu-item .sub-menu a:after {
+	display: block;
+	content: attr(data-menu);
+	position: absolute;
+	top: -7px;
+	right: -52px;
+	padding: 5px 8px;
+	background: #eee;
+	border: 1px solid #e3e3e3;
+	border-radius: 3px;
+	opacity: 0;
+	transition: all ease .5s;
+}
+
+.guide-side .tn-lnb-menu .menu-item .sub-menu a:hover:after {
+	opacity: 1;
+}
+
+.guide-side {
+	position: fixed;
+	z-index: 3;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 320px;
+	background: #fff;
+	box-shadow: 0 0 5px #CCC;
+	color: #333;
+	box-sizing: border-box;
+	letter-spacing: 0;
+}
+
+
+.guide-container {
+	padding-left: 320px;
+}
+
+.guide-container .guide-smaple {
+	overflow: hidden;
+	padding: 20px;
+}
+
+.guide-container .guide-smaple .guide-h1 {
+	margin: 0 0 24px 0;
+	border-bottom: 2px solid #645F66;
+	color: #645F66;
+	font-size: 40px;
+	line-height: 50px
+}
+
+.guide-container .guide-smaple h3 {
+	padding: 24px 0 8px;
+	color: #545151;
+	font-size: 24px;
+	line-height: 32px;
+	letter-spacing: 0;
+}
+
+.guide-container .guide-smaple .sub-txt {
+	margin: 0 0 20px;
+	padding: 10px;
+	color: #545151;
+	border: 1px solid #e3e3e3;
+	border-radius: 5px;
+	background: #eee;
+	line-height: 1.6
+}
+
+.mo-guide-side {
+	display: none;
+}
+
+/* //mark:  media query */
+@media screen and (max-width: 768px) {
+	.guide-side {
+		left: -320px;
+	}
+
+	.guide-container {
+		padding: 43px 0 0 0;
+	}
+
+	.mo-guide-side {
+		display: block;
+		text-align: right;
+		background: #eee;
+		width: 100%;
+		border-bottom: 1px solid #e3e3e3;
+		position: fixed;
+		box-sizing: border-box;
+		padding: 10px 20px;
+		z-index: 3;
+	}
+
+	.mo-guide-side>button {
+		position: relative;
+		z-index: 3;
+	}
+
+	.mo-guide-side>button,
+	.mo-guide-side>button span {
+		display: inline-block;
+		transition: all .4s;
+		box-sizing: border-box;
+	}
+
+	.mo-guide-side>button {
+		position: relative;
+		width: 20px;
+		height: 20px;
+	}
+
+	.mo-guide-side>button span {
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: rgb(53, 53, 53);
+		border-radius: 4px;
+	}
+
+	.mo-guide-side>button span:nth-of-type(1) {
+		top: 0;
+	}
+
+	.mo-guide-side>button span:nth-of-type(2) {
+		top: 9px;
+	}
+
+	.mo-guide-side>button span:nth-of-type(3) {
+		bottom: 0;
+	}
+
+	.mo-guide-side>button.active {
+		-webkit-transform: rotate(180deg);
+		transform: rotate(180deg);
+	}
+
+	.mo-guide-side>button.active span:nth-of-type(1) {
+		-webkit-transform: translateY(10px) rotate(-45deg);
+		transform: translateY(10px) rotate(-45deg);
+	}
+
+	.mo-guide-side>button.active span:nth-of-type(2) {
+		-webkit-transform: translateY(0) rotate(45deg);
+		transform: translateY(0) rotate(45deg);
+		top: initial;
+	}
+
+	.mo-guide-side>button.active span:nth-of-type(3) {
+		opacity: 0;
+	}
+
+	.mo-guide-dim.active {
+		display: block;
+		position: fixed;
+		;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, .7);
+		z-index: 1
+	}
+
+	.btn_org {
+		min-width: 0
+	}
+
+	input.form_chk+label {
+		display: flex;
+		align-items: center
+	}
+
+	input+label>.label-txt {
+		position: initial;
+	}
+
+	.scrollview {
+		overflow-y: auto
+	}
+
+}

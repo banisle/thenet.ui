@@ -2001,10 +2001,9 @@ TNUI.module = (function () {
 
                 $linkA.each(function(i){
                     var targetArr = $(linkArr[i]).attr('href');
-
                     var range = Math.round( $(targetArr).position().top - tH );
                     rangeArr.push(range);
-                    // console.log(tH,rangeArr);
+                    console.log(tH,rangeArr);
                 });
                 //옵션 fix값 true
                 if(optFix == 'true' ) this.scroll();
