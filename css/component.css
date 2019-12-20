@@ -403,6 +403,9 @@ input.form_chk_slide:checked + label:after{
 input.form_chk_slide + label .label-txt{
 	padding-left: 35px;
 }
+input.form_chk_slide:disabled + label:before{
+	background: #d5d5d6;
+}
 
 .form_grp>span {
 	display: inline-block;
