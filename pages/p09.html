@@ -1,0 +1,68 @@
+<style>
+	/* .ui-dialog {font-size:11px;} */
+	/*// 위에 css는 적용 되지만 아래 주석 처리된것은 해제해도 적용되지 않는다. 이유는 아직 못 찾았음
+	.ui-dialog ui-dialog-titlebar {background-color:black;}	
+	.ui-dialog-title-dialog{background-color:blue;}
+	.ui-dialog-titlebar-close {background-color:green}
+	.ui-dialog-content {background-color:red}
+	*/
+	.button{padding:2px 5px;border-radius:3px;border:1px solid #333;}
+	.costomAlert_wrap{display:block;position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999999;}
+	.costomAlert_wrap.on{display:block;}
+	.costomAlert_wrap .dim{position:absolute;top:0;left:0;width:100%;height:100%;background:#000;opacity:0.5;filter:alpha(opacity=50);}
+	.costomAlert {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;padding:2px;font-size:18px;line-height:1.5;background:#fff;}
+	.costomAlert_tit {display:block;height:30px;line-height:30px;padding:3px 5px;font-weight:bold;color:#000;background:#c5c5c5;}
+	.costomAlert_content {padding:5px 5px 10px;background:#fff;}
+	.costomAlert_p {font-size:16px;font-weight:normal;}
+	.costomAlert_btnWrap {height:23px;padding:5px;clear:both;}
+	.costomAlert_btn {float:right;;width:50px;padding:2px 5px;border:1px solid #000;font-weight:bold;}
+</style>
+<h3>custom alert</h3>
+<p class="sub-txt">
+	타이틀 있을 때 :
+	<br>TNUI.module.alertui_tit({title : 'tit',msg : 'aaa'},function(){ /* 콜백함수 */});
+	<br>타이틀 있을 때 :
+	<br>TNUI.module.alertui_tit({msg : 'aaa'},function(){ /* 콜백함수 */});
+</p>
+<button class="button" id="aa">alert 창 - 타이틀 있는 것</button>
+<button class="button" id="bb">alert 창 - 타이틀 없는 것</button>
+
+<pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
+&lt;button class=&quot;button&quot; id=&quot;aa&quot;&gt;alert 창 - 타이틀 있는 것&lt;/button&gt;
+&lt;button class=&quot;button&quot; id=&quot;bb&quot;&gt;alert 창 - 타이틀 없는 것&lt;/button&gt;
+
+&lt;script&gt;
+	var _call_back = function(){
+		//callback 내용
+		console.log(1);
+	} 
+	$(&#39;#aa&#39;).on(&#39;click&#39;, function(){//#aa를 눌렀을 때 
+		TNUI.module.alertui_tit({title : &#39;tit&#39;,msg : &#39;aaa&#39;},function(){ 
+			_call_back();
+		});
+	})
+	$(&#39;#aa&#39;).on(&#39;click&#39;, function(){//#bb를 눌렀을 때 
+		TNUI.module.alertui({msg : &#39;aaa&#39;},function(){ 
+			_call_back();
+		});
+	})
+&lt;/script&gt;
+</pre>
+
+<script>
+	var _call_back = function(){
+		//callback 내용
+		console.log(1);
+	} 
+	$('#aa').on('click', function(){//#aa를 눌렀을 때 
+		TNUI.module.alertui_tit({title : 'tit',msg : 'aaa'},function(){ 
+			_call_back();
+		});
+	});
+	$('#bb').on('click', function(){//#bb를 눌렀을 때 
+		TNUI.module.alertui({msg : 'aaa'},function(){ 
+			_call_back();
+		});
+	});
+	
+</script>
