@@ -65,15 +65,15 @@ TNUI.module = (function () {
             var uiTabWrap = $('.ui-tabWrap'),
                 uiTab = uiTabWrap.find('.ui-tab'),
                 uiTabBtn = uiTab.find('.ui-tab-btn'),
+                uiTabBtnA = $('a.ui-tab-btn'),
+                uiTabBtnRad = $('label.ui-tab-btn').prev('input[type=radio]'),
                 uiTabList = $('.ui-tab-list'),
                 index;
+                
 
-            //init
-            // uiTabList.first().addClass("on").attr('tabindex', '0');
-            // uiTabBtn.first().attr('aria-selected', 'true');
-
-
-            uiTabBtn.on('click', function(e) {
+            // a 탭 버튼
+            uiTabBtnA.on('click', function(e) {
+                e.preventDefault();
 
                 if ($(this).hasClass('on')) return;
 
@@ -94,15 +94,39 @@ TNUI.module = (function () {
                     .attr("tabindex", "-1")
                     .removeClass("on");
 
-                // 라디오형태면 리턴 
-                if ($(e.target).prev().is('input[type=radio]')) {
-                    return;
-                };
+            });
 
-                e.preventDefault();
+            // 라디오 탭 버튼
+            uiTabBtnRad.on('click change', function(e) {
+                
+                
+                var _this = $(this).next('label');
+                console.log(_this.attr('for'));
 
+                if ( _this.hasClass('on')) return;
+
+                $(this).closest(uiTabWrap).find(uiTabBtn).removeClass('on');
+                
+                _this.attr({
+                    "tabindex": "-1",
+                    "aria-selected": "false"
+                });
+
+                _this.addClass('on').attr({
+                        "tabindex": "0",
+                        "aria-selected": "true"
+                    });
+
+                $("#" + _this.attr("aria-controls"))
+                    .attr("tabindex", "0")
+                    .addClass("on")
+                    .siblings(uiTabList)
+                    .attr("tabindex", "-1")
+                    .removeClass("on");
 
             });
+
+
             // 탭 키 초점
             uiTabBtn.on("keydown", function (event) {
                 event = event || window.event;
@@ -177,6 +201,7 @@ TNUI.module = (function () {
             uiTab.on("keydown", ".on", function (event) {
                 event = event || window.event;
                 var keycode = event.keyCode || event.which;
+
 
                 // tab 키 눌렀을 때 (shift + tab은 제외)
                 if (!event.shiftKey && keycode === 9) {
