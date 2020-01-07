@@ -210,14 +210,14 @@
 
 
 <h3>tab</h3>
-<p class="sub-txt">TNUI.module.tabUi() 호출<br/>border after로 처리 선 겹침 문제 해결</p>
+<p class="sub-txt">TNUI.module.tabUi() 호출<br/>border after로 처리 선 겹침 문제 해결<br/> 초기 보여질 컨텐츠 패널부분에 클래스 on, tabindex="0", 버튼에 aria-selected="true" 속성 추가</p>
 <div class="ui-tabWrap">
     <ul class="ui-tab" role="tablist">
         <li><span><a href="#" id="ui-tab-btn1" class="ui-tab-btn on" role="tab" aria-controls="ui-tab-list1"><span>first</span></a></span></li>
         <li><span><a href="#" id="ui-tab-btn2" class="ui-tab-btn" role="tab" aria-controls="ui-tab-list2"><span>second</span></a></span></li>
         <li><span><a href="#" id="ui-tab-btn3" class="ui-tab-btn" role="tab" aria-controls="ui-tab-list3"><span>third</span></a></span></li>
     </ul>
-    <div id="ui-tab-list1" class="ui-tab-list" role="tabpanel" aria-labelledby="ui-tab-btn1">detail1</div>
+    <div id="ui-tab-list1" class="ui-tab-list on" role="tabpanel" aria-labelledby="ui-tab-btn1">detail1</div>
     <div id="ui-tab-list2" class="ui-tab-list" role="tabpanel" aria-labelledby="ui-tab-btn2">detail2</div>
     <div id="ui-tab-list3" class="ui-tab-list" role="tabpanel" aria-labelledby="ui-tab-btn3">detail3</div>
 </div>
@@ -229,25 +229,33 @@
         &lt;li&gt;&lt;span&gt;&lt;a href=&quot;#&quot; id=&quot;ui-tab-btn2&quot; class=&quot;ui-tab-btn&quot; role=&quot;tab&quot; aria-controls=&quot;ui-tab-list2&quot;&gt;&lt;span&gt;second&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
         &lt;li&gt;&lt;span&gt;&lt;a href=&quot;#&quot; id=&quot;ui-tab-btn3&quot; class=&quot;ui-tab-btn&quot; role=&quot;tab&quot; aria-controls=&quot;ui-tab-list3&quot;&gt;&lt;span&gt;third&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;
     &lt;/ul&gt;
-    &lt;div id=&quot;ui-tab-list1&quot; class=&quot;ui-tab-list&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;ui-tab-btn1&quot;&gt;detail1&lt;/div&gt;
+    &lt;div id=&quot;ui-tab-list1&quot; class=&quot;ui-tab-list on&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;ui-tab-btn1&quot;&gt;detail1&lt;/div&gt;
     &lt;div id=&quot;ui-tab-list2&quot; class=&quot;ui-tab-list&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;ui-tab-btn2&quot;&gt;detail2&lt;/div&gt;
     &lt;div id=&quot;ui-tab-list3&quot; class=&quot;ui-tab-list&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;ui-tab-btn3&quot;&gt;detail3&lt;/div&gt;
 &lt;/div&gt;
 </pre>
+
+
 <div class="ui-tabWrap">
-    <ul class="ui-tab">
-        <li><span><input type="radio" name="rGrp1" id="r1" ><label for="r1" class="ui-tab-btn">라디오1</label></span></li>
-        <li><span><input type="radio" name="rGrp1" id="r2" checked><label for="r2" class="ui-tab-btn">라디오2</label></span></li>
-        <li><span><input type="radio" name="rGrp1" id="r3" ><label for="r3" class="ui-tab-btn">라디오3</label></span></li>
+    <ul class="ui-tab" role="tablist">
+        <li><span><input type="radio" name="rGrp1" id="r1" checked><label for="r1" class="ui-tab-btn on" role="tab" aria-controls="ui-tab-list21">라디오1</label></span></li>
+        <li><span><input type="radio" name="rGrp1" id="r2" ><label for="r2" class="ui-tab-btn" role="tab" aria-controls="ui-tab-list22">라디오2</label></span></li>
+        <li><span><input type="radio" name="rGrp1" id="r3" ><label for="r3" class="ui-tab-btn" role="tab" aria-controls="ui-tab-list23">라디오3</label></span></li>
     </ul>
+    <div id="ui-tab-list21" class="ui-tab-list on" role="tabpanel" aria-labelledby="ui-tab-btn21">detail1</div>
+    <div id="ui-tab-list22" class="ui-tab-list" role="tabpanel" aria-labelledby="ui-tab-btn22">detail2</div>
+    <div id="ui-tab-list23" class="ui-tab-list" role="tabpanel" aria-labelledby="ui-tab-btn23">detail3</div>
 </div>
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
 &lt;div class=&quot;ui-tabWrap&quot;&gt;
-    &lt;ul class=&quot;ui-tab&quot;&gt;
-        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;radio&quot; name=&quot;rGrp1&quot; id=&quot;r1&quot; &gt;&lt;label for=&quot;r1&quot; class=&quot;ui-tab-btn&quot;&gt;라디오1&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;radio&quot; name=&quot;rGrp1&quot; id=&quot;r2&quot; checked&gt;&lt;label for=&quot;r2&quot; class=&quot;ui-tab-btn&quot;&gt;라디오2&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;radio&quot; name=&quot;rGrp1&quot; id=&quot;r3&quot; &gt;&lt;label for=&quot;r3&quot; class=&quot;ui-tab-btn&quot;&gt;라디오3&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
+    &lt;ul class=&quot;ui-tab&quot; role=&quot;tablist&quot;&gt;
+        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;radio&quot; name=&quot;rGrp1&quot; id=&quot;r1&quot; checked &gt;&lt;label for=&quot;r1&quot; class=&quot;ui-tab-btn&quot; role=&quot;tab&quot; aria-controls=&quot;ui-tab-list21&quot;&gt;라디오1&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;radio&quot; name=&quot;rGrp1&quot; id=&quot;r2&quot; &gt;&lt;label for=&quot;r2&quot; class=&quot;ui-tab-btn&quot; role=&quot;tab&quot; aria-controls=&quot;ui-tab-list22&quot;&gt;라디오2&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;&lt;input type=&quot;radio&quot; name=&quot;rGrp1&quot; id=&quot;r3&quot; &gt;&lt;label for=&quot;r3&quot; class=&quot;ui-tab-btn&quot; role=&quot;tab&quot; aria-controls=&quot;ui-tab-list23&quot;&gt;라디오3&lt;/label&gt;&lt;/span&gt;&lt;/li&gt;
     &lt;/ul&gt;
+    &lt;div id=&quot;ui-tab-list21&quot; class=&quot;ui-tab-list on&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;ui-tab-btn21&quot;&gt;detail1&lt;/div&gt;
+    &lt;div id=&quot;ui-tab-list22&quot; class=&quot;ui-tab-list&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;ui-tab-btn22&quot;&gt;detail2&lt;/div&gt;
+    &lt;div id=&quot;ui-tab-list23&quot; class=&quot;ui-tab-list&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;ui-tab-btn23&quot;&gt;detail3&lt;/div&gt;
 &lt;/div&gt;
 </pre>
 

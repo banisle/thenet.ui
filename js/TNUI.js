@@ -69,16 +69,11 @@ TNUI.module = (function () {
                 index;
 
             //init
-            uiTabList.first().addClass("on").attr('tabindex', '0');
-            uiTabBtn.first().attr('aria-selected', 'true');
+            // uiTabList.first().addClass("on").attr('tabindex', '0');
+            // uiTabBtn.first().attr('aria-selected', 'true');
 
 
             uiTabBtn.on('click', function(e) {
-                if ($(e.target).prev().is('input[type=checkbox]') || $(e.target).prev().is('input[type=radio]')) {
-                    return;
-                };
-
-                e.preventDefault();
 
                 if ($(this).hasClass('on')) return;
 
@@ -98,6 +93,13 @@ TNUI.module = (function () {
                     .siblings(uiTabList)
                     .attr("tabindex", "-1")
                     .removeClass("on");
+
+                // 라디오형태면 리턴 
+                if ($(e.target).prev().is('input[type=radio]')) {
+                    return;
+                };
+
+                e.preventDefault();
 
 
             });
