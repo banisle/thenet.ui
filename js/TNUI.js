@@ -101,7 +101,6 @@ TNUI.module = (function () {
                 
                 
                 var _this = $(this).next('label');
-                console.log(_this.attr('for'));
 
                 if ( _this.hasClass('on')) return;
 
