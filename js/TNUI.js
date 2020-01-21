@@ -2323,18 +2323,20 @@ TNUI.module = (function () {
             });
         },
 
-        //mork : click center
+        //mark : click center
         clickCenter : function(){
-            $('.mo_submenu_wrap li a').on('click',function(){
+            $('.mo_submenu_wrap li a').on('click',function(e){
+                e.preventDefault();
                 $(this).parent().addClass('active').siblings('li').removeClass('active');
                 var navLi = $(this).parent('li');
                 var navWd = navLi.outerWidth();
                 var posL = navLi.position().left - $('.mo_submenu_wrap').outerWidth() * 0.5 + navWd * 0.5;
                 $('.mo_submenu_wrap').animate({scrollLeft: posL}, 300);
+
             });
         },
 
-        // mork : scrollMenu
+        // mark : scrollMenu
         scrollMenu : function(){
             var prevScroll = 0;
             var body = $('body');
