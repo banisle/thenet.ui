@@ -623,7 +623,7 @@ TNUI.module = (function () {
                     });
 
                     //스크롤바 drag 이벤트
-                    function updateDrag(e) {
+                    var updateDrag = function(e) {
                         var t = $(e.target),
                             barCursor = t.closest(scrollWrap).find('.bar'),
                             barSize = parseFloat(barCursor.height()) / 2,
