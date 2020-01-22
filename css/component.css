@@ -2,6 +2,10 @@
 
 
 /* //mark: snippet */
+html.fixed {
+	overflow-y:hidden;
+}
+
 .w100 {
 	width: 100%
 }
