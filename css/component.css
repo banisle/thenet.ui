@@ -50,11 +50,11 @@ input:focus {
 	box-sizing: border-box
 }
 
-.inp_form.ui-hasDelForm > input {
+.ui-hasDelForm > input {
 	padding-right: 30px;
 }
 
-.inp_form input[type=text]+.ui-deltxt {
+input[type=text]+.ui-deltxt {
 	display: none;
 	width: 15px;
 	height: 15px;
@@ -68,7 +68,7 @@ input:focus {
 	z-index: 10;
 }
 
-.inp_form input[type=text]+.ui-deltxt.active {
+input[type=text]+.ui-deltxt.active {
 	display: inline-block;
 }
 
@@ -84,11 +84,6 @@ input:focus {
 	box-sizing: border-box;
 	outline: none;
 }
-
-.inp_wrap.ui-hasDelForm {
-	
-}
-
 
 .inp_wrap input:focus {
 	border-color: #3ead57;
