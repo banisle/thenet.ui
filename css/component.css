@@ -1059,7 +1059,6 @@ html.mobile .form_select {
 .ui-scrollview {
 	overflow: hidden;
 	position: relative;
-	height: 300px
 }
 .ui-scrollview:hover .ui-scrollbar{
 	opacity: 1;
@@ -1103,7 +1102,7 @@ html.mobile .form_select {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background: #555;
+	background: #888;
 	width: 100%;
 	border-radius: 5px;
 	z-index: 1;
@@ -1111,7 +1110,7 @@ html.mobile .form_select {
 }
 
 .ui-scrollbar .bar:hover {
-	background: #222
+	background: #555
 }
 
 .scrollview {
