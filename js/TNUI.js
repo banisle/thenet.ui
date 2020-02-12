@@ -653,6 +653,7 @@ TNUI.module = (function () {
                     clearTimeout(window.resizedFinished);
                     window.resizedFinished = setTimeout(function () {
                         thisObj.scrollUi();
+                        console.log('s');
 
                     }, 250);
                 });
