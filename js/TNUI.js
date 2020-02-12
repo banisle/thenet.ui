@@ -613,7 +613,10 @@ TNUI.module = (function () {
                             rangeSize = t.height();
                             scrollCt = t.closest(scrollWrap).find(scrollArea),
                             down = true;
+
+                            
                         // console.log(scrollCt);
+
 
                         return false;
                     });
@@ -641,6 +644,7 @@ TNUI.module = (function () {
                             scrollCt.scrollTop(curScTop);
 
                         }
+                        
                     }
 
 
