@@ -2386,29 +2386,35 @@ TNUI.module = (function () {
                 }
             });
         },
-        //mark : custom alert 창 + callback - 타이틀 있는 창
-        alertui_tit : function(option,callback){
-            var option = {// 제목 내용 받아오기
+        //mark : custom alert 창 + callback 
+        alertui : function(option,callback){
+            var option = {// 내용 받아오기
                     title : option.title,
                     msg : option.msg
                 },
                 callback = callback;
+                
+            if(!option.title){
+                console.log('title no');
+                var alertTit = '';
+                alertT();
+            }else if(option.title){
+                console.log('title ok');
+                var alertTit = '<div class="costomAlert_tit"> ' + option.title + '</div> ';
+                alertT();
+            }
 
             function alertT() {//alert 창 
                 var str = '';
-                str = '<div class="costomAlert_wrap" class=""><div class="dim"></div> ';
-                str = str + ' <div class="costomAlert"> ';
-                str = str + '<div class="costomAlert_tit"> ';
-                str = str + '' + option.title + ' ';
-                str = str + '</div> ';
-                str = str + '<div class="costomAlert_content"> ';
-                str = str + '<p class="costomAlert_p">' + option.msg + '</p> ';
-                str = str + '</div> ';
-                str = str + '<div class="costomAlert_btnWrap"> ';
-                str = str + '<button class="costomAlert_btn ui-close" >확인</button> ';
-                str = str + '</div> ';
-                str = str + '</div>';
-                str = str + '</div>';
+                str = '<div class="costomAlert_wrap" class=""><div class="dim"></div> '
+                +' <div class="costomAlert"> '
+                +alertTit
+                +'<div class="costomAlert_content"> '
+                +'<p class="costomAlert_p">' + option.msg + '</p> '
+                +'</div> '
+                +'<div class="costomAlert_btnWrap"> '
+                +'<button class="costomAlert_btn ui-close" >확인</button> '
+                +'</div>'+'</div>' +'</div>';
 
                 $(str).appendTo(document.body);
 
@@ -2426,47 +2432,56 @@ TNUI.module = (function () {
                     }
                 });
             }
-            alertT();
+            // alertT();
             
         },
-        //mark : custom alert 창 + callback - 타이틀 있는 창
-        alertui : function(option,callback){
-            var option = {// 내용 받아오기
-                    msg : option.msg
-                },
-                callback = callback;
-
-            function alertT() {//alert 창 
-                var str = '';
-                str = '<div class="costomAlert_wrap" class=""><div class="dim"></div> ';
-                str = str + ' <div class="costomAlert"> ';
-                str = str + '<div class="costomAlert_content"> ';
-                str = str + '<p class="costomAlert_p">' + option.msg + '</p> ';
-                str = str + '</div> ';
-                str = str + '<div class="costomAlert_btnWrap"> ';
-                str = str + '<button class="costomAlert_btn ui-close" >확인</button> ';
-                str = str + '</div> ';
-                str = str + '</div>';
-                str = str + '</div>';
-
-                $(str).appendTo(document.body);
-
-                $('.costomAlert_bg').addClass('on');
-                
-                function alertClose(){// alert창 닫기
-                    $('.costomAlert_wrap').remove();
-                    return false;
-                }
-                               
-                $(document).on('click','.ui-close', function(){
-                    alertClose();
-                    if (typeof callback == 'function') {//callback 실행
-                        callback.call(this);
+        //mark : prev, next 버튼으로 paging 
+        pageMove : function($btn){//인자값 받아오기($(this)==$this)
+            var moveEvt = function($this){
+                var direction = $this.attr('class'), //누르는 버튼($this)의 클래스 구함
+                    thisView = $('.ui-tab-list'),//동작해야하는(셀렉터를 누름으로써 바뀔) 화면 함수 선언
+                    thisViewNum = thisView.length - 1,//동작할 화면의 전체 갯수 구하기 
+                    curNum = parseFloat($('.ui-tab-list.on').attr('id').split('ui-tab-list')[1]) - 1;
+                //버튼별 동작  
+                if( direction == 'left_btn'){//만약에 클릭한 셀렉터의 클래스가 left_btn이면
+                    if(curNum !== 0){//left_btn을 눌렀을 때 현재 보여지는 화면이 첫번째가 아니면
+                        curNum = curNum - 1;//현재 화면 값에 -1 => 하나값 이전 화면에 이벤트 실행하게 됌
+                    } else{//left_btn을 눌렀을 때 현재 보여지는 화면이 첫번째이면
+                        curNum = 0;//보여지는 화면이 첫번째 0번 이하로 가지 않게 //첫번째 화면 이전으로 더 가지 않게 
                     }
-                });
+                    
+                } else if( direction == 'right_btn'){//만약에 클릭한 셀렉터의 클래스가 left_btn이 아니면(right_btn일시)
+    
+                    if(curNum < thisViewNum){//전체 동작화면 수 보다 현재 표출 화면의 숫자(순서값)이 작으면
+                        curNum = curNum + 1;//현재 표출 화면의 번호에 +1 => 하나값 다음 화면에 이벤트 실행하게 됌
+                    } else{//전체 동작화면 수 보다 현재 표출 화면의 숫자(순서값)이 크면
+                        curNum = thisViewNum;//전체값 이상으로 수가 늘어나지 않게 //마지막 화면 이상으로 가지 않게.
+                    }
+                }
+                console.log('curNum',curNum,);//현재 표출 화면 값 찍어보기 
+    
+                //페이지 전환 
+                if( 0 <= curNum && curNum <= (thisViewNum) ){//현재 화면 값이 -1보다 크고 and 전체 화면 갯수보다 작거나 크면 작동해라
+                    thisView.removeClass('on');//동작해야하는 화면에 on클래스 제거 //초기화
+                    $(thisView[curNum]).addClass('on');//동작해야하는 화면값에 on 클래스 추가 //화면 표출
+    
+                    // 버튼 제한 효과 초기화 // disabled // 더 넘어갈 것 없으면 버튼 투명도 주기 
+                    $btn.removeClass('disabled');//모든 셀렉터 초기화  
+    
+                    //현재 화면값이 0이거나 or 현재 화면값이 전체화면값과 동일하면
+                    // == 첫번째 화면 또는 마지막 화면이면 
+                    if( curNum == 0 || curNum == thisViewNum ){
+                            //지금 누른 셀렉터에 disabled 클래스 추가
+                            $this.addClass('disabled'); 
+                    }
+                    //잘 동작하나 현재 화면값 찍어보기 
+                    console.log('sucess', curNum);
+                }
             }
-            alertT();
-            
+
+            $btn.on('click',function(){
+                moveEvt( $(this) );
+            });
         },
 
         // mark : init
