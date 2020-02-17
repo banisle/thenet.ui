@@ -4,47 +4,56 @@
 </style>
 <h3>button paging </h3>
 <p class="sub-txt">
-	타이틀 있을 때 :
-	<br>TNUI.module.alertui_tit({title : 'tit',msg : 'aaa'},function(){ /* 콜백함수 */});
-	<br>타이틀 있을 때 :
-	<br>TNUI.module.alertui_tit({msg : 'aaa'},function(){ /* 콜백함수 */});
+	TNUI.module.pageMove( $('.nav_wrap button') );
 </p>
-<div class="ui-tabWrap menu_pick">
-    <div class="nav_wrap pc_no">
+<div class="ui-tabWrap">
+    <div class="nav_wrap">
         <button type="button" class="left_btn">이전</button>
         <button type="button" class="right_btn">다음</button>
     </div>
     <!-- 탭1-->
     <div id="ui-tab-list1" class="ui-tab-list on">
-        <p class="ct_tit pc_no">탭1</p>
-        <p class="txt">개인별 유전자 분석 결과에 맞춰 식영양 전문가가 처방하고 전문 쉐프진이 직접 조리하는 나만의 맞춤 도시락 서비스
-            입니다. 먼저, 유전자 검사로 어떤 유전적 위험요인을 가지고 있는지 알아보세요.
-        </p>
+        탭1
     </div>
     <!-- //탭1  -->
     <!-- 탭2-->
     <div id="ui-tab-list2" class="ui-tab-list">
-        <p class="ct_tit pc_no">탭2</p>
-        <p class="txt">타액(침)으로부터 DNA를 추출하여 유전자 변이를 분석합니다. 
-            <span class="br">유전자 검사 키트에 타액을 채취하여 유전자분석 회사로 택배 발송해주세요.</span>
-            <span class="br">유전자 검사 결과를 확인하여 맞춤 건강체크 항목에 입력하세요.</span>
-        </p>
+        탭2
     </div>
     <!-- //탭2 -->
     <!-- 탭3 -->
     <div id="ui-tab-list3" class="ui-tab-list">
-        <p class="ct_tit pc_no">탭3</p>
-        <p class="txt">유전자 분석 결과 리포트에는 11개 항목에 대한 유전자 분석 결과가 제공되며 추천 식단 및 운동법, 추천 영양소,
-            관리항목에 대한 생활습관 TIP 등의 내용이 제공됩니다. 스테이정글 식단으로 헬스케어, 일반질환, 대사질환의
-            항목을 관리하실 수 있습니다.
-        </p>
+        탭3
     </div>
     <!-- //탭3-->
 </div>
 <pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
-&lt;script&gt;
-    TNUI.module.pageMove( $(&#39;.nav_wrap button&#39;) );
-&lt;/script&gt;
+
+    &lt;div class=&quot;ui-tabWrap&quot;&gt;
+        &lt;div class=&quot;nav_wrap&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;left_btn&quot;&gt;이전&lt;/button&gt;
+            &lt;button type=&quot;button&quot; class=&quot;right_btn&quot;&gt;다음&lt;/button&gt;
+        &lt;/div&gt;
+        <!-- 탭1-->
+        &lt;div id=&quot;ui-tab-list1&quot; class=&quot;ui-tab-list on&quot;&gt;
+            탭1
+        &lt;/div&gt;
+        <!-- //탭1  -->
+        <!-- 탭2-->
+        &lt;div id=&quot;ui-tab-list2&quot; class=&quot;ui-tab-list&quot;&gt;
+            탭2
+        &lt;/div&gt;
+        <!-- //탭2 -->
+        <!-- 탭3 -->
+        &lt;div id=&quot;ui-tab-list3&quot; class=&quot;ui-tab-list&quot;&gt;
+            탭3
+        &lt;/div&gt;
+        <!-- //탭3-->
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        TNUI.module.pageMove( $(&#39;.nav_wrap button&#39;) );
+    &lt;/script&gt;
 </pre>
 
 <script>
