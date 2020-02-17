@@ -1,21 +1,70 @@
+<style>
+    .box-wrap{
+        background-color: #999;
+        width: 500px;
+        height: 400px;
+    }
+    .box{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .item{
+        border: 1px solid #fff;
+        box-sizing: border-box;
+        padding: 30px;
+        text-align: center;
+        flex-basis: 33%;
+    }
+</style>
+
 <h3>flex box</h3>
 <p class="sub-txt">
-    flexbox는 정렬하려는 요소의 부모 요소인 flex container , 자식 요소인 flex item 로 구성<br><br>
-    flexbox는 부모 요소에 dispaly: flex 속성을 선언
-    
-    
+    flexbox는 정렬하려는 요소의 부모 요소인 flex container , 자식 요소인 flex item 로 구성<br>
+    flexbox는 정렬하려는 자식요소의 부모 요소에 dispaly: flex 속성을 선언<br><br>
+    부모요소와 자식요소에 정의 하는 속성 구분<br>
+    <img src="/img/flex.PNG" alt="속성 이미지">
 </p>
-<div class="content_page">
-   <div class="ss">
-       <span>예제를 여기다가 코딩을 하구 밑에 복사해서 넣어욤 !</span>
-   </div>
+<div class="box-wrap">
+    <div class="box">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">10</div>
+    </div>
 </div>
+<!-- <div class="box">
+    <div class="logo"></div>
+    <ul class="menu">
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+    </ul>
+    <div class=""></div>
+</div> -->
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
-    &lt;div class=&quot;content_page&quot;&gt;
-    &lt;div class=&quot;ss&quot;&gt;
-        &lt;span&gt;sasaas&lt;/span&gt;
-    &lt;/div&gt;
- &lt;/div&gt;
+    &lt;style&gt;
+    .box{
+	background-color: #999;
+	display: flex;
+}
+&lt;/style&gt;
+    &lt;div class=&quot;box&quot;&gt;
+    &lt;div class=&quot;logo&quot;&gt;&lt;/div&gt;
+    &lt;ul class=&quot;menu&quot;&gt;
+        &lt;li class=&quot;item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;item&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class=&quot;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
 </pre>
 
 
