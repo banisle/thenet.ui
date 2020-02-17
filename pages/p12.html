@@ -1,7 +1,38 @@
 <style>
 .sec.ex .box:after{content:''; display:inline-block; clear:both;}
-.sec.ex .box{width:200px; height:140px; margin:0 20px 20px 0; float:left; padding:15px; box-sizing:border-box;}
+.sec.ex .box{width:300px; height:140px; margin:0 20px 20px 0; float:left; padding:15px; box-sizing:border-box;}
 .sec.ex .box em{display:block; padding-bottom:10px;}
+/* --------------- move1 --------------- */
+.move1{
+    position:relative;
+    width:100px;
+    height:100px;
+    background-color:darkorchid;
+    animation-name:move1;
+    animation-duration:5s;
+    animation-iteration-count:infinite;
+}
+@-webkit-keyframes move1{
+    /* 애니메이션 시작 */
+    /* form{left:0;} */
+    /* 애니메이션 종료 */
+    /* to{left:333px;} */
+
+    0%{left:0;}
+    50%{left:111px;}
+    100%{left:300px;}
+}
+@keyframes move1{
+    /* 애니메이션 시작 */
+    /* form{left:0;} */
+    /* 애니메이션 종료 */
+    /* to{left:333px;} */
+
+    0%{left:0;}
+    50%{left:111px;}
+    100%{left:300px;}
+}
+/* --------------- //move1 --------------- */
 /* --------------- loader1 --------------- */
 .loader1{
     position:relative;
@@ -10,10 +41,10 @@
     border-radius:80px;
     border:3px solid royalblue;
 
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-    -webkit-animation: loader1 5s linear infinite;
-    animation: loader1 5s linear infinite;
+    -webkit-transform-origin:50% 50%;
+    transform-origin:50% 50%;
+    -webkit-animation:loader1 5s linear infinite;
+    animation:loader1 5s linear infinite;
 }
 .loader1:after{
     content:'';
@@ -29,7 +60,6 @@
     0%{-webkit-transform:rotate(0deg);}
     100%{-webkit-transform:rotate(360deg);}
 }
-
 @keyframes loader1{
     0%{transform:rotate(0deg);}
     100%{transform:rotate(360deg);}
@@ -40,48 +70,46 @@
     position:relative;
     width:150px;
     height:20px;
-    
-    background-color: rgba(76,175,80,0.2);
+    background-color:rgba(76,175,80,0.2);
 }
 .loader2:after{
-    content: "LOADING ...";
-    color: #fff;
-    font-weight: 200;
-    font-size: 16px;
+    content:"LOADING ...";
+    color:#fff;
+    font-weight:200;
+    font-size:16px;
     text-align:center;
-    position: absolute;
-    width: 100%;
-    height: 20px;
-    line-height: 20px;
-    left: 0;
-    top: 0;
+    position:absolute;
+    width:100%;
+    height:20px;
+    line-height:20px;
+    left:0;
+    top:0;
 }
 .loader2:before{
-    content: "";
-    position: absolute;
-    background-color: #8BC34A;
-    top: 0px;
-    height: 20px;
-    width: 0px;
-    z-index: 0;
-    -webkit-transform-origin:  100% 0%;
-    transform-origin:  100% 0%;
-    -webkit-animation: loader2 9s ease-in-out infinite;
-    animation: loader2 9s ease-in-out infinite;
+    content:"";
+    position:absolute;
+    background-color:#8BC34A;
+    top:0px;
+    height:20px;
+    width:0px;
+    z-index:0;
+    -webkit-transform-origin:100% 0%;
+    transform-origin:100% 0%;
+    -webkit-animation:loader2 9s ease-in-out infinite;
+    animation:loader2 9s ease-in-out infinite;
 }
-
 @-webkit-keyframes loader2{
-    0%{width: 0px;}
-    70%{width: 100%; opacity: 1;}
-    90%{opacity: 0; width: 100%;}
-    100%{opacity: 0;width: 0px;}
+    0%{width:0px;}
+    70%{width:100%; opacity:1;}
+    90%{opacity:0; width:100%;}
+    100%{opacity:0; width:0px;}
 }
 
 @keyframes loader2{
-    0%{width: 0px;}
-    70%{width: 100%; opacity: 1;}
-    90%{opacity: 0; width: 100%;}
-    100%{opacity: 0;width: 0px;}
+    0%{width:0px;}
+    70%{width:100%; opacity:1;}
+    90%{opacity:0; width:100%;}
+    100%{opacity:0; width:0px;}
 }
 /* --------------- //loader2 --------------- */
 </style>
@@ -91,6 +119,61 @@
 </p>
 <div class="content_page">
    <div class="sec ex">
+        <div class="box">
+            <em>move1</em>
+            <div class="move1"></div>
+        </div>
+    </div>
+</div>
+
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+
+&lt;div class=&quot;content_page&quot;&gt;
+   &lt;div class=&quot;sec ex&quot;&gt;
+        &lt;div class=&quot;box&quot;&gt;
+            &lt;em&gt;move1&lt;/em&gt;
+            &lt;div class=&quot;move1&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+/* --------------- move1 --------------- */
+.move1{
+    position:relative;
+    width:100px;
+    height:100px;
+    background-color:darkorchid;
+    animation-name:move1;
+    animation-duration:5s;
+    animation-iteration-count:infinite;
+}
+@-webkit-keyframes move1{
+    /* 애니메이션 시작 */
+    /* form{left:0;} */
+    /* 애니메이션 종료 */
+    /* to{left:333px;} */
+
+    0%{left:0;}
+    50%{left:111px;}
+    100%{left:300px;}
+}
+@keyframes move1{
+    /* 애니메이션 시작 */
+    /* form{left:0;} */
+    /* 애니메이션 종료 */
+    /* to{left:333px;} */
+
+    0%{left:0;}
+    50%{left:111px;}
+    100%{left:300px;}
+}
+/* --------------- //move1 --------------- */
+
+</pre>
+
+
+<div class="content_page">
+    <div class="sec ex">
         <div class="box">
             <em>loader1</em>
             <div class="loader1"></div>
@@ -103,12 +186,15 @@
 </div>
 
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+
 &lt;div class=&quot;content_page&quot;&gt;
-   &lt;div class=&quot;sec ex&quot;&gt;
+    &lt;div class=&quot;sec ex&quot;&gt;
         &lt;div class=&quot;box&quot;&gt;
+            &lt;em&gt;loader1&lt;/em&gt;
             &lt;div class=&quot;loader1&quot;&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;div class=&quot;box&quot;&gt;
+            &lt;em&gt;loader2&lt;/em&gt;
             &lt;div class=&quot;loader2&quot;&gt;&lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -120,12 +206,12 @@
     height:80px;
     width:80px;
     border-radius:80px;
-    border:3px solid orangered;
+    border:3px solid royalblue;
 
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-    -webkit-animation: loader1 5s linear infinite;
-    animation: loader1 5s linear infinite;
+    -webkit-transform-origin:50% 50%;
+    transform-origin:50% 50%;
+    -webkit-animation:loader1 5s linear infinite;
+    animation:loader1 5s linear infinite;
 }
 .loader1:after{
     content:&#39;&#39;;
@@ -134,14 +220,13 @@
     left:0;
     width:12px;
     height:12px;
-    background-color:orangered;
+    background-color:royalblue;
     border-radius:12px;    
 }
 @-webkit-keyframes loader1{
     0%{-webkit-transform:rotate(0deg);}
     100%{-webkit-transform:rotate(360deg);}
 }
-
 @keyframes loader1{
     0%{transform:rotate(0deg);}
     100%{transform:rotate(360deg);}
@@ -152,51 +237,50 @@
     position:relative;
     width:150px;
     height:20px;
-    
-    background-color: rgba(76,175,80,0.2);
+    background-color:rgba(76,175,80,0.2);
 }
 .loader2:after{
-    content: &quot;LOADING ...&quot;;
-    color: #fff;
-    font-weight: 200;
-    font-size: 16px;
+    content:&quot;LOADING ...&quot;;
+    color:#fff;
+    font-weight:200;
+    font-size:16px;
     text-align:center;
-    position: absolute;
-    width: 100%;
-    height: 20px;
-    line-height: 20px;
-    left: 0;
-    top: 0;
+    position:absolute;
+    width:100%;
+    height:20px;
+    line-height:20px;
+    left:0;
+    top:0;
 }
 .loader2:before{
-    content: &quot;&quot;;
-    position: absolute;
-    background-color: #8BC34A;
-    top: 0px;
-    height: 20px;
-    width: 0px;
-    z-index: 0;
-    -webkit-transform-origin:  100% 0%;
-    transform-origin:  100% 0% ;
-    -webkit-animation: loader2 9s ease-in-out infinite;
-    animation: loader2 9s ease-in-out infinite;
+    content:&quot;&quot;;
+    position:absolute;
+    background-color:#8BC34A;
+    top:0px;
+    height:20px;
+    width:0px;
+    z-index:0;
+    -webkit-transform-origin:100% 0%;
+    transform-origin:100% 0%;
+    -webkit-animation:loader2 9s ease-in-out infinite;
+    animation:loader2 9s ease-in-out infinite;
 }
-
 @-webkit-keyframes loader2{
-    0%{width: 0px;}
-    70%{width: 100%; opacity: 1;}
-    90%{opacity: 0; width: 100%;}
-    100%{opacity: 0;width: 0px;}
+    0%{width:0px;}
+    70%{width:100%; opacity:1;}
+    90%{opacity:0; width:100%;}
+    100%{opacity:0; width:0px;}
 }
 
 @keyframes loader2{
-    0%{width: 0px;}
-    70%{width: 100%; opacity: 1;}
-    90%{opacity: 0; width: 100%;}
-    100%{opacity: 0;width: 0px;}
+    0%{width:0px;}
+    70%{width:100%; opacity:1;}
+    90%{opacity:0; width:100%;}
+    100%{opacity:0; width:0px;}
 }
 /* --------------- //loader2 --------------- */
 </pre>
+
 
 
 <script>
