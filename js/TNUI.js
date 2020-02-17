@@ -2382,29 +2382,36 @@ TNUI.module = (function () {
                 }
             });
         },
-        //mark : custom alert 창 + callback - 타이틀 있는 창
-        alertui_tit : function(option,callback){
-            var option = {// 제목 내용 받아오기
+        //mark : custom alert 창 + callback 
+        /* test */
+        alertui : function(option,callback){
+            var option = {// 내용 받아오기
                     title : option.title,
                     msg : option.msg
                 },
                 callback = callback;
+                
+            if(!option.title){
+                console.log('title no');
+                var alertTit = '';
+                alertT();
+            }else if(option.title){
+                console.log('title ok');
+                var alertTit = '<div class="costomAlert_tit"> ' + option.title + '</div> ';
+                alertT();
+            }
 
             function alertT() {//alert 창 
                 var str = '';
-                str = '<div class="costomAlert_wrap" class=""><div class="dim"></div> ';
-                str = str + ' <div class="costomAlert"> ';
-                str = str + '<div class="costomAlert_tit"> ';
-                str = str + '' + option.title + ' ';
-                str = str + '</div> ';
-                str = str + '<div class="costomAlert_content"> ';
-                str = str + '<p class="costomAlert_p">' + option.msg + '</p> ';
-                str = str + '</div> ';
-                str = str + '<div class="costomAlert_btnWrap"> ';
-                str = str + '<button class="costomAlert_btn ui-close" >확인</button> ';
-                str = str + '</div> ';
-                str = str + '</div>';
-                str = str + '</div>';
+                str = '<div class="costomAlert_wrap" class=""><div class="dim"></div> '
+                +' <div class="costomAlert"> '
+                +alertTit
+                +'<div class="costomAlert_content"> '
+                +'<p class="costomAlert_p">' + option.msg + '</p> '
+                +'</div> '
+                +'<div class="costomAlert_btnWrap"> '
+                +'<button class="costomAlert_btn ui-close" >확인</button> '
+                +'</div>'+'</div>' +'</div>';
 
                 $(str).appendTo(document.body);
 
@@ -2422,46 +2429,7 @@ TNUI.module = (function () {
                     }
                 });
             }
-            alertT();
-            
-        },
-        //mark : custom alert 창 + callback - 타이틀 있는 창
-        alertui : function(option,callback){
-            var option = {// 내용 받아오기
-                    msg : option.msg
-                },
-                callback = callback;
-
-            function alertT() {//alert 창 
-                var str = '';
-                str = '<div class="costomAlert_wrap" class=""><div class="dim"></div> ';
-                str = str + ' <div class="costomAlert"> ';
-                str = str + '<div class="costomAlert_content"> ';
-                str = str + '<p class="costomAlert_p">' + option.msg + '</p> ';
-                str = str + '</div> ';
-                str = str + '<div class="costomAlert_btnWrap"> ';
-                str = str + '<button class="costomAlert_btn ui-close" >확인</button> ';
-                str = str + '</div> ';
-                str = str + '</div>';
-                str = str + '</div>';
-
-                $(str).appendTo(document.body);
-
-                $('.costomAlert_bg').addClass('on');
-                
-                function alertClose(){// alert창 닫기
-                    $('.costomAlert_wrap').remove();
-                    return false;
-                }
-                               
-                $(document).on('click','.ui-close', function(){
-                    alertClose();
-                    if (typeof callback == 'function') {//callback 실행
-                        callback.call(this);
-                    }
-                });
-            }
-            alertT();
+            // alertT();
             
         },
 
