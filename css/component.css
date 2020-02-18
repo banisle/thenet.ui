@@ -1117,12 +1117,19 @@ html.mobile .form_select {
 	line-height: 1.6
 }
 
+html.mobile .ui-scrollview {
+	overflow-y: auto;
+}
 html.mobile .ui-scrollbar {
 	display: none;
 }
-
-html.mobile .ui-scrollview {
-	overflow: auto;
+html.mobile .ui-scrollarea {
+	position: relative;
+	overflow: unset;
+}
+html.mobile .ui-content {
+	overflow: unset;
+	padding: 0;
 }
 
 
