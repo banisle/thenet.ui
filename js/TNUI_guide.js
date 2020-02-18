@@ -11,6 +11,8 @@ TNUI.wsg = (function () {
             ctH1.text(s2ItemTXT);
         },
         moGuideMenu: function () {
+            var t = this;
+
             var mobtn = $('.mo-guide-btn'),
                 sg = $('.guide-side'),
                 dimBtn = $('.mo-guide-dim'),
@@ -35,26 +37,33 @@ TNUI.wsg = (function () {
                 (openSt == 'false') ? dimLyOpen(): dimLyClose();
             });
 
+            var toggleOn = function () {
+                var guSide = $('.guide-side'),
+                    s1Item = guSide.find('.menu-item > a'),
+                    s2Item = guSide.find('.sub-menu > li > a'),
+                    s2ItemTXT;
+    
+    
+                s2Item.on('click', function () {
+    
+                    if ($(this).hasClass('on')) return;
+    
+                    s1Item.add(s2Item).removeClass('on');
+                    $(this).addClass('on').closest('.menu-item').find('> a').addClass('on');
+    
+                    s2ItemTXT = s2Item.parent().find('a.on').text();
+    
+                    t.createH1(s2ItemTXT);
+
+                    dimLyClose();
+                    
+                });
+            };
+
+            toggleOn();
+
         },
-        toggleOn: function () {
-            var t = this,
-                guSide = $('.guide-side'),
-                s1Item = guSide.find('.menu-item > a'),
-                s2Item = guSide.find('.sub-menu > li > a'),
-                s2ItemTXT;
-
-            s2Item.on('click', function () {
-
-                if ($(this).hasClass('on')) return;
-
-                s1Item.add(s2Item).removeClass('on');
-                $(this).addClass('on').closest('.menu-item').find('> a').addClass('on');
-
-                s2ItemTXT = s2Item.parent().find('a.on').text();
-
-                t.createH1(s2ItemTXT);
-            });
-        },
+        
         modalEvt: function () {
             var t = this,
                 btnTog = $('#btn-transtoggle'),
@@ -69,7 +78,7 @@ TNUI.wsg = (function () {
             var t = this;
 
             t.createH1();
-            t.toggleOn();
+            // t.toggleOn();
             t.moGuideMenu();
             t.modalEvt();
 
