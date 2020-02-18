@@ -153,6 +153,70 @@
     100%{opacity:0; width:0px;}
 }
 /* --------------- //loader2 --------------- */
+/* --------------- outline --------------- */
+.outLine{
+    position:relative;
+    /* top:50%;
+    left:50%;
+    transform:translate(-50%, -50%); */
+    width:300px;
+    height:300px;
+}
+/* .outLine .line-wrap{position:} */
+.line-wrap .line{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color:#8BC34A;
+    box-shadow:0px 0px 1px 0px #8BC34A; 
+    animation-name:line-move; 
+    animation-duration:2s;
+    animation-iteration-count:infinite;
+    animation-timing-function:cubic-bezier(0.5, 0, 0.3, 1);
+}
+@keyframes line-move{
+    0%{transform:scale(0) rotate(135deg);}
+    100%{transform:scale(1) rotate(0deg);}
+}
+.outLine .outline-x{
+    width:88%; height:3px;
+    animation-name:outline-x; 
+    animation-duration:3s;
+    animation-timing-function:cubic-bezier(0.5, 0, 0.6, 0.6);
+}/* 길이; 두깨; */ 
+.outLine .outline-y{
+    width:3px; height:88%;
+    animation-name:outline-y; 
+    animation-duration:3s;
+    animation-timing-function:cubic-bezier(0.5, 0, 0.6, 0.6);
+}
+.outLine .outline-top{top:0%; left:6%; transform-origin:right center;}
+.outLine .outline-bottom{top:calc(100% - 3px); left:6%; transform-origin:left center;}
+.outLine .outline-left{top:6%; left:0%; transform-origin:bottom center;}
+.outLine .outline-right{top:6%; left:calc(100% - 3px); transform-origin:top center;}
+/* .outLine .outline-x{
+    width:88%; 
+    height:3px;
+    animation-name:outline-x; 
+    animation-duration:3s;
+    animation-timing-function:cubic-bezier(0.5, 0, 0.6, 0.6);
+}
+.outLine .outline-y{
+    width:3px; 
+    height:88%;
+    animation-name:outline-y; 
+    animation-duration:3s;
+    animation-timing-function:cubic-bezier(0.5, 0, 0.6, 0.6);
+} */
+@keyframes outline-x{
+    0%{transform:scalex(0);}
+    100%{transform:scalex(1);}
+}
+@keyframes outline-y{
+    0%{transform:scaley(0);}
+    100%{transform:scaley(1);}
+}
+/* --------------- //outline --------------- */
 </style>
 <h3>animation</h3>
 <p class="sub-txt">
@@ -387,6 +451,44 @@
 /* --------------- //loader2 --------------- */
 </pre>
 <!-- //네번째 예제 -->
+
+<!-- 다섯번째 예제 -->
+<div class="content_page">
+    <div class="sec ex">
+        <div class="box field">
+            <em>outline</em>
+            <div class="outLine">
+                <div class="line-wrap">
+                    <div class="line outline-x outline-top"></div>
+                    <div class="line outline-x outline-bottom"></div>
+                    <div class="line outline-y outline-left"></div>
+                    <div class="line outline-y outline-right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+
+&lt;div class=&quot;content_page&quot;&gt;
+    &lt;div class=&quot;sec ex&quot;&gt;
+        &lt;div class=&quot;box&quot;&gt;
+            &lt;em&gt;outline&lt;/em&gt;
+            &lt;div class=&quot;outLine&quot;&gt;
+                &lt;div class=&quot;line-wrap&quot;&gt;
+                    &lt;div class=&quot;line&quot;&gt;&lt;/div&gt;
+                    &lt;div class=&quot;line&quot;&gt;&lt;/div&gt;
+                    &lt;div class=&quot;line&quot;&gt;&lt;/div&gt;
+                    &lt;div class=&quot;line&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+</pre>
+<!-- //다섯번째 예제 -->
 
 
 
