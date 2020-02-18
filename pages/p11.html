@@ -55,6 +55,62 @@
 
     &lt;script&gt;
         TNUI.module.pageMove( $(&#39;.nav_wrap button&#39;) );
+
+        // TNUI.module.pageMove( $(&#39;.info .nav_wrap button&#39;) );//이벤트 선언 
+    var infoBtn = $(&#39;.nav_wrap button&#39;),// 클릭할 버튼(셀렉터)
+        //현재 보여지고 있는 화면 번호 (on클래스 있는 list) 
+        curNum = parseFloat($(&#39;.ui-tab-list.on&#39;).attr(&#39;id&#39;).split(&#39;ui-tab-list&#39;)[1]) - 1;
+    
+    console.log(&#39;0curNum&#39;, curNum);//현재 보여지는 화면 번호 찍어보기
+        
+    //셀럭터를 클릭했을 때 이벤트 작동
+    infoBtn.on(&#39;click&#39;, function(){
+        //현재 클릭하는 버튼값(작동하는 셀렉터) 받아오기 ($(this))
+        pageMove1($(this));//이벤트 선언 
+    }); 
+
+    //이벤트 함수 선언 
+    var pageMove1 = function($this){//인자값 받아오기($(this)==$this)
+        var direction = $this.attr(&#39;class&#39;), //누르는 버튼($this)의 클래스 구함
+            thisView = $(&#39;.ui-tab-list&#39;),//동작해야하는(셀렉터를 누름으로써 바뀔) 화면 함수 선언
+            thisViewNum = thisView.length - 1;//동작할 화면의 전체 갯수 구하기 
+
+        //버튼별 동작 
+        if( direction == &#39;left_btn&#39;){//만약에 클릭한 셀렉터의 클래스가 left_btn이면
+
+            if(curNum !== 0){//left_btn을 눌렀을 때 현재 보여지는 화면이 첫번째가 아니면
+                curNum = curNum - 1;//현재 화면 값에 -1 =&gt; 하나값 이전 화면에 이벤트 실행하게 됌
+            } else{//left_btn을 눌렀을 때 현재 보여지는 화면이 첫번째이면
+                curNum = 0;//보여지는 화면이 첫번째 0번 이하로 가지 않게 //첫번째 화면 이전으로 더 가지 않게 
+            }
+        } else if( direction == &#39;right_btn&#39;){//만약에 클릭한 셀렉터의 클래스가 left_btn이 아니면(right_btn일시)
+            
+            if(curNum &lt; thisViewNum){//전체 동작화면 수 보다 현재 표출 화면의 숫자(순서값)이 작으면
+                curNum = curNum + 1;//현재 표출 화면의 번호에 +1 =&gt; 하나값 다음 화면에 이벤트 실행하게 됌
+            } else{//전체 동작화면 수 보다 현재 표출 화면의 숫자(순서값)이 크면
+                curNum = thisViewNum;//전체값 이상으로 수가 늘어나지 않게 //마지막 화면 이상으로 가지 않게.
+            }
+        }
+        console.log(&#39;curNum&#39;,curNum,);//현재 표출 화면 값 찍어보기 
+
+        //페이지 전환 
+        if( -1 &lt; curNum &amp;&amp; curNum &lt;= (thisViewNum) ){//현재 화면 값이 -1보다 크고 and 전체 화면 갯수보다 작거나 크면 작동해라
+            thisView.removeClass(&#39;on&#39;);//동작해야하는 화면에 on클래스 제거 //초기화
+            $(thisView[curNum]).addClass(&#39;on&#39;);//동작해야하는 화면값에 on 클래스 추가 //화면 표출
+
+            // 버튼 제한 효과 초기화 // disabled // 더 넘어갈 것 없으면 버튼 투명도 주기 
+            infoBtn.removeClass(&#39;disabled&#39;);//모든 셀렉터 초기화  
+
+            //현재 화면값이 0이거나 or 현재 화면값이 전체화면값과 동일하면
+            // == 첫번째 화면 또는 마지막 화면이면 
+            if( curNum == 0 || curNum == thisViewNum ){
+                    //지금 누른 셀렉터에 disabled 클래스 추가
+                    $this.addClass(&#39;disabled&#39;); 
+            }
+            //잘 동작하나 현재 화면값 찍어보기 
+            console.log(&#39;sucess&#39;, curNum);
+        }
+    }
     &lt;/script&gt;
 </pre>
 
@@ -70,7 +126,7 @@
     infoBtn.on('click', function(){
         //현재 클릭하는 버튼값(작동하는 셀렉터) 받아오기 ($(this))
         pageMove1($(this));//이벤트 선언 
-    });
+    }); 
 
     //이벤트 함수 선언 
     var pageMove1 = function($this){//인자값 받아오기($(this)==$this)
