@@ -73,7 +73,25 @@
         width: 100%;
     }
 
-
+    .self{
+        background-color: darkslateblue;
+        height: 300px;
+        display: flex;
+    }
+    .selfbox{
+        background-color: floralwhite;
+        padding: 10px;
+        margin: 5px;
+    }
+    .selfbox:nth-child(1){
+        align-self: flex-start;
+    }
+    .selfbox:nth-child(2){
+        align-self: flex-end;
+    }
+    .selfbox:nth-child(3){
+        align-self: center;
+    }
 
 
 </style>
@@ -244,10 +262,44 @@
                 width: 100%;
             }
         &lt;/style&gt;
-
     </pre>
 
+    <div class="self">
+        <div class="selfbox">위</div>
+        <div class="selfbox">아래</div>
+        <div class="selfbox">중간</div>
+        <div class="selfbox">기본적으로 flex의 아이템은 컨테이너 높이에 맞게 들어가려는 속성을 가지고 있음</div>
+    </div>
+    <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+        &lt;div class=&quot;self&quot;&gt;
+            &lt;div class=&quot;selfbox&quot;&gt;위&lt;/div&gt;
+            &lt;div class=&quot;selfbox&quot;&gt;아래&lt;/div&gt;
+            &lt;div class=&quot;selfbox&quot;&gt;중간&lt;/div&gt;
+            &lt;div class=&quot;selfbox&quot;&gt;기본적으로 flex의 아이템은 컨테이너 높이에 맞게 들어가려는 속성을 가지고 있음&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;style&gt;
+        .self{
+            background-color: darkslateblue;
+            height: 300px;
+            display: flex;
+        }
+        .selfbox{
+            background-color: floralwhite;
+            padding: 10px;
+            margin: 5px;
+        }
+        .selfbox:nth-child(1){
+            align-self: flex-start;
+        }
+        .selfbox:nth-child(2){
+            align-self: flex-end;
+        }
+        .selfbox:nth-child(3){
+            align-self: center;
+        }
+        &lt;/style&gt;
 
+    </pre>
 
 <script>
     $(document).ready(function(){
