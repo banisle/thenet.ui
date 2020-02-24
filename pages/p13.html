@@ -1,36 +1,38 @@
 <style>
-    button{padding:2px 5px ;border:1px solid #000;}
-    .ui-tab-list{margin-top:10px;border-top:1px solid #333;}
-    .disabled{opacity:.5;}
+    .list{width:100px;}
+    .list li {width:100%;height:30px;background-color:#ededed;}
+    .list li button{width:100%;height:100%;padding:0;border-bottom:1px solid #999;}
+    .list li.on button{border-radius:4px;color:#fff;font-weight:bold;background-color:navy;}
 </style>
 <h3>flow select</h3>
 <p class="sub-txt">
     층수 클릭시 기본 선택되어있는 층에서 선택한 층으로 순차적으로 선택되며 이동 
     <br>ex) 디폴트 9층일때 3층 클릭시 9층에서 8층, 7층, 6층 ~ 3층까지 on 틀래스가 순차적으로 이동 후 최종 3층에서 고정
 </p>
-<ul class="tab_list">
-    <li class="list12"><button>12</button></li>
-    <li class="list11"><button>11</button></li>
-    <li class="list10"><button>10</button></li>
-    <li class="list9"><button>9</button></li>
-    <li class="list8"><button>8</button></li>
-    <li class="list7"><button>7</button></li>
-    <li class="list6"><button>6</button></li>
-    <li class="list5"><button>5</button></li>
-    <li class="list4"><button>4</button></li>
-    <li class="list3"><button>3</button></li>
-    <li class="list2"><button>2</button></li>
-    <li class="list1"><button>1</button></li>
-    <li class="listb1"><button>B1</button></li>
-    <li class="listb2"><button>B2</button></li>
+<ul class="list">
+    <li class="li12"><button>12</button></li>
+    <li class="li11"><button>11</button></li>
+    <li class="li10"><button>10</button></li>
+    <li class="li9 on"><button>9</button></li>
+    <li class="li8"><button>8</button></li>
+    <li class="li7"><button>7</button></li>
+    <li class="li6"><button>6</button></li>
+    <li class="li5"><button>5</button></li>
+    <li class="li4"><button>4</button></li>
+    <li class="li3"><button>3</button></li>
+    <li class="li2"><button>2</button></li>
+    <li class="li1"><button>1</button></li>
+    <li class="lib1"><button>B1</button></li>
+    <li class="lib2"><button>B2</button></li>
 </ul>
+
+<script>
+    
+</script>
+
 <pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
 
     &lt;script&gt;
 
     &lt;/script&gt;
 </pre>
-
-<script>
-    
-</script>
