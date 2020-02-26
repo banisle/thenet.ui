@@ -475,6 +475,8 @@ TNUI.module = (function () {
                     if (bodyIsOverflowing && scrollbarWidth){
                         $('html').css('padding-right', scrollbarWidth);
                     }
+                    // pc에서만 스크롤 ui 호출
+                    TNUI.module.scrollUi();
                 }
                 $('[data-target=' + mvId + ']').fadeIn(0);
 
@@ -483,8 +485,6 @@ TNUI.module = (function () {
                 } else {
                     $('[data-target=' + mvId + ']').prepend(mask);
                 }
-                // 모바일에서는 스크롤 ui 호출 안함
-                if (!!isMobile) TNUI.module.scrollUi();
 
                 if (optTrans == 'true') {
                     $('[data-target=' + mvId + ']').addClass('on');
