@@ -2491,7 +2491,43 @@ TNUI.module = (function () {
             });
         },
 
-        // mark : init
+        // flowSelect : function(){
+            
+        //     var speed = 100;
+        //     $('li').on('click',function(){
+    
+        //         var destNum = parseInt($(this).text()),
+        //             $this = $(this);
+        //         var loop = setInterval(function(){
+        //             var $li = $('li'),
+        //                 $curLi = $li.filter('.on'),
+        //                 curNum = parseInt($curLi.text()),
+        //                 direction = Math.sign(destNum - curNum)
+        //                 ;
+        //             $curLi.removeClass('on');
+                    
+        //             if(direction >= 1){
+        //             $curLi.prev().addClass('on');
+        //             if(curNum +1 >= destNum){
+        //                 clearInterval(loop);
+        //                 console.log('end')
+        //             } 
+        //             } else{
+        //             $curLi.next().addClass('on');
+        //             if(curNum -1 <= destNum){
+        //                 clearInterval(loop);
+        //                 console.log('end')
+        //             } 
+        //             }
+        //             // $curLi = $this;
+        //             console.log('curNum',curNum, 'destNum', destNum );
+        //             console.log();
+        //         },speed);
+              
+        //     });
+        // },
+        
+        // mark : init 
         init: function () {
             // var t = this;
 
