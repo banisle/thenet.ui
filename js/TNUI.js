@@ -431,7 +431,8 @@ TNUI.module = (function () {
                 $mask = $('.laypop .mask'),
                 mvId,
                 maskClick = maskClick || false,
-                bodyIsOverflowing
+                bodyIsOverflowing,
+                $this
                 ;
 
             // 브라우저 스크롤바 크기 구하기
@@ -460,6 +461,12 @@ TNUI.module = (function () {
             
                 return (w1 - w2);
             };
+
+            // 접근성 키보드 포커스 제어
+            var trapFocus = function(element, namespace) {
+               
+            }
+            
             
             var dimLyOpen = function (mvId, maskClick) {
                 if (openSt == 'true') {
@@ -476,15 +483,14 @@ TNUI.module = (function () {
                         $('html').css('padding-right', scrollbarWidth);
                     }
                 }
-                $('[data-target=' + mvId + ']').fadeIn(0);
+                // 접근성 : 호출 모달에 포커스 및 탭 인덱스 설정
+                $('[data-target=' + mvId + ']').attr('tabindex',-1).fadeIn(0).focus();
 
                 if ($('[data-target=' + mvId + '] .mask').length) {
                     $mask.show();
                 } else {
                     $('[data-target=' + mvId + ']').prepend(mask);
                 }
-                // 모바일에서는 스크롤 ui 호출 안함
-                if (!!isMobile) TNUI.module.scrollUi();
 
                 if (optTrans == 'true') {
                     $('[data-target=' + mvId + ']').addClass('on');
@@ -497,6 +503,10 @@ TNUI.module = (function () {
                         'marginTop': -($('[data-target=' + mvId + ']').find('.inner').height() / 2)
                     });
                 }
+
+                // pc에서만 스크롤 ui 호출
+                if (!isMobile) { TNUI.module.scrollUi();}
+
                 openSt = 'true';
                 // console.log('open');
 
@@ -535,21 +545,25 @@ TNUI.module = (function () {
                 $('[data-target=' + mvId + ']').hasClass('trans-ms') ? optTrans = 'true' : optTrans = 'false';
 
                 dimLyOpen(mvId, maskClick);
+
+                $this = $(this);
             });
 
             btnClose.on('click', function (e) {
                 e.preventDefault();
                 dimLyClose(mvId);
+                $this.focus();
             });
 
             //외부 제어용 플러그인형식
-            $.fn.modalUi = function (evt, mvId, maskClick) {
+            $.fn.modalUi = function (evt, mvId, maskClick, t) {
 
+                
                 if (evt === 'open') {
+                    $this = t;
                     dimLyOpen(mvId, maskClick);
                 } else if (evt === 'close') {
                     dimLyClose(mvId);
-
                 }
                 return this;
             }
@@ -663,7 +677,7 @@ TNUI.module = (function () {
                         clearTimeout(window.resizedFinished);
                         window.resizedFinished = setTimeout(function () {
                             thisObj.scrollUi();
-                            console.log('s');
+                            // console.log('s');
 
                         }, 250);
                     });
