@@ -7,25 +7,24 @@
 
 
 <!-- (sta) pre sample -->
-<pre
-    class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
 &lt;p&gt;&lt;a href=&quot;#&quot; class=&quot;btn_icn&quot; data-modal=&quot;modal01&quot;&gt;&lt;span&gt;모달 호출 width:728px&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 </pre>
 <!-- (end) pre sample -->
 <!-- (sta) pre sample -->
 <pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;">
-&lt;div class=&quot;laypop type01&quot; id=&quot;&quot; data-target=&quot;modal01&quot;&gt;
-    &lt;div class=&quot;wrap-modal&quot;&gt;
+&lt;div class=&quot;laypop type01&quot; id=&quot;&quot; data-target=&quot;modal01&quot; role=&quot;dialog&quot; aria-labelledby=&quot;title-dialog&quot; aria-describedby=&quot;desc-txt&quot;&gt;
+    &lt;div class=&quot;wrap-modal&quot; role=&quot;document&quot; &gt;
         &lt;article class=&quot;inner&quot;&gt;
             &lt;header class=&quot;laypop_header&quot;&gt;
-                &lt;h1&gt;팝업 타이틀&lt;/h1&gt;
+                &lt;h1 id=&quot;title-dialog&quot;&gt;팝업 타이틀&lt;/h1&gt;
             &lt;/header&gt;
             &lt;div class=&quot;laypop_content&quot;&gt;
                 &lt;div class=&quot;scrollWrap ui-scrollview&quot;&gt;
                     &lt;div class=&quot;ui-scrollbar&quot;&gt;&lt;span class=&quot;bar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
                     &lt;div class=&quot;scrollInner ui-scrollarea&quot;&gt;
                         &lt;div class=&quot;scrollview ui-content&quot;&gt;
-                            &lt;div style=&quot;text-align:center;&quot;&gt;(sta)내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역(end)&lt;/div&gt;
+                            &lt;div id=&quot;desc-txt&quot; style=&quot;text-align:center;&quot;&gt;(sta)내용이 들어가는 영역&lt;/div&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
                 &lt;/div&gt;
@@ -51,9 +50,12 @@
 </p>
 <script>
     $("#ajax_btn").on('click', function (e) {
+        
         e.preventDefault();
         var url = this.href,
-            dataVal = $('#ajax_input').val();
+            dataVal = $('#ajax_input').val(),
+            //버튼에 넘겨주기 위한 변수
+            $t = $(this);
 
         $.ajax({
             type: "get",
@@ -61,7 +63,9 @@
             dataType: "html",
             success: function () {
                 $("#ajax_data").text(dataVal);
-                $('#a').modalUi('open', 'ajax_modal01', true );
+                // 현재 버튼을 $t 인자값으로 넘겨줌
+                $('#a').modalUi('open', 'ajax_modal01', true, $t);
+
             },
             error: function (request, status, error) {
                 console.log("code:" + request.status + "\n" + "message:" + request.responseText +
@@ -77,9 +81,12 @@
 
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ ">
 $(&quot;#ajax_btn&quot;).on(&#39;click&#39;, function (e) {
+    
     e.preventDefault();
     var url = this.href,
-        dataVal = $(&#39;#ajax_input&#39;).val();
+        dataVal = $(&#39;#ajax_input&#39;).val(),
+        //버튼에 넘겨주기 위한 변수
+        $t = $(this);
 
     $.ajax({
         type: &quot;get&quot;,
@@ -87,7 +94,9 @@ $(&quot;#ajax_btn&quot;).on(&#39;click&#39;, function (e) {
         dataType: &quot;html&quot;,
         success: function () {
             $(&quot;#ajax_data&quot;).text(dataVal);
-            $(&#39;#a&#39;).modalUi(&#39;open&#39;, &#39;ajax_modal01&#39;, true);
+            // 현재 버튼을 $t 인자값으로 넘겨줌
+            $(&#39;#a&#39;).modalUi(&#39;open&#39;, &#39;ajax_modal01&#39;, true, $t);
+
         },
         error: function (request, status, error) {
             console.log(&quot;code:&quot; + request.status + &quot;\n&quot; + &quot;message:&quot; + request.responseText +
@@ -112,18 +121,17 @@ $(&#39;.mvClose&#39;).on(&#39;click&#39;, function () {
 </pre>
 <!-- (end) pre sample -->
 <!-- (end)모달 호출 버튼 -->
-<pre
-    class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
-&lt;div class=&quot;laypop trans-ms&quot; id=&quot;mot-tog&quot; data-target=&quot;modal02&quot;&gt;
-    &lt;div class=&quot;wrap-modal&quot;&gt;
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
+&lt;div class=&quot;laypop trans-ms&quot; id=&quot;mot-tog&quot; data-target=&quot;modal02&quot; role=&quot;dialog&quot; aria-labelledby=&quot;title-dialog2&quot; aria-describedby=&quot;desc-txt2&quot;&gt;
+    &lt;div class=&quot;wrap-modal&quot; role=&quot;document&quot; &gt;
         &lt;article class=&quot;inner&quot;&gt;
             &lt;header class=&quot;laypop_header&quot;&gt;
-                &lt;h1&gt;모바일 팝업 타이틀&lt;/h1&gt;
+                &lt;h1 id=&quot;title-dialog2&quot;&gt;모바일 팝업 타이틀&lt;/h1&gt;
             &lt;/header&gt;
             &lt;div class=&quot;laypop_content&quot;&gt;
                 &lt;div class=&quot;scrollWrap&quot;&gt;
-                    &lt;div class=&quot;scrollview&quot;&gt; 
-                        &lt;div style=&quot;text-align:center;&quot;&gt;(sta)내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역&lt;br/&gt;내용이 들어가는 영역(end)&lt;br/&gt;&lt;/div&gt;
+                    &lt;div class=&quot;scrollview&quot;&gt;
+                        &lt;div id=&quot;desc-txt&quot; style=&quot;text-align:center;&quot;&gt;(sta)내용이 들어가는 영역&lt;/div&gt;
                     &lt;/div&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
@@ -136,18 +144,18 @@ $(&#39;.mvClose&#39;).on(&#39;click&#39;, function () {
 </pre>
 
 <!-- (sta) 모달 ct -->
-<div class="laypop type01" id="" data-target="modal01">
-    <div class="wrap-modal">
-        <article class="inner">
+<div class="laypop type01" id="" data-target="modal01" role="dialog" aria-labelledby="title-dialog" aria-describedby="desc-txt">
+    <div class="wrap-modal" >
+        <article class="inner" role="document" >
             <header class="laypop_header">
-                <h1>팝업 타이틀</h1>
+                <h1 id="title-dialog">팝업 타이틀</h1>
             </header>
             <div class="laypop_content">
                 <div class="scrollWrap ui-scrollview">
                     <div class="ui-scrollbar"><span class="bar"></span></div>
                     <div class="scrollInner ui-scrollarea">
                         <div class="scrollview ui-content">
-                            <div style="text-align:center;">(sta)내용이 들어가는 영역<br />내용이 들어가는 영역<br /><br />내용이 들어가는
+                            <div id="desc-txt" style="text-align:center;">(sta)내용이 들어가는 영역<br />내용이 들어가는 영역<br /><br />내용이 들어가는
                                 영역<br /><br />내용이 들어가는 영역<br /><br />내용이 들어가는 영역<br /><br />내용이 들어가는 영역<br /><br />내용이
                                 들어가는 영역<br /><br />내용이 들어가는 영역<br /><br />내용이 들어가는 영역<br /><br />내용이 들어가는
                                 영역<br /><br />내용이 들어가는 영역<br /><br />내용이 들어가는 영역<br /><br />내용이 들어가는 영역<br /><br />내용이
@@ -175,16 +183,16 @@ $(&#39;.mvClose&#39;).on(&#39;click&#39;, function () {
 <!--(end) 모달 ct -->
 
 <!-- (sta) 모달 ct -->
-<div class="laypop trans-ms" id="mot-tog" data-target="modal02">
-    <div class="wrap-modal">
+<div class="laypop trans-ms" id="mot-tog" data-target="modal02" role="dialog" aria-labelledby="title-dialog2" aria-describedby="desc-txt2">
+    <div class="wrap-modal" role="document" >
         <article class="inner">
             <header class="laypop_header">
-                <h1>모바일 팝업 타이틀</h1>
+                <h1 id="title-dialog2">모바일 팝업 타이틀</h1>
             </header>
             <div class="laypop_content">
                 <div class="scrollWrap">
                     <div class="scrollview">
-                        <div style="text-align:center;">(sta)내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는
+                        <div id="desc-txt2" style="text-align:center;">(sta)내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는
                             영역<br />내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는
                             영역<br />내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는
                             영역<br />내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는 영역<br />내용이 들어가는
@@ -203,11 +211,11 @@ $(&#39;.mvClose&#39;).on(&#39;click&#39;, function () {
 <!--(end) 모달 ct -->
 
 <!-- (sta) ajax 모달 ct -->
-<div class="laypop type01" id="a" data-target="ajax_modal01">
-    <div class="wrap-modal">
+<div class="laypop type01" id="a" data-target="ajax_modal01" role="dialog" aria-labelledby="title-dialog3" aria-describedby="ajax_data">
+    <div class="wrap-modal" role="document" >
         <article class="inner">
             <header class="laypop_header">
-                <h1>ajax 모바일 팝업 타이틀</h1>
+                <h1 id="title-dialog3">ajax 모바일 팝업 타이틀</h1>
             </header>
             <div class="laypop_content">
                 <div class="scrollWrap">
