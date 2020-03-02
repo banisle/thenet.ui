@@ -463,10 +463,34 @@ TNUI.module = (function () {
             };
 
             // 접근성 키보드 포커스 제어
-            var trapFocus = function(element, namespace) {
-               
-            }
+            function trapFocus(mvId, namespace) {
+                var element = $('[data-target=' + mvId + ']')[0],
+                    firstFocusableEl = $('[data-target=' + mvId + ']').find('.dialog-start')[0],
+                    lastFocusableEl = $('[data-target=' + mvId + ']').find('.dialog-end')[0],
+                    KEYCODE_TAB = 9;
             
+                element.addEventListener('keydown', function(e) {
+                    var isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
+            
+                    if (!isTabPressed) { 
+                        return; 
+                    }
+            
+                    if ( e.shiftKey ) /* shift + tab */ {
+                        if (document.activeElement === firstFocusableEl) {
+                            lastFocusableEl.focus();
+                            e.preventDefault();
+                        }
+                    } else /* tab */ {
+                        if (document.activeElement === lastFocusableEl) {
+                            firstFocusableEl.focus();
+                            e.preventDefault();
+                        }
+                    }
+            
+                });
+            }
+
             
             var dimLyOpen = function (mvId, maskClick) {
                 if (openSt == 'true') {
@@ -521,6 +545,9 @@ TNUI.module = (function () {
                 } else {
                     $(document).off('click');
                 }
+
+                // 트랩포커스
+                trapFocus(mvId);
 
 
             }
