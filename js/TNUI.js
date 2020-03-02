@@ -493,7 +493,8 @@ TNUI.module = (function () {
 
             
             var dimLyOpen = function (mvId, maskClick) {
-                var $targetM = $('[data-target=' + mvId + ']');
+                var $targetM = $('[data-target=' + mvId + ']'),
+                    wrapStat = $targetM.find('.dialog-start').length;
 
                 if (openSt == 'true') {
                     return;
@@ -513,7 +514,10 @@ TNUI.module = (function () {
                 $targetM.attr('tabindex',-1).fadeIn(0).focus();
 
                 // trapFocus를 위한 엘리먼트 추가
-                $targetM.prepend('<div class="dialog-start" tabindex="0">').append('<div class="dialog-end" tabindex="0">');
+                if( wrapStat < 1 ){
+                    console.log( wrapStat );
+                    $targetM.prepend('<div class="dialog-start" tabindex="0">').append('<div class="dialog-end" tabindex="0">');
+                }
 
                 if ( $targetM.find('.mask').length ) {
                     $mask.show();
