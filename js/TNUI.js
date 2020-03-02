@@ -493,6 +493,8 @@ TNUI.module = (function () {
 
             
             var dimLyOpen = function (mvId, maskClick) {
+                var $targetM = $('[data-target=' + mvId + ']');
+
                 if (openSt == 'true') {
                     return;
                 }
@@ -508,23 +510,26 @@ TNUI.module = (function () {
                     }
                 }
                 // 접근성 : 호출 모달에 포커스 및 탭 인덱스 설정
-                $('[data-target=' + mvId + ']').attr('tabindex',-1).fadeIn(0).focus();
+                $targetM.attr('tabindex',-1).fadeIn(0).focus();
 
-                if ($('[data-target=' + mvId + '] .mask').length) {
+                // trapFocus를 위한 엘리먼트 추가
+                $targetM.prepend('<div class="dialog-start" tabindex="0">').append('<div class="dialog-end" tabindex="0">');
+
+                if ( $targetM.find('.mask').length ) {
                     $mask.show();
                 } else {
-                    $('[data-target=' + mvId + ']').prepend(mask);
+                    $targetM.prepend(mask);
                 }
 
                 if (optTrans == 'true') {
-                    $('[data-target=' + mvId + ']').addClass('on');
+                    $targetM.addClass('on');
                 }
 
                 //ie9 flag
                 if (detectIe == '9') {
                     $('[data-target=' + mvId + '] .inner').css({
                         'top': '50%',
-                        'marginTop': -($('[data-target=' + mvId + ']').find('.inner').height() / 2)
+                        'marginTop': -( $targetM.find('.inner').height() / 2)
                     });
                 }
 
