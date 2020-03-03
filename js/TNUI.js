@@ -2506,39 +2506,46 @@ TNUI.module = (function () {
         },
 
         // flowSelect : function(){
-            
-        //     var speed = 100;
-        //     $('li').on('click',function(){
-    
-        //         var destNum = parseInt($(this).text()),
-        //             $this = $(this);
+        //     init = function(){
+        //         $('li').on('click',function(){
+        //             var $this = $(this);
+        //             flowSelect.mov($this);
+        //         });
+        //     },
+        //     mov = function($this){
+        //         var speed = 100;
+
         //         var loop = setInterval(function(){
-        //             var $li = $('li'),
-        //                 $curLi = $li.filter('.on'),
-        //                 curNum = parseInt($curLi.text()),
-        //                 direction = Math.sign(destNum - curNum)
-        //                 ;
-        //             $curLi.removeClass('on');
-                    
-        //             if(direction >= 1){
-        //             $curLi.prev().addClass('on');
-        //             if(curNum +1 >= destNum){
+        //             var liOn = $this.siblings().filter('.on'),
+        //                 destNum = parseInt($this.text()),
+        //                 curNum = parseInt(liOn.children().text());
+        //             var direction = Math.sign(destNum - curNum);//위아래인지 방향만
+        //             // console.log(test);
+        //             liOn.removeClass('on');
+        //             if(direction >= 1){//높은층으로 //prev
+        //                 console.log('+', 'curNum',curNum, 'destNum', destNum);
+        //                 liOn.prev().addClass('on');
+        //                 if(curNum +1 >= destNum){
+        //                     clearInterval(loop);
+        //                     console.log('end');
+        //                 }
+        //             }else if(direction < 0){//낮은층으로 //next
+        //                 console.log('-','curNum',curNum, 'destNum', destNum);
+        //                 liOn.next().addClass('on');
+        //                 if(curNum -1 <= destNum){
+        //                     clearInterval(loop);
+        //                     console.log('end');
+        //                 } 
+        //             }else{//같은 층 누르면
         //                 clearInterval(loop);
-        //                 console.log('end')
-        //             } 
-        //             } else{
-        //             $curLi.next().addClass('on');
-        //             if(curNum -1 <= destNum){
-        //                 clearInterval(loop);
-        //                 console.log('end')
-        //             } 
+        //                 // flowSelect.stop();
         //             }
-        //             // $curLi = $this;
-        //             console.log('curNum',curNum, 'destNum', destNum );
-        //             console.log();
+        //             console.log('curNum',curNum, 'destNum', destNum,direction);
         //         },speed);
-              
-        //     });
+        //     },
+        //     stop = function(){
+        //         clearInterval(loop);
+        //     }
         // },
         
         // mark : init 
