@@ -1969,11 +1969,28 @@ TNUI.module = (function () {
                     $inp = $inp_form.find('input.ui-hasDel'),
                     $btnDel = $('.ui-deltxt'),
                     isOpen = false;
+                
+                // 삭제 버튼 생성
+                var createDelbtn = function(e){
+                    var $btn = '<button type="button" class="ui-deltxt" title="내용 삭제"></button>',
+                        $parent = $(e).parent();
+
+                    if ( $parent.find('.ui-deltxt').length < 1 ) {
+                        $parent.append($btn);
+
+                    }
+                }
 
                 $inp.on('propertychange change keyup paste input focusin', function (e) {
                     var t = $(e.target),
                         curVal = t.val(),
-                        oldVal;
+                        oldVal,
+                        $btnDel = $('.ui-deltxt');
+                    
+                    // 삭제 버튼 생성
+                    createDelbtn($(this));
+
+
                     if (curVal !== oldVal && curVal !== '') {
 
                         t.closest($inp_form).find($btnDel).addClass('active');
@@ -1997,7 +2014,8 @@ TNUI.module = (function () {
                     }
                 });
 
-                $btnDel.on('click', function (e) {
+                // 삭제 버튼 클릭
+                $(document).on('click',$btnDel, function (e) {
                     if (isOpen == true) {
                         var t = $(e.target);
                         t.prev($inp).val('');
@@ -2539,6 +2557,8 @@ TNUI.module = (function () {
                 moveEvt( $(this) );
             });
         },
+
+        //mark: flowSelect
 
         // flowSelect : function(){
         //     init = function(){
