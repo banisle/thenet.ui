@@ -1,15 +1,15 @@
 <style>
-    .list{width:100px;}
-    .list li {width:100%;height:30px;background-color:#ededed;}
-    .list li button{width:100%;height:100%;padding:0;border-bottom:1px solid #999;}
-    .list li.on button{border-radius:4px;color:#fff;font-weight:bold;background-color:navy;}
+    .flow-list{width:100px;}
+    .flow-list li {width:100%;height:30px;background-color:#ededed;}
+    .flow-list li button{width:100%;height:100%;padding:0;border-bottom:1px solid #999;}
+    .flow-list li.on button{border-radius:4px;color:#fff;font-weight:bold;background-color:navy;}
 </style>
 <h3>flow select</h3>
 <p class="sub-txt">
     층수 클릭시 기본 선택되어있는 층에서 선택한 층으로 순차적으로 선택되며 이동 
     <br>ex) 디폴트 9층일때 3층 클릭시 9층에서 8층, 7층, 6층 ~ 3층까지 on 틀래스가 순차적으로 이동 후 최종 3층에서 고정
 </p>
-<ul class="list">
+<ul class="flow-list">
     <li class="li12"><button>12</button></li>
     <li class="li11"><button>11</button></li>
     <li class="li10"><button>10</button></li>
@@ -27,210 +27,52 @@
 </ul>
 
 <script>
-    // $('.list li button').on('click',function(){
-    //     TNUI.module.flowSelect();
-    // }); 
-    
-// TNUI.module.flowSelect();
+// var flowSelect = {
+//     init:function(){
+//         $('li').on('click',function(){
+//             var $this = $(this);
+//             flowSelect.mov($this);
+//         });
+//     },
+//     mov:function($this){
+//         var speed = 100;
 
-var flowSelect = {
-    init:function(){
-        $('li').on('click',function(){
-            var $this = $(this);
-            flowSelect.mov($this);
-        });
-    },
-    mov:function($this){
-        var speed = 100;
+//         var loop = setInterval(function(){
+// 			var liOn = $this.siblings().filter('.on'),
+// 				destNum = parseInt($this.text()),
+// 				curNum = parseInt(liOn.children().text());
+//         	var direction = Math.sign(destNum - curNum);//위아래인지 방향만
+// 			// console.log(test);
+// 			liOn.removeClass('on');
+//             if(direction >= 1){//높은층으로 //prev
+//                 console.log('+', 'curNum',curNum, 'destNum', destNum);
+//                 liOn.prev().addClass('on');
+//                 if(curNum +1 >= destNum){
+// 					clearInterval(loop);
+// 					console.log('end');
+//                 }
+//             }else if(direction < 0){//낮은층으로 //next
+//                 console.log('-','curNum',curNum, 'destNum', destNum);
+//                 liOn.next().addClass('on');
+//                 if(curNum -1 <= destNum){
+//                     clearInterval(loop);
+// 					console.log('end');
+//                 } 
+//             }else{//같은 층 누르면
+// 				clearInterval(loop);
+// 				// flowSelect.stop();
+// 			}
+//         	console.log('curNum',curNum, 'destNum', destNum,direction);
+//         },speed);
+// 	}, 
+// 	stop:function(){
+// 		clearInterval(loop);
+//    	}
+// }
 
-        var loop = setInterval(function(){
-			var liOn = $this.siblings().filter('.on'),
-				destNum = parseInt($this.text()),
-				curNum = parseInt(liOn.children().text());
-        	var direction = Math.sign(destNum - curNum);//위아래인지 방향만
-			// console.log(test);
-			liOn.removeClass('on');
-            if(direction >= 1){//높은층으로 //prev
-                console.log('+', 'curNum',curNum, 'destNum', destNum);
-                liOn.prev().addClass('on');
-                if(curNum +1 >= destNum){
-					clearInterval(loop);
-					console.log('end');
-                }
-            }else if(direction < 0){//낮은층으로 //next
-                console.log('-','curNum',curNum, 'destNum', destNum);
-                liOn.next().addClass('on');
-                if(curNum -1 <= destNum){
-                    clearInterval(loop);
-					console.log('end');
-                } 
-            }else{//같은 층 누르면
-				clearInterval(loop);
-				// flowSelect.stop();
-			}
-        	console.log('curNum',curNum, 'destNum', destNum,direction);
-        },speed);
-	},
-	stop:function(){
-		clearInterval(loop);
-   	}
-}
-flowSelect.init();
-
-//     var speed = 100;
-// $('li').on('click',function(){   
-    
-//     var destNum = parseInt($(this).text()),
-//         $this = $(this);
-//     var loop = setInterval(function(){
-//         var $li = $('li'),
-//             $curLi = $li.filter('.on'),
-//             curNum = parseInt($curLi.text()),
-//             direction = Math.sign(destNum - curNum)
-//             ;
-//         $curLi.removeClass('on');
-        
-//         if(direction >= 1){
-//         $curLi.prev().addClass('on');
-//         if(curNum +1 >= destNum){
-//             clearInterval(loop);
-//             console.log('end')
-//         } 
-//         } else{
-//         $curLi.next().addClass('on');
-//         if(curNum -1 <= destNum){
-//             clearInterval(loop);
-//             console.log('end')
-//         } 
-//         }
-//         // $curLi = $this;
-//         console.log('curNum',curNum, 'destNum', destNum );
-//         console.log();
-//     },speed);
-  
-// });
+TNUI.module.flowSelect();
 
 </script>
-<!-- <script>
-
-var goElv = {
-   init:function(){
-
-      $(document).on("click",".list>li button",function(){   
-         var start = $(".list>li.on").index();
-         var end = $(this).closet("li").index();
-         goElv.mov(start,end);
-      });
-   },
-   mov:function(start,end){
-
-      this.gogo = setInterval(function(){
-         // 한칸씩 이동
-      },200);
-
-      goElv.stop();
-
-   },
-   stop:function(){
-      // 엘베 멈춤
-   }
-}
-
-goElv.init();
-
-
-var data = {"m1" : {"left":"0"}};
-
-var dice = {
-	posit:{},
-	init:function(){
-		
-	},
-	roll:{
-		count:function(D){
-			console.log(D);
-			var i = 0 , t = 0 , speed = 20;
-			this.timer = setInterval(function(){
-				i = i+20 ;
-				dice.roll.gm(i);
-				if( i >= 600){
-					i = 0;
-				}
-				t ++ ; //console.log(t);
-				if( t >= 100){
-					dice.roll.end(D);
-				}
-			},speed);
-		},
-		gm:function(i){
-			$(".dice>.dc").css("top", -(i) );
-		},
-		end:function(D){
-			clearInterval(this.timer);
-			$(".dice>.dc").css("top", -(D*100-100) ).attr("dice",D);
-			dice.move.count(D)
-		}
-	},
-	move:{
-		count:function(M){
-			console.log(M);
-			var P = parseInt( $("em.mal").attr("pos") );
-			
-			var speed = 500;
-			this.timer = setInterval(function(){
-				M -- ;
-				if( M == 0 ){
-					dice.move.end();
-				}
-				P ++ ;
-				if( P >= 31 ){
-					P = 1 ;
-				}
-				$("em.mal").attr("pos",P); console.log(P);
-				
-				dice.move.gm( dice.posit["m"+P].left ,  dice.posit["m"+P].top  );
-			},speed);
-		},
-		gm:function(l,t){
-			$("em.mal").css({ "left" : l , "top" : t });
-		},
-		end:function(){
-			clearInterval(this.timer);
-		}
-	}
-};
-
-dice.init();
-
-var	sysMsg = {
-	open:function(msg,cls){
-		$pop =
-		'<div class="sysMsg">'+
-			'<div class="msg">'+msg+'</div>'+
-			'<button class="close" onclick="javascript:sysMsg.close();">닫기</button>'+
-		'</div>';
-		$(".board").append($pop);
-		$sysMsg = $(".sysMsg");
-		$sysMsg.css({
-			"width": $sysMsg.outerWidth(), "min-width": $sysMsg.outerWidth(), "margin-top": - $sysMsg.outerHeight() *.5, "margin-left": - $sysMsg.outerWidth() *.5
-		}).fadeIn(200);
-		if(cls=="close"){
-			setTimeout(function(){
-				sysMsg.close();
-			},2500);
-		}
-		if(cls=="open"){
-			$sysMsg.find(".close").hide();
-		}
-	},
-	close:function(){
-		$sysMsg.fadeOut(400,function(){
-			$(this).remove();
-		});
-	}
-};
-</script> -->
-
 <pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
 
     &lt;script&gt;
