@@ -1,0 +1,62 @@
+<!-- css -->
+<h3>CSS에 문서 구조를 담지 말자</h3>
+<p class="sub-txt">
+    html 구조의 시맨틱과, css 구조의 시맨틱은 별도로<br/>
+    <em class="clr-danger">
+        .btnWrap button.left span 
+    </em> ❌ <br/>
+    <em class="clr-code">
+        .btnWrap .btn .btn--accept 
+    </em> ⭕
+</p>
+<h3>지나친 원자화 금지</h3>
+<p class="sub-txt">
+    <em class="clr-danger">
+        .mt-10,.mt-20,.mt-30
+    </em> ❌ <br/>
+    <em class="clr-code">
+        .mt-default,.mt-primary,mt-secondary
+    </em> ⭕
+</p>
+<h3>재사용및 결합 가능한 형식</h3>
+<p class="sub-txt">
+    타입 선택자[h1, p 같은 태그 선택자]보다는 클래스를 사용<br/>
+    클래스와 태그선택자를 결합 금지 <em>ex) <strong class="clr-code">ul</strong>.nav</em><br/>
+    태그선택자를 자손으로 사용 금지 <em>ex) .nav <strong class="clr-code">li</strong></em>
+</p>
+
+<h3>javascript용 클래스</h3>
+<p class="sub-txt">ex) js-active, <strong class="clr-danger">스타일을 사용하지 않는다.</strong></p>
+
+<h3>멀티 클래스 형식</h3>
+<p class="sub-txt">
+    <em>&quot;골격(<strong class="clr-code">width,height</strong>)과 모양(<strong class="clr-code">background,color</strong>)을 분리 &quot;</em><br/>
+    .btn { /* 버튼 템플릿 스타일 */ }<br/>
+    .btn-primary { /* 주요 버튼과 관련된 스타일 */ }
+</p>
+
+<h3>클래스명 구조화</h3>
+<p class="sub-txt">
+        /* 유틸리티 */<br/>
+        .<strong class="clr-code">ui</strong>-utilityName {}<br/><br/>
+        
+        /* 컴포넌트 */<br/>
+        .ComponentName {}<br/><br/>
+        
+        /* 컴포넌트 수식어 */<br/>
+        .ComponentName--modifierName {}<br/><br/>
+        <em class="clr-code">btnWrap{ width:100%; border:1px solid #eee }<br/>
+            btnWrap--default{...}<br/>
+            btnWrap--secondary{...}<br/><br/>
+            &lt;div class="btn-wrap btn-wrap--secondary"&gt;&lt;/div&gt;
+        </em><br/><br/>
+        
+        /* 컴포넌트 자손 */<br/>
+        .ComponentName-descendant {}<br/><br/>
+        
+        /* 컴포넌트 자손 수식어 */<br/>
+        .ComponentName-descendant--modifierName {}<br/><br/>
+        
+        /* 컴포넌트 상태 (컴포넌트 범위에서) */<br/>
+        .ComponentName.<strong class="clr-code">is-</strong>stateOfComponent {}
+</p>
