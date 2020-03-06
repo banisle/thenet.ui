@@ -2596,7 +2596,7 @@ TNUI.module = (function () {
             }
 
         },
-        
+
         // mark : init 
         init: function () {
             // var t = this;

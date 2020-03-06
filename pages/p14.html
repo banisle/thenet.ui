@@ -1,0 +1,70 @@
+
+<!-- 롤링 카운트 js-->
+<script src="../lib/numberAnimate.js"></script>
+
+<p class="sub-txt"><strong class="clr-danger">lib : numberAnimate.js</strong><br/><br/>
+    $(...).numberAnimate({<br/>
+        // 시작딜레이, 롤링 속도, 제거시간<br/>
+        animationTimes: [ 0,500,500]<br/>
+    });
+</p>
+<h3>default</h3>
+<div class="ui-counter1 ">123456</div>
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+    &lt;div class="ui-counter3 "&gt;123456&lt;/div&gt;
+    
+    var cnt1 = $('.ui-counter1');
+    cnt1.numberAnimate({
+        animationTimes: [ 0,500,500]
+    });
+    cnt1.numberAnimate('set','999999');
+</pre>
+
+<h3>',' 단위 표시</h3>
+<div class="ui-counter3 ">999,999</div>
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */  tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+    &lt;div class="ui-counter3 "&gt;999,999&lt;/div&gt;
+    
+    var cnt3 = $('.ui-counter3');
+    cnt3.numberAnimate({
+        animationTimes: [ 0,1000,0]
+    });
+    cnt1.numberAnimate('set','123,456');
+</pre>
+
+<h3>시계 샘플</h3>
+<div class="ui-time ">09:00</div>
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */  tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+    &lt;div class="ui-time "&gt;09:00&lt;/div&gt;
+    
+    var cntTime = $('.ui-time');
+    cntTime.numberAnimate({
+        animationTimes: [ 100,500,100]
+    });
+    cntTime.numberAnimate('set','10:15');
+</pre>
+<script>
+    $(document).ready(function(){
+        var cnt1 = $('.ui-counter1'),
+            cnt3 = $('.ui-counter3'),
+            cntTime = $('.ui-time')
+            ;
+        
+        // 시작딜레이, 롤링 속도, 제거시간.
+        cnt1.numberAnimate({
+            animationTimes: [ 0,500,500]
+        });
+
+        cnt3.numberAnimate({
+            animationTimes: [ 0,1000,0]
+        });
+
+        cntTime.numberAnimate({
+            animationTimes: [ 100,500,100]
+        });
+
+        cnt1.numberAnimate('set','999999');
+        cnt3.numberAnimate('set','123,456');
+        cntTime.numberAnimate('set','10:15');
+    })
+</script>
