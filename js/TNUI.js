@@ -2316,25 +2316,25 @@ TNUI.module = (function () {
                     $call.addClass('active');
                     $('.subMenu:not(:last)').add($dimBg).addClass('show');
                     // $('html').addClass('fixed').css('padding-right', scrlW);
-                    $('html').addClass('fixed');
+                    // $('html').addClass('fixed');
                 }
     
                 function hideMenu() {
                     // $('html').removeClass('fixed').css('padding-right','');
                     $call.removeClass('active');
-                    $('html').removeClass('fixed');
+                    // $('html').removeClass('fixed');
                     $('.subMenu:not(:last)').removeClass('show');
                     $call.tog = 0;
                     window.setTimeout(function () {
                         $dimBg.removeClass('show');
                     }, 300);
-                }
+                }   
     
                 $call.on('click', function () {
                     (this.tog ^= 1) ? showMenu(): hideMenu();
                 });
     
-                $dimBg.on('click', hideMenu);
+                // $dimBg.on('click', hideMenu);
             }
 
             //init
