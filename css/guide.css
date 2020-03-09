@@ -113,7 +113,7 @@
 	line-height: 50px
 }
 
-.guide-container .guide-smaple h3 {
+.guide-container .guide-smaple #load-ct > h3 {
 	padding: 24px 0 8px;
 	color: #545151;
 	font-size: 24px;
