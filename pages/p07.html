@@ -1,20 +1,51 @@
+<style>
+.quick_float { 
+    position: fixed;
+    bottom: 25px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    z-index: 3;
+}
+.quick_float .icn_f01,
+.quick_float .icn_f02,
+.quick_float .icn_f03{
+    display: block;
+    width: 50px;
+    height: 51px;
+    box-shadow: 0 2px 7px 2px rgba(80, 80, 80, 0.5);
+    border-radius: 50%;
+}
+.quick_float .icn_f01{
+    background: url('../img/icn_float.png') 0 0 no-repeat;
+	background-size: 155px;}
+.quick_float .icn_f02{
+    background: url('../img/icn_float.png') -51px 0 no-repeat;
+	background-size: 155px;}
+.quick_float .icn_f03{
+    background: url('../img/icn_float.png') -101px 0 no-repeat;
+    background-size: 155px;}
+</style>
 <!-- 고정 GNB -->
-<p class="sub-txt">TNUI.module.floatGnbUi();</p>
+<p class="sub-txt">TNUI.module.floatGnbUi();<br/>키프레임 애니메이션으로 조정</p>
 
-<div style="height: 1000px;">
-    float GNB
-</div>
-<div class="ui-floatGnb">
-    <div class="dim_bg"></div>
+<div class="quick_float ui-floatGnb" style="bottom:0">
     <div class="floatGnb">
-        <div class="subMenu"><a href="#m01">메뉴 1</a></div>
-        <div class="subMenu"><a href="#m02">메뉴 2</a></div>
-        <div class="subMenu"><a href="#m03">메뉴 3</a></div>
-        <div class="subMenu call"><span>call</span></div>
+        <div class="subMenu"><a href="#m01" class="icn_f01"></a></div>
+        <div class="subMenu"><a href="#m02" class="icn_f02"></a></div>
+        <div class="subMenu"><a href="#m03" class="icn_f03"></a></div>
+        <div class="subMenu call"><span></span></div>
     </div>
 </div>
-<pre
-    class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
+&lt;div class=&quot;quick_float ui-floatGnb&quot; style=&quot;bottom:0&quot;&gt;
+    &lt;div class=&quot;floatGnb&quot;&gt;
+        &lt;div class=&quot;subMenu&quot;&gt;&lt;a href=&quot;#m01&quot; class=&quot;icn_f01&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div class=&quot;subMenu&quot;&gt;&lt;a href=&quot;#m02&quot; class=&quot;icn_f02&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div class=&quot;subMenu&quot;&gt;&lt;a href=&quot;#m03&quot; class=&quot;icn_f03&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div class=&quot;subMenu call&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
 </pre>
 <script>
     $(document).ready(function () {
