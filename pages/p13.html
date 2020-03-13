@@ -9,73 +9,36 @@
     층수 클릭시 기본 선택되어있는 층에서 선택한 층으로 순차적으로 선택되며 이동 
     <br>ex) 디폴트 9층일때 3층 클릭시 9층에서 8층, 7층, 6층 ~ 3층까지 on 틀래스가 순차적으로 이동 후 최종 3층에서 고정
 </p>
+<div class="flow_mv">
+    <div class="flw_ct"></div>
+</div>
 <ul class="flow-list">
-    <li class="li12"><button>12</button></li>
-    <li class="li11"><button>11</button></li>
-    <li class="li10"><button>10</button></li>
-    <li class="li9 on"><button>9</button></li>
-    <li class="li8"><button>8</button></li>
-    <li class="li7"><button>7</button></li>
-    <li class="li6"><button>6</button></li>
-    <li class="li5"><button>5</button></li>
-    <li class="li4"><button>4</button></li>
-    <li class="li3"><button>3</button></li>
-    <li class="li2"><button>2</button></li>
-    <li class="li1"><button>1</button></li>
-    <li class="lib1"><button>B1</button></li>
-    <li class="lib2"><button>B2</button></li>
+    <li class=""><button>12</button></li>
+    <li class=""><button>11</button></li>
+    <li class=""><button>10</button></li>
+    <li class=""><button>9</button></li>
+    <li class=""><button>8</button></li>
+    <li class=""><button>7</button></li>
+    <li class=""><button>6</button></li>
+    <li class=""><button>5</button></li>
+    <li class=""><button>4</button></li>
+    <li class=""><button>3</button></li>
+    <li class=""><button>2</button></li>
+    <li class=""><button>1</button></li>
+    <li class=""><button>B1</button></li>
+    <li class=""><button>B2</button></li>
+    <li class=""><button>B3</button></li>
+    <li class=""><button>B4</button></li>
 </ul>
 
+<pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
+&lt;script&gt;
+    //선택자,선택된 층( 0 = 지하 1층),지하층(default 0), 속도
+    TNUI.module.flowSelect('flow-list',0,4,200);
+&lt;/script&gt;
+</pre>
 <script>
-// var flowSelect = {
-//     init:function(){
-//         $('li').on('click',function(){
-//             var $this = $(this);
-//             flowSelect.mov($this);
-//         });
-//     },
-//     mov:function($this){
-//         var speed = 100;
 
-//         var loop = setInterval(function(){
-// 			var liOn = $this.siblings().filter('.on'),
-// 				destNum = parseInt($this.text()),
-// 				curNum = parseInt(liOn.children().text());
-//         	var direction = Math.sign(destNum - curNum);//위아래인지 방향만
-// 			// console.log(test);
-// 			liOn.removeClass('on');
-//             if(direction >= 1){//높은층으로 //prev
-//                 console.log('+', 'curNum',curNum, 'destNum', destNum);
-//                 liOn.prev().addClass('on');
-//                 if(curNum +1 >= destNum){
-// 					clearInterval(loop);
-// 					console.log('end');
-//                 }
-//             }else if(direction < 0){//낮은층으로 //next
-//                 console.log('-','curNum',curNum, 'destNum', destNum);
-//                 liOn.next().addClass('on');
-//                 if(curNum -1 <= destNum){
-//                     clearInterval(loop);
-// 					console.log('end');
-//                 } 
-//             }else{//같은 층 누르면
-// 				clearInterval(loop);
-// 				// flowSelect.stop();
-// 			}
-//         	console.log('curNum',curNum, 'destNum', destNum,direction);
-//         },speed);
-// 	}, 
-// 	stop:function(){
-// 		clearInterval(loop);
-//    	}
-// }
-
-TNUI.module.flowSelect();
+TNUI.module.flowSelect('flow-list',0,4,200);
 
 </script>
-<pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
-
-    &lt;script&gt;
-
-    &lt;/script&gt;
-</pre>

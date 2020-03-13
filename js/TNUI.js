@@ -2604,43 +2604,152 @@ TNUI.module = (function () {
                 moveEvt( $(this) );
             });
         },
+        
+        //mark : flowSelect 
+        flowSelect : function(tarO,curF,baseF,spd) {
+            var flowSelectBox,
+                $this = $('.' + tarO),
+                $floor = $this.find('li'),
+                speed = spd || 500,
+                baseF = baseF || 0,
+                curF = curF -1,
+                curNum = curF + baseF,
+                destNum
+                ;
+            
+                flowSelectBox = function(){
 
-        flowSelect : function() {
-              $(document).on('click','.flow-list li', function(){
-                    var $this = $(this);
-                    mov($this);
-                });
-            function mov($this){
-                var speed = 100;
 
-                var loop = setInterval(function(){
-                    var liOn = $this.siblings().filter('.on'),
-                        destNum = parseInt($this.text()),
-                        curNum = parseInt(liOn.children().text());
-                    var direction = Math.sign(destNum - curNum);//위아래인지 방향만
-                    // console.log(test);
-                    liOn.removeClass('on');
-                    if(direction >= 1){//높은층으로 //prev
-                        console.log('+', 'curNum',curNum, 'destNum', destNum);
-                        liOn.prev().addClass('on');
-                        if(curNum +1 >= destNum){
-                            clearInterval(loop);
-                            console.log('end');
+                    this.init();
+                    this.flowControl();
+                }
+
+                flowSelectBox.prototype.init = function(){
+                    var floorLn = $floor.length - 1, //가장 아래 data-floor=0 부터 시작하기 위해
+                        _this = this;
+
+                        console.log( 'curF',curF, 'baseF',baseF,'curNum',curNum ) 
+
+                    // 데이터 속성 추가
+                    $.each( $floor, function(i){
+                        $(this).attr('data-floor',floorLn - i);
+                    });
+
+                    // 초기 층수 표시
+                    $this.find('li[data-floor="'+curNum+'"]').addClass('on');
+
+                    // 액션
+                    $floor.on('click', function(){
+                        if( $(this).hasClass('on') ){
+                            return false;
                         }
-                    }else if(direction < 0){//낮은층으로 //next
-                        console.log('-','curNum',curNum, 'destNum', destNum);
-                        liOn.next().addClass('on');
-                        if(curNum -1 <= destNum){
+                        destNum = $(this).attr('data-floor')
+                        _this.flowMove();
+                        // console.log( 'destNum',destNum  ) 
+                    });
+
+                }
+
+                // 조정
+                flowSelectBox.prototype.flowControl = function(){
+
+                }
+
+                // 이동
+                flowSelectBox.prototype.flowMove = function(){
+                    var _this = this;
+
+                    var loop = setInterval(function(){
+                        var $floorOn = $floor.siblings().filter('.on'),
+                            curNum = $floorOn.attr('data-floor');
+
+                            // console.log('destNum',destNum);
+
+                        var direction = Math.sign(destNum - curNum);//위아래인지 방향만
+
+                        console.log('direction',direction);
+
+                        $floorOn.removeClass('on');
+
+                        if(direction >= 1){//높은층으로 //prev
+                            console.log('+', 'curNum',curNum);
+                            if(curNum  >= destNum - 1){
+                                // 이동 후 완료
+                                _this.flowDone();
+                                clearInterval(loop);
+                            }
+                            $floorOn.prev().addClass('on');
+                            
+                        }else if(direction < 0){//낮은층으로 //next
+                            console.log('-','curNum',curNum);
+                            if(curNum - 1 <= destNum){
+                                clearInterval(loop);
+                                // 이동 후 완료
+                                _this.flowDone();
+                            } 
+                            $floorOn.next().addClass('on');
+                            
+                        } else{
                             clearInterval(loop);
-                            console.log('end');
-                        } 
-                    }else{//같은 층 누르면
-                        clearInterval(loop);
-                        // flowSelect.stop();
-                    }
-                    console.log('curNum',curNum, 'destNum', destNum,direction);
-                },speed);
-            }
+                            _this.flowDone();
+
+                        }
+                        // console.log('curNum',curNum, 'destNum', destNum,direction);
+                    },speed);
+                    
+                    
+
+                    
+                }
+                
+                // 활성화
+                flowSelectBox.prototype.flowDone = function(){
+                    $floor.filter('.on').addClass('active');
+
+                    console.log('done',);
+                }
+
+                new flowSelectBox(tarO,curF,baseF,spd);
+                console.log('flowSelect');
+
+
+
+            //   $(document).on('click','.flow-list li', function(){
+            //         var $this = $(this);
+            //         mov($this);
+            //     });
+            // function mov($this){
+            //     var speed = 500;
+
+            //     var loop = setInterval(function(){
+            //         var liOn = $this.siblings().filter('.on'),
+            //             destNum = parseInt($this.text()),
+            //             curNum = parseInt(liOn.children().text());
+            //         var direction = Math.sign(destNum - curNum);//위아래인지 방향만
+            //         // console.log(test);
+            //         liOn.removeClass('on');
+
+            //         if(direction >= 1){//높은층으로 //prev
+            //             console.log('+', 'curNum',curNum, 'destNum', destNum);
+            //             liOn.prev().addClass('on');
+            //             if(curNum +1 >= destNum){
+            //                 clearInterval(loop);
+            //                 console.log('end');
+            //             }
+            //         }else if(direction < 0){//낮은층으로 //next
+            //             console.log('-','curNum',curNum, 'destNum', destNum);
+            //             liOn.next().addClass('on');
+            //             if(curNum -1 <= destNum){
+            //                 clearInterval(loop);
+            //                 console.log('end');
+            //             } 
+            //         }else{//같은 층 누르면
+            //             clearInterval(loop);
+            //             // flowSelect.stop();
+            //         }
+            //         console.log('curNum',curNum, 'destNum', destNum,direction);
+            //     },speed);
+            // }
 
         },
 
