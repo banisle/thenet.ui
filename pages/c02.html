@@ -1,3 +1,6 @@
+<style>
+    .selectWrap.ui-selectbox .ui-result-ul{height: 145px;}
+</style>
 <!-- selection controls detail -->
 <h3>체크박스</h3>
 
@@ -64,7 +67,7 @@
 &lt;/div&gt;
 </pre>
 
-<p class="sub-txt">PC: TNUI.module.selectUi({'onChange':'true'}); 인자값 change이벤트시 option의 value값 링크 이동 여부<br/> 클래스 selectWrap ui-selectbox 고정<br/> disabled, hidden 속성 받아옴</p>
+<p class="sub-txt">PC: TNUI.module.selectUi();<br/> 클래스 selectWrap ui-selectbox 고정<br/> disabled, hidden 속성 받아옴</p>
 <div class="selectWrap ui-selectbox">
     <select title="test" id="sel_link"  class="">
         <option value="선택하세요" selected disabled hidden>선택하세요</option>
@@ -285,20 +288,13 @@
                 <h1>팝업 타이틀</h1>
             </header>
             <div class="laypop_content">
-                <div class="scrollWrap ui-scrollview">
-                    <div class="ui-scrollbar"><span class="bar"></span></div>
-                    <div class="scrollInner ui-scrollarea">
-                        <div class="scrollview ui-content">
-                            <div class="selectWrap ui-selectbox">
-                                <select title="test" id="sel03" class="" >
-                                    <option value="test1">modal0</option>
-                                    <option value="test2" disabled >modal02</option>
-                                    <option value="test3">modal03</option>
-                                    <option value="test4">modal04</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                <div class="selectWrap ui-selectbox">
+                    <select title="test" id="sel03" class="" >
+                        <option value="test1">modal0</option>
+                        <option value="test2" disabled >modal02</option>
+                        <option value="test3">modal03</option>
+                        <option value="test4">modal04</option>
+                    </select>
                 </div>
             </div>
             <footer class="laypop_footer">

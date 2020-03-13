@@ -250,7 +250,8 @@ TNUI.module = (function () {
                 selectUibox,
                 $selWrap = $('.selectWrap.ui-selectbox'),
                 $selBox,
-                $optGrp;
+                $optGrp,
+                scrollOn = false;
 
             selectUibox = function (selId) {
                 $selBox = $('#' + selId + ''),
@@ -281,12 +282,13 @@ TNUI.module = (function () {
             };
             selectUibox.prototype.createDiv = function () {
                 var appendLi = '';
+                
+
                 // 중복생성 체크
                 if ( $selBox.closest($selWrap).find('.pc_selwrap').length < 1 ){
-                    
-                    $selBox.closest($selWrap)
+                        $selBox.closest($selWrap)
                         .append($('<div class="pc_selwrap"><div class="selOneWrap"><button class="ui-selected-one" aria-haspopup="listbox" aria-labelledby="sel_' + selId + '">' + $selBox.find(':selected').text() + '</button></div><div class="ui-result-ul" tabindex="-1" role="listbox" ><ul></ul></div>'));
-    
+                        
                     $selBox.find($optGrp).each(function (i) {
                         var isDisabled = $(this).prop('disabled') ? 'disabled' : '',
                             isHidden = $(this).prop('hidden') ? true : false,
@@ -303,6 +305,27 @@ TNUI.module = (function () {
                     });
     
                     $selBox.closest($selWrap).find('ul').html(appendLi);
+                    
+                    // 옵션 ul 높이 구하기
+                    var $uiResult = $selBox.closest($selWrap).find('.ui-result-ul'),
+                        uiResultH = Number($uiResult.css('height').split('px')[0]),
+                        uiResultulH = $uiResult.show().find('ul').outerHeight()
+                        ;
+                        // console.log($selBox,uiResultH,uiResultulH);
+                        //옵션 이 css지정된 height보다 클 경우 스크롤 실행
+                        if( uiResultH < uiResultulH){
+
+                            scrollOn = 'true';
+                            $uiResult.find('ul')
+                            .wrapAll('<div class="scrollWrap ui-scrollview"><div class="scrollInner ui-scrollarea"><div class="scrollview ui-content"></div></div></div>');
+
+                            $uiResult.find('.ui-scrollview').prepend('<div class="ui-scrollbar"><span class="bar"></span></div>');
+
+                        }
+                    
+
+
+                    
                 }
 
 
@@ -345,6 +368,12 @@ TNUI.module = (function () {
                     $selectedOne.removeAttr('aria-expanded');
                     $(this).attr('aria-expanded', true).closest($selWrap).removeClass('active ui-result-active').addClass('active ui-result-active');
                     e.preventDefault();
+                    // 스크롤 길때 스크롤 ui호출
+                    if(scrollOn == 'true'){
+                        TNUI.module.scrollUi();
+                        scrollOn = 'false';
+                    }
+
                 });
 
             }
@@ -2510,37 +2539,55 @@ TNUI.module = (function () {
             
         },
         //mark : prev, next 버튼으로 paging 
-        pageMove : function($btn){//인자값 받아오기($(this)==$this)
+        pageMove : function($btn){
+            //인자값 받아오기($(this)==$this)
             var moveEvt = function($this){
-                var direction = $this.attr('class'), //누르는 버튼($this)의 클래스 구함
-                    thisView = $('.ui-tab-list'),//동작해야하는(셀렉터를 누름으로써 바뀔) 화면 함수 선언
-                    thisViewNum = thisView.length - 1,//동작할 화면의 전체 갯수 구하기 
+                //누르는 버튼($this)의 클래스 구함
+                var direction = $this.attr('class'), 
+                //동작해야하는(셀렉터를 누름으로써 바뀔) 화면 함수 선언
+                    thisView = $('.ui-tab-list'),
+                    //동작할 화면의 전체 갯수 구하기 
+                    thisViewNum = thisView.length - 1,
                     curNum = parseFloat($('.ui-tab-list.on').attr('id').split('ui-tab-list')[1]) - 1;
                 //버튼별 동작  
-                if( direction == 'left_btn'){//만약에 클릭한 셀렉터의 클래스가 left_btn이면
-                    if(curNum !== 0){//left_btn을 눌렀을 때 현재 보여지는 화면이 첫번째가 아니면
-                        curNum = curNum - 1;//현재 화면 값에 -1 => 하나값 이전 화면에 이벤트 실행하게 됌
-                    } else{//left_btn을 눌렀을 때 현재 보여지는 화면이 첫번째이면
-                        curNum = 0;//보여지는 화면이 첫번째 0번 이하로 가지 않게 //첫번째 화면 이전으로 더 가지 않게 
+                //만약에 클릭한 셀렉터의 클래스가 left_btn이면
+                if( direction == 'left_btn'){
+                    //left_btn을 눌렀을 때 현재 보여지는 화면이 첫번째가 아니면
+                    if(curNum !== 0){
+                        //현재 화면 값에 -1 => 하나값 이전 화면에 이벤트 실행하게 됌
+                        curNum = curNum - 1;
+                    } else{
+                        //left_btn을 눌렀을 때 현재 보여지는 화면이 첫번째이면
+                        //보여지는 화면이 첫번째 0번 이하로 가지 않게 //첫번째 화면 이전으로 더 가지 않게 
+                        curNum = 0;
                     }
                     
-                } else if( direction == 'right_btn'){//만약에 클릭한 셀렉터의 클래스가 left_btn이 아니면(right_btn일시)
-    
-                    if(curNum < thisViewNum){//전체 동작화면 수 보다 현재 표출 화면의 숫자(순서값)이 작으면
-                        curNum = curNum + 1;//현재 표출 화면의 번호에 +1 => 하나값 다음 화면에 이벤트 실행하게 됌
-                    } else{//전체 동작화면 수 보다 현재 표출 화면의 숫자(순서값)이 크면
-                        curNum = thisViewNum;//전체값 이상으로 수가 늘어나지 않게 //마지막 화면 이상으로 가지 않게.
+                } else if( direction == 'right_btn'){
+                    //만약에 클릭한 셀렉터의 클래스가 left_btn이 아니면(right_btn일시)
+                    //전체 동작화면 수 보다 현재 표출 화면의 숫자(순서값)이 작으면
+                    if(curNum < thisViewNum){
+                        //현재 표출 화면의 번호에 +1 => 하나값 다음 화면에 이벤트 실행하게 됌
+                        curNum = curNum + 1;
+                        //전체 동작화면 수 보다 현재 표출 화면의 숫자(순서값)이 크면
+                    } else{
+                        //전체값 이상으로 수가 늘어나지 않게 //마지막 화면 이상으로 가지 않게.
+                        curNum = thisViewNum;
                     }
                 }
-                console.log('curNum',curNum,);//현재 표출 화면 값 찍어보기 
+                //현재 표출 화면 값 찍어보기 
+                console.log('curNum',curNum);
     
                 //페이지 전환 
-                if( 0 <= curNum && curNum <= (thisViewNum) ){//현재 화면 값이 -1보다 크고 and 전체 화면 갯수보다 작거나 크면 작동해라
-                    thisView.removeClass('on');//동작해야하는 화면에 on클래스 제거 //초기화
-                    $(thisView[curNum]).addClass('on');//동작해야하는 화면값에 on 클래스 추가 //화면 표출
+                //현재 화면 값이 -1보다 크고 and 전체 화면 갯수보다 작거나 크면 작동해라
+                if( 0 <= curNum && curNum <= (thisViewNum) ){
+                    //동작해야하는 화면에 on클래스 제거 //초기화
+                    thisView.removeClass('on');
+                    //동작해야하는 화면값에 on 클래스 추가 //화면 표출
+                    $(thisView[curNum]).addClass('on');
     
-                    // 버튼 제한 효과 초기화 // disabled // 더 넘어갈 것 없으면 버튼 투명도 주기 
-                    $btn.removeClass('disabled');//모든 셀렉터 초기화  
+                    // 버튼 제한 효과 초기화 : disabled : 더 넘어갈 것 없으면 버튼 투명도 주기 
+                    //모든 셀렉터 초기화  
+                    $btn.removeClass('disabled');
     
                     //현재 화면값이 0이거나 or 현재 화면값이 전체화면값과 동일하면
                     // == 첫번째 화면 또는 마지막 화면이면 
