@@ -1,44 +1,136 @@
 <style>
-    .flow-list{width:100px;}
+    .flow-list{float: left; width:100px;}
     .flow-list li {width:100%;height:30px;background-color:#ededed;}
     .flow-list li button{width:100%;height:100%;padding:0;border-bottom:1px solid #999;}
     .flow-list li.on button{border-radius:4px;color:#fff;font-weight:bold;background-color:navy;}
+    .flow_mv {
+    position:relative;
+    width: 100px;
+    height: 450px;
+    float: left;
+}
+.flow_mv:after{
+    content:'';
+    display:block;
+    position:absolute;
+    left:50%;
+    width:1px;
+    height:100%;
+    background-color:#333;
+
+}
+
+.flw_ct {
+    overflow: hidden;
+    width:30px;
+    height:30px;
+    border:1px solid #333;
+    position:absolute;
+    top:0;
+    left:50%;
+    background-color: rgb(241, 193, 33);
+    z-index:1;
+    margin-left:-15px;
+}
+
+.flow_mv.active .door_l{
+    right: 100%;
+}
+.flow_mv.active .door_r{
+    left: 100%;
+}
+
+.flow_mv .door_r,
+.flow_mv .door_l{
+    transition: all .5s ease;
+}
+.door_r {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:50%;
+    right:0;
+    background-color:#eee;
+    border-left: 1px solid #333;
+}
+.door_l{
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:50%;
+    left:-1px;
+    background-color: #eee;
+    border-right: 1px solid #333;
+}
+
 </style>
 <h3>flow select</h3>
 <p class="sub-txt">
     층수 클릭시 기본 선택되어있는 층에서 선택한 층으로 순차적으로 선택되며 이동 
     <br>ex) 디폴트 9층일때 3층 클릭시 9층에서 8층, 7층, 6층 ~ 3층까지 on 틀래스가 순차적으로 이동 후 최종 3층에서 고정
 </p>
-<div class="flow_mv">
-    <div class="flw_ct"></div>
+<div class="ui-flowselect">
+    <div class="flow_mv ui-flowEV">
+        <div class="flw_ct">
+            <div class="door_l"></div>
+            <div class="door_r"></div>
+        </div>
+    </div>
+    <ul class="flow-list ui-flowList">
+        <li class=""><button>12</button></li>
+        <li class=""><button>11</button></li>
+        <li class=""><button>10</button></li>
+        <li class=""><button>9</button></li>
+        <li class=""><button>8</button></li>
+        <li class=""><button>7</button></li>
+        <li class=""><button>6</button></li>
+        <li class=""><button>5</button></li>
+        <li class=""><button>4</button></li>
+        <li class=""><button>3</button></li>
+        <li class=""><button>2</button></li>
+        <li class=""><button>1</button></li>
+        <li class=""><button>B1</button></li>
+        <li class=""><button>B2</button></li>
+        <li class=""><button>B3</button></li>
+        <li class=""><button>B4</button></li>
+    </ul>
 </div>
-<ul class="flow-list">
-    <li class=""><button>12</button></li>
-    <li class=""><button>11</button></li>
-    <li class=""><button>10</button></li>
-    <li class=""><button>9</button></li>
-    <li class=""><button>8</button></li>
-    <li class=""><button>7</button></li>
-    <li class=""><button>6</button></li>
-    <li class=""><button>5</button></li>
-    <li class=""><button>4</button></li>
-    <li class=""><button>3</button></li>
-    <li class=""><button>2</button></li>
-    <li class=""><button>1</button></li>
-    <li class=""><button>B1</button></li>
-    <li class=""><button>B2</button></li>
-    <li class=""><button>B3</button></li>
-    <li class=""><button>B4</button></li>
-</ul>
 
 <pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
+&lt;div class=&quot;ui-flowselect&quot;&gt;
+    &lt;div class=&quot;flow_mv ui-flowEV&quot;&gt;
+        &lt;div class=&quot;flw_ct&quot;&gt;
+            &lt;div class=&quot;door_l&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;door_r&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;ul class=&quot;flow-list ui-flowList&quot;&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;12&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;11&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;10&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;9&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;8&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;7&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;6&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;5&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;4&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;3&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;2&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;1&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;B1&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;B2&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;B3&lt;/button&gt;&lt;/li&gt;
+        &lt;li class=&quot;&quot;&gt;&lt;button&gt;B4&lt;/button&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+    
 &lt;script&gt;
-    //선택자,선택된 층( 0 = 지하 1층),지하층(default 0), 속도
-    TNUI.module.flowSelect('flow-list',0,4,200);
+    //선택자(ev와 층수 선택 포함한 상위 객체),선택된 층( 0 = 지하 1층),지하층(default 0), 속도
+    TNUI.module.flowSelect('ui-flowselect',0,4,200);
 &lt;/script&gt;
 </pre>
 <script>
 
-TNUI.module.flowSelect('flow-list',0,4,200);
+TNUI.module.flowSelect('ui-flowselect',0,4,200);
 
 </script>
