@@ -39,7 +39,7 @@ $(function () {
 
     // $.ajax({
     //     type: 'get',
-    //     url: 'pages/p13.html',
+    //     url: 'pages/m06.html',
     //     dataType: 'html',
     //     success: function (data) {
     //         $("#load-ct").html(data);

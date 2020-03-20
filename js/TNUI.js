@@ -2289,7 +2289,7 @@ TNUI.module = (function () {
                     var speed = ($backgroundObj.data('speed') || 0);
 
                     $fwindow.on('scroll resize', function () {
-                        yPos = -((scrollTop - bgOffset) / speed);
+                        yPos = ((scrollTop - bgOffset) / speed);
                         coords = '50% ' + yPos + 'px';
 
                         $backgroundObj.css({

@@ -1,18 +1,29 @@
-<p class="sub-txt">TNUI.module.parallaxUi(); ui-parallax 클래스 상위 선언<br/> data-type:background와 content로 구분 </p>
+<style>
+.ui-parallax.container section.bg_paral{
+    overflow: hidden;
+    margin: 50px 0;
+    height: 300px;
+}
+.ui-parallax.container section.bg_paral .image{
+    background: url('../img/@parallax01.jpg') 0 50% no-repeat;
+}
+</style>
+<p class="sub-txt">TNUI.module.parallaxUi(); ui-parallax 클래스 상위 선언<br/> data-type:background와 content로 구분 <br/>
+data-speed = 1(빠름) ~ 증가될수록 느려짐</p>
 <div class="ui-parallax container">
     <section>
         <div class="image" data-type="background" data-speed="2"></div>
         <div class="stuff" data-type="content">
             <h1>Parallax scroll</h1>
-            <h2>1번 화면</h2>
+            <h2>글자 효과 적용 data-speed="2"</h2>
         </div>
     </section>
 
-    <section>
-        <div class="image" data-type="background" data-speed="7"></div>
-        <div class="stuff" data-type="content">
-            <h2>data-speed="7"</h2>
-            <p>2번 화면</p>
+    <section class="bg_paral">
+        <div class="image" data-type="background" data-speed="3"></div>
+        <div class="stuff" >
+            <h2>data-speed="3"</h2>
+            <p>배경 이미지 효과 적용</p>
         </div>
     </section>
 
@@ -49,20 +60,30 @@
     </section>
 </div>
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true;/* HTML과 같이 사용될경우 HTML을 highlight할지를 결정함. shBrushXml.js가 필요함 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */" >
+&lt;style&gt;
+    .ui-parallax.container section.bg_paral{
+        overflow: hidden;
+        margin: 50px 0;
+        height: 300px;
+    }
+    .ui-parallax.container section.bg_paral .image{
+        background: url(&#39;../img/@parallax01.jpg&#39;) 0 50% no-repeat;
+    }
+&lt;/style&gt;
 &lt;div class=&quot;ui-parallax container&quot;&gt;
     &lt;section&gt;
         &lt;div class=&quot;image&quot; data-type=&quot;background&quot; data-speed=&quot;2&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;stuff&quot; data-type=&quot;content&quot;&gt;
             &lt;h1&gt;Parallax scroll&lt;/h1&gt;
-            &lt;h2&gt;1번 화면&lt;/h2&gt;
+            &lt;h2&gt;글자 효과 적용 data-speed=&quot;2&quot;&lt;/h2&gt;
         &lt;/div&gt;
     &lt;/section&gt;
 
-    &lt;section&gt;
-        &lt;div class=&quot;image&quot; data-type=&quot;background&quot; data-speed=&quot;7&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;stuff&quot; data-type=&quot;content&quot;&gt;
-            &lt;h2&gt;data-speed=&quot;7&quot;&lt;/h2&gt;
-            &lt;p&gt;2번 화면&lt;/p&gt;
+    &lt;section class=&quot;bg_paral&quot;&gt;
+        &lt;div class=&quot;image&quot; data-type=&quot;background&quot; data-speed=&quot;3&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;stuff&quot; &gt;
+            &lt;h2&gt;data-speed=&quot;3&quot;&lt;/h2&gt;
+            &lt;p&gt;배경 이미지 효과 적용&lt;/p&gt;
         &lt;/div&gt;
     &lt;/section&gt;
 
@@ -91,9 +112,9 @@
     &lt;/section&gt;
 
     &lt;section&gt;
-        &lt;div class=&quot;image&quot; data-type=&quot;background&quot; data-speed=&quot;3&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;image&quot; data-type=&quot;background&quot; data-speed=&quot;0&quot;&gt;&lt;/div&gt;
         &lt;div class=&quot;stuff&quot; data-type=&quot;content&quot;&gt;
-            &lt;h2&gt;data-speed=&quot;3&quot;&lt;/h2&gt;
+            &lt;h2&gt;data-speed=&quot;0&quot;&lt;/h2&gt;
             &lt;p&gt;6번 화면&lt;/p&gt;
         &lt;/div&gt;
     &lt;/section&gt;
