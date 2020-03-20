@@ -34,6 +34,80 @@
 </pre>
 <!-- (end) pre sample -->
 
+<h3>따라다니는 메뉴바</h3>
+<div>
+    <nav class="ui-tabList">
+        <ul>
+            <li><a href="#sc_order">How to Order</a></li>
+            <li><a href="#sc_program">Basic 4 Program</a></li>
+            <li><a href="#sc_about">About Us</a></li>
+            <li><a href="#sc_story">Our Story</a></li>
+        </ul>
+        <span class="floatBar"></span>     
+    </nav>
+</div>
+<style>
+.ui-tabList{ position: relative; }
+.ui-tabList ul{position:relative;font-size:0;}
+.ui-tabList ul li{display:inline-block;margin:0 5%; transition:ease all .5s;}
+.ui-tabList ul li a{display:block;width:100%;height:90px;line-height:90px;font-size:16px;color:#000;font-weight:500;}
+.floatBar { position: absolute; bottom: 0; height: 5px; background-color: #fbc737; transition: all ease .5s; }
+</style>
+<script>
+var $nav = $('.ui-tabList'),
+    $a = $nav.find('> ul > li > a'),
+    $sBar = $nav.find('.floatBar');
+    
+    $a.on('mouseover', function(){
+        var aW = $(this).width(),
+            aL = $(this).position().left;
+        
+        $sBar.css({
+            'width': aW,
+            'left' : aL
+        });
+
+    });
+</script>
+<!-- (sta) pre sample -->
+<pre class="brush:js; first-line:1; html-script:true; tab-size:2; toolbar:false; pad-line-numbers:true;" >
+&lt;div&gt;
+    &lt;nav class=&quot;ui-tabList&quot;&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href=&quot;#sc_order&quot;&gt;How to Order&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#sc_program&quot;&gt;Basic 4 Program&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#sc_about&quot;&gt;About Us&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#sc_story&quot;&gt;Our Story&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;span class=&quot;floatBar&quot;&gt;&lt;/span&gt;     
+    &lt;/nav&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.ui-tabList{ position: relative; }
+.ui-tabList ul{position:relative;font-size:0;}
+.ui-tabList ul li{display:inline-block;margin:0 5%; transition:ease all .5s;}
+.ui-tabList ul li a{display:block;width:100%;height:90px;line-height:90px;font-size:16px;color:#000;font-weight:500;font-family:&#39;jost&#39;, sans-serif;}
+.floatBar { position: absolute; bottom: 0; height: 5px; background-color: #fbc737; transition: all ease .5s; }
+&lt;/style&gt;
+&lt;script&gt;
+var $nav = $(&#39;.ui-tabList&#39;),
+    $a = $nav.find(&#39;&gt; ul &gt; li &gt; a&#39;),
+    $sBar = $nav.find(&#39;.floatBar&#39;);
+    
+    $a.on(&#39;mouseover&#39;, function(){
+        var aW = $(this).width(),
+            aL = $(this).position().left;
+        
+        $sBar.css({
+            &#39;width&#39;: aW,
+            &#39;left&#39; : aL
+        });
+
+    });
+&lt;/script&gt;    
+</pre>
+
+
 <h3>모바일 : 햄버거 & 사이드 </h3>
 <p class="sub-txt">wsg refer</p>
 
