@@ -87,7 +87,7 @@ TNUI.module = (function () {
     return {
         // mark : tabUi
         tabUi: function () {
-            var uiTabWrap = $('.ui-tabwrap'),
+            var uiTabWrap = $('.ui-tabWrap'),
                 uiTab = uiTabWrap.find('.ui-tab'),
                 uiTabBtn = uiTab.find('.ui-tab-btn'),
                 uiTabBtnA = $('a.ui-tab-btn'),
