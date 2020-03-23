@@ -930,8 +930,8 @@ html.mobile .form_select {
 .menu2depth >li>a { display: block; position: relative; padding: 0; line-height: 35px }
 .menu2depth >li>a span { display: block; position: relative; color: #e6fb92; font-size: 16px; transition: all .5s ease; }
 .menu2depth >li>a:hover span { position: relative; color: #fff; } 
-.menu2depth >li>a span:after { content: ''; display: block; position: absolute; bottom: 0; left: 0; right: 0; width: 100%; height: 4px; background: #fff; transition: all .5s ease; opacity: 0; }
-.menu2depth >li.active>a span:after { opacity: 1 }
+.menu2depth >li>a span:after {content: '';display: block;position: absolute;bottom: 0;left: 0;right: 0;width: 100%;transform: scaleX(0);height: 4px;background: #fff;transition: all .5s ease;opacity: 0;}
+.menu2depth >li.active>a span:after {opacity: 1;transform: scaleX(1);}
 .menu2depth >li.cs a:after,
 .menu2depth >li:first-child a span:after,
 .menu2depth >li:last-child a span:after { display: none; }
