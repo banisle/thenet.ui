@@ -2056,6 +2056,26 @@ TNUI.module = (function () {
             }();
             console.log('inputDelUI');
         },
+
+        // mark: fileAttach
+        fileAttachUi: function(){
+
+            $(document).on("change", "[data-ui='attach'].ui-addFile .fileButton .fileInput", function() {
+                var fUrl = (this.value).split("\\"),
+                    fName = fUrl[fUrl.length - 1];
+                $(this).closest(".ui-addFile").find(".file .loc").val(fName);
+                var locVar = $(this).closest(".ui-addFile").find(".file .loc").val();
+                if (locVar) {
+                    $(this).closest(".ui-addFile").addClass("on");
+                }
+            });
+            $(document).on("click", "[data-ui='attach'].ui-addFile .file .delete", function() {
+                $(this).closest(".ui-addFile").find(".file .loc").val("");
+                $(this).closest(".ui-addFile").find(".fileButton .fileInput").val("");
+                $(this).closest(".ui-addFile").removeClass("on");
+            });
+            console.log('fileAttachUi');
+        },
         // mark : gnb2Ui
         gnb2Ui: function () {
             var $menu = $('.ui-menu2depth > li');
