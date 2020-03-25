@@ -1,0 +1,286 @@
+<link rel="stylesheet" href="lib/swiper.css">
+<style>
+
+    .swiper-container {
+      width: 100%;
+      height: 100px;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+    /* timeline progress ani */
+    .time-bar{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:0;
+    height:10px;
+    background: #ccc;
+    z-index: 100;
+}
+    .v1 .time-ani{
+        animation: timelineBar 3s 1;
+    }
+    .v2 .time-ani{
+        animation: timelineBar 5s 1;
+    }
+
+    /** //mark : Animation **/
+    @keyframes timelineBar{
+        0%{width:0;}
+        100%{width:100%;}
+    }
+    @keyframes fadeInDnSD {
+        0% {
+            opacity: 0;
+            transform: translateY(-20%);
+        }
+        
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes scaleUp {
+        0% {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    .swiper-container.v1:hover .time-bar{
+        animation-play-state: paused;
+    }
+
+    .swiper-container.v2{
+        height: 500px;
+        background: #000;
+    }
+    .swiper-container.v2 .swiper-slide{background: #000;}
+    .ani-txt{
+        position: absolute;
+        color:#fff;
+        font-size: 24px;
+    }
+    .txt1,
+    .txt2{opacity: 0;}
+    .swiper-slide-active .txt1 { animation: fadeInDnSD; animation-duration: 1s; animation-delay:1s;animation-fill-mode:forwards}
+    .swiper-slide-active .txt2 { animation: fadeInDnSD; animation-duration: 1.5s; animation-delay:1.5s;animation-fill-mode:forwards}
+    .swiper-slide-active .bg{animation: scaleUp; animation-duration: 5s; animation-delay:0s; animation-fill-mode:backwards; animation-timing-function: ease-out }
+
+  </style>
+<p class="sub-txt">
+    <a href="https://swiperjs.com/demos/" target="_blank">https://swiperjs.com/demos/</a>
+</p>
+<!-- Swiper -->
+<h3>text animation</h3>
+<p class="sub-txt">
+    슬라이드 swiper-slide-active  상태일때 css animation을 호출하는 형식
+</p>
+
+<div class="swiper-container v2">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="../img/kv01.jpg" alt="" class="bg">
+            <div class="ani-txt">
+                <p class="txt1">TITLE</p>
+                <p class="txt2">description......</p>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <img src="../img/kv02.jpg" alt="" class="bg">
+            <div class="ani-txt">
+                <p class="txt1">TITLE02</p>
+                <p class="txt2">description......</p>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <img src="../img/kv03.jpg" alt="" class="bg">
+            <div class="ani-txt">
+                <p class="txt1">TITLE03</p>
+                <p class="txt2">description......</p>
+            </div>
+        </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <!-- slide timeline progrssbar -->
+    <div class="time-bar time-ani"></div>
+    
+</div>
+
+
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
+
+</pre>
+
+
+<h3>progressbar</h3>
+<p class="sub-txt">
+    개별 슬라이드 타임라인 바 css animation으로 설정, autoplay : delay값과 animation duration 속성 같게
+</p>
+<div class="swiper-container v1">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+        <div class="swiper-slide">Slide 4</div>
+        <div class="swiper-slide">Slide 5</div>
+        <div class="swiper-slide">Slide 6</div>
+        <div class="swiper-slide">Slide 7</div>
+        <div class="swiper-slide">Slide 8</div>
+        <div class="swiper-slide">Slide 9</div>
+        <div class="swiper-slide">Slide 10</div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <!-- slide timeline progrssbar -->
+    <div class="time-bar time-ani"></div>
+</div>
+<script src="lib/swiper.min.js"></script>
+
+<pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ html-script:true; tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
+&lt;style&gt;
+    .time-ani{
+        animation: timelineBar 3s 1;
+    }
+
+    @keyframes timelineBar{
+        0%{width:0;}
+        100%{width:100%;}
+    }
+    .swiper-container:hover .pro-bar{
+        animation-play-state: paused;
+    }
+&lt;/style&gt;
+
+&lt;div class=&quot;swiper-container&quot;&gt;
+    &lt;div class=&quot;swiper-wrapper&quot;&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 1&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 2&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 3&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 4&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 5&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 6&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 7&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 8&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 9&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 10&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- Add Pagination --&gt;
+    &lt;div class=&quot;swiper-pagination&quot;&gt;&lt;/div&gt;
+    &lt;!-- Add Arrows --&gt;
+    &lt;div class=&quot;swiper-button-next&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;swiper-button-prev&quot;&gt;&lt;/div&gt;
+    &lt;!-- slide timeline progrssbar --&gt;
+    &lt;div class=&quot;time-bar time-ani&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 3,
+    pagination: {
+        el: '.swiper-pagination',
+        type: 'progressbar',
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+});
+
+// 슬라이드 timeline bar
+swiper.on('slideChangeTransitionStart',function(){
+    $(".time-bar").removeClass('time-ani');
+});
+swiper.on('slideChangeTransitionEnd',function(){
+    $(".time-bar").addClass('time-ani');
+});
+&lt;/script&gt;
+</pre>
+
+
+
+<script>
+    var swiper = new Swiper('.swiper-container.v1', {
+        slidesPerView: 3,
+        watchSlidesProgress: true,
+        autoplay: {
+            delay: 3000
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'progressbar',
+        },
+        navigation: {
+            nextEl: '.v1 .swiper-button-next',
+            prevEl: '.v1 .swiper-button-prev',
+        },
+    });
+
+    // 슬라이드 timeline bar
+    swiper.on('slideChangeTransitionStart',function(){
+        $(".v1 .time-bar").removeClass('time-ani');
+    });
+    swiper.on('slideChangeTransitionEnd',function(){
+        $(".v1 .time-bar").addClass('time-ani');
+    });
+
+    $('.swiper-container.v1').hover(function(){
+        swiper.autoplay.stop();
+    }, function(){
+        swiper.autoplay.start();
+    });
+
+    var swiper2 = new Swiper('.swiper-container.v2', {
+        slidesPerView: 1,
+        autoplay: {
+            delay:5000
+        },
+        loop: true,
+        effect: 'fade',
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+        },
+        navigation: {
+            nextEl: '.swiper-container.v2 .swiper-button-next',
+            prevEl: '.swiper-container.v2 .swiper-button-prev',
+        },
+    });
+
+    swiper2.on('slideChangeTransitionStart',function(){
+        $(".v2 .time-bar").removeClass('time-ani');
+    });
+    swiper2.on('slideChangeTransitionEnd',function(){
+        $(".v2 .time-bar").addClass('time-ani');
+    });
+
+</script>
