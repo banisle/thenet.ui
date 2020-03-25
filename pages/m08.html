@@ -135,7 +135,25 @@
 
 
 <pre class="brush:js; /* javascript 지정 */ first-line:1; /* 시작 라인 번호 지정 */ tab-size:2;	/* 탭 사이즈 변경 */ toolbar:false;	/* 툴바 표시 지정 */ pad-line-numbers:true;	/* 라인번호 앞에 0을 채움. */">
-
+&lt;script&gt;    
+    var swiper2 = new Swiper('.swiper-container.v2', {
+        slidesPerView: 1,
+        autoplay: {
+            delay:5000,
+            disableOnInteraction: false
+        },
+        loop: true,
+        effect: 'fade',
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+        },
+        navigation: {
+            nextEl: '.swiper-container.v2 .swiper-button-next',
+            prevEl: '.swiper-container.v2 .swiper-button-prev',
+        },
+    });
+&lt;/script&gt;
 </pre>
 
 
@@ -262,7 +280,8 @@ swiper.on('slideChangeTransitionEnd',function(){
     var swiper2 = new Swiper('.swiper-container.v2', {
         slidesPerView: 1,
         autoplay: {
-            delay:5000
+            delay:5000,
+            disableOnInteraction: false
         },
         loop: true,
         effect: 'fade',
