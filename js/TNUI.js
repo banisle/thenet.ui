@@ -44,6 +44,66 @@ if (!(window.console && console.log)) {
     };
 }
 
+// 해상도 체크 클래스
+var resChk = function(){
+    $(window).on('resize.changemediasize load', function(){
+        var $window = $(window),
+            $html = $('html'),
+            _res = [{
+                mode: "w376",
+                min: 0,
+                max: 376
+            }, {
+                mode: "w768",
+                min: 376,
+                max: 768
+            }, {
+                mode: "w1024",
+                min: 768,
+                max: 1024
+            }, {
+                mode: "w1280",
+                min: 1024,
+                max: 1280
+            }, {
+                mode: "wide",
+                min: 1280,
+                max: 100000
+            }];
+    
+        var curW = $window.width();
+    
+        for (var i = 0, wmode; wmode = _res[i]; i++) {
+            
+            if (curW > wmode.min && curW <= wmode.max) {
+                wmode.width = curW;
+                console.log(wmode.mode);
+    
+                switch (wmode.mode) {
+                    case "wide":
+                        $html.removeClass("w376 w768 w1024 w1280");
+                        break;
+                    case "w1280":
+                        $html.addClass("w1280").removeClass("w376 w768 w1024");
+                        break;
+                    case "w1024":
+                        $html.addClass("w1024").removeClass("w376 w768 w1280");
+                        break;
+                    case "w768":
+                        $html.addClass("w768").removeClass("w376 w1024 w1280");
+                        break;
+                    case "w376":
+                        $html.addClass("w376 w768").removeClass("w1024 w1280");
+                        break
+                    }
+                
+                $window.trigger("changemediasize", false);
+                break
+            }
+        }
+    
+    });
+}();
 
 if (typeof Function.prototype.bind === "undefined") {
     Function.prototype.bind = function () {
