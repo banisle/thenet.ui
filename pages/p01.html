@@ -69,20 +69,21 @@
 &lt;/p&gt;
 </pre>
 <script>
-    $(function(){
-        //자동완성 입력필드 노출
-        var $auto = $('.searchWrap .inp_form').find('input');
-        $auto.on('propertychange change keyup paste input focusin', function(){
-            $(this).closest($('.searchWrap')).addClass('active')
-            $auto.addClass("active");
-            $(this).closest($('.searchWrap')).find('.searchAuto').show();
-        });             
-        $auto.on('focusout', function(){
-            $(this).closest($('.searchWrap')).removeClass('active')
-            $auto.removeClass("active");
-            $(this).closest($('.searchWrap')).find('.searchAuto').hide();
-        });              
-    });
+    // $(function(){
+    //     //자동완성 입력필드 노출
+    //     var $auto = $('.searchWrap .inp_form').find('input');
+        
+    //     $auto.on('input propertychange ', function(){
+    //         $(this).closest($('.searchWrap')).addClass('active')
+    //         $auto.addClass("active");
+    //         $(this).closest($('.searchWrap')).find('.searchAuto').show();
+    //     });             
+    //     $auto.on('focusout', function(){
+    //         $(this).closest($('.searchWrap')).removeClass('active')
+    //         $auto.removeClass("active");
+    //         $(this).closest($('.searchWrap')).find('.searchAuto').hide();
+    //     });              
+    // });
 </script>
 
 <script>
