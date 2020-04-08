@@ -2062,13 +2062,11 @@ TNUI.module = (function () {
                 // 삭제 버튼 생성
                 var createDelbtn = function(e){
                     var $btn = '<button type="button" class="ui-deltxt" title="내용 삭제"></button>',
-                        $parent = $(e).parent();
+                        $this = $(e);
 
-                    if ( $parent.find('.ui-deltxt').length < 1 ) {
-                        $parent.append($btn);
-
-                    }
+                    $this.append($btn);
                 }
+                createDelbtn($inp_form);
 
                 $inp.on('propertychange change keyup paste input focusin', function (e) {
                     var t = $(e.target),
@@ -2076,42 +2074,36 @@ TNUI.module = (function () {
                         oldVal,
                         $btnDel = $('.ui-deltxt');
                     
-                    // 삭제 버튼 생성
-                    createDelbtn($(this));
-
-
                     if (curVal !== oldVal && curVal !== '') {
-
                         t.closest($inp_form).find($btnDel).addClass('active');
                         isOpen = true;
                         return;
                     } else {
-
-                        $btnDel.removeClass('active');
+                        t.closest($inp_form).find($btnDel).removeClass('active');
                         isOpen = false;
                     }
-
                     oldVal = curVal;
                 });
 
                 //포커스 잃었을때 
-                $(document).on('focusin click', function (e) {
-                    if ($inp_form) {
-                        if (!$inp_form.find(e.target).length) {
-                            $btnDel.removeClass('active');
-                        }
-                    }
-                });
+                // $(document).on('focusin click', function (e) {
+                //     var $btnDel = $('.ui-deltxt');
+
+                //     if ($inp_form) {
+                //         if (!$inp_form.find(e.target).length) {
+                //             $btnDel.removeClass('active');
+                //         }
+                //     }
+                // });
 
                 // 삭제 버튼 클릭
                 $(document).on('click',$btnDel, function (e) {
-                    if (isOpen == true) {
-                        var t = $(e.target);
-                        t.prev($inp).val('');
-                        $btnDel.removeClass('active');
-                        isOpen = false;
 
-                    }
+                    var $t = $(e.target);
+                   
+                    $t.prev($inp).val('').removeClass('active');
+                    $t.removeClass('active');
+                    isOpen = false;
                 });
             }();
             console.log('inputDelUI');
