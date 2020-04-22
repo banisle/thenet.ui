@@ -18,6 +18,26 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
     isMobile = true;
 }
 
+// userAgent 추가 분류
+var chkUserAgent = function(){
+    var ua = window.navigator.userAgent,
+        isChrome = { agent : ua.indexOf('Chrome/'), name : 'isChrome'},
+        isFireFox = { agent : ua.indexOf('Firefox/'), name : 'isFireFox'},
+        isChEdge = {agent : ua.indexOf('Edg/'), name : 'isChEdge'},
+        isMsEdge = {agent : ua.indexOf('Edge/'), name : 'isMsEdge'},
+        usName;
+
+    var arrUA = [isChrome,isFireFox,isChEdge,isMsEdge];
+
+    arrUA.forEach(function(item,index){
+        if(item.agent > -1) {
+            usName = arrUA[index].name
+        }
+    });
+
+    $root.addClass(usName);
+}();
+
 function get_version_of_IE() { //ie aegent 체크
     var word;
     var agent = navigator.userAgent.toLowerCase();
